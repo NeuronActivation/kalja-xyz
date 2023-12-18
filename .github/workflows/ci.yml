@@ -1,0 +1,27 @@
+name: Linting and formatting
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set up Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Initializing project
+        run: 'pnpm install'
+
+      - name: Lint and format checks
+        run: 'pnpm check && pnpm lint'
