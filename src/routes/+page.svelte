@@ -20,6 +20,14 @@
 		GAME_OVER = 'game_over'
 	}
 
+    type GameEvent = {
+        title: string,
+        person: string,
+        startingIndex: number,
+        ended: boolean
+    }
+    let events: GameEvent[] = [];
+
 	type Player = {
 		id: number;
 		name: string;
@@ -56,10 +64,11 @@
 		} catch (error) {
 			console.error('Error fetching data: ', error);
 		}
-		changeGameState(GameStates.PLAYING);
 
 		currentCardIndex = 0;
 		currentPlayerIndex = 0;
+
+		changeGameState(GameStates.PLAYING);
 	}
 
 	function addPlayer(playerName: string) {
@@ -82,9 +91,32 @@
 			currentPlayerIndex = 0;
 		}
 
-		if (currentCardIndex >= cardsInGame) {
-			changeGameState(GameStates.GAME_OVER);
-		}
+        // Go to game over if out of cards.
+        // Card index doesn't have to be updated since it's always updated in startGame().
+        if (currentCardIndex >= cardsInGame) {
+            // TODO check if remaining events and give notice.
+            events = [];
+            changeGameState(GameStates.GAME_OVER);
+            return;
+        }
+
+        events = events.filter(item => !item.ended);
+
+        events.forEach(event => {
+            if (currentPlayerIndex === event.startingIndex) {
+                event.ended = true;
+            }
+        });
+        if (gameCards[currentCardIndex].timedEvent)
+        {
+            let event: GameEvent = {
+                title: gameCards[currentCardIndex].title,
+                person: gameContext.players[currentPlayerIndex].name,
+                startingIndex: currentPlayerIndex,
+                ended: false
+            }
+            events.push(event);
+        }
 	}
 
 	function getTarget(cardIndex: number, playerIndex: number): string {
@@ -133,6 +165,13 @@
 		<p>
 			{gameCards[currentCardIndex].description + getTarget(currentCardIndex, currentPlayerIndex)}
 		</p>
+
+        {#each events as event}
+            {#if event.ended === true}
+            <h1>{event.person} voit lopetaa tehtävän {event.title}</h1>
+            {/if}
+        {/each}
+
 		<p>{currentCardIndex + 1}/{cardsInGame}</p>
 	</div>
 	<button on:click={showNextCard}>Seuraava kortti</button>
