@@ -10,7 +10,7 @@
 	// Which card is currently in play.
 	let currentCardIndex = 0;
 
-	// Which player the question is targettting.
+	// Which player the question is targeting.
 	let currentPlayerIndex = 0;
 
 	enum GameStates {
@@ -57,6 +57,9 @@
 			console.error('Error fetching data: ', error);
 		}
 		changeGameState(GameStates.PLAYING);
+
+		currentCardIndex = 0;
+		currentPlayerIndex = 0;
 	}
 
 	function addPlayer(playerName: string) {
@@ -82,6 +85,20 @@
 		if (currentCardIndex >= cardsInGame) {
 			changeGameState(GameStates.GAME_OVER);
 		}
+	}
+
+	function getTarget(cardIndex: number, playerIndex: number): string {
+		let card = gameCards[cardIndex];
+
+		if (!card.targetPlayer) {
+			return '';
+		}
+
+		let randomIndex = playerIndex;
+		while (randomIndex === playerIndex) {
+			randomIndex = Math.floor(Math.random() * gameContext.players.length);
+		}
+		return gameContext.players[randomIndex].name;
 	}
 </script>
 
@@ -113,7 +130,9 @@
 	<div>
 		<h2>{gameCards[currentCardIndex].title}</h2>
 		<p>Kohde: {gameContext.players[currentPlayerIndex].name}</p>
-		<p>{gameCards[currentCardIndex].description}</p>
+		<p>
+			{gameCards[currentCardIndex].description + getTarget(currentCardIndex, currentPlayerIndex)}
+		</p>
 		<p>{currentCardIndex + 1}/{cardsInGame}</p>
 	</div>
 	<button on:click={showNextCard}>Seuraava kortti</button>

@@ -5,5 +5,5 @@ export declare type GameCard = {
 	title: string;
 	description: string;
 	timedEvent: boolean;
-	targetingPlayer: boolean;
+	targetPlayer: boolean;
 };
