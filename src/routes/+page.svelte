@@ -50,12 +50,12 @@
 
 	async function startGame() {
 		try {
-			const response = await fetch(`${base}/questions.json`);
+			const response = await fetch(`${base}/cards/finnish.json`);
 			const data = await response.json();
 
-			if (data.questions.length >= cardsInGame) {
+			if (data.cards.length >= cardsInGame) {
 				// Shuffle the array.
-				const shuffledData = data.questions.sort(() => Math.random() - 0.5);
+				const shuffledData = data.cards.sort(() => Math.random() - 0.5);
 
 				// Select the amount of entried needed for the game.
 				gameCards = shuffledData.slice(0, cardsInGame);
