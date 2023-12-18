@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from "$app/paths";
 	import { cardsInGame } from '$lib/constants/cardsInGame';
 	import type { GameCard } from '$lib/models/card';
 
@@ -49,7 +50,7 @@
 
 	async function startGame() {
 		try {
-			const response = await fetch('/questions.json');
+			const response = await fetch(`${base}/questions.json`);
 			const data = await response.json();
 
 			if (data.questions.length >= cardsInGame) {
