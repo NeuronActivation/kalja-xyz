@@ -20,15 +20,6 @@
 		GAME_OVER = 'game_over'
 	}
 
-    type GameEvent = {
-        title: string,
-        person: string,
-        startingIndex: number,
-        ended: boolean
-    }
-
-    let events: GameEvent[] = [];
-
 	type Player = {
 		id: number;
 		name: string;
@@ -50,12 +41,12 @@
 
 	async function startGame() {
 		try {
-			const response = await fetch('/cards.json');
+			const response = await fetch('/questions.json');
 			const data = await response.json();
 
-			if (data.cards.length >= cardsInGame) {
+			if (data.questions.length >= cardsInGame) {
 				// Shuffle the array.
-				const shuffledData = data.cards.sort(() => Math.random() - 0.5);
+				const shuffledData = data.questions.sort(() => Math.random() - 0.5);
 
 				// Select the amount of entried needed for the game.
 				gameCards = shuffledData.slice(0, cardsInGame);
@@ -65,10 +56,10 @@
 		} catch (error) {
 			console.error('Error fetching data: ', error);
 		}
+		changeGameState(GameStates.PLAYING);
+
 		currentCardIndex = 0;
 		currentPlayerIndex = 0;
-
-		changeGameState(GameStates.PLAYING);
 	}
 
 	function addPlayer(playerName: string) {
@@ -87,37 +78,13 @@
 		currentCardIndex += 1;
 		currentPlayerIndex += 1;
 
-        if (currentPlayerIndex >= gameContext.players.length) {
+		if (currentPlayerIndex >= gameContext.players.length) {
 			currentPlayerIndex = 0;
 		}
 
-        // Go to game over if out of cards.
-        // Card index doesn't have to be updated since it's always updated in startGame().
-        if (currentCardIndex >= cardsInGame) {
-            // TODO check if remaining events and give notice.
-            events = [];
+		if (currentCardIndex >= cardsInGame) {
 			changeGameState(GameStates.GAME_OVER);
-            return;
 		}
-
-        events = events.filter(item => !item.ended);
-
-        events.forEach(event => {
-            if (currentPlayerIndex === event.startingIndex) {
-                event.ended = true;
-            }
-        });
-
-        if (gameCards[currentCardIndex].timedEvent)
-        {
-            let event: GameEvent = {
-                title: gameCards[currentCardIndex].title,
-                person: gameContext.players[currentPlayerIndex].name,
-                startingIndex: currentPlayerIndex,
-                ended: false
-            }
-            events.push(event);
-        }
 	}
 
 	function getTarget(cardIndex: number, playerIndex: number): string {
@@ -166,13 +133,6 @@
 		<p>
 			{gameCards[currentCardIndex].description + getTarget(currentCardIndex, currentPlayerIndex)}
 		</p>
-
-        {#each events as event}
-            {#if event.ended === true}
-            <h1>{event.person} voit lopetaa tehtävän {event.title}</h1>
-            {/if}
-        {/each}
-
 		<p>{currentCardIndex + 1}/{cardsInGame}</p>
 	</div>
 	<button on:click={showNextCard}>Seuraava kortti</button>
