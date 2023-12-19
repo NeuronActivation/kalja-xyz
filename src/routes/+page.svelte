@@ -102,7 +102,7 @@
 		// Clearing ended events.
 		events = events.filter(item => !item.ended);
 
-		// Last card so all event's automatically end.
+		// Last card so all events automatically end.
 		if (currentCardIndex + 1 >= cardsInGame) {
 			events.forEach((event) => {
 				event.ended = true;
