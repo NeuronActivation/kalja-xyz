@@ -88,26 +88,36 @@
 		currentCardIndex += 1;
 		currentPlayerIndex += 1;
 
+		// Go to game over if out of cards.
+        // Card index doesn't have to be updated since it's always updated in startGame().
+        if (currentCardIndex >= cardsInGame) {
+		    changeGameState(GameStates.GAME_OVER);
+            return;
+        }
+
 		if (currentPlayerIndex >= gameContext.players.length) {
 			currentPlayerIndex = 0;
 		}
 
-        // Go to game over if out of cards.
-        // Card index doesn't have to be updated since it's always updated in startGame().
-        if (currentCardIndex >= cardsInGame) {
-            // TODO check if remaining events and give notice.
-            events = [];
-            changeGameState(GameStates.GAME_OVER);
-            return;
-        }
+		// Clearing ended events.
+		events = events.filter(item => !item.ended);
 
-        events = events.filter(item => !item.ended);
+		// Last card so all event's automatically end.
+		if (currentCardIndex + 1 >= cardsInGame) {
+			events.forEach((event) => {
+				event.ended = true;
+			})
+			return;
+		}
 
-        events.forEach(event => {
+		// Event ends normally.
+		events.forEach(event => {
             if (currentPlayerIndex === event.startingIndex) {
                 event.ended = true;
             }
         });
+
+		// Add a new event.
         if (gameCards[currentCardIndex].timedEvent)
         {
             let event: GameEvent = {
@@ -175,8 +185,18 @@
 
 		<p>{currentCardIndex + 1}/{cardsInGame}</p>
 	</div>
-	<button on:click={showNextCard}>Seuraava kortti</button>
+	{#if currentCardIndex + 1 < 29}
+		<button on:click={showNextCard}>Seuraava kortti</button>
+	{:else if currentCardIndex + 1 === 29}
+		<button on:click={showNextCard}>Viimeinen kortti</button>
+	{:else if currentCardIndex + 1 === 30}
+		<button on:click={showNextCard}>Peli ohi</button>
+	{/if}
 {:else if gameContext.state === GameStates.GAME_OVER}
 	<h1>PELI OHI</h1>
-	<button on:click={() => changeGameState(GameStates.LOBBY)}>Takaisin alkuun</button>
+	<button on:click={() => {
+		changeGameState(GameStates.LOBBY);
+		// Clearing remaining events, if any.
+		events = [];
+	}}>Takaisin alkuun</button>
 {/if}
