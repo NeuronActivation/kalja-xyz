@@ -14,7 +14,7 @@
 		},
 		{
 			"title": "Waterfall",
-			"description": "Every player starts drinking. The player from the left of the player get's to stop drinking first, and then from the left, etc.",
+			"description": "Every player starts drinking. The player from the left of the player gets to stop drinking first, and then from the left, etc.",
 			"timedEvent": false,
 			"targetPlayer": false
 		},
