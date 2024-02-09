@@ -86,7 +86,7 @@
 		},
 		{
 			"title": "Laimeinta juomaa juova juo",
-			"description": "Juo nössö. Tasapelissä molemmta/kaikki juovat.",
+			"description": "Juo nössö. Tasapelissä molemmat/kaikki juovat.",
 			"timedEvent": false,
 			"targetPlayer": false
 		},
