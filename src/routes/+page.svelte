@@ -173,7 +173,11 @@
 				{/each}
 			</ul>
 		{/if}
-		<button class="button button-green" on:click={startGame}>Aloita ryyppääminen</button>
+		<button
+			class="button button-green"
+			disabled={gameContext.players.length < 2}
+			on:click={startGame}>Aloita ryyppääminen</button
+		>
 	{:else if gameContext.state === GameStates.PLAYING}
 		<h1 class="target">{gameContext.players[currentPlayerIndex].name}</h1>
 
