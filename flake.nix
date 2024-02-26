@@ -12,7 +12,10 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       devShell = pkgs.mkShell {
-        nativeBuildInputs = [pkgs.nodePackages.pnpm];
+        nativeBuildInputs = with pkgs.nodePackages; [
+          pnpm
+          svelte-language-server
+        ];
         buildInputs = with pkgs; [
           openssl
           nodejs_18
