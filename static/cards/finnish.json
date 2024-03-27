@@ -50,7 +50,7 @@
 		},
 		{
 			"title": "Totuus vai tehtävä",
-			"description": "Kysy uhrilta 'totuus vai tehtävä?' ja toimi sen mukaan. Uhri: ",
+			"description": "Kysy uhrilta 'totuus vai tehtävä?' ja toimi sen mukaan.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -140,7 +140,7 @@
 		},
 		{
 			"title": "Ota selfie",
-			"description": "Ota selfie toisen pelaajan kanssa. Tärkeät hetket on ikuistettava! Selfiekaveri: ",
+			"description": "Ota selfie toisen pelaajan kanssa. Tärkeät hetket on ikuistettava!",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -170,7 +170,7 @@
 		},
 		{
 			"title": "KPS-PVP",
-			"description": "Pelaa kivi-paperi-sakset yhtä pelaajaa vastaan. Häviäjä juo. Vastustaja: ",
+			"description": "Pelaa kivi-paperi-sakset yhtä pelaajaa vastaan. Häviäjä juo.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -284,7 +284,7 @@
 		},
 		{
 			"title": "Pervo",
-			"description": "Läpsäise toisen pelaajan persettä. Uhri: ",
+			"description": "Läpsäise toisen pelaajan persettä.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -320,7 +320,7 @@
 		},
 		{
 			"title": "Yleistieto",
-			"description": "Kysy uhrilta yleistietokysymys. Jos hän vastaa väärin hän juo, muuten sinä juot. Uhri: ",
+			"description": "Kysy uhrilta yleistietokysymys. Jos hän vastaa väärin hän juo, muuten sinä juot.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -356,13 +356,97 @@
 		},
 		{
 			"title": "Kiusaaja",
-			"description": "Hauku toista pelaajaa. Uhri: ",
+			"description": "Hauku toista pelaajaa.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
 		{
 			"title": "Suosittu",
 			"description": "Kaikkien pitää kehua sinua tai juoda.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Juonut ennen klo 18",
+			"description": "Kaikki, jotka ovat juoneet alkoholia ennen klo 18 tänään, juovat.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Kyllä tai ei",
+			"description": "Kysy kysymys, johon vastataan vain 'kyllä' tai 'ei'. Jos pelaaja vastaa jotain muuta, hän juo.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Nimeä musiikkigenre",
+			"description": "Valitse joku musiikkigenre, ja jokainen pelaaja vuorollaan laulaa tai huutaa yhden kappaleen kyseisestä genrestä. Jos joku ei keksi kappaletta, hän juo.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Imitointi",
+			"description": "Imitoi tunnettua henkilöä tai hahmoa yhden minuutin ajan. Muut pelaajat arvaavat, ketä imitoit. Jos kukaan ei arvaa oikein, imitoija juo.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Kielletty sana",
+			"description": "Valitse sana, jota kohde ei saa sanoa koko kierroksen aikana. Jos hän sanoo kyseisen sanan, hän juo.",
+			"timedEvent": true,
+			"targetPlayer": true
+		},
+		{
+			"title": "Emoji",
+			"description": "Lähetä lyhyt viesti kohteelle pelkkiä emojita käyttäen. Vastaanottaja yrittää lausua viestin sanoin ääneen. Jos vastaanottaja ymmärtää viestin aiheen väärin, hän juo.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Väärä vastaus",
+			"description": "Keksi kohteelle kysymys, johon on mahdollista antaa kyllä/ei tai määrä vastauksena ja kerro vastauksen tyyppi. Kohteen tulee vastata tietämättä itse kysymystä etukäteen ja jos hän vastaa väärin, hän juo.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Muistoja vai fantasiaa?",
+			"description": "Kohteen tulee kertoa lyhyt tuulesta temmattu tarina tai oikea muisto menneisyydestään. Muut pelaajat arvaavat, onko tarina totta vai tarua. Jos puolet tai enemmistö arvaa väärin, kohde juo.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Tunnettu lainaus",
+			"description": "Kohteen tulee esittää tunnetun henkilön tai hahmon lainaus. Muut pelaajat yrittävät arvata, kuka tai mikä hahmo on kyseessä. Väärin arvanneet juovat. Jos kaikki arvaavat oikein, vain kohde juo.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Noppapeli",
+			"description": "Pelaajan tulee heittää noppaa ja saada tietty numero, jonka hän päättää etukäteen. Jos hän epäonnistuu, hän juo. Jos hän onnistuu, kaikki muut juovat.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Viihdearvoitus",
+			"description": "Pelaajan kertoo valitsemansa elokuvan, sarjan tai pelin juonen mainitsematta sen nimeä. Ensimmäinen oikein arvannut pelaaja päättää kuka tai ketkä juovat.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Tilipäivä",
+			"description": "Viimeisimmäksi palkan, Kelan tukia tai lahjarahaa vastaanottanut pelaaja juo.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "isEven(bday)",
+			"description": "Parillisena päivänä syntyneet juovat.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "isOdd(bday)",
+			"description": "Parittomana päivänä syntyneet juovat.",
 			"timedEvent": false,
 			"targetPlayer": false
 		}
