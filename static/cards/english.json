@@ -50,7 +50,7 @@
 		},
 		{
 			"title": "Truth or Dare",
-			"description": "Ask the victim 'truth or dare?' and act accordingly. Victim: ",
+			"description": "Ask the victim 'truth or dare?' and act accordingly.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -131,10 +131,10 @@
 			"description": "Read aloud the last message you received.",
 			"timedEvent": false,
 			"targetPlayer": false
-    	},
+		},
 		{
 			"title": "Take a Selfie",
-			"description": "Take a selfie with another player. Important moments need to be captured! Selfie buddy: ",
+			"description": "Take a selfie with another player. Important moments need to be captured!",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -164,7 +164,7 @@
 		},
 		{
 			"title": "Rock-Paper-Scissors vs Player",
-			"description": "Play rock-paper-scissors against one player. The loser drinks. Opponent: ",
+			"description": "Play rock-paper-scissors against one player. The loser drinks.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -260,7 +260,7 @@
 		},
 		{
 			"title": "Pervert",
-			"description": "Slap another player's butt. Victim: ",
+			"description": "Slap another player's butt.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -296,7 +296,7 @@
 		},
 		{
 			"title": "General Knowledge",
-			"description": "Ask the victim a general knowledge question. If they answer incorrectly, they drink; otherwise, you drink. Victim: ",
+			"description": "Ask the victim a general knowledge question. If they answer incorrectly, they drink; otherwise, you drink.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
@@ -332,13 +332,97 @@
 		},
 		{
 			"title": "Bully",
-			"description": "Insult another player. Victim: ",
+			"description": "Insult another player.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
 		{
 			"title": "Popular",
 			"description": "All players must compliment you or drink.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Drank before 6 PM",
+			"description": "Everyone who has consumed alcohol before 6 PM today drinks.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Yes or No",
+			"description": "Ask a question that can be answered only with 'yes' or 'no'. If the player answers with something else, they drink.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Name a Music Genre",
+			"description": "Choose a music genre, and each player takes turns singing or shouting one song from that genre. If someone can't think of a song, they drink.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Impersonation",
+			"description": "Imitate a famous person or character for one minute. Other players guess who you are impersonating. If no one guesses correctly, the impersonator drinks.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Forbidden Word",
+			"description": "Select a word that the target player cannot say throughout the round. If they say the word, they drink.",
+			"timedEvent": true,
+			"targetPlayer": true
+		},
+		{
+			"title": "Emoji Message",
+			"description": "Send a short message to the target player using only emojis. The recipient tries to pronounce the message in words. If they misunderstand the message, they drink.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Wrong Answer",
+			"description": "Come up with a question for the target player that can be answered with yes/no or a specific number, and indicate the type of answer. The target must answer without knowing the question beforehand, and if they answer incorrectly, they drink.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Memories or Fantasy?",
+			"description": "The target must tell a short, impromptu story or a real memory from their past. Other players guess whether the story is true or false. If half or more guess wrong, the target drinks.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Famous Quote",
+			"description": "The target must recite a famous line from a person or character. Other players try to guess who or what the character is. Incorrect guessers drink. If everyone guesses correctly, only the target drinks.",
+			"timedEvent": false,
+			"targetPlayer": true
+		},
+		{
+			"title": "Dice Game",
+			"description": "The player must roll a die and get a specific number predetermined by them. If they fail, they drink. If they succeed, everyone else drinks.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Entertainment Riddle",
+			"description": "The player describes the plot of their chosen movie, series, or game without mentioning its name. The first player to guess correctly decides who or who drinks.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Payday",
+			"description": "The player who most recently received their paycheck, social benefits from the government, or gift money drinks.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "isEven(bday)",
+			"description": "Players born on an even-numbered day drink.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "isOdd(bday)",
+			"description": "Players born on an odd-numbered day drink.",
 			"timedEvent": false,
 			"targetPlayer": false
 		}

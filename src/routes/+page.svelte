@@ -184,8 +184,11 @@
 		<article>
 			<h2>{gameCards[currentCardIndex].title}</h2>
 			<p>
-				{gameCards[currentCardIndex].description + getTarget(currentCardIndex, currentPlayerIndex)}
+				{gameCards[currentCardIndex].description}
 			</p>
+			{#if gameCards[currentCardIndex].targetPlayer}
+				<b>Kohde: {getTarget(currentCardIndex, currentPlayerIndex)}</b>
+			{/if}
 		</article>
 
 		{#each events as event}
