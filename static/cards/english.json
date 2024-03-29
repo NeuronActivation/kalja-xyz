@@ -385,16 +385,10 @@
 			"targetPlayer": true
 		},
 		{
-			"title": "Memories or Fantasy?",
-			"description": "The target must tell a short, impromptu story or a real memory from their past. Other players guess whether the story is true or false. If half or more guess wrong, the target drinks.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
 			"title": "Famous Quote",
 			"description": "The target must recite a famous line from a person or character. Other players try to guess who or what the character is. Incorrect guessers drink. If everyone guesses correctly, only the target drinks.",
 			"timedEvent": false,
-			"targetPlayer": true
+			"targetPlayer": false
 		},
 		{
 			"title": "Dice Game",

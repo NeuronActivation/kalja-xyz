@@ -409,16 +409,10 @@
 			"targetPlayer": true
 		},
 		{
-			"title": "Muistoja vai fantasiaa?",
-			"description": "Kohteen tulee kertoa lyhyt tuulesta temmattu tarina tai oikea muisto menneisyydestään. Muut pelaajat arvaavat, onko tarina totta vai tarua. Jos puolet tai enemmistö arvaa väärin, kohde juo.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
 			"title": "Tunnettu lainaus",
 			"description": "Kohteen tulee esittää tunnetun henkilön tai hahmon lainaus. Muut pelaajat yrittävät arvata, kuka tai mikä hahmo on kyseessä. Väärin arvanneet juovat. Jos kaikki arvaavat oikein, vain kohde juo.",
 			"timedEvent": false,
-			"targetPlayer": true
+			"targetPlayer": false
 		},
 		{
 			"title": "Noppapeli",
