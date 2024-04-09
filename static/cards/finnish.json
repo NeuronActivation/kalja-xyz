@@ -373,12 +373,6 @@
 			"targetPlayer": false
 		},
 		{
-			"title": "Kyllä tai ei",
-			"description": "Kysy kysymys, johon vastataan vain 'kyllä' tai 'ei'. Jos pelaaja vastaa jotain muuta, hän juo.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
 			"title": "Nimeä musiikkigenre",
 			"description": "Valitse joku musiikkigenre, ja jokainen pelaaja vuorollaan laulaa tai huutaa yhden kappaleen kyseisestä genrestä. Jos joku ei keksi kappaletta, hän juo.",
 			"timedEvent": false,
@@ -386,7 +380,7 @@
 		},
 		{
 			"title": "Imitointi",
-			"description": "Imitoi tunnettua henkilöä tai hahmoa yhden minuutin ajan. Muut pelaajat arvaavat, ketä imitoit. Jos kukaan ei arvaa oikein, imitoija juo.",
+			"description": "Imitoi tunnettua henkilöä tai hahmoa. Muut pelaajat arvaavat, ketä imitoit. Jos kukaan ei arvaa oikein, imitoija juo.",
 			"timedEvent": false,
 			"targetPlayer": false
 		},
@@ -404,31 +398,31 @@
 		},
 		{
 			"title": "Väärä vastaus",
-			"description": "Keksi kohteelle kysymys, johon on mahdollista antaa kyllä/ei tai määrä vastauksena ja kerro vastauksen tyyppi. Kohteen tulee vastata tietämättä itse kysymystä etukäteen ja jos hän vastaa väärin, hän juo.",
+			"description": "Keksi kohteelle kysymys, johon on mahdollista antaa kyllä/ei-vastaus. Kohteen tulee vastata tietämättä itse kysymystä etukäteen ja jos hän vastaa väärin, hän juo.",
 			"timedEvent": false,
 			"targetPlayer": true
 		},
 		{
 			"title": "Muistoja vai fantasiaa?",
-			"description": "Kohteen tulee kertoa lyhyt tuulesta temmattu tarina tai oikea muisto menneisyydestään. Muut pelaajat arvaavat, onko tarina totta vai tarua. Jos puolet tai enemmistö arvaa väärin, kohde juo.",
+			"description": "Kerro lyhyt tuulesta temmattu tarina tai oikea muisto menneisyydestäsi. Muut pelaajat arvaavat, onko tarina totta vai tarua. Väärin arvanneet pelaajat juovat. Jos kaikki vastaavat oikein, sinä juot.",
 			"timedEvent": false,
 			"targetPlayer": false
 		},
 		{
 			"title": "Tunnettu lainaus",
-			"description": "Kohteen tulee esittää tunnetun henkilön tai hahmon lainaus. Muut pelaajat yrittävät arvata, kuka tai mikä hahmo on kyseessä. Väärin arvanneet juovat. Jos kaikki arvaavat oikein, vain kohde juo.",
+			"description": "Esitä tunnetun henkilön tai hahmon lainaus. Muut pelaajat yrittävät arvata, kuka tai mikä hahmo on kyseessä. Väärin arvanneet juovat. Jos kaikki arvaavat oikein, sinä juot.",
 			"timedEvent": false,
 			"targetPlayer": false
 		},
 		{
 			"title": "Noppapeli",
-			"description": "Pelaajan tulee heittää noppaa ja saada tietty numero, jonka hän päättää etukäteen. Jos hän epäonnistuu, hän juo. Jos hän onnistuu, kaikki muut juovat.",
+			"description": "Heitä noppaa ja yritä saada tietty numero, jonka päätät etukäteen. Jos epäonnistut, juot. Jos onnistut, kaikki muut juovat.",
 			"timedEvent": false,
 			"targetPlayer": false
 		},
 		{
 			"title": "Viihdearvoitus",
-			"description": "Pelaajan kertoo valitsemansa elokuvan, sarjan tai pelin juonen mainitsematta sen nimeä. Ensimmäinen oikein arvannut pelaaja päättää kuka tai ketkä juovat.",
+			"description": "Kerro valitsemasi elokuvan, sarjan tai pelin juoni mainitsematta sen nimeä. Ensimmäinen oikein arvannut pelaaja päättää kuka tai ketkä juovat.",
 			"timedEvent": false,
 			"targetPlayer": false
 		},
@@ -447,6 +441,36 @@
 		{
 			"title": "isOdd(bday)",
 			"description": "Parittomana päivänä syntyneet juovat.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Sukkaralli",
+			"description": "Laita sukka jalkaasi käyttäen vain yhtä kättä. Jos et onnistu tai suorituksessa kestää liian kauan, juot.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Imitaattori",
+			"description": "Imitoi toista pelaajaa kierroksen ajan.",
+			"timedEvent": true,
+			"targetPlayer": true
+		},
+		{
+			"title": "Sanonta",
+			"description": "Keksi uusi sanonta ja käytä sitä mahdollisimman paljon loppupelin ajan",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Dance king",
+			"description": "Keksi uusi Fortnite-tanssi ja esitä se.",
+			"timedEvent": false,
+			"targetPlayer": false
+		},
+		{
+			"title": "Ootsä se...",
+			"description": "Keksi joku henkilö tai hahmo. Muut pelaajat vuorottelevat ja kysyvät joko kyllä/ei-kysymyksen tai esittävät arvauksen henkilöllisyydestäsi. Väärän arvauksen esittänyt pelaaja juo. Oikein arvannut pelaaja päättää kuka juo.",
 			"timedEvent": false,
 			"targetPlayer": false
 		}
