@@ -28,7 +28,7 @@
 		"vite": "^5.1.7"
 	},
 	"type": "module",
-	"packageManager": "pnpm@8.6.12",
+	"packageManager": "pnpm@9.1.4",
 	"dependencies": {
 		"@picocss/pico": "^2.0.3"
 	}

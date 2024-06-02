@@ -49,6 +49,8 @@
 	}
 
 	async function startGame() {
+		gameContext.players.sort(() => Math.random() - 0.5);
+
 		try {
 			const response = await fetch(`${base}/cards/finnish.json`);
 			const data = await response.json();
