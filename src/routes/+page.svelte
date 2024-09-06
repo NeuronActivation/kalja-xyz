@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import { cardsInGame } from '$lib/constants/cardsInGame';
 	import type { GameCard } from '$lib/models/card';
+	import { onMount } from 'svelte';
 
 	let gameCards: GameCard[] = [];
 
@@ -44,8 +45,43 @@
 		players: []
 	};
 
+	function saveGameState() {
+		const state = {
+			gameCards,
+			playerName,
+			currentCardIndex,
+			currentPlayerIndex,
+			gameContext,
+			events
+		};
+		sessionStorage.setItem('gameState', JSON.stringify(state));
+	}
+
+	onMount(() => {
+		const savedState = sessionStorage.getItem('gameState');
+		if (savedState) {
+			const parsedState = JSON.parse(savedState);
+
+			// Restore the state
+			gameCards = parsedState.gameCards || [];
+			playerName = parsedState.playerName || '';
+			currentCardIndex = parsedState.currentCardIndex || 0;
+			currentPlayerIndex = parsedState.currentPlayerIndex || 0;
+			gameContext = parsedState.gameContext || { state: GameStates.LOBBY, players: [] };
+			events = parsedState.events || [];
+		}
+	});
+
+	function resetGame() {
+		gameContext = { state: GameStates.LOBBY, players: [] };
+		gameCards = [];
+		events = [];
+		sessionStorage.removeItem('gameState');
+	}
+
 	function changeGameState(newState: GameStates) {
 		gameContext.state = newState;
+		saveGameState();
 	}
 
 	async function startGame() {
@@ -70,17 +106,19 @@
 
 		currentCardIndex = 0;
 		currentPlayerIndex = 0;
-
 		changeGameState(GameStates.PLAYING);
+		saveGameState();
 	}
 
 	function addPlayer(playerName: string) {
 		const newPlayer: Player = { id: gameContext.players.length + 1, name: playerName };
 		gameContext.players = [...gameContext.players, newPlayer];
+		saveGameState();
 	}
 
 	function removePlayer(playerId: number) {
 		gameContext.players = gameContext.players.filter((player) => player.id !== playerId);
+		saveGameState();
 	}
 
 	function handleKeyPress(event: KeyboardEvent) {
@@ -133,6 +171,7 @@
 			};
 			events.push(event);
 		}
+		saveGameState();
 	}
 
 	function getTarget(cardIndex: number, playerIndex: number): string {
@@ -151,6 +190,10 @@
 </script>
 
 <div class="game-container">
+	<button class="reset-button" on:click={resetGame} title="Reset Game">
+		&#x21bb; <!-- Unicode for a circular reset icon -->
+	</button>
+
 	{#if gameContext.state === GameStates.LOBBY}
 		<h1>Santerin Juomapeli v2</h1>
 		<button class="button" on:click={() => changeGameState(GameStates.ADDING_PLAYERS)}
@@ -272,5 +315,20 @@
 
 	.game-status {
 		margin-top: 1rem;
+	}
+
+	.reset-button {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		background-color: transparent;
+		border: none;
+		font-size: 36px;
+		cursor: pointer;
+		color: #333;
+	}
+
+	.reset-button:hover {
+		color: #2980b9;
 	}
 </style>
