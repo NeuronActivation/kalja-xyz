@@ -1,10 +1,13 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { get } from 'svelte/store';
 	import { cardsInGame } from '$lib/constants/cardsInGame';
-	import type { GameCard } from '$lib/models/card';
+	import { Language } from '$lib/languages/language';
+	import { loadLanguages, languageData } from '$lib/languages/load';
+	import { getLocale } from '$lib/languages/translation';
+	import type { Card } from '$lib/models/card';
 	import { onMount } from 'svelte';
 
-	let gameCards: GameCard[] = [];
+	let gameCards: Card[] = [];
 
 	// Input field value.
 	let playerName = '';
@@ -15,6 +18,43 @@
 	// Which player the question is targeting.
 	let currentPlayerIndex = 0;
 
+	// The language the application is using.
+	let currentLanguage = Language.FI;
+
+	let UIElements = {
+		// The main title of the application.
+		gameTitle: '',
+
+		// Text of the main menu "Start" button.
+		mainMenuStartButtonText: '',
+
+		// Text that says "Add player names".
+		addPlayerNames: '',
+
+		// Add singular name
+		addPlayerName: '',
+
+		// Button text that says "Let's get drinking".
+		gameStartButtonText: '',
+
+		// Text that says: "You can stop the mission".
+		canStopTheMission: '',
+
+		// Button that says "Next card"
+		nextCardButtonText: '',
+
+		// Button that says "Last card".
+		lastCardButtonText: '',
+
+		// Cards with targets needs this.
+		target: '',
+
+		// Text that says "Game over"
+		gameOver: '',
+
+		// Button that takes us back to start.
+		backToStart: ''
+	};
 	enum GameStates {
 		LOBBY = 'lobby',
 		ADDING_PLAYERS = 'adding_players',
@@ -57,7 +97,10 @@
 		sessionStorage.setItem('gameState', JSON.stringify(state));
 	}
 
-	onMount(() => {
+	onMount(async () => {
+		await loadLanguages();
+		await updateUI();
+
 		const savedState = sessionStorage.getItem('gameState');
 		if (savedState) {
 			const parsedState = JSON.parse(savedState);
@@ -72,7 +115,8 @@
 		}
 	});
 
-	function resetGame() {
+	async function resetGame() {
+		await loadLanguages();
 		gameContext = { state: GameStates.LOBBY, players: [] };
 		gameCards = [];
 		events = [];
@@ -86,24 +130,7 @@
 
 	async function startGame() {
 		gameContext.players.sort(() => Math.random() - 0.5);
-
-		try {
-			const response = await fetch(`${base}/cards/finnish.json`);
-			const data = await response.json();
-
-			if (data.cards.length >= cardsInGame) {
-				// Shuffle the array.
-				const shuffledData = data.cards.sort(() => Math.random() - 0.5);
-
-				// Select the amount of entried needed for the game.
-				gameCards = shuffledData.slice(0, cardsInGame);
-			} else {
-				console.error('Data does not have enough entries');
-			}
-		} catch (error) {
-			console.error('Error fetching data: ', error);
-		}
-
+		await getCards();
 		currentCardIndex = 0;
 		currentPlayerIndex = 0;
 		changeGameState(GameStates.PLAYING);
@@ -187,7 +214,53 @@
 		}
 		return gameContext.players[randomIndex].name;
 	}
+
+	async function getCards() {
+		try {
+			const data = get(languageData)[currentLanguage];
+			if (data.cards) {
+				gameCards = data.cards;
+			}
+		} catch (error) {
+			console.error('Error fetching data: ', error);
+		}
+	}
+
+	async function changeLanguage(lang: Language) {
+		currentLanguage = lang;
+		await updateUI();
+	}
+
+	async function updateLocale(key: string): Promise<string> {
+		const locale = await getLocale(key, currentLanguage);
+		return locale !== undefined ? locale : '';
+	}
+
+	async function updateUI() {
+		await getCards();
+		UIElements.gameTitle = await updateLocale('title');
+		UIElements.mainMenuStartButtonText = await updateLocale('main-menu-start-button');
+		UIElements.addPlayerNames = await updateLocale('add-player-names');
+		UIElements.addPlayerName = await updateLocale('add-player-name');
+		UIElements.gameStartButtonText = await updateLocale('game-start-button');
+		UIElements.canStopTheMission = await updateLocale('can-stop-the-mission');
+		UIElements.target = await updateLocale('target');
+		UIElements.nextCardButtonText = await updateLocale('next-card');
+		UIElements.lastCardButtonText = await updateLocale('last-card');
+		UIElements.gameOver = await updateLocale('game-over');
+		UIElements.backToStart = await updateLocale('back-to-start');
+	}
 </script>
+
+<select
+	class="language-selector"
+	bind:value={currentLanguage}
+	on:change={() => changeLanguage(currentLanguage)}
+>
+	{#each Object.values(Language) as language}
+		<option value={language}>{language}</option>
+	{/each}
+</select>
 
 <div class="game-container">
 	<button class="reset-button" on:click={resetGame} title="Reset Game">
@@ -195,16 +268,16 @@
 	</button>
 
 	{#if gameContext.state === GameStates.LOBBY}
-		<h1>Santerin Juomapeli v2</h1>
+		<h1>{UIElements.gameTitle}</h1>
 		<button class="button" on:click={() => changeGameState(GameStates.ADDING_PLAYERS)}
-			>Aloita</button
+			>{UIElements.mainMenuStartButtonText}</button
 		>
 	{:else if gameContext.state === GameStates.ADDING_PLAYERS}
-		<h2>Lisää pelaajien nimet</h2>
+		<h2>{UIElements.addPlayerNames}</h2>
 		<input
 			type="text"
 			bind:value={playerName}
-			placeholder="Syötä pelaajan nimi"
+			placeholder={UIElements.addPlayerName}
 			on:keypress={handleKeyPress}
 			class="input"
 		/>
@@ -221,7 +294,7 @@
 		<button
 			class="button button-green"
 			disabled={gameContext.players.length < 2}
-			on:click={startGame}>Aloita ryyppääminen</button
+			on:click={startGame}>{UIElements.gameStartButtonText}</button
 		>
 	{:else if gameContext.state === GameStates.PLAYING}
 		<h1 class="target">{gameContext.players[currentPlayerIndex].name}</h1>
@@ -232,31 +305,31 @@
 				{gameCards[currentCardIndex].description}
 			</p>
 			{#if gameCards[currentCardIndex].targetPlayer}
-				<b>Kohde: {getTarget(currentCardIndex, currentPlayerIndex)}</b>
+				<b>{UIElements.target}: {getTarget(currentCardIndex, currentPlayerIndex)}</b>
 			{/if}
 		</article>
 
 		{#each events as event}
 			{#if event.ended === true}
-				<h1 class="event-text">{event.person}, voit lopetaa tehtävän {event.title}</h1>
+				<h1 class="event-text">{event.person}, {UIElements.canStopTheMission} {event.title}</h1>
 			{/if}
 		{/each}
 		{#if currentCardIndex + 1 < 29}
-			<button class="button" on:click={showNextCard}>Seuraava kortti</button>
+			<button class="button" on:click={showNextCard}>{UIElements.nextCardButtonText}</button>
 		{:else if currentCardIndex + 1 === 29}
-			<button class="button" on:click={showNextCard}>Viimeinen kortti</button>
+			<button class="button" on:click={showNextCard}>{UIElements.lastCardButtonText}</button>
 		{:else if currentCardIndex + 1 === 30}
-			<button class="button button-red" on:click={showNextCard}>Peli ohi</button>
+			<button class="button button-red" on:click={showNextCard}>{UIElements.gameOver}</button>
 		{/if}
 		<p class="game-status">{currentCardIndex + 1}/{cardsInGame}</p>
 	{:else if gameContext.state === GameStates.GAME_OVER}
-		<h1>PELI OHI</h1>
+		<h1>{UIElements.gameOver}</h1>
 		<button
 			class="button"
 			on:click={() => {
 				changeGameState(GameStates.LOBBY);
 				events = [];
-			}}>Takaisin alkuun</button
+			}}>{UIElements.backToStart}</button
 		>
 	{/if}
 </div>
@@ -330,5 +403,13 @@
 
 	.reset-button:hover {
 		color: #2980b9;
+	}
+
+	.language-selector {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 10px;
+		width: 20%;
 	}
 </style>

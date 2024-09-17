@@ -1,0 +1,13 @@
+{
+    "title": "Santeri's Drinking Game v2",
+    "main-menu-start-button": "Start",
+    "add-player-names": "Add player names",
+    "game-start-button": "Let's get drinking",
+    "add-player-name": "Insert player name",
+    "can-stop-the-mission": "you can stop the mission",
+    "target": "Target",
+    "next-card": "Next card",
+    "last-card": "Last card",
+    "game-over": "Game over",
+    "back-to-start": "Back to start"
+}
