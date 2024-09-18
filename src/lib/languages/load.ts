@@ -15,6 +15,7 @@ interface LanguageData {
 
 export const languageData = writable<Record<Language, LanguageData>>();
 
+// Load all the data from language JSON files.
 export async function loadLanguages() {
 	try {
 		const [fiLocale, enLocale] = await Promise.all([
@@ -27,13 +28,9 @@ export async function loadLanguages() {
 			fetch(`${base}/cards/english.json`).then((res) => res.json())
 		]);
 
-		// Use a fixed seed to ensure the shuffle is reproducible
 		const seed = Math.random();
 		const fiFixedCards = seededShuffle(fiCards.cards.slice(0, cardsInGame), seed);
 		const enFixedCards = seededShuffle(enCards.cards.slice(0, cardsInGame), seed);
-
-		console.log(fiFixedCards);
-		console.log(enFixedCards);
 
 		languageData.set({
 			[Language.FI]: { locale: fiLocale, cards: fiFixedCards },

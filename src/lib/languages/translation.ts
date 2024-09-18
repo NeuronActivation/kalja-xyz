@@ -3,6 +3,7 @@ import { type Language } from '$lib/languages/language';
 import { languageData } from '$lib/languages/load';
 import { type Card } from '$lib/models/card';
 
+// Get locale value from key for specific language.
 export async function getLocale(key: string, lang: Language): Promise<string | undefined> {
 	const currentLanguageData = get(languageData);
 	const localeDataForLang = currentLanguageData[lang]?.locale;
@@ -22,6 +23,7 @@ export async function getLocale(key: string, lang: Language): Promise<string | u
 	return translation;
 }
 
+// Get card data for specific language.
 export async function getCardData(lang: Language): Promise<Card[] | undefined> {
 	const currentLanguageData = get(languageData);
 	const cardDataForLang = currentLanguageData[lang]?.cards;
