@@ -2,10 +2,10 @@
 	import { get } from 'svelte/store';
 	import { cardsInGame } from '$lib/constants/cardsInGame';
 	import { Language } from '$lib/languages/language';
-	import { loadLanguages, languageData } from '$lib/languages/load';
-	import { getLocale } from '$lib/languages/translation';
+	import { loadCards, languageData, setLanguage } from '$lib/languages/load';
 	import type { Card } from '$lib/models/card';
 	import { onMount } from 'svelte';
+	import { t } from 'svelte-i18n';
 
 	let gameCards: Card[] = [];
 
@@ -21,40 +21,6 @@
 	// The language the application is using.
 	let currentLanguage = Language.FI;
 
-	let UIElements = {
-		// The main title of the application.
-		gameTitle: '',
-
-		// Text of the main menu "Start" button.
-		mainMenuStartButtonText: '',
-
-		// Text that says "Add player names".
-		addPlayerNames: '',
-
-		// Add singular name
-		addPlayerName: '',
-
-		// Button text that says "Let's get drinking".
-		gameStartButtonText: '',
-
-		// Text that says: "You can stop the mission".
-		canStopTheMission: '',
-
-		// Button that says "Next card"
-		nextCardButtonText: '',
-
-		// Button that says "Last card".
-		lastCardButtonText: '',
-
-		// Cards with targets needs this.
-		target: '',
-
-		// Text that says "Game over"
-		gameOver: '',
-
-		// Button that takes us back to start.
-		backToStart: ''
-	};
 	enum GameStates {
 		LOBBY = 'lobby',
 		ADDING_PLAYERS = 'adding_players',
@@ -98,8 +64,7 @@
 	}
 
 	onMount(async () => {
-		await loadLanguages();
-		await updateUI();
+		await getCards();
 
 		const savedState = sessionStorage.getItem('gameState');
 		if (savedState) {
@@ -116,7 +81,7 @@
 	});
 
 	async function resetGame() {
-		await loadLanguages();
+		await loadCards(fetch);
 		gameContext = { state: GameStates.LOBBY, players: [] };
 		gameCards = [];
 		events = [];
@@ -226,37 +191,21 @@
 		}
 	}
 
-	async function changeLanguage(lang: Language) {
-		currentLanguage = lang;
-		await updateUI();
-	}
+	async function changeLanguage(event: Event) {
+		const select = event.target as HTMLSelectElement;
+		const newLanguage = select.value as Language;
 
-	async function updateLocale(key: string): Promise<string> {
-		const locale = await getLocale(key, currentLanguage);
-		return locale !== undefined ? locale : '';
-	}
-
-	async function updateUI() {
-		await getCards();
-		UIElements.gameTitle = await updateLocale('title');
-		UIElements.mainMenuStartButtonText = await updateLocale('main-menu-start-button');
-		UIElements.addPlayerNames = await updateLocale('add-player-names');
-		UIElements.addPlayerName = await updateLocale('add-player-name');
-		UIElements.gameStartButtonText = await updateLocale('game-start-button');
-		UIElements.canStopTheMission = await updateLocale('can-stop-the-mission');
-		UIElements.target = await updateLocale('target');
-		UIElements.nextCardButtonText = await updateLocale('next-card');
-		UIElements.lastCardButtonText = await updateLocale('last-card');
-		UIElements.gameOver = await updateLocale('game-over');
-		UIElements.backToStart = await updateLocale('back-to-start');
+		if (newLanguage !== currentLanguage) {
+			await setLanguage(newLanguage);
+			currentLanguage = newLanguage;
+			await getCards();
+		} else {
+			console.warn('Language is already set to: ', currentLanguage);
+		}
 	}
 </script>
 
-<select
-	class="language-selector"
-	bind:value={currentLanguage}
-	on:change={() => changeLanguage(currentLanguage)}
->
+<select class="language-selector" on:change={changeLanguage}>
 	{#each Object.values(Language) as language}
 		<option value={language}>{language}</option>
 	{/each}
@@ -268,16 +217,16 @@
 	</button>
 
 	{#if gameContext.state === GameStates.LOBBY}
-		<h1>{UIElements.gameTitle}</h1>
+		<h1>{$t('title')}</h1>
 		<button class="button" on:click={() => changeGameState(GameStates.ADDING_PLAYERS)}
-			>{UIElements.mainMenuStartButtonText}</button
+			>{$t('main-menu-start-button')}</button
 		>
 	{:else if gameContext.state === GameStates.ADDING_PLAYERS}
-		<h2>{UIElements.addPlayerNames}</h2>
+		<h2>{$t('add-player-names')}</h2>
 		<input
 			type="text"
 			bind:value={playerName}
-			placeholder={UIElements.addPlayerName}
+			placeholder={$t('add-player-name')}
 			on:keypress={handleKeyPress}
 			class="input"
 		/>
@@ -294,7 +243,7 @@
 		<button
 			class="button button-green"
 			disabled={gameContext.players.length < 2}
-			on:click={startGame}>{UIElements.gameStartButtonText}</button
+			on:click={startGame}>{$t('game-start-button')}</button
 		>
 	{:else if gameContext.state === GameStates.PLAYING}
 		<h1 class="target">{gameContext.players[currentPlayerIndex].name}</h1>
@@ -305,31 +254,31 @@
 				{gameCards[currentCardIndex].description}
 			</p>
 			{#if gameCards[currentCardIndex].targetPlayer}
-				<b>{UIElements.target}: {getTarget(currentCardIndex, currentPlayerIndex)}</b>
+				<b>{$t('target')}: {getTarget(currentCardIndex, currentPlayerIndex)}</b>
 			{/if}
 		</article>
 
 		{#each events as event}
 			{#if event.ended === true}
-				<h1 class="event-text">{event.person}, {UIElements.canStopTheMission} {event.title}</h1>
+				<h1 class="event-text">{event.person}, {$t('can-stop-the-mission')} {event.title}</h1>
 			{/if}
 		{/each}
 		{#if currentCardIndex + 1 < 29}
-			<button class="button" on:click={showNextCard}>{UIElements.nextCardButtonText}</button>
+			<button class="button" on:click={showNextCard}>{$t('next-card')}</button>
 		{:else if currentCardIndex + 1 === 29}
-			<button class="button" on:click={showNextCard}>{UIElements.lastCardButtonText}</button>
+			<button class="button" on:click={showNextCard}>{$t('last-card')}</button>
 		{:else if currentCardIndex + 1 === 30}
-			<button class="button button-red" on:click={showNextCard}>{UIElements.gameOver}</button>
+			<button class="button button-red" on:click={showNextCard}>{$t('game-over')}</button>
 		{/if}
 		<p class="game-status">{currentCardIndex + 1}/{cardsInGame}</p>
 	{:else if gameContext.state === GameStates.GAME_OVER}
-		<h1>{UIElements.gameOver}</h1>
+		<h1>{$t('game-over')}</h1>
 		<button
 			class="button"
 			on:click={() => {
 				changeGameState(GameStates.LOBBY);
 				events = [];
-			}}>{UIElements.backToStart}</button
+			}}>{$t('back-to-start')}</button
 		>
 	{/if}
 </div>

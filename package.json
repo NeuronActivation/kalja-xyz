@@ -30,6 +30,7 @@
 	"type": "module",
 	"packageManager": "pnpm@9.1.4",
 	"dependencies": {
-		"@picocss/pico": "^2.0.3"
+		"@picocss/pico": "^2.0.3",
+		"svelte-i18n": "^4.0.0"
 	}
 }
