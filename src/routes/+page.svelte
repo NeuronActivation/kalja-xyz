@@ -350,15 +350,21 @@
 		color: #333;
 	}
 
-	.reset-button:hover {
+	.reset-button:hover,
+	.language-selector:hover {
 		color: #2980b9;
 	}
 
 	.language-selector {
+		all: unset;
 		position: absolute;
-		top: 0;
-		left: 0;
-		margin: 10px;
-		width: 20%;
+		top: 10px;
+		left: 10px;
+		background-color: transparent;
+		border: none;
+		font-size: 34px;
+		cursor: pointer;
+		padding: 10px;
+		width: auto;
 	}
 </style>
