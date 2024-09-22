@@ -350,8 +350,7 @@
 		color: #333;
 	}
 
-	.reset-button:hover,
-	.language-selector:hover {
+	.reset-button:hover, .language-selector:hover{
 		color: #2980b9;
 	}
 
@@ -359,7 +358,7 @@
 		all: unset;
 		position: absolute;
 		top: 10px;
-		left: 10px;
+		left: 15px;
 		background-color: transparent;
 		border: none;
 		font-size: 34px;
