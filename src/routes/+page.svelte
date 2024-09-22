@@ -205,7 +205,7 @@
 	}
 </script>
 
-<select class="language-selector" on:change={changeLanguage}>
+<select class="language-selector" on:change={changeLanguage} title="Change Language">
 	{#each Object.values(Language) as language}
 		<option value={language}>{language}</option>
 	{/each}
@@ -339,32 +339,31 @@
 		margin-top: 1rem;
 	}
 
-	.reset-button {
+	.reset-button,
+	.language-selector {
 		position: absolute;
-		top: 10px;
-		right: 10px;
-		background-color: transparent;
-		border: none;
-		font-size: 36px;
-		cursor: pointer;
-		color: #333;
+		top: 1rem;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		border-radius: 50%;
+		font-size: 1.2rem;
+		line-height: 1;
 	}
 
-	.reset-button:hover,
-	.language-selector:hover {
-		color: #2980b9;
+	.reset-button {
+		right: 1rem;
 	}
 
 	.language-selector {
-		all: unset;
-		position: absolute;
-		top: 10px;
-		left: 15px;
-		background-color: transparent;
-		border: none;
-		font-size: 34px;
-		cursor: pointer;
-		padding: 10px;
-		width: auto;
+		left: 1rem;
+		appearance: none;
+		background-image: none !important;
+		-webkit-appearance: none;
+		-moz-appearance: none;
 	}
 </style>
