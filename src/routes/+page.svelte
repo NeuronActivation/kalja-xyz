@@ -1,10 +1,13 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { get } from 'svelte/store';
 	import { cardsInGame } from '$lib/constants/cardsInGame';
-	import type { GameCard } from '$lib/models/card';
+	import { Language } from '$lib/languages/language';
+	import { loadCards, languageData, setLanguage } from '$lib/languages/load';
+	import type { Card } from '$lib/models/card';
 	import { onMount } from 'svelte';
+	import { t } from 'svelte-i18n';
 
-	let gameCards: GameCard[] = [];
+	let gameCards: Card[] = [];
 
 	// Input field value.
 	let playerName = '';
@@ -14,6 +17,9 @@
 
 	// Which player the question is targeting.
 	let currentPlayerIndex = 0;
+
+	// The language the application is using.
+	let currentLanguage = Language.FI;
 
 	enum GameStates {
 		LOBBY = 'lobby',
@@ -57,7 +63,9 @@
 		sessionStorage.setItem('gameState', JSON.stringify(state));
 	}
 
-	onMount(() => {
+	onMount(async () => {
+		await getCards();
+
 		const savedState = sessionStorage.getItem('gameState');
 		if (savedState) {
 			const parsedState = JSON.parse(savedState);
@@ -72,7 +80,8 @@
 		}
 	});
 
-	function resetGame() {
+	async function resetGame() {
+		await loadCards(fetch);
 		gameContext = { state: GameStates.LOBBY, players: [] };
 		gameCards = [];
 		events = [];
@@ -86,24 +95,7 @@
 
 	async function startGame() {
 		gameContext.players.sort(() => Math.random() - 0.5);
-
-		try {
-			const response = await fetch(`${base}/cards/finnish.json`);
-			const data = await response.json();
-
-			if (data.cards.length >= cardsInGame) {
-				// Shuffle the array.
-				const shuffledData = data.cards.sort(() => Math.random() - 0.5);
-
-				// Select the amount of entried needed for the game.
-				gameCards = shuffledData.slice(0, cardsInGame);
-			} else {
-				console.error('Data does not have enough entries');
-			}
-		} catch (error) {
-			console.error('Error fetching data: ', error);
-		}
-
+		await getCards();
 		currentCardIndex = 0;
 		currentPlayerIndex = 0;
 		changeGameState(GameStates.PLAYING);
@@ -187,7 +179,37 @@
 		}
 		return gameContext.players[randomIndex].name;
 	}
+
+	async function getCards() {
+		try {
+			const data = get(languageData)[currentLanguage];
+			if (data.cards) {
+				gameCards = data.cards;
+			}
+		} catch (error) {
+			console.error('Error fetching data: ', error);
+		}
+	}
+
+	async function changeLanguage(event: Event) {
+		const select = event.target as HTMLSelectElement;
+		const newLanguage = select.value as Language;
+
+		if (newLanguage !== currentLanguage) {
+			await setLanguage(newLanguage);
+			currentLanguage = newLanguage;
+			await getCards();
+		} else {
+			console.warn('Language is already set to: ', currentLanguage);
+		}
+	}
 </script>
+
+<select class="language-selector" on:change={changeLanguage} title="Change Language">
+	{#each Object.values(Language) as language}
+		<option value={language}>{language}</option>
+	{/each}
+</select>
 
 <div class="game-container">
 	<button class="reset-button" on:click={resetGame} title="Reset Game">
@@ -195,16 +217,16 @@
 	</button>
 
 	{#if gameContext.state === GameStates.LOBBY}
-		<h1>Santerin Juomapeli v2</h1>
+		<h1>{$t('title')}</h1>
 		<button class="button" on:click={() => changeGameState(GameStates.ADDING_PLAYERS)}
-			>Aloita</button
+			>{$t('main-menu-start-button')}</button
 		>
 	{:else if gameContext.state === GameStates.ADDING_PLAYERS}
-		<h2>Lisää pelaajien nimet</h2>
+		<h2>{$t('add-player-names')}</h2>
 		<input
 			type="text"
 			bind:value={playerName}
-			placeholder="Syötä pelaajan nimi"
+			placeholder={$t('add-player-name')}
 			on:keypress={handleKeyPress}
 			class="input"
 		/>
@@ -221,7 +243,7 @@
 		<button
 			class="button button-green"
 			disabled={gameContext.players.length < 2}
-			on:click={startGame}>Aloita ryyppääminen</button
+			on:click={startGame}>{$t('game-start-button')}</button
 		>
 	{:else if gameContext.state === GameStates.PLAYING}
 		<h1 class="target">{gameContext.players[currentPlayerIndex].name}</h1>
@@ -232,31 +254,31 @@
 				{gameCards[currentCardIndex].description}
 			</p>
 			{#if gameCards[currentCardIndex].targetPlayer}
-				<b>Kohde: {getTarget(currentCardIndex, currentPlayerIndex)}</b>
+				<b>{$t('target')}: {getTarget(currentCardIndex, currentPlayerIndex)}</b>
 			{/if}
 		</article>
 
 		{#each events as event}
 			{#if event.ended === true}
-				<h1 class="event-text">{event.person}, voit lopetaa tehtävän {event.title}</h1>
+				<h1 class="event-text">{event.person}, {$t('can-stop-the-mission')} {event.title}</h1>
 			{/if}
 		{/each}
 		{#if currentCardIndex + 1 < 29}
-			<button class="button" on:click={showNextCard}>Seuraava kortti</button>
+			<button class="button" on:click={showNextCard}>{$t('next-card')}</button>
 		{:else if currentCardIndex + 1 === 29}
-			<button class="button" on:click={showNextCard}>Viimeinen kortti</button>
+			<button class="button" on:click={showNextCard}>{$t('last-card')}</button>
 		{:else if currentCardIndex + 1 === 30}
-			<button class="button button-red" on:click={showNextCard}>Peli ohi</button>
+			<button class="button button-red" on:click={showNextCard}>{$t('game-over')}</button>
 		{/if}
 		<p class="game-status">{currentCardIndex + 1}/{cardsInGame}</p>
 	{:else if gameContext.state === GameStates.GAME_OVER}
-		<h1>PELI OHI</h1>
+		<h1>{$t('game-over')}</h1>
 		<button
 			class="button"
 			on:click={() => {
 				changeGameState(GameStates.LOBBY);
 				events = [];
-			}}>Takaisin alkuun</button
+			}}>{$t('back-to-start')}</button
 		>
 	{/if}
 </div>
@@ -317,18 +339,31 @@
 		margin-top: 1rem;
 	}
 
-	.reset-button {
+	.reset-button,
+	.language-selector {
 		position: absolute;
-		top: 10px;
-		right: 10px;
-		background-color: transparent;
-		border: none;
-		font-size: 36px;
-		cursor: pointer;
-		color: #333;
+		top: 1rem;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		border-radius: 50%;
+		font-size: 1.2rem;
+		line-height: 1;
 	}
 
-	.reset-button:hover {
-		color: #2980b9;
+	.reset-button {
+		right: 1rem;
+	}
+
+	.language-selector {
+		left: 1rem;
+		appearance: none;
+		background-image: none !important;
+		-webkit-appearance: none;
+		-moz-appearance: none;
 	}
 </style>

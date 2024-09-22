@@ -1,430 +1,557 @@
 {
-	"cards": [
-		{
-			"title": "Drink",
-			"description": "Do I really have to explain this?",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Give chugs",
-			"description": "Give three chugs to other players however you decide.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Waterfall",
-			"description": "Every player starts drinking. The player from the left of the player gets to stop drinking first, and then from the left, etc.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Rule",
-			"description": "You get to make new rule. Rules stay until to the end of the game unless someone uses new rule to delete old rule",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Bitch",
-			"description": "You get yourself a bitch. Everytime you drink, the person also drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Story",
-			"description": "Start a story with a chosen word. The next player repeats the word and adds a new one. Each player must repeat all previous words.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Category",
-			"description": "Choose your desired category and say the first thing belonging to that category, for example, car brands, days of the week, or planets. Items are listed in turns until someone can't think of or repeats a previously mentioned item.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "123",
-			"description": "Take one sip. The next person takes two sips, and then the following person takes three sips, and so on.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Truth or Dare",
-			"description": "Ask the victim 'truth or dare?' and act accordingly.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
-			"title": "Oldest Drinks",
-			"description": "The oldest player drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Youngest Drinks",
-			"description": "The youngest player drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Tallest Drinks",
-			"description": "The tallest player drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Shortest Drinks",
-			"description": "The shortest player drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Strongest Drink",
-			"description": "The player drinking the strongest beverage regrets their choice. In a tie, both/all drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Weakest Drink",
-			"description": "Drink lightly. In a tie, both/all drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "List Last Names",
-			"description": "List the last names of each player. If you get all correct, others drink; otherwise, you drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Do a Somersault and Drink",
-			"description": "Do a somersault and drink. Refusing the task means drinking more.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Never Have I Ever...",
-			"description": "Go through a round where each person says something they have never done. Everyone who has done that thing drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Everyone Drinks",
-			"description": "That's what we came here to do.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Speak in Song",
-			"description": "All your speech must be sung for a round. Other players decide if you succeed.",
-			"timedEvent": true,
-			"targetPlayer": false
-		},
-		{
-			"title": "Speak in Rhyme",
-			"description": "All your spoken sentences must rhyme for a round, for example, 'Is it my turn? Asks the tipsy churn'. Other players decide if you succeed.",
-			"timedEvent": true,
-			"targetPlayer": false
-		},
-		{
-			"title": "Last Message",
-			"description": "Read aloud the last message you received.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Take a Selfie",
-			"description": "Take a selfie with another player. Important moments need to be captured!",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
-			"title": "Take a Picture of Your Feet",
-			"description": "Take a picture and send it to your parents or partner. Participants in the game are not allowed.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Secret Mission",
-			"description": "Create a gesture/action without telling others. Perform it randomly and others try to guess what you're doing. When others guess correctly, they start doing the action too. The last player to figure out the action drinks. Can start during other cards.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Sympathy",
-			"description": "Drink three, others drink one.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Rock-Paper-Scissors vs Everyone",
-			"description": "Play Rock-Paper-Scissors against every other player in turns. Drink for each lost game.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Rock-Paper-Scissors vs Player",
-			"description": "Play rock-paper-scissors against one player. The loser drinks.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
-			"title": "'Snap'",
-			"description": "Half of everyone's current drinks must be discarded.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Speak Smurf Language",
-			"description": "Replace words in your speech with 'smurf' language for one round.",
-			"timedEvent": true,
-			"targetPlayer": false
-		},
-		{
-			"title": "Vote: Loudest Player",
-			"description": "Vote for the loudest player among you. The player with the most votes drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Vote: Heaviest Drinker",
-			"description": "Vote for the heaviest drinker among you. The player with the most votes drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Vote: Stingiest",
-			"description": "Vote for the stingiest player among you. The player with the most votes drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Vote: Smartest",
-			"description": "Vote for the smartest player among you. The player with the most votes drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Damn Rats",
-			"description": "All unemployed players drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Baa Baa",
-			"description": "All employed players drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Nicotine Addicts",
-			"description": "All currently under the influence of nicotine drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Drinking Game Virgin",
-			"description": "All who are playing this game for the first time drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Veterans",
-			"description": "All who have played this game before drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Is This Worth It?",
-			"description": "Take a moment to ponder your life choices. Then drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Jokester",
-			"description": "Tell a joke, all laughing players drink. If nobody laughs, you drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Mr. DJ",
-			"description": "Start humming a song. The first player to correctly guess the song gets to decide who drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Outcast",
-			"description": "All players must ignore you for one round.",
-			"timedEvent": true,
-			"targetPlayer": false
-		},
-		{
-			"title": "Pervert",
-			"description": "Slap another player's butt.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
-			"title": "Twenty-One",
-			"description": "Start counting numbers. Each player says one, two, or three consecutive numbers. The player who lands on 21 drinks. For example: one... two, three... four.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Opposition",
-			"description": "Come up with two different options. Each player chooses one option. The minority drinks. For example: Pizza or hamburger.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Cheers!",
-			"description": "Cheers your drinks and drink up.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Macho",
-			"description": "Flex your biceps and drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Earthling",
-			"description": "Sit on the floor for one round.",
-			"timedEvent": true,
-			"targetPlayer": false
-		},
-		{
-			"title": "General Knowledge",
-			"description": "Ask the victim a general knowledge question. If they answer incorrectly, they drink; otherwise, you drink.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
-			"title": "Damn Eyes",
-			"description": "Decide who among the players has the nicest eyes. They drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Do You Know Me???",
-			"description": "Make a statement about yourself. Other players individually decide if the statement is true or false. Those who guess wrong drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Phone Addict",
-			"description": "The player who last checked their phone drinks. The rule reader is excluded.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Furry Creature",
-			"description": "The hairiest player drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Floor is Lava",
-			"description": "No one is allowed to touch the floor for one round. If you do, drink.",
-			"timedEvent": true,
-			"targetPlayer": false
-		},
-		{
-			"title": "Bully",
-			"description": "Insult another player.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
-			"title": "Popular",
-			"description": "All players must compliment you or drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Drank before 6 PM",
-			"description": "Everyone who has consumed alcohol before 6 PM today drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Yes or No",
-			"description": "Ask a question that can be answered only with 'yes' or 'no'. If the player answers with something else, they drink.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
-			"title": "Name a Music Genre",
-			"description": "Choose a music genre, and each player takes turns singing or shouting one song from that genre. If someone can't think of a song, they drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Impersonation",
-			"description": "Imitate a famous person or character for one minute. Other players guess who you are impersonating. If no one guesses correctly, the impersonator drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Forbidden Word",
-			"description": "Select a word that the target player cannot say throughout the round. If they say the word, they drink.",
-			"timedEvent": true,
-			"targetPlayer": true
-		},
-		{
-			"title": "Emoji Message",
-			"description": "Send a short message to the target player using only emojis. The recipient tries to pronounce the message in words. If they misunderstand the message, they drink.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
-			"title": "Wrong Answer",
-			"description": "Come up with a question for the target player that can be answered with yes/no or a specific number, and indicate the type of answer. The target must answer without knowing the question beforehand, and if they answer incorrectly, they drink.",
-			"timedEvent": false,
-			"targetPlayer": true
-		},
-		{
-			"title": "Memories or Fantasy?",
-			"description": "The target must tell a short, impromptu story or a real memory from their past. Other players guess whether the story is true or false. If half or more guess wrong, the target drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Famous Quote",
-			"description": "The target must recite a famous line from a person or character. Other players try to guess who or what the character is. Incorrect guessers drink. If everyone guesses correctly, only the target drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Dice Game",
-			"description": "The player must roll a die and get a specific number predetermined by them. If they fail, they drink. If they succeed, everyone else drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Entertainment Riddle",
-			"description": "The player describes the plot of their chosen movie, series, or game without mentioning its name. The first player to guess correctly decides who or who drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "Payday",
-			"description": "The player who most recently received their paycheck, social benefits from the government, or gift money drinks.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "isEven(bday)",
-			"description": "Players born on an even-numbered day drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		},
-		{
-			"title": "isOdd(bday)",
-			"description": "Players born on an odd-numbered day drink.",
-			"timedEvent": false,
-			"targetPlayer": false
-		}
-	]
+    "cards": [
+        {
+            "title": "Drink",
+            "description": "Do I really have to explain this?",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 0
+        },
+        {
+            "title": "Give chugs",
+            "description": "Give three chugs to other players however you decide.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 1
+        },
+        {
+            "title": "Waterfall",
+            "description": "Every player starts drinking. The player from the left of the player gets to stop drinking first, and then from the left, etc.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 2
+        },
+        {
+            "title": "Rule",
+            "description": "You get to make new rule. Rules stay until to the end of the game unless someone uses new rule to delete old rule",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 3
+        },
+        {
+            "title": "Bitch",
+            "description": "You get yourself a bitch. Everytime you drink, the person also drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 4
+        },
+        {
+            "title": "Story",
+            "description": "Start a story with a chosen word. The next player repeats the word and adds a new one. Each player must repeat all previous words.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 5
+        },
+        {
+            "title": "Category",
+            "description": "Choose your desired category and say the first thing belonging to that category, for example, car brands, days of the week, or planets. Items are listed in turns until someone can't think of or repeats a previously mentioned item.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 6
+        },
+        {
+            "title": "123",
+            "description": "Take one sip. The next person takes two sips, and then the following person takes three sips, and so on.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 7
+        },
+        {
+            "title": "Truth or Dare",
+            "description": "Ask the victim 'truth or dare?' and act accordingly.",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 8
+        },
+        {
+            "title": "Oldest Drinks",
+            "description": "The oldest player drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 9
+        },
+        {
+            "title": "Youngest Drinks",
+            "description": "The youngest player drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 10
+        },
+        {
+            "title": "Tallest Drinks",
+            "description": "The tallest player drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 11
+        },
+        {
+            "title": "Shortest Drinks",
+            "description": "The shortest player drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 12
+        },
+        {
+            "title": "Strongest Drink",
+            "description": "The player drinking the strongest beverage regrets their choice. In a tie, both/all drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 13
+        },
+        {
+            "title": "Weakest Drink",
+            "description": "Drink lightly. In a tie, both/all drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 14
+        },
+        {
+            "title": "List Last Names",
+            "description": "List the last names of each player. If you get all correct, others drink; otherwise, you drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 15
+        },
+        {
+            "title": "Do a Somersault and Drink",
+            "description": "Do a somersault and drink. Refusing the task means drinking more.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 16
+        },
+        {
+            "title": "Never Have I Ever...",
+            "description": "Go through a round where each person says something they have never done. Everyone who has done that thing drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 17
+        },
+        {
+            "title": "Everyone Drinks",
+            "description": "That's what we came here to do.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 18
+        },
+        {
+            "title": "Speak in Song",
+            "description": "All your speech must be sung for a round. Other players decide if you succeed.",
+            "timedEvent": true,
+            "targetPlayer": false,
+            "id": 19
+        },
+        {
+            "title": "Speak in Rhyme",
+            "description": "All your spoken sentences must rhyme for a round, for example, 'Is it my turn? Asks the tipsy churn'. Other players decide if you succeed.",
+            "timedEvent": true,
+            "targetPlayer": false,
+            "id": 20
+        },
+        {
+            "title": "Drink without touching your lips",
+            "description": "Drink from a bottle/can without it touching your lips.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 21
+        },
+        {
+            "title": "Last Message",
+            "description": "Read aloud the last message you received.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 22
+        },
+        {
+            "title": "Take a Selfie",
+            "description": "Take a selfie with another player. Important moments need to be captured!",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 23
+        },
+        {
+            "title": "Take a Picture of Your Feet",
+            "description": "Take a picture and send it to your parents or partner. Participants in the game are not allowed.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 24
+        },
+        {
+            "title": "Secret Mission",
+            "description": "Create a gesture/action without telling others. Perform it randomly and others try to guess what you're doing. When others guess correctly, they start doing the action too. The last player to figure out the action drinks. Can start during other cards.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 25
+        },
+        {
+            "title": "Sympathy",
+            "description": "Drink three, others drink one.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 26
+        },
+        {
+            "title": "Rock-Paper-Scissors vs Everyone",
+            "description": "Play Rock-Paper-Scissors against every other player in turns. Drink for each lost game.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 27
+        },
+        {
+            "title": "Rock-Paper-Scissors vs Player",
+            "description": "Play rock-paper-scissors against one player. The loser drinks.",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 28
+        },
+        {
+            "title": "'Snap'",
+            "description": "Half of everyone's current drinks must be discarded.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 29
+        },
+        {
+            "title": "Speak Smurf Language",
+            "description": "Replace words in your speech with 'smurf' language for one round.",
+            "timedEvent": true,
+            "targetPlayer": false,
+            "id": 30
+        },
+        {
+            "title": "Vote: Loudest Player",
+            "description": "Vote for the loudest player among you. The player with the most votes drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 31
+        },
+        {
+            "title": "Vote: Heaviest Drinker",
+            "description": "Vote for the heaviest drinker among you. The player with the most votes drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 32
+        },
+        {
+            "title": "Vote: Stingiest",
+            "description": "Vote for the stingiest player among you. The player with the most votes drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 33
+        },
+        {
+            "title": "Vote: Smartest",
+            "description": "Vote for the smartest player among you. The player with the most votes drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 34
+        },
+        {
+            "title": "Damn Rats",
+            "description": "All unemployed players drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 35
+        },
+        {
+            "title": "Baa Baa",
+            "description": "All employed players drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 36
+        },
+        {
+            "title": "Nicotine Addicts",
+            "description": "All currently under the influence of nicotine drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 37
+        },
+        {
+            "title": "Drinking Game Virgin",
+            "description": "All who are playing this game for the first time drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 38
+        },
+        {
+            "title": "Veterans",
+            "description": "All who have played this game before drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 39
+        },
+        {
+            "title": "Is This Worth It?",
+            "description": "Take a moment to ponder your life choices. Then drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 40
+        },
+        {
+            "title": "Jokester",
+            "description": "Tell a joke, all laughing players drink. If nobody laughs, you drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 41
+        },
+        {
+            "title": "Mr. DJ",
+            "description": "Start humming a song. The first player to correctly guess the song gets to decide who drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 42
+        },
+        {
+            "title": "I have ...",
+            "description": "Take a tour so that everyone says something they has have done. If you haven't done it, you drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 43
+        },
+        {
+            "title": "Best dressed",
+            "description": "Decide who among the players is the best dressed. The decider drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 44
+        },
+        {
+            "title": "Liar",
+            "description": "For a single round, tell only lies. If you get caught speaking truth, you drink.",
+            "timedEvent": true,
+            "targetPlayer": false,
+            "id": 45
+        },
+        {
+            "title": "Outcast",
+            "description": "All players must ignore you for one round.",
+            "timedEvent": true,
+            "targetPlayer": false,
+            "id": 46
+        },
+        {
+            "title": "Pervert",
+            "description": "Slap another player's butt.",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 47
+        },
+        {
+            "title": "Twenty-One",
+            "description": "Start counting numbers. Each player says one, two, or three consecutive numbers. The player who lands on 21 drinks. For example: one... two, three... four.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 48
+        },
+        {
+            "title": "Opposition",
+            "description": "Come up with two different options. Each player chooses one option. The minority drinks. For example: Pizza or hamburger.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 49
+        },
+        {
+            "title": "Cheers!",
+            "description": "Cheers your drinks and drink up.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 50
+        },
+        {
+            "title": "Macho",
+            "description": "Flex your biceps and drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 51
+        },
+        {
+            "title": "Earthling",
+            "description": "Sit on the floor for one round.",
+            "timedEvent": true,
+            "targetPlayer": false,
+            "id": 52
+        },
+        {
+            "title": "General Knowledge",
+            "description": "Ask the victim a general knowledge question. If they answer incorrectly, they drink; otherwise, you drink.",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 53
+        },
+        {
+            "title": "Damn Eyes",
+            "description": "Decide who among the players has the nicest eyes. They drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 54
+        },
+        {
+            "title": "Don't You Know Me???",
+            "description": "Make a statement about yourself. Other players individually decide if the statement is true or false. Those who guess wrong drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 55
+        },
+        {
+            "title": "Phone Addict",
+            "description": "The player who last checked their phone drinks. The rule reader is excluded.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 56
+        },
+        {
+            "title": "Furry Creature",
+            "description": "The hairiest player drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 57
+        },
+        {
+            "title": "Floor is Lava",
+            "description": "No one is allowed to touch the floor for one round. If you do, drink.",
+            "timedEvent": true,
+            "targetPlayer": false,
+            "id": 58
+        },
+        {
+            "title": "Bully",
+            "description": "Insult another player.",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 59
+        },
+        {
+            "title": "Popular",
+            "description": "All players must compliment you or drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 60
+        },
+        {
+            "title": "Drank before 6 PM",
+            "description": "Everyone who has consumed alcohol before 6 PM today drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 61
+        },
+        {
+            "title": "Name a Music Genre",
+            "description": "Choose a music genre, and each player takes turns singing or shouting one song from that genre. If someone can't think of a song, they drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 62
+        },
+        {
+            "title": "Impersonation",
+            "description": "Imitate a famous person or character for one minute. Other players guess who you are impersonating. If no one guesses correctly, the impersonator drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 63
+        },
+        {
+            "title": "Forbidden Word",
+            "description": "Select a word that the target player cannot say throughout the round. If they say the word, they drink.",
+            "timedEvent": true,
+            "targetPlayer": true,
+            "id": 64
+        },
+        {
+            "title": "Emoji Message",
+            "description": "Send a short message to the target player using only emojis. The recipient tries to pronounce the message in words. If they misunderstand the message, they drink.",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 65
+        },
+        {
+            "title": "Wrong Answer",
+            "description": "Come up with a question for the target player that can be answered with yes/no or a specific number, and indicate the type of answer. The target must answer without knowing the question beforehand, and if they answer incorrectly, they drink.",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 66
+        },
+        {
+            "title": "Memories or Fantasy?",
+            "description": "The target must tell a short, impromptu story or a real memory from their past. Other players guess whether the story is true or false. If half or more guess wrong, the target drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 67
+        },
+        {
+            "title": "Famous Quote",
+            "description": "The target must recite a famous line from a person or character. Other players try to guess who or what the character is. Incorrect guessers drink. If everyone guesses correctly, only the target drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 68
+        },
+        {
+            "title": "Dice Game",
+            "description": "The player must roll a die and get a specific number predetermined by them. If they fail, they drink. If they succeed, everyone else drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 69
+        },
+        {
+            "title": "Entertainment Riddle",
+            "description": "The player describes the plot of their chosen movie, series, or game without mentioning its name. The first player to guess correctly decides who or who drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 70
+        },
+        {
+            "title": "Payday",
+            "description": "The player who most recently received their paycheck, social benefits from the government, or gift money drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 71
+        },
+        {
+            "title": "isEven(bday)",
+            "description": "Players born on an even-numbered day drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 72
+        },
+        {
+            "title": "isOdd(bday)",
+            "description": "Players born on an odd-numbered day drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 73
+        },
+        {
+            "title": "Sockrally",
+            "description": "Put a sock on your foot only using one hand, if you fail or you're deemed too slow you drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 74
+        },
+        {
+            "title": "The Imitator",
+            "description": "Imitate another player for one round.",
+            "timedEvent": true,
+            "targetPlayer": true,
+            "id": 75
+        },
+        {
+            "title": "A Saying",
+            "description": "Make up a new saying and use it as much as possible for the rest of the game.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 76
+        },
+        {
+            "title": "Dance king",
+            "description": "Invent a new Fortnite dance and present it.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 77
+        },
+        {
+            "title": "Are you...",
+            "description": "Come up with a person or character. Other players take turns asking yes or no questions about your identity. Wrong answer, you drink. Correct answer, you decide who drinks",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 78
+        }
+    ]
 }
