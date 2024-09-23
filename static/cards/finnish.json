@@ -552,6 +552,34 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 78
+        },
+        {
+            "title": "Pääotsikko",
+            "description": "Keksi toisesta pelaajasta etusivun uutisotsikko",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 79
+        },
+        {
+            "title": "Ja ajokortti kiitos",
+            "description": "Jokainen pelajaa juo jokaisesta ajokortistaan löytyvästä ajoneuvoluokasta. Jos pelaajalla ei ole ajokorttia, hän juo yhtä paljon kuin eniten ajoneuvoluokkia omaava pelaaja.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 80
+        },
+        {
+            "title": "Keikkahumua",
+            "description": "Käykää kierros läpi niin että jokainen pelaaja luettelee vuorollaan artisteja joiden keikalla hän on käynyt. Kaikki saman artistin keikalla käyneet pelaajat juovat luettelijan kanssa.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 81
+        },
+        {
+            "title": "Merkkiuskollinen",
+            "description": "Käykää kierros läpi niin että jokainen pelaaaja luettelee vuorollaan jokaisen automerkin, jonka hän on omistanut. Kaikki saman automerkin omistaneet pelaajat juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 82
         }
     ]
 }
