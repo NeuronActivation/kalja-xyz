@@ -576,7 +576,7 @@
         },
         {
             "title": "Merkkiuskollinen",
-            "description": "Käykää kierros läpi niin että jokainen pelaaaja luettelee vuorollaan jokaisen automerkin, jonka hän on omistanut. Kaikki saman automerkin omistaneet pelaajat juovat.",
+            "description": "Käykää kierros läpi niin että jokainen pelaaja luettelee vuorollaan jokaisen automerkin jonka hän on omistanut. Kaikki saman automerkin omistaneet pelaajat juovat.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 82
