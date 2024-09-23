@@ -562,7 +562,7 @@
         },
         {
             "title": "And drivers license please",
-            "description": "Every player must drink the amount equeal to vehicle categories found in their driver's license. If the player doesn't own a driver's license they must drink as much as the most categories having player.",
+            "description": "Every player must drink an amount equal to the number of vehicle categories found on their driver's license. If a player doesn't own a driver's license, they must drink as much as the player with the most categories",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 80
