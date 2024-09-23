@@ -562,7 +562,7 @@
         },
         {
             "title": "Ja ajokortti kiitos",
-            "description": "Jokainen pelajaa juo jokaisesta ajokortistaan löytyvästä ajoneuvoluokasta. Jos pelaajalla ei ole ajokorttia, hän juo yhtä paljon kuin eniten ajoneuvoluokkia omaava pelaaja.",
+            "description": "Jokainen pelaaja juo jokaisesta ajokortistaan löytyvästä ajoneuvoluokasta. Jos pelaajalla ei ole ajokorttia, hän juo yhtä paljon kuin eniten ajoneuvoluokkia omaava pelaaja.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 80
