@@ -552,6 +552,34 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 78
+        },
+        {
+            "title": "Headline",
+            "description": "Make up a news headline about another player",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 79
+        },
+        {
+            "title": "And drivers license please",
+            "description": "Every player must drink an amount equal to the number of vehicle categories found on their driver's license. If a player doesn't own a driver's license, they must drink as much as the player with the most categories",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 80
+        },
+        {
+            "title": "Concert frenzy",
+            "description": "Each player takes turns listing artists they have seen live in concert. Any players who have also seen that artist perform must drink with the player who listed them",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 81
+        },
+        {
+            "title": "Brand loyal",
+            "description": "Each player takes turns listing every car brand they have owned. All players who have owned the same car brand must drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 82
         }
     ]
 }
