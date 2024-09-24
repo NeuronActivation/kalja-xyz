@@ -1,16 +1,22 @@
 <script lang="ts">
+	import {
+		managerAddPlayer,
+		managerChangeGameState,
+		managerRemovePlayer,
+		managerShowNextCard,
+		managerStartGame,
+		managerGetTarget
+	} from '$lib/managers/game';
 	import { cardsInGame } from '$lib/constants/cardsInGame';
 	import { Language } from '$lib/languages/language';
-	import { loadCards, languageData, setLanguage } from '$lib/languages/load';
+	import { loadCards, setLanguage } from '$lib/languages/load';
 	import { ApplicationState } from '$lib/constants/applicationState';
 	import { createNewGame } from '$lib/interfaces/gameState';
-	import { type Player } from '$lib/interfaces/player';
-	import { type GameEvent } from '$lib/interfaces/gameEvent';
 	import { loadGameState, saveGameState } from '$lib/utils/storage';
 
 	import { onMount } from 'svelte';
-	import { get } from 'svelte/store';
 	import { t } from 'svelte-i18n';
+	import { getCardData } from '$lib/languages/translation';
 
 	let gameState = createNewGame();
 
@@ -19,7 +25,6 @@
 
 	onMount(() => {
 		const newGameState = loadGameState();
-
 		if (newGameState) {
 			gameState = newGameState;
 		}
@@ -32,27 +37,23 @@
 	}
 
 	function changeGameState(newState: ApplicationState) {
-		gameState.state = newState;
+		gameState = managerChangeGameState(gameState, newState);
 		saveGameState(gameState);
 	}
 
 	async function startGame() {
-		gameState.players.sort(() => Math.random() - 0.5);
 		await getCards();
-		gameState.currentCardIndex = 0;
-		gameState.currentPlayerIndex = 0;
-		changeGameState(ApplicationState.PLAYING);
+		gameState = managerStartGame(gameState);
 		saveGameState(gameState);
 	}
 
 	function addPlayer(playerName: string) {
-		const newPlayer: Player = { id: gameState.players.length + 1, name: playerName };
-		gameState.players = [...gameState.players, newPlayer];
+		gameState = managerAddPlayer(gameState, playerName);
 		saveGameState(gameState);
 	}
 
 	function removePlayer(playerId: number) {
-		gameState.players = gameState.players.filter((player) => player.id !== playerId);
+		gameState = managerRemovePlayer(gameState, playerId);
 		saveGameState(gameState);
 	}
 
@@ -63,70 +64,15 @@
 		}
 	}
 
-	function _showNextCard() {
-		gameState.currentCardIndex += 1;
-		gameState.currentPlayerIndex += 1;
-
-		// Go to game over if out of cards.
-		// Card index doesn't have to be updated since it's always updated in startGame().
-		if (gameState.currentCardIndex >= cardsInGame) {
-			changeGameState(ApplicationState.GAME_OVER);
-			return;
-		}
-		if (gameState.currentPlayerIndex >= gameState.players.length) {
-			gameState.currentPlayerIndex = 0;
-		}
-		// Clearing ended events.
-		gameState.events = gameState.events.filter((item) => !item.ended);
-
-		// Last card so all events automatically end.
-		if (gameState.currentCardIndex + 1 >= cardsInGame) {
-			gameState.events.forEach((event) => {
-				event.ended = true;
-			});
-			return;
-		}
-		// Event ends normally.
-		gameState.events.forEach((event) => {
-			if (gameState.currentPlayerIndex === event.startingIndex) {
-				event.ended = true;
-			}
-		});
-		// Add a new event.
-		if (gameState.cards[gameState.currentCardIndex].timedEvent) {
-			let event: GameEvent = {
-				title: gameState.cards[gameState.currentCardIndex].title,
-				person: gameState.players[gameState.currentPlayerIndex].name,
-				startingIndex: gameState.currentPlayerIndex,
-				ended: false
-			};
-			gameState.events.push(event);
-		}
+	function showNextCard() {
+		gameState = managerShowNextCard(gameState);
 		saveGameState(gameState);
 	}
 
-	function getTarget(cardIndex: number, playerIndex: number): string {
-		let card = gameState.cards[cardIndex];
-
-		if (!card.targetPlayer) {
-			return '';
-		}
-
-		let randomIndex = playerIndex;
-		while (randomIndex === playerIndex) {
-			randomIndex = Math.floor(Math.random() * gameState.players.length);
-		}
-		return gameState.players[randomIndex].name;
-	}
-
 	async function getCards() {
-		try {
-			const data = get(languageData)[currentLanguage];
-			if (data.cards) {
-				gameState.cards = data.cards;
-			}
-		} catch (error) {
-			console.error('Error fetching data: ', error);
+		let cards = await getCardData(currentLanguage);
+		if (cards) {
+			gameState.cards = cards;
 		}
 	}
 
@@ -193,7 +139,7 @@
 				{gameState.cards[gameState.currentCardIndex].description}
 			</p>
 			{#if gameState.cards[gameState.currentCardIndex].targetPlayer}
-				<b>{$t('target')}: {getTarget(gameState.currentCardIndex, gameState.currentPlayerIndex)}</b>
+				<b>{$t('target')}: {managerGetTarget(gameState)}</b>
 			{/if}
 		</article>
 
@@ -203,11 +149,11 @@
 			{/if}
 		{/each}
 		{#if gameState.currentCardIndex + 1 < 29}
-			<button class="button" on:click={_showNextCard}>{$t('next-card')}</button>
+			<button class="button" on:click={showNextCard}>{$t('next-card')}</button>
 		{:else if gameState.currentCardIndex + 1 === 29}
-			<button class="button" on:click={_showNextCard}>{$t('last-card')}</button>
+			<button class="button" on:click={showNextCard}>{$t('last-card')}</button>
 		{:else if gameState.currentCardIndex + 1 === 30}
-			<button class="button button-red" on:click={_showNextCard}>{$t('game-over')}</button>
+			<button class="button button-red" on:click={showNextCard}>{$t('game-over')}</button>
 		{/if}
 		<p class="game-status">{gameState.currentCardIndex + 1}/{cardsInGame}</p>
 	{:else if gameState.state === ApplicationState.GAME_OVER}
