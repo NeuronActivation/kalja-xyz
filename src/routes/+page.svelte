@@ -1,12 +1,5 @@
 <script lang="ts">
-	import {
-		managerAddPlayer,
-		managerChangeGameState,
-		managerRemovePlayer,
-		managerShowNextCard,
-		managerStartGame,
-		managerGetTarget
-	} from '$lib/managers/game';
+	import { game } from '$lib/managers/game';
 	import { cardsInGame } from '$lib/constants/cardsInGame';
 	import { Language } from '$lib/languages/language';
 	import { loadCards, setLanguage } from '$lib/languages/load';
@@ -18,6 +11,7 @@
 	import { t } from 'svelte-i18n';
 	import { getCardData } from '$lib/languages/translation';
 
+	// State of the application.
 	let gameState = createNewGame();
 
 	// The language the application is using.
@@ -37,23 +31,23 @@
 	}
 
 	function changeGameState(newState: ApplicationState) {
-		gameState = managerChangeGameState(gameState, newState);
+		gameState = game.changeGameState(gameState, newState);
 		saveGameState(gameState);
 	}
 
 	async function startGame() {
 		await getCards();
-		gameState = managerStartGame(gameState);
+		gameState = game.startGame(gameState);
 		saveGameState(gameState);
 	}
 
 	function addPlayer(playerName: string) {
-		gameState = managerAddPlayer(gameState, playerName);
+		gameState = game.addPlayer(gameState, playerName);
 		saveGameState(gameState);
 	}
 
 	function removePlayer(playerId: number) {
-		gameState = managerRemovePlayer(gameState, playerId);
+		gameState = game.removePlayer(gameState, playerId);
 		saveGameState(gameState);
 	}
 
@@ -65,7 +59,7 @@
 	}
 
 	function showNextCard() {
-		gameState = managerShowNextCard(gameState);
+		gameState = game.showNextCard(gameState);
 		saveGameState(gameState);
 	}
 
@@ -139,7 +133,7 @@
 				{gameState.cards[gameState.currentCardIndex].description}
 			</p>
 			{#if gameState.cards[gameState.currentCardIndex].targetPlayer}
-				<b>{$t('target')}: {managerGetTarget(gameState)}</b>
+				<b>{$t('target')}: {game.getTarget(gameState)}</b>
 			{/if}
 		</article>
 
