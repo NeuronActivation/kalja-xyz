@@ -1,193 +1,72 @@
 <script lang="ts">
-	import { get } from 'svelte/store';
+	import { game } from '$lib/managers/game';
 	import { cardsInGame } from '$lib/constants/cardsInGame';
 	import { Language } from '$lib/languages/language';
-	import { loadCards, languageData, setLanguage } from '$lib/languages/load';
-	import type { Card } from '$lib/models/card';
+	import { loadCards, setLanguage } from '$lib/languages/load';
+	import { ApplicationState } from '$lib/constants/applicationState';
+	import { createNewGame } from '$lib/interfaces/gameState';
+	import { loadGameState, saveGameState } from '$lib/utils/storage';
+
 	import { onMount } from 'svelte';
 	import { t } from 'svelte-i18n';
+	import { getCardData } from '$lib/languages/translation';
 
-	let gameCards: Card[] = [];
-
-	// Input field value.
-	let playerName = '';
-
-	// Which card is currently in play.
-	let currentCardIndex = 0;
-
-	// Which player the question is targeting.
-	let currentPlayerIndex = 0;
+	// State of the application.
+	let gameState = createNewGame();
 
 	// The language the application is using.
 	let currentLanguage = Language.FI;
 
-	enum GameStates {
-		LOBBY = 'lobby',
-		ADDING_PLAYERS = 'adding_players',
-		PLAYING = 'playing',
-		GAME_OVER = 'game_over'
-	}
-
-	type GameEvent = {
-		title: string;
-		person: string;
-		startingIndex: number;
-		ended: boolean;
-	};
-	let events: GameEvent[] = [];
-
-	type Player = {
-		id: number;
-		name: string;
-	};
-
-	type GameContext = {
-		state: GameStates;
-		players: Player[];
-	};
-
-	let gameContext: GameContext = {
-		state: GameStates.LOBBY,
-		players: []
-	};
-
-	function saveGameState() {
-		const state = {
-			gameCards,
-			playerName,
-			currentCardIndex,
-			currentPlayerIndex,
-			gameContext,
-			events
-		};
-		sessionStorage.setItem('gameState', JSON.stringify(state));
-	}
-
-	onMount(async () => {
-		await getCards();
-
-		const savedState = sessionStorage.getItem('gameState');
-		if (savedState) {
-			const parsedState = JSON.parse(savedState);
-
-			// Restore the state
-			gameCards = parsedState.gameCards || [];
-			playerName = parsedState.playerName || '';
-			currentCardIndex = parsedState.currentCardIndex || 0;
-			currentPlayerIndex = parsedState.currentPlayerIndex || 0;
-			gameContext = parsedState.gameContext || { state: GameStates.LOBBY, players: [] };
-			events = parsedState.events || [];
+	onMount(() => {
+		const newGameState = loadGameState();
+		if (newGameState) {
+			gameState = newGameState;
 		}
 	});
 
 	async function resetGame() {
 		await loadCards(fetch);
-		gameContext = { state: GameStates.LOBBY, players: [] };
-		gameCards = [];
-		events = [];
+		gameState = createNewGame();
 		sessionStorage.removeItem('gameState');
 	}
 
-	function changeGameState(newState: GameStates) {
-		gameContext.state = newState;
-		saveGameState();
+	function changeGameState(newState: ApplicationState) {
+		gameState = game.changeGameState(gameState, newState);
+		saveGameState(gameState);
 	}
 
 	async function startGame() {
-		gameContext.players.sort(() => Math.random() - 0.5);
 		await getCards();
-		currentCardIndex = 0;
-		currentPlayerIndex = 0;
-		changeGameState(GameStates.PLAYING);
-		saveGameState();
+		gameState = game.startGame(gameState);
+		saveGameState(gameState);
 	}
 
 	function addPlayer(playerName: string) {
-		const newPlayer: Player = { id: gameContext.players.length + 1, name: playerName };
-		gameContext.players = [...gameContext.players, newPlayer];
-		saveGameState();
+		gameState = game.addPlayer(gameState, playerName);
+		saveGameState(gameState);
 	}
 
 	function removePlayer(playerId: number) {
-		gameContext.players = gameContext.players.filter((player) => player.id !== playerId);
-		saveGameState();
+		gameState = game.removePlayer(gameState, playerId);
+		saveGameState(gameState);
 	}
 
 	function handleKeyPress(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			addPlayer(playerName);
-			playerName = '';
+			addPlayer(gameState.playerName);
+			gameState.playerName = '';
 		}
 	}
 
 	function showNextCard() {
-		currentCardIndex += 1;
-		currentPlayerIndex += 1;
-
-		// Go to game over if out of cards.
-		// Card index doesn't have to be updated since it's always updated in startGame().
-		if (currentCardIndex >= cardsInGame) {
-			changeGameState(GameStates.GAME_OVER);
-			return;
-		}
-
-		if (currentPlayerIndex >= gameContext.players.length) {
-			currentPlayerIndex = 0;
-		}
-
-		// Clearing ended events.
-		events = events.filter((item) => !item.ended);
-
-		// Last card so all events automatically end.
-		if (currentCardIndex + 1 >= cardsInGame) {
-			events.forEach((event) => {
-				event.ended = true;
-			});
-			return;
-		}
-
-		// Event ends normally.
-		events.forEach((event) => {
-			if (currentPlayerIndex === event.startingIndex) {
-				event.ended = true;
-			}
-		});
-
-		// Add a new event.
-		if (gameCards[currentCardIndex].timedEvent) {
-			let event: GameEvent = {
-				title: gameCards[currentCardIndex].title,
-				person: gameContext.players[currentPlayerIndex].name,
-				startingIndex: currentPlayerIndex,
-				ended: false
-			};
-			events.push(event);
-		}
-		saveGameState();
-	}
-
-	function getTarget(cardIndex: number, playerIndex: number): string {
-		let card = gameCards[cardIndex];
-
-		if (!card.targetPlayer) {
-			return '';
-		}
-
-		let randomIndex = playerIndex;
-		while (randomIndex === playerIndex) {
-			randomIndex = Math.floor(Math.random() * gameContext.players.length);
-		}
-		return gameContext.players[randomIndex].name;
+		gameState = game.showNextCard(gameState);
+		saveGameState(gameState);
 	}
 
 	async function getCards() {
-		try {
-			const data = get(languageData)[currentLanguage];
-			if (data.cards) {
-				gameCards = data.cards;
-			}
-		} catch (error) {
-			console.error('Error fetching data: ', error);
+		let cards = await getCardData(currentLanguage);
+		if (cards) {
+			gameState.cards = cards;
 		}
 	}
 
@@ -205,34 +84,34 @@
 	}
 </script>
 
-<select class="language-selector" on:change={changeLanguage} title="Change Language">
-	{#each Object.values(Language) as language}
-		<option value={language}>{language}</option>
-	{/each}
-</select>
-
 <div class="game-container">
+	<select class="language-selector" on:change={changeLanguage} title="Change Language">
+		{#each Object.values(Language) as language}
+			<option value={language}>{language}</option>
+		{/each}
+	</select>
+
 	<button class="reset-button" on:click={resetGame} title="Reset Game">
 		&#x21bb; <!-- Unicode for a circular reset icon -->
 	</button>
 
-	{#if gameContext.state === GameStates.LOBBY}
+	{#if gameState.state === ApplicationState.LOBBY}
 		<h1>{$t('title')}</h1>
-		<button class="button" on:click={() => changeGameState(GameStates.ADDING_PLAYERS)}
+		<button class="button" on:click={() => changeGameState(ApplicationState.ADDING_PLAYERS)}
 			>{$t('main-menu-start-button')}</button
 		>
-	{:else if gameContext.state === GameStates.ADDING_PLAYERS}
+	{:else if gameState.state === ApplicationState.ADDING_PLAYERS}
 		<h2>{$t('add-player-names')}</h2>
 		<input
 			type="text"
-			bind:value={playerName}
+			bind:value={gameState.playerName}
 			placeholder={$t('add-player-name')}
 			on:keypress={handleKeyPress}
 			class="input"
 		/>
-		{#if gameContext.players.length > 0}
+		{#if gameState.players.length > 0}
 			<ul class="player-list">
-				{#each gameContext.players as player (player.id)}
+				{#each gameState.players as player (player.id)}
 					<li>
 						<button class="remove-player" on:click={() => removePlayer(player.id)}>&#x2716;</button>
 						{player.name}
@@ -240,44 +119,44 @@
 				{/each}
 			</ul>
 		{/if}
-		<button
-			class="button button-green"
-			disabled={gameContext.players.length < 2}
-			on:click={startGame}>{$t('game-start-button')}</button
+		<button class="button button-green" disabled={gameState.players.length < 2} on:click={startGame}
+			>{$t('game-start-button')}</button
 		>
-	{:else if gameContext.state === GameStates.PLAYING}
-		<h1 class="target">{gameContext.players[currentPlayerIndex].name}</h1>
+	{:else if gameState.state === ApplicationState.PLAYING}
+		<h1 class="target">
+			{gameState.players[gameState.currentPlayerIndex].name}
+		</h1>
 
 		<article>
-			<h2>{gameCards[currentCardIndex].title}</h2>
+			<h2>{gameState.cards[gameState.currentCardIndex].title}</h2>
 			<p>
-				{gameCards[currentCardIndex].description}
+				{gameState.cards[gameState.currentCardIndex].description}
 			</p>
-			{#if gameCards[currentCardIndex].targetPlayer}
-				<b>{$t('target')}: {getTarget(currentCardIndex, currentPlayerIndex)}</b>
+			{#if gameState.cards[gameState.currentCardIndex].targetPlayer}
+				<b>{$t('target')}: {game.getTarget(gameState)}</b>
 			{/if}
 		</article>
 
-		{#each events as event}
+		{#each gameState.events as event}
 			{#if event.ended === true}
 				<h1 class="event-text">{event.person}, {$t('can-stop-the-mission')} {event.title}</h1>
 			{/if}
 		{/each}
-		{#if currentCardIndex + 1 < 29}
+		{#if gameState.currentCardIndex + 1 < 29}
 			<button class="button" on:click={showNextCard}>{$t('next-card')}</button>
-		{:else if currentCardIndex + 1 === 29}
+		{:else if gameState.currentCardIndex + 1 === 29}
 			<button class="button" on:click={showNextCard}>{$t('last-card')}</button>
-		{:else if currentCardIndex + 1 === 30}
+		{:else if gameState.currentCardIndex + 1 === 30}
 			<button class="button button-red" on:click={showNextCard}>{$t('game-over')}</button>
 		{/if}
-		<p class="game-status">{currentCardIndex + 1}/{cardsInGame}</p>
-	{:else if gameContext.state === GameStates.GAME_OVER}
+		<p class="game-status">{gameState.currentCardIndex + 1}/{cardsInGame}</p>
+	{:else if gameState.state === ApplicationState.GAME_OVER}
 		<h1>{$t('game-over')}</h1>
 		<button
 			class="button"
 			on:click={() => {
-				changeGameState(GameStates.LOBBY);
-				events = [];
+				changeGameState(ApplicationState.LOBBY);
+				gameState.events = [];
 			}}>{$t('back-to-start')}</button
 		>
 	{/if}

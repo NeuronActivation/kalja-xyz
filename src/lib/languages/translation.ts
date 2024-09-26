@@ -1,7 +1,7 @@
 import { get } from 'svelte/store';
 import { Language } from '$lib/languages/language';
 import { languageData } from '$lib/languages/load';
-import { type Card } from '$lib/models/card';
+import { type Card } from '$lib/interfaces/card';
 
 // Get card data for specific language.
 export async function getCardData(lang: Language): Promise<Card[] | undefined> {

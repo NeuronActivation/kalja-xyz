@@ -2,7 +2,7 @@ import { init, register, locale as $locale } from 'svelte-i18n';
 import { base } from '$app/paths';
 import { writable } from 'svelte/store';
 import { Language } from '$lib/languages/language';
-import { type Card } from '$lib/models/card';
+import { type Card } from '$lib/interfaces/card';
 import { seededShuffle } from '$lib/utils/seed';
 import { cardsInGame } from '$lib/constants/cardsInGame';
 

@@ -1,4 +1,4 @@
-import { type Card } from '$lib/models/card';
+import { type Card } from '$lib/interfaces/card';
 
 // Seeded random number generator using a linear congruential generator (LCG).
 export function seededRandom(seed: number): () => number {
