@@ -41,7 +41,11 @@ export namespace game {
 		// Go to game over if out of cards.
 		// Card index doesn't have to be updated since it's always updated in startGame().
 		if (gameState.currentCardIndex >= cardsInGame) {
-			gameState = changeGameState(gameState, ApplicationState.GAME_OVER);
+			// All ongoing events automatically end.
+			gameState.events.forEach((event) => {
+				event.ended = true;
+			});
+			return changeGameState(gameState, ApplicationState.GAME_OVER);
 		}
 		if (gameState.currentPlayerIndex >= gameState.players.length) {
 			gameState.currentPlayerIndex = 0;
@@ -49,12 +53,6 @@ export namespace game {
 		// Clearing ended events.
 		gameState.events = gameState.events.filter((item) => !item.ended);
 
-		// Last card so all events automatically end.
-		if (gameState.currentCardIndex + 1 >= cardsInGame) {
-			gameState.events.forEach((event) => {
-				event.ended = true;
-			});
-		}
 		// Event ends normally.
 		gameState.events.forEach((event) => {
 			if (gameState.currentPlayerIndex === event.startingIndex) {

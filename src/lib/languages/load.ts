@@ -33,12 +33,12 @@ export async function loadCards(fetchFn: typeof fetch) {
 		]);
 
 		const seed = Math.random();
-		const fiFixedCards = seededShuffle(fiCards.cards.slice(0, cardsInGame), seed);
-		const enFixedCards = seededShuffle(enCards.cards.slice(0, cardsInGame), seed);
+		const fiShuffledCards = seededShuffle(fiCards.cards, seed);
+		const enShuffledCards = seededShuffle(enCards.cards, seed);
 
 		languageData.set({
-			[Language.FI]: { cards: fiFixedCards },
-			[Language.EN]: { cards: enFixedCards }
+			[Language.FI]: { cards: fiShuffledCards.slice(0, cardsInGame) },
+			[Language.EN]: { cards: enShuffledCards.slice(0, cardsInGame) }
 		});
 	} catch (error) {
 		console.error('Failed to preload languages: ', error);
