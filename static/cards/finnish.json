@@ -583,7 +583,7 @@
         },
         {
             "title": "Nimihirviö",
-            "description": "Pelaaja, jolla on pisin etunimi, juo. Jos on tasapeli, molemmat juovat.",
+            "description": "Pelaaja jolla on pisin etunimi juo. Tasapelissä molemmat/kaikki juovat.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 83
