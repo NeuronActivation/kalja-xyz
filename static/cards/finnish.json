@@ -580,6 +580,34 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 82
+        },
+        {
+            "title": "Nimihirviö",
+            "description": "Pelaaja jolla on pisin etunimi juo. Tasapelissä molemmat/kaikki juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 83
+        },
+        {
+            "title": "Nörtti",
+            "description": "Kaikki silmälaseja käyttävät juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 84
+        },
+        {
+            "title": "Sinkkujen Siemaus",
+            "description": "Kaikki sinkut juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 85
+        },
+        {
+            "title": "Röyhtäise ja Rankaise",
+            "description": "Kaikki juovat niin paljon kuin pystyvät, sitten kovaäänisimmin tai parhaiten röyhtäisevä valitsee jonkun tyhjentämään juomansa.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 86
         }
     ]
 }

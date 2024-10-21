@@ -580,6 +580,34 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 82
+        },
+        {
+            "title": "Name Monster",
+            "description": "The person with the longest first name drinks. If there's a tie you both drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 83
+        },
+        {
+            "title": "Nerd",
+            "description": "Everyone wearing glasses drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 84
+        },
+        {
+            "title": "Bachelor's Brew",
+            "description": "Everyone who is single drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 85
+        },
+        {
+            "title": "Burp & Burden",
+            "description": "Everyone drinks as much as they can, then the person with the loudest or best burp chooses someone to finish their drink",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 86
         }
     ]
 }
