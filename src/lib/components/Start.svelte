@@ -5,9 +5,6 @@
 </script>
 
 <h1>{$t('title')}</h1>
-<button 
-    on:click={() => gameStore.changeGameState(ApplicationState.ADDING_PLAYERS)}
->
-    {$t('main-menu-start-button')}
+<button on:click={() => gameStore.changeGameState(ApplicationState.LOBBY)}>
+	{$t('main-menu-start-button')}
 </button>
-

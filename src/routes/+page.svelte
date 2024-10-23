@@ -7,7 +7,7 @@
 	import { gameStore } from '$lib/stores/gameStore';
 
 	import Header from '$lib/components/Header.svelte';
-	import Landing from '$lib/components/Landing.svelte';
+	import Start from '$lib/components/Start.svelte';
 	import Lobby from '$lib/components/Lobby.svelte';
 	import Game from '$lib/components/Game.svelte';
 
@@ -18,24 +18,22 @@
 	onMount(() => {
 		gameStore.loadSavedState();
 	});
-
 </script>
 
 <div class="game-container">
-	<Header/>
-	{#if gameState.state === ApplicationState.LOBBY}
-		<Landing />
-	{:else if gameState.state === ApplicationState.ADDING_PLAYERS}
+	<Header />
+	{#if gameState.state === ApplicationState.START}
+		<Start />
+	{:else if gameState.state === ApplicationState.LOBBY}
 		<Lobby />
 	{:else if gameState.state === ApplicationState.PLAYING}
 		<Game />
-	{:else if gameState.state === ApplicationState.GAME_OVER}
+	{:else if gameState.state === ApplicationState.ENDING}
 		<h1>{$t('game-over')}</h1>
 		<button
 			on:click={() => {
-				gameStore.changeGameState(ApplicationState.LOBBY);
-				gameState.events = [];
-				gameStore.set(gameState);
+				gameStore.changeGameState(ApplicationState.START);
+				gameStore.reset();
 			}}
 		>
 			{$t('back-to-start')}

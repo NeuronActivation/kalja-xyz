@@ -19,7 +19,7 @@ export function createNewGame(): GameState {
 		playerName: '',
 		currentCardIndex: 0,
 		currentPlayerIndex: 0,
-		state: ApplicationState.LOBBY,
+		state: ApplicationState.START,
 		players: [],
 		events: []
 	};
