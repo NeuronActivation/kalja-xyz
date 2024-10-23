@@ -5,6 +5,7 @@ import { game } from '../managers/game';
 import { ApplicationState } from '../constants/applicationState';
 import { loadGameState, saveGameState } from '../utils/storage';
 import { languageStore } from './languageStore';
+import { loadCards } from '$lib/languages/load';
 
 function createGameStore() {
 	const { subscribe, set, update } = writable<GameState>(createNewGame());
@@ -42,6 +43,7 @@ function createGameStore() {
 			});
 		},
 		startGame: async () => {
+			await loadCards(fetch);
 			const cards = await languageStore.getCards();
 			if (cards) {
 				update((state) => {
