@@ -1,8 +1,8 @@
-import { type GameState } from "$lib/interfaces/gameState";
-import { type Player } from "$lib/interfaces/player";
-import { type GameEvent } from "$lib/interfaces/gameEvent";
-import { cardsInGame } from "$lib/constants/cardsInGame";
-import { ApplicationState } from "$lib/constants/applicationState";
+import { type GameState } from '$lib/interfaces/gameState';
+import { type Player } from '$lib/interfaces/player';
+import { type GameEvent } from '$lib/interfaces/gameEvent';
+import { cardsInGame } from '$lib/constants/cardsInGame';
+import { ApplicationState } from '$lib/constants/applicationState';
 
 export namespace game {
 	// Modify state for starting the game.
@@ -15,34 +15,23 @@ export namespace game {
 	}
 
 	// Modify state for adding a new player.
-	export function addPlayer(
-		gameState: GameState,
-		playerName: string,
-	): GameState {
+	export function addPlayer(gameState: GameState, playerName: string): GameState {
 		const newPlayer: Player = {
 			id: gameState.players.length + 1,
-			name: playerName,
+			name: playerName
 		};
 		gameState.players = [...gameState.players, newPlayer];
 		return gameState;
 	}
 
 	// Modify state for removing a player.
-	export function removePlayer(
-		gameState: GameState,
-		playerId: number,
-	): GameState {
-		gameState.players = gameState.players.filter((player) =>
-			player.id !== playerId
-		);
+	export function removePlayer(gameState: GameState, playerId: number): GameState {
+		gameState.players = gameState.players.filter((player) => player.id !== playerId);
 		return gameState;
 	}
 
 	// Modify "state" of GameState.
-	export function changeGameState(
-		gameState: GameState,
-		newState: ApplicationState,
-	): GameState {
+	export function changeGameState(gameState: GameState, newState: ApplicationState): GameState {
 		gameState.state = newState;
 		return gameState;
 	}
@@ -59,7 +48,7 @@ export namespace game {
 			gameState.events.forEach((event) => {
 				event.ended = true;
 			});
-			return changeGameState(gameState, ApplicationState.GAME_OVER);
+			return changeGameState(gameState, ApplicationState.ENDING);
 		}
 		if (gameState.currentPlayerIndex >= gameState.players.length) {
 			gameState.currentPlayerIndex = 0;
@@ -79,7 +68,7 @@ export namespace game {
 				title: gameState.cards[gameState.currentCardIndex].title,
 				person: gameState.players[gameState.currentPlayerIndex].name,
 				startingIndex: gameState.currentPlayerIndex,
-				ended: false,
+				ended: false
 			};
 			gameState.events.push(event);
 		}
@@ -93,7 +82,7 @@ export namespace game {
 		const card = gameState.cards[cardIndex];
 
 		if (!card.targetPlayer) {
-			return "";
+			return '';
 		}
 
 		let randomIndex = playerIndex;
