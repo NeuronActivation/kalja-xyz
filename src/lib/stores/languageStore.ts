@@ -1,4 +1,3 @@
-// src/lib/stores/languageStore.ts
 import { get, writable } from 'svelte/store';
 import { Language } from '../languages/language';
 import { setLanguage } from '../languages/load';

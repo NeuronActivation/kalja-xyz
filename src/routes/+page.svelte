@@ -30,12 +30,7 @@
 		<Game />
 	{:else if gameState.state === ApplicationState.ENDING}
 		<h1>{$t('game-over')}</h1>
-		<button
-			on:click={() => {
-				gameStore.changeGameState(ApplicationState.START);
-				gameStore.reset();
-			}}
-		>
+		<button on:click={gameStore.reset}>
 			{$t('back-to-start')}
 		</button>
 	{/if}

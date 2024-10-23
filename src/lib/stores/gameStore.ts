@@ -1,5 +1,4 @@
-// src/lib/stores/gameStore.ts
-import { get, writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 import type { GameState } from '../interfaces/gameState';
 import { createNewGame } from '../interfaces/gameState';
 import { game } from '../managers/game';
