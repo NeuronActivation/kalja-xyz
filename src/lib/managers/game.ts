@@ -16,7 +16,10 @@ export namespace game {
 
 	// Modify state for adding a new player.
 	export function addPlayer(gameState: GameState, playerName: string): GameState {
-		const newPlayer: Player = { id: gameState.players.length + 1, name: playerName };
+		const newPlayer: Player = {
+			id: gameState.players.length + 1,
+			name: playerName
+		};
 		gameState.players = [...gameState.players, newPlayer];
 		return gameState;
 	}
@@ -45,7 +48,7 @@ export namespace game {
 			gameState.events.forEach((event) => {
 				event.ended = true;
 			});
-			return changeGameState(gameState, ApplicationState.GAME_OVER);
+			return changeGameState(gameState, ApplicationState.ENDING);
 		}
 		if (gameState.currentPlayerIndex >= gameState.players.length) {
 			gameState.currentPlayerIndex = 0;
