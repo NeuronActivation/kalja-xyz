@@ -2,8 +2,8 @@
 	import { t } from 'svelte-i18n';
 	import { cardsInGame } from '$lib/constants/cardsInGame';
 	import { game } from '$lib/managers/game';
-	import type { GameState } from '../interfaces/gameState';
-	import { gameStore } from '../stores/gameStore';
+	import type { GameState } from '$lib/interfaces/gameState';
+	import { gameStore } from '$lib/stores/gameStore';
 
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));

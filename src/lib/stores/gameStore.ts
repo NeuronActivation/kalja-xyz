@@ -1,10 +1,10 @@
 import { writable } from 'svelte/store';
-import type { GameState } from '../interfaces/gameState';
-import { createNewGame } from '../interfaces/gameState';
-import { game } from '../managers/game';
-import { ApplicationState } from '../constants/applicationState';
-import { loadGameState, saveGameState } from '../utils/storage';
-import { languageStore } from './languageStore';
+import type { GameState } from '$lib/interfaces/gameState';
+import { createNewGame } from '$lib/interfaces/gameState';
+import { game } from '$lib/managers/game';
+import { ApplicationState } from '$lib/constants/applicationState';
+import { loadGameState, saveGameState } from '$lib/utils/storage';
+import { languageStore } from '$lib/stores/languageStore';
 import { loadCards } from '$lib/languages/load';
 
 function createGameStore() {

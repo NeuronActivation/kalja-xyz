@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
-	import { gameStore } from '../stores/gameStore';
-	import type { GameState } from '../interfaces/gameState';
+	import { gameStore } from '$lib/stores/gameStore';
+	import type { GameState } from '$lib/interfaces/gameState';
 
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));

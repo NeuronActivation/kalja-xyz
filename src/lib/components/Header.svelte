@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Language } from '../languages/language';
-	import { gameStore } from '../stores/gameStore';
-	import { languageStore } from '../stores/languageStore';
+	import { Language } from '$lib/languages/language';
+	import { gameStore } from '$lib/stores/gameStore';
+	import { languageStore } from '$lib/stores/languageStore';
 
 	async function changeLanguage(event: Event) {
 		const select = event.target as HTMLSelectElement;
