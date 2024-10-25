@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 import type { GameState } from '$lib/interfaces/gameState';
 import { createNewGame } from '$lib/interfaces/gameState';
 import { game } from '$lib/managers/game';
@@ -42,12 +42,29 @@ function createGameStore() {
 				return updatedState;
 			});
 		},
+		setCardAmount: (amount: number) => {
+			update((state) => {
+				const updatedState = { ...state, cardAmount: amount };
+				saveGameState(updatedState);
+				return updatedState;
+			});
+		},
+		initializeMaxCards: async () => {
+			const maxCards = await loadCards(fetch, get(gameStore).cardAmount);
+			if (maxCards) {
+				update((state) => ({
+					...state,
+					maxCards
+				}));
+			}
+		},
 		startGame: async () => {
-			await loadCards(fetch);
+			const maxCards = await loadCards(fetch, get(gameStore).cardAmount);
 			const cards = await languageStore.getCards();
 			if (cards) {
 				update((state) => {
 					state.cards = cards;
+					state.maxCards = maxCards;
 					const updatedState = game.startGame(state);
 					saveGameState(updatedState);
 					return updatedState;

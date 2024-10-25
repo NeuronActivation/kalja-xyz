@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
-	import { cardsInGame } from '$lib/constants/cardsInGame';
 	import { game } from '$lib/managers/game';
 	import type { GameState } from '$lib/interfaces/gameState';
 	import { gameStore } from '$lib/stores/gameStore';
@@ -29,17 +28,15 @@
 	{/if}
 {/each}
 
-{#if gameState.currentCardIndex + 1 < 29}
+{#if gameState.currentCardIndex + 1 < gameState.cardAmount}
 	<button on:click={gameStore.showNextCard}>{$t('next-card')}</button>
-{:else if gameState.currentCardIndex + 1 === 29}
-	<button on:click={gameStore.showNextCard}>{$t('last-card')}</button>
-{:else if gameState.currentCardIndex + 1 === 30}
-	<button class="pico-background-red-500" on:click={gameStore.showNextCard}
-		>{$t('game-over')}</button
-	>
+{:else}
+	<button class="pico-background-red-500" on:click={gameStore.showNextCard}>
+		{$t('game-over')}
+	</button>
 {/if}
 
-<p class="game-status">{gameState.currentCardIndex + 1}/{cardsInGame}</p>
+<p class="game-status">{gameState.currentCardIndex + 1}/{gameState.cardAmount}</p>
 
 <style>
 	article {

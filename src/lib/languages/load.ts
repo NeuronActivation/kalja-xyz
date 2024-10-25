@@ -4,7 +4,6 @@ import { writable } from 'svelte/store';
 import { Language } from '$lib/languages/language';
 import { type Card } from '$lib/interfaces/card';
 import { seededShuffle } from '$lib/utils/seed';
-import { cardsInGame } from '$lib/constants/cardsInGame';
 
 interface LanguageData {
 	cards?: Card[];
@@ -24,8 +23,8 @@ init({
 	initialLocale: 'fi'
 });
 
-// Load all the data from language JSON files.
-export async function loadCards(fetchFn: typeof fetch) {
+// Load all the data from language JSON files. Returns the total number of available cards
+export async function loadCards(fetchFn: typeof fetch, cardAmount: number): Promise<number> {
 	try {
 		const [fiCards, enCards] = await Promise.all([
 			fetchFn(`${base}/cards/finnish.json`).then((res) => res.json()),
@@ -37,11 +36,14 @@ export async function loadCards(fetchFn: typeof fetch) {
 		const enShuffledCards = seededShuffle(enCards.cards, seed);
 
 		languageData.set({
-			[Language.FI]: { cards: fiShuffledCards.slice(0, cardsInGame) },
-			[Language.EN]: { cards: enShuffledCards.slice(0, cardsInGame) }
+			[Language.FI]: { cards: fiShuffledCards.slice(0, cardAmount) },
+			[Language.EN]: { cards: enShuffledCards.slice(0, cardAmount) }
 		});
+
+		return Math.min(fiCards.cards.length, enCards.cards.length);
 	} catch (error) {
 		console.error('Failed to preload languages: ', error);
+		return 0;
 	}
 }
 
