@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { t } from 'svelte-i18n';
 	import { gameStore } from '$lib/stores/gameStore';
 	import type { GameState } from '$lib/interfaces/gameState';
@@ -6,12 +7,9 @@
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
 
-	function handleKeyPress(event: KeyboardEvent) {
-		if (event.key === 'Enter' && gameState.playerName) {
-			gameStore.addPlayer(gameState.playerName);
-			gameState.playerName = '';
-		}
-	}
+	onMount(() => {
+		gameStore.initializeMaxCards();
+	});
 </script>
 
 <h2>{$t('add-player-names')}</h2>
@@ -19,7 +17,12 @@
 	type="text"
 	bind:value={gameState.playerName}
 	placeholder={$t('add-player-name')}
-	on:keypress={handleKeyPress}
+	on:keydown={(e) => {
+		if (e.key === 'Enter' && gameState.playerName) {
+			gameStore.addPlayer(gameState.playerName);
+			gameState.playerName = '';
+		}
+	}}
 	class="input"
 />
 {#if gameState.players.length > 0}
@@ -34,6 +37,25 @@
 		{/each}
 	</ul>
 {/if}
+<details>
+	<summary>
+		<span>{$t('settings')}</span>
+	</summary>
+	<div class="settings">
+		<span>{$t('settings-cards')}:</span>
+		<div class="slider-container">
+			<span>{gameState.cardAmount}</span>
+			<input
+				type="range"
+				id="cardAmount"
+				name="cardAmount"
+				min="10"
+				max={gameState.maxCards ?? 10}
+				bind:value={gameState.cardAmount}
+			/>
+		</div>
+	</div>
+</details>
 <button
 	class="pico-background-jade-500"
 	disabled={gameState.players.length < 2}
@@ -74,5 +96,27 @@
 
 	input:focus {
 		border-color: #2980b9;
+	}
+
+	summary {
+		font-size: 0.9rem;
+		color: #666;
+	}
+
+	.settings {
+		font-size: 0.9rem;
+	}
+
+	.slider-container {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex: 1;
+	}
+
+	input[type='range'] {
+		padding: 0;
+		margin: 0;
+		flex: 1;
 	}
 </style>

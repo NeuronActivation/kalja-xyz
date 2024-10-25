@@ -1,7 +1,6 @@
 import { type GameState } from '$lib/interfaces/gameState';
 import { type Player } from '$lib/interfaces/player';
 import { type GameEvent } from '$lib/interfaces/gameEvent';
-import { cardsInGame } from '$lib/constants/cardsInGame';
 import { ApplicationState } from '$lib/constants/applicationState';
 
 export namespace game {
@@ -43,7 +42,7 @@ export namespace game {
 
 		// Go to game over if out of cards.
 		// Card index doesn't have to be updated since it's always updated in startGame().
-		if (gameState.currentCardIndex >= cardsInGame) {
+		if (gameState.currentCardIndex >= gameState.cardAmount) {
 			// All ongoing events automatically end.
 			gameState.events.forEach((event) => {
 				event.ended = true;
