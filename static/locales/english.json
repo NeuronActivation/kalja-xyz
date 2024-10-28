@@ -10,5 +10,6 @@
     "target": "Target",
     "next-card": "Next card",
     "game-over": "Game over",
-    "back-to-start": "Back to start"
+    "back-to-start": "Back to start",
+    "replay": "Replay"
 }

@@ -31,7 +31,12 @@
 {#if gameState.currentCardIndex + 1 < gameState.cardAmount}
 	<button on:click={gameStore.showNextCard}>{$t('next-card')}</button>
 {:else}
-	<button class="pico-background-red-500" on:click={gameStore.showNextCard}>
+	<button on:click={gameStore.startGame}>{$t('replay')}</button>
+	<button
+		class="pico-background-red-500"
+		on:click={gameStore.showNextCard}
+		style="margin-top: 1rem;"
+	>
 		{$t('game-over')}
 	</button>
 {/if}
