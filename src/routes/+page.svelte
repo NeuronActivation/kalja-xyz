@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { t } from 'svelte-i18n';
 
 	import { ApplicationState } from '$lib/constants/applicationState';
 	import type { GameState } from '$lib/interfaces/gameState';
@@ -10,6 +9,7 @@
 	import Start from '$lib/components/Start.svelte';
 	import Lobby from '$lib/components/Lobby.svelte';
 	import Game from '$lib/components/Game.svelte';
+	import End from '$lib/components/End.svelte';
 
 	// State of the application.
 	let gameState: GameState;
@@ -29,10 +29,7 @@
 	{:else if gameState.state === ApplicationState.PLAYING}
 		<Game />
 	{:else if gameState.state === ApplicationState.ENDING}
-		<h1>{$t('game-over')}</h1>
-		<button on:click={gameStore.reset}>
-			{$t('back-to-start')}
-		</button>
+		<End />
 	{/if}
 </div>
 
