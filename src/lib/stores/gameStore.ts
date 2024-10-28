@@ -65,6 +65,7 @@ function createGameStore() {
 				update((state) => {
 					state.cards = cards;
 					state.maxCards = maxCards;
+					state.events = [];
 					const updatedState = game.startGame(state);
 					saveGameState(updatedState);
 					return updatedState;
