@@ -22,19 +22,23 @@
 	{/if}
 </article>
 
-{#each gameState.events as event}
-	{#if event.ended === true}
-		<h1 class="event-text">{event.person}, {$t('can-stop-the-mission')} {event.title}</h1>
-	{/if}
-{/each}
+<div class="button-container">
+	<button on:click={gameStore.reroll}>{$t('reroll')}</button>
 
-{#if gameState.currentCardIndex + 1 < gameState.cardAmount}
-	<button on:click={gameStore.showNextCard}>{$t('next-card')}</button>
-{:else}
-	<button class="pico-background-red-500" on:click={gameStore.showNextCard}>
-		{$t('game-over')}
-	</button>
-{/if}
+	{#each gameState.events as event}
+		{#if event.ended === true}
+			<h1 class="event-text">{event.person}, {$t('can-stop-the-mission')} {event.title}</h1>
+		{/if}
+	{/each}
+
+	{#if gameState.currentCardIndex + 1 < gameState.cardAmount}
+		<button on:click={gameStore.showNextCard}>{$t('next-card')}</button>
+	{:else}
+		<button class="pico-background-red-500" on:click={gameStore.showNextCard}>
+			{$t('game-over')}
+		</button>
+	{/if}
+</div>
 
 <p class="game-status">{gameState.currentCardIndex + 1}/{gameState.cardAmount}</p>
 
@@ -45,5 +49,17 @@
 	}
 	.game-status {
 		margin-top: 1rem;
+	}
+
+	.button-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 1rem;
+	}
+
+	.button-container button {
+		margin: 0.5rem 0;
+		padding: 0.5rem 1rem;
 	}
 </style>
