@@ -3,6 +3,7 @@
 	import { game } from '$lib/managers/game';
 	import type { GameState } from '$lib/interfaces/gameState';
 	import { gameStore } from '$lib/stores/gameStore';
+	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
 
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
@@ -13,6 +14,9 @@
 </h1>
 
 <article>
+	<button class="reroll" on:click={gameStore.reroll} title={$t('reroll')}>
+		<ReloadIcon size="1.1rem" />
+	</button>
 	<h2>{gameState.cards[gameState.currentCardIndex].title}</h2>
 	<p>
 		{gameState.cards[gameState.currentCardIndex].description}
@@ -42,8 +46,19 @@
 	article {
 		width: 50%;
 		max-width: 600px;
+		position: relative;
 	}
 	.game-status {
 		margin-top: 1rem;
+	}
+	.reroll {
+		all: unset;
+		cursor: pointer;
+		position: absolute;
+		margin: 10px;
+		line-height: 0;
+		color: #666;
+		top: 0;
+		right: 0;
 	}
 </style>

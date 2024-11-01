@@ -5,7 +5,7 @@ import { game } from '$lib/managers/game';
 import { ApplicationState } from '$lib/constants/applicationState';
 import { loadGameState, saveGameState } from '$lib/utils/storage';
 import { languageStore } from '$lib/stores/languageStore';
-import { loadCards } from '$lib/languages/load';
+import { loadCards, loadSingleCard } from '$lib/languages/load';
 
 function createGameStore() {
 	const { subscribe, set, update } = writable<GameState>(createNewGame());
@@ -92,6 +92,22 @@ function createGameStore() {
 			const savedState = loadGameState();
 			if (savedState) {
 				set(savedState);
+			}
+		},
+		reroll: async () => {
+			const cardIndex = get(gameStore).currentCardIndex;
+			await loadSingleCard(fetch, cardIndex);
+
+			const cards = await languageStore.getCards();
+			if (cards) {
+				update((state) => {
+					const updatedState = {
+						...state,
+						cards: cards
+					};
+					saveGameState(updatedState);
+					return updatedState;
+				});
 			}
 		}
 	};

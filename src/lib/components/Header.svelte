@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { t } from 'svelte-i18n';
 	import { Language } from '$lib/languages/language';
 	import { gameStore } from '$lib/stores/gameStore';
 	import { languageStore } from '$lib/stores/languageStore';
+	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
 
 	async function changeLanguage(event: Event) {
 		const select = event.target as HTMLSelectElement;
@@ -17,7 +19,13 @@
 	{/each}
 </select>
 
-<button class="reset pico-background-azure-500" on:click={gameStore.reset}> &#x21bb; </button>
+<button
+	class="reset pico-background-azure-500"
+	on:click={gameStore.reset}
+	title={$t('back-to-start')}
+>
+	<ReloadIcon size="1.3rem" />
+</button>
 
 <style>
 	.reset,
@@ -37,11 +45,12 @@
 	.reset {
 		right: 1rem;
 		font-size: 1.3rem;
+		line-height: 0;
 	}
 
 	.language {
 		left: 1rem;
-		font-weight: bold;
+		font-weight: 600;
 		background-image: none !important;
 	}
 </style>

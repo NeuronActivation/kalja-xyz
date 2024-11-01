@@ -11,5 +11,6 @@
     "next-card": "Seuraava kortti",
     "game-over": "Peli ohi",
     "back-to-start": "Takaisin alkuun",
-    "replay": "Pelaa uudelleen"
+    "replay": "Pelaa uudelleen",
+    "reroll": "Vaihda kortti"
 }
