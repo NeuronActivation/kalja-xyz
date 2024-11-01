@@ -10,6 +10,7 @@
 	import Lobby from '$lib/components/Lobby.svelte';
 	import Game from '$lib/components/Game.svelte';
 	import End from '$lib/components/End.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	// State of the application.
 	let gameState: GameState;
@@ -20,8 +21,9 @@
 	});
 </script>
 
+<Header />
+
 <div class="game-container">
-	<Header />
 	{#if gameState.state === ApplicationState.START}
 		<Start />
 	{:else if gameState.state === ApplicationState.LOBBY}
@@ -32,6 +34,8 @@
 		<End />
 	{/if}
 </div>
+
+<Footer />
 
 <style>
 	.game-container {
