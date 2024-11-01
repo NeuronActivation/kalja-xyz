@@ -100,10 +100,14 @@ function createGameStore() {
 
 			const cards = await languageStore.getCards();
 			if (cards) {
-				update((state) => ({
-					...state,
-					cards: cards
-				}));
+				update((state) => {
+					const updatedState = {
+						...state,
+						cards: cards
+					};
+					saveGameState(updatedState);
+					return updatedState;
+				});
 			}
 		}
 	};
