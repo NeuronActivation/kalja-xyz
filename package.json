@@ -1,10 +1,10 @@
 {
-	"name": "drinking-game",
+	"name": "kalja.xyz",
 	"version": "0.0.1",
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/NeuronActivation/drinkingGame.git"
+		"url": "git+https://github.com/NeuronActivation/kalja-xyz.git"
 	},
 	"scripts": {
 		"dev": "vite dev",
