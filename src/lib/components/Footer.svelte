@@ -2,7 +2,7 @@
 	<div class="container">
 		<small>
 			🍺 Drink responsibly • <a
-				href="https://github.com/NeuronActivation/kalja-xyz"
+				href="https://github.com/NeuronActivation/drinkingGame"
 				target="_blank"
 				rel="noopener">Code</a
 			>
