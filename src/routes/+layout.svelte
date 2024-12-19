@@ -12,7 +12,7 @@
 			'Legendaarinen juomapeli uudessa kuosissa. Helppo pelata, vaikea lopettaa. Bileet alkaa nappia painamalla!',
 		type: 'website',
 		url: $page.url.href,
-		image: new URL('/favicon.png', $page.url.origin).href
+		image: ''
 	};
 </script>
 
@@ -36,14 +36,14 @@
 	<meta property="og:type" content={metadata.type} />
 	<meta property="og:title" content={metadata.title} />
 	<meta property="og:description" content={metadata.description} />
-	<meta property="og:image" content={metadata.image} />
+	<!--<meta property="og:image" content={metadata.image} /> -->
 	<meta property="og:url" content={metadata.url} />
 	<meta property="og:site_name" content={metadata.name} />
 
 	<!-- Twitter -->
 	<meta name="twitter:title" content={metadata.title} />
 	<meta name="twitter:description" content={metadata.description} />
-	<meta name="twitter:image" content={metadata.image} />
+	<!-- <meta name="twitter:image" content={metadata.image} /> -->
 </svelte:head>
 
 <slot />
