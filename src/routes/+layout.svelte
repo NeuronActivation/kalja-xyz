@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 	import type { Metadata } from '$lib/interfaces/metadata';
 
 	import '@picocss/pico';
@@ -12,7 +13,7 @@
 			'Legendaarinen juomapeli uudessa kuosissa. Helppo pelata, vaikea lopettaa. Bileet alkaa nappia painamalla!',
 		type: 'website',
 		url: $page.url.href,
-		image: new URL('/favicon.png', $page.url.origin).href
+		image: `${base}/favicon.png`
 	};
 </script>
 
