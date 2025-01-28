@@ -18,7 +18,7 @@
         ];
         buildInputs = with pkgs; [
           openssl
-          nodejs_18
+          nodejs
         ];
       };
     });

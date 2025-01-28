@@ -1,13 +1,16 @@
 {
-    "title": "Santeri's Drinking Game v2",
+    "title": "Kalja.xyz",
     "main-menu-start-button": "Start",
     "add-player-names": "Add player names",
-    "game-start-button": "Let's get drinking",
     "add-player-name": "Insert player name",
+    "settings": "Settings",
+    "settings-cards": "Cards",
+    "game-start-button": "Let's get drinking",
     "can-stop-the-mission": "you can stop the task",
     "target": "Target",
     "next-card": "Next card",
-    "last-card": "Last card",
     "game-over": "Game over",
-    "back-to-start": "Back to start"
+    "back-to-start": "Back to start",
+    "replay": "Replay",
+    "reroll": "Reroll"
 }

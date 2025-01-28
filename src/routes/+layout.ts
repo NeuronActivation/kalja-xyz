@@ -1,10 +1,9 @@
 import type { LoadEvent } from '@sveltejs/kit';
 import { waitLocale } from 'svelte-i18n';
-import { loadCards, registerLocales } from '$lib/languages/load';
+import { registerLocales } from '$lib/languages/load';
 
 export async function load({ fetch }: LoadEvent) {
 	registerLocales(fetch);
-	await loadCards(fetch);
 	await waitLocale();
 	return {};
 }
