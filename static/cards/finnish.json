@@ -608,6 +608,34 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 86
+        },
+        {
+            "title": "Jokeri",
+            "description": "Keksi tälle kortille toiminto.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 87
+        },
+        {
+            "title": "Nyt on jännä",
+            "description": "Kerro jokin jännä juttu. Kaikki joiden mielestä juttusi oli jännä juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 88
+        },
+        {
+            "title": "Fuck, marry, kill",
+            "description": "Pelaa Fuck, marry, kill -peli paikalla olevilla ihmisillä. Jos paikalla olijoita ei ole oikea määrä, edellinen pelaaja päättää ehdokkaat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 89
+        },
+        {
+            "title": "Kolme asiaa viidessä sekunnissa",
+            "description": "Käykää kierros läpi niin että jokainen luettelee vuorollaan kolme asiaa annetusta kategorista viidessä sekunnissa. Pelivuorossa edellinen pelaaja päättää kategorian seuraavalle pelaajalle. Epäonnistumisista juodaan.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 90
         }
     ]
 }
