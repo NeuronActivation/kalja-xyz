@@ -608,6 +608,34 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 86
+        },
+        {
+            "title": "Joker",
+            "description": "Come up with a functionality for this card",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 87
+        },
+        {
+            "title": "Quite interesting",
+            "description": "Tell something interesting. Everyone who finds that to be interesting drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 88
+        },
+        {
+            "title": "Fuck, marry, kill",
+            "description": "Play Fuck, marry, kill with the people present. If there isn't a correct amount of people present previous player decides participants.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 89
+        },
+        {
+            "title": "Three things in five seconds",
+            "description": "Each player takes turn to name three things from the given category within five seconds. Previous player decides category for the next player. If you fail you drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 90
         }
     ]
 }
