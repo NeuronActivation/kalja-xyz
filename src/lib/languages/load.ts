@@ -114,7 +114,6 @@ export function getStoredCards(lang: Language): Card[] | null {
 		}
 	}
 
-	console.warn(`Cards uninitialized for lang: ${lang}`);
 	return null;
 }
 
