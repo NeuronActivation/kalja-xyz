@@ -114,3 +114,7 @@ function createGameStore() {
 }
 
 export const gameStore = createGameStore();
+
+languageStore.setGameStoreUpdate(() => {
+	gameStore.updateCards();
+});
