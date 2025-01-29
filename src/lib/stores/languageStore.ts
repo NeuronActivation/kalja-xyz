@@ -1,24 +1,53 @@
-import { get, writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 import { Language } from '$lib/languages/language';
-import { setLanguage } from '$lib/languages/load';
-import { getCardData } from '$lib/languages/translation';
+import { getStoredCards, setLanguage, getStoredLanguage } from '$lib/languages/load';
 
 function createLanguageStore() {
-	const { subscribe, set, update } = writable(Language.FI);
-	const store = { subscribe, set, update };
+	const { subscribe, set } = writable({
+		language: Language.FI
+	});
+
+	let onInitComplete: (() => void) | null = null;
+
+	// Ensure that the store updates once the client-side JavaScript takes over.
+	async function initialize() {
+		if (typeof window !== 'undefined') {
+			const storedLanguage = getStoredLanguage();
+			const storedCards = getStoredCards(storedLanguage);
+
+			if (!storedCards) {
+				console.error('Stored cards do not exist');
+				return;
+			}
+
+			await setLanguage(storedLanguage);
+			set({ language: storedLanguage });
+
+			// If gameStore is available, update it.
+			if (onInitComplete) {
+				onInitComplete();
+			}
+		}
+	}
+	initialize();
 
 	return {
 		subscribe,
 		async changeLanguage(newLanguage: Language) {
-			const currentLanguage = get(store);
-			if (newLanguage !== currentLanguage) {
-				await setLanguage(newLanguage);
-				set(newLanguage);
+			await setLanguage(newLanguage);
+
+			set({ language: newLanguage });
+			if (onInitComplete) {
+				onInitComplete();
 			}
 		},
 		async getCards() {
-			const currentLanguage = get(store);
-			return await getCardData(currentLanguage);
+			const currentLanguage = getStoredLanguage();
+			const cards = getStoredCards(currentLanguage);
+			return cards || [];
+		},
+		setGameStoreUpdate(cb: () => void) {
+			onInitComplete = cb;
 		}
 	};
 }
