@@ -1,16 +1,27 @@
 import { init, register, locale as $locale } from 'svelte-i18n';
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import { base } from '$app/paths';
 import { getCardUrl, Language } from '$lib/languages/language';
 import { type Card } from '$lib/interfaces/card';
 import { seededShuffle } from '$lib/utils/seed';
+import { isBrowser } from '$lib/constants/isBrowser';
 
 interface LanguageData {
 	cards?: Card[];
 	language: Language;
 }
 
-export const languageData = writable<Record<Language, LanguageData>>();
+const storedData = isBrowser ? localStorage.getItem('languageData') : null;
+const languageData = writable<Record<Language, LanguageData>>(
+	storedData ? JSON.parse(storedData) : {}
+);
+
+// Only persist to localStorage on the client side.
+if (isBrowser) {
+	languageData.subscribe((value) => {
+		localStorage.setItem('languageData', JSON.stringify(value));
+	});
+}
 
 // Register locales
 export function registerLocales(fetchFn: typeof fetch) {
@@ -24,8 +35,10 @@ init({
 	initialLocale: 'fi'
 });
 
-// Load all the data from language JSON files. Returns the total number of available cards
-export async function loadCards(fetchFn: typeof fetch, cardAmount: number): Promise<number> {
+async function createCards(
+	fetchFn: typeof fetch,
+	cardAmount: number
+): Promise<Record<Language, LanguageData> | null> {
 	try {
 		const [fiCards, enCards] = await Promise.all([
 			fetchFn(getCardUrl(Language.FI)).then((res) => res.json()),
@@ -36,85 +49,68 @@ export async function loadCards(fetchFn: typeof fetch, cardAmount: number): Prom
 		const fiShuffledCards = seededShuffle(fiCards.cards, seed);
 		const enShuffledCards = seededShuffle(enCards.cards, seed);
 
-		const cardsData = {
+		return {
 			[Language.FI]: { cards: fiShuffledCards.slice(0, cardAmount), language: Language.FI },
 			[Language.EN]: { cards: enShuffledCards.slice(0, cardAmount), language: Language.EN }
 		};
+	} catch (error) {
+		console.error('Failed to preload languages: ', error);
+		return null;
+	}
+}
 
-		sessionStorage.setItem('languageData', JSON.stringify(cardsData));
+export async function loadCards(fetchFn: typeof fetch): Promise<number> {
+	try {
+		const cardsData = await createCards(fetchFn, Number.MAX_SAFE_INTEGER);
+		if (!cardsData) {
+			return 0;
+		}
+
 		languageData.set(cardsData);
 
-		return Math.min(fiCards.cards.length, enCards.cards.length);
+		// Get the minimum length of all languages.
+		return (
+			Object.values(cardsData)
+				.map((lang) => lang.cards?.length ?? 0)
+				.reduce((min, length) => Math.min(min, length), Number.MAX_SAFE_INTEGER) || 0
+		);
 	} catch (error) {
 		console.error('Failed to preload languages: ', error);
 		return 0;
 	}
 }
 
-// Load a new single card and update the languageData.
 export async function loadSingleCard(fetchFn: typeof fetch, cardIndex: number): Promise<void> {
 	try {
-		const languageUrls = {
-			[Language.FI]: getCardUrl(Language.FI),
-			[Language.EN]: getCardUrl(Language.EN)
-		};
-		const seed = Math.random();
+		const currentData = get(languageData);
+		if (!currentData) return;
 
-		// Fetch and shuffle one card for each language using the same seed.
-		const languageEntries = await Promise.all(
-			(Object.entries(languageUrls) as [Language, string][]).map(async ([lang, url]) => {
-				const response = await fetchFn(url);
-				const data = await response.json();
+		// Fetch a new single card for each language.
+		const newCardData = await createCards(fetchFn, 1);
+		if (!newCardData) return;
 
-				const shuffledCards = seededShuffle(data.cards, seed);
-				const newCard = shuffledCards[0];
+		const updatedData: Record<Language, LanguageData> = { ...currentData };
 
-				return [lang, newCard] as const;
-			})
-		);
+		// Replace the card at cardIndex for each language.
+		for (const lang of Object.values(Language)) {
+			const langData = updatedData[lang];
+			const newLangCard = newCardData[lang]?.cards?.[0];
 
-		// Update languageData for all languages at the given index.
-		languageData.update((currentData) => {
-			const updatedData = { ...currentData };
+			if (langData?.cards && newLangCard) {
+				langData.cards[cardIndex] = newLangCard;
+			}
 
-			languageEntries.forEach(([lang, newCard]) => {
-				const updatedCards = [...(updatedData[lang]?.cards || [])];
+			updatedData[lang] = { ...langData, language: lang };
+		}
 
-				// Ensure the index exists before replacing the card.
-				if (updatedCards.length > cardIndex) {
-					updatedCards[cardIndex] = newCard;
-				}
-
-				updatedData[lang] = {
-					cards: updatedCards,
-					language: lang
-				};
-			});
-
-			// Update sessionStorage to keep it in sync.
-			sessionStorage.setItem('languageData', JSON.stringify(updatedData));
-
-			return updatedData;
-		});
+		languageData.set(updatedData);
 	} catch (error) {
 		console.error('Failed to load a single card:', error);
 	}
 }
 
 export function getStoredCards(lang: Language): Card[] | null {
-	const storedData = sessionStorage.getItem('languageData');
-
-	if (storedData) {
-		// Parse the data into the expected type.
-		const parsedData: Record<Language, { cards: Card[] }> = JSON.parse(storedData);
-
-		const languageData = parsedData[lang];
-		if (languageData) {
-			return languageData.cards;
-		}
-	}
-
-	return null;
+	return get(languageData)[lang]?.cards || null;
 }
 
 export function getStoredLanguage(): Language {
