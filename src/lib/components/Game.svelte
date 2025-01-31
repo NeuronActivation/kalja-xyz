@@ -4,9 +4,34 @@
 	import type { GameState } from '$lib/interfaces/gameState';
 	import { gameStore } from '$lib/stores/gameStore';
 	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
+	import { onMount } from 'svelte';
+	import { getPersistentTarget, setPersistentTarget } from '$lib/utils/storage';
 
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
+	let targetPlayer: string;
+
+	$: {
+		const index = gameState.currentCardIndex;
+		if (gameState.cards[index]?.targetPlayer) {
+			const storedTarget = getPersistentTarget(index);
+			if (storedTarget) {
+				targetPlayer = storedTarget;
+			} else {
+				targetPlayer = game.getTarget(gameState);
+				setPersistentTarget(index, targetPlayer);
+			}
+		}
+	}
+
+	onMount(() => {
+		// Ensure the target is set after mount.
+		const index = gameState.currentCardIndex;
+		if (!targetPlayer && gameState.cards[index]?.targetPlayer) {
+			targetPlayer = getPersistentTarget(index) || game.getTarget(gameState);
+			setPersistentTarget(index, targetPlayer);
+		}
+	});
 </script>
 
 <h1 class="target">
@@ -22,7 +47,7 @@
 		{gameState.cards[gameState.currentCardIndex].description}
 	</p>
 	{#if gameState.cards[gameState.currentCardIndex].targetPlayer}
-		<b>{$t('target')}: {game.getTarget(gameState)}</b>
+		<b>{$t('target')}: {targetPlayer}</b>
 	{/if}
 </article>
 
