@@ -50,7 +50,7 @@ function createGameStore() {
 			});
 		},
 		initializeMaxCards: async () => {
-			const maxCards = await loadCards(fetch, get(gameStore).cardAmount);
+			const maxCards = await loadCards(fetch, Number.MAX_SAFE_INTEGER);
 			if (maxCards) {
 				update((state) => ({
 					...state,
@@ -59,12 +59,10 @@ function createGameStore() {
 			}
 		},
 		startGame: async () => {
-			const maxCards = await loadCards(fetch, get(gameStore).cardAmount);
 			const cards = await languageStore.getCards();
 			if (cards) {
 				update((state) => {
 					state.cards = cards;
-					state.maxCards = maxCards;
 					state.events = [];
 					const updatedState = game.startGame(state);
 					saveGameState(updatedState);
@@ -97,18 +95,7 @@ function createGameStore() {
 		reroll: async () => {
 			const cardIndex = get(gameStore).currentCardIndex;
 			await loadSingleCard(fetch, cardIndex);
-
-			const cards = await languageStore.getCards();
-			if (cards) {
-				update((state) => {
-					const updatedState = {
-						...state,
-						cards: cards
-					};
-					saveGameState(updatedState);
-					return updatedState;
-				});
-			}
+			await gameStore.updateCards();
 		}
 	};
 }

@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 import { Language } from '$lib/languages/language';
 import { getStoredCards, setLanguage, getStoredLanguage } from '$lib/languages/load';
+import { isBrowser } from '$lib/constants/isBrowser';
 
 function createLanguageStore() {
 	const { subscribe, set } = writable({
@@ -11,22 +12,11 @@ function createLanguageStore() {
 
 	// Ensure that the store updates once the client-side JavaScript takes over.
 	async function initialize() {
-		if (typeof window !== 'undefined') {
+		if (isBrowser) {
 			const storedLanguage = getStoredLanguage();
-			const storedCards = getStoredCards(storedLanguage);
-
-			if (!storedCards) {
-				console.error('Stored cards do not exist');
-				return;
-			}
 
 			await setLanguage(storedLanguage);
 			set({ language: storedLanguage });
-
-			// If gameStore is available, update it.
-			if (onInitComplete) {
-				onInitComplete();
-			}
 		}
 	}
 	initialize();
