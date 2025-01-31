@@ -59,9 +59,9 @@ async function createCards(
 	}
 }
 
-export async function loadCards(fetchFn: typeof fetch, cardAmount: number): Promise<number> {
+export async function loadCards(fetchFn: typeof fetch): Promise<number> {
 	try {
-		const cardsData = await createCards(fetchFn, cardAmount);
+		const cardsData = await createCards(fetchFn, Number.MAX_SAFE_INTEGER);
 		if (!cardsData) {
 			return 0;
 		}

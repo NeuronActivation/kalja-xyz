@@ -50,7 +50,7 @@ function createGameStore() {
 			});
 		},
 		initializeMaxCards: async () => {
-			const maxCards = await loadCards(fetch, Number.MAX_SAFE_INTEGER);
+			const maxCards = await loadCards(fetch);
 			if (maxCards) {
 				update((state) => ({
 					...state,
