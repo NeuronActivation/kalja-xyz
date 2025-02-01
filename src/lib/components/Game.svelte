@@ -31,6 +31,8 @@
 			targetPlayer = getPersistentTarget(index) || game.getTarget(gameState);
 			setPersistentTarget(index, targetPlayer);
 		}
+		// Ensure shown card is a potentially rerolled new card.
+		gameStore.updateCards();
 	});
 </script>
 
