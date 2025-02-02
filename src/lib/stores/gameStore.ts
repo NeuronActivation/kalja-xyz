@@ -96,6 +96,10 @@ function createGameStore() {
 			const cardIndex = get(gameStore).currentCardIndex;
 			await loadSingleCard(fetch, cardIndex);
 			await gameStore.updateCards();
+		},
+		replay: async () => {
+			await loadCards(fetch);
+			await gameStore.startGame();
 		}
 	};
 }
