@@ -36,9 +36,9 @@ if (isBrowser) {
 /**
  * Registers locales for the application, making them available to the Svelte i18n library.
  */
-export function registerLocales() {
-	register('fi', () => fetch(`${base}/locales/finnish.json`).then((res) => res.json()));
-	register('en', () => fetch(`${base}/locales/english.json`).then((res) => res.json()));
+export function registerLocales(fetchFn: typeof fetch) {
+	register('fi', () => fetchFn(`${base}/locales/finnish.json`).then((res) => res.json()));
+	register('en', () => fetchFn(`${base}/locales/english.json`).then((res) => res.json()));
 }
 
 /**
