@@ -1,3 +1,8 @@
+/**
+ * A module to manage language and card data, handle locale registration,
+ * and interact with the Svelte i18n library.
+ */
+
 import { init, register, locale as $locale } from 'svelte-i18n';
 import { writable, get } from 'svelte/store';
 import { base } from '$app/paths';
@@ -6,14 +11,19 @@ import { type Card } from '$lib/interfaces/card';
 import { seededShuffle } from '$lib/utils/seed';
 import { isBrowser } from '$lib/constants/isBrowser';
 
+/**
+ * Represents the data associated with a language, including the cards and language code.
+ */
 interface LanguageData {
 	cards?: Card[];
 	language: Language;
 }
 
-const storedData = isBrowser ? localStorage.getItem('languageData') : null;
+/**
+ * A writable store holding the language data for each language, which is persisted in the browser's localStorage.
+ */
 const languageData = writable<Record<Language, LanguageData>>(
-	storedData ? JSON.parse(storedData) : {}
+	isBrowser ? JSON.parse(localStorage.getItem('languageData') || '{}') : {}
 );
 
 // Only persist to localStorage on the client side.
@@ -23,26 +33,32 @@ if (isBrowser) {
 	});
 }
 
-// Register locales
-export function registerLocales(fetchFn: typeof fetch) {
-	register('fi', () => fetchFn(`${base}/locales/finnish.json`).then((res) => res.json()));
-	register('en', () => fetchFn(`${base}/locales/english.json`).then((res) => res.json()));
+/**
+ * Registers locales for the application, making them available to the Svelte i18n library.
+ */
+export function registerLocales() {
+	register('fi', () => fetch(`${base}/locales/finnish.json`).then((res) => res.json()));
+	register('en', () => fetch(`${base}/locales/english.json`).then((res) => res.json()));
 }
 
-// Initialize svelte-i18n
+/**
+ * Initializes the Svelte i18n library with a fallback locale and an initial locale.
+ */
 init({
 	fallbackLocale: 'fi',
 	initialLocale: 'fi'
 });
 
-async function createCards(
-	fetchFn: typeof fetch,
-	cardAmount: number
-): Promise<Record<Language, LanguageData> | null> {
+/**
+ * Creates the card data for each language, shuffling them with a seeded random generator.
+ * @param cardAmount The number of cards to retrieve for each language.
+ * @returns A record of shuffled card data for each language or null if fetching fails.
+ */
+async function createCards(cardAmount: number): Promise<Record<Language, LanguageData> | null> {
 	try {
 		const [fiCards, enCards] = await Promise.all([
-			fetchFn(getCardUrl(Language.FI)).then((res) => res.json()),
-			fetchFn(getCardUrl(Language.EN)).then((res) => res.json())
+			fetch(getCardUrl(Language.FI)).then((res) => res.json()),
+			fetch(getCardUrl(Language.EN)).then((res) => res.json())
 		]);
 
 		const seed = Math.random();
@@ -59,9 +75,13 @@ async function createCards(
 	}
 }
 
-export async function loadCards(fetchFn: typeof fetch): Promise<number> {
+/**
+ * Loads card data for all supported languages and stores it in the languageData store.
+ * @returns The number of cards available across all languages.
+ */
+export async function loadCards(): Promise<number> {
 	try {
-		const cardsData = await createCards(fetchFn, Number.MAX_SAFE_INTEGER);
+		const cardsData = await createCards(Number.MAX_SAFE_INTEGER);
 		if (!cardsData) {
 			return 0;
 		}
@@ -80,13 +100,17 @@ export async function loadCards(fetchFn: typeof fetch): Promise<number> {
 	}
 }
 
-export async function loadSingleCard(fetchFn: typeof fetch, cardIndex: number): Promise<void> {
+/**
+ * Loads a single card and updates the data for all languages, replacing the card at the specified index.
+ * @param cardIndex The index of the card to be replaced.
+ */
+export async function loadSingleCard(cardIndex: number): Promise<void> {
 	try {
 		const currentData = get(languageData);
 		if (!currentData) return;
 
 		// Fetch a new single card for each language.
-		const newCardData = await createCards(fetchFn, 1);
+		const newCardData = await createCards(1);
 		if (!newCardData) return;
 
 		const updatedData: Record<Language, LanguageData> = { ...currentData };
@@ -109,10 +133,19 @@ export async function loadSingleCard(fetchFn: typeof fetch, cardIndex: number): 
 	}
 }
 
+/**
+ * Retrieves the stored cards for a given language.
+ * @param lang The language for which to retrieve the cards.
+ * @returns An array of cards for the specified language, or null if no cards are stored.
+ */
 export function getStoredCards(lang: Language): Card[] | null {
 	return get(languageData)[lang]?.cards || null;
 }
 
+/**
+ * Retrieves the stored language from sessionStorage.
+ * @returns The selected language code, or the fallback language (FI) if no selection exists.
+ */
 export function getStoredLanguage(): Language {
 	const storedLanguage = sessionStorage.getItem('selectedLanguage');
 	if (storedLanguage) {
@@ -121,6 +154,10 @@ export function getStoredLanguage(): Language {
 	return Language.FI;
 }
 
+/**
+ * Sets the application's language by updating sessionStorage and the Svelte i18n locale.
+ * @param lang The language to set.
+ */
 export async function setLanguage(lang: Language) {
 	const localeCode = lang.toString();
 	if (localeCode) {

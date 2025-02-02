@@ -7,6 +7,27 @@ import { loadGameState, saveGameState } from '$lib/utils/storage';
 import { languageStore } from '$lib/stores/languageStore';
 import { loadCards, loadSingleCard } from '$lib/languages/load';
 
+/**
+ * Creates a writable store to manage the game state and provides several actions
+ * for manipulating the game state such as adding/removing players, changing the
+ * game state, starting the game, updating cards, etc. The game state is saved to
+ * sessionStorage to persist between page reloads.
+ *
+ * The store provides the following actions:
+ * - `set`: Set the game state and save it to storage.
+ * - `reset`: Reset the game state to its initial state and clear the saved state.
+ * - `changeGameState`: Change the game state to a new application state and save it.
+ * - `addPlayer`: Add a player to the game and save the new state.
+ * - `removePlayer`: Remove a player by ID and save the new state.
+ * - `setCardAmount`: Set the number of cards in the game and save the new state.
+ * - `initializeMaxCards`: Check how many cards can exist in the game and set the amount in the game state.
+ * - `startGame`: Start the game and save the updated state.
+ * - `showNextCard`: Show the next card in the game and save the new state.
+ * - `updateCards`: Update the cards in the game and save the new state.
+ * - `loadSavedState`: Load the saved game state from sessionStorage.
+ * - `reroll`: Reload a single card and update the game state.
+ * - `replay`: Reload cards and restart the game.
+ */
 function createGameStore() {
 	const { subscribe, set, update } = writable<GameState>(createNewGame());
 
@@ -50,7 +71,7 @@ function createGameStore() {
 			});
 		},
 		initializeMaxCards: async () => {
-			const maxCards = await loadCards(fetch);
+			const maxCards = await loadCards();
 			if (maxCards) {
 				update((state) => ({
 					...state,
@@ -94,11 +115,11 @@ function createGameStore() {
 		},
 		reroll: async () => {
 			const cardIndex = get(gameStore).currentCardIndex;
-			await loadSingleCard(fetch, cardIndex);
+			await loadSingleCard(cardIndex);
 			await gameStore.updateCards();
 		},
 		replay: async () => {
-			await loadCards(fetch);
+			await loadCards();
 			await gameStore.startGame();
 		}
 	};
