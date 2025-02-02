@@ -4,6 +4,7 @@
 	import { gameStore } from '$lib/stores/gameStore';
 	import type { GameState } from '$lib/interfaces/gameState';
 
+	let playerName: string;
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
 
@@ -15,12 +16,12 @@
 <h2>{$t('add-player-names')}</h2>
 <input
 	type="text"
-	bind:value={gameState.playerName}
+	bind:value={playerName}
 	placeholder={$t('add-player-name')}
 	on:keydown={(e) => {
-		if (e.key === 'Enter' && gameState.playerName) {
-			gameStore.addPlayer(gameState.playerName);
-			gameState.playerName = '';
+		if (e.key === 'Enter' && playerName) {
+			gameStore.addPlayer(playerName);
+			playerName = '';
 		}
 	}}
 	class="input"

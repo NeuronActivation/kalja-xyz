@@ -5,6 +5,14 @@
 	import { languageStore } from '$lib/stores/languageStore';
 	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
 
+	/**
+	 * Handles language selection change.
+	 *
+	 * Updates the application's language using `languageStore`
+	 * and refreshes the game cards via `gameStore`.
+	 *
+	 * @param event - The event triggered by selecting a new language.
+	 */
 	async function changeLanguage(event: Event) {
 		const select = event.target as HTMLSelectElement;
 		const newLanguage = select.value as Language;
