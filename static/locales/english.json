@@ -12,5 +12,15 @@
     "game-over": "Game over",
     "back-to-start": "Back to start",
     "replay": "Replay",
-    "reroll": "Reroll"
+    "reroll": "Reroll",
+    "select-tags": "Select tags",
+
+	"tag-targeted": "Targeted",
+	"tag-physical": "Physical",
+	"tag-creative": "Creative",
+	"tag-roleplay": "Roleplay",
+	"tag-voting": "Voting",
+	"tag-humiliation": "Humiliation",
+	"tag-knowledge": "Knowledge",
+	"tag-other": "Other"
 }

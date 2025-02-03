@@ -12,5 +12,15 @@
     "game-over": "Peli ohi",
     "back-to-start": "Takaisin alkuun",
     "replay": "Pelaa uudelleen",
-    "reroll": "Vaihda kortti"
+    "reroll": "Vaihda kortti",
+    "select-tags": "Valitse tagit",
+
+	"tag-targeted": "Kohdistettu",
+	"tag-physical": "Fyysinen",
+	"tag-creative": "Luova",
+	"tag-roleplay": "Roolipeli",
+	"tag-voting": "Äänestys",
+	"tag-humiliation": "Nöyryytys",
+	"tag-knowledge": "Tieto",
+	"tag-other": "Muut"
 }

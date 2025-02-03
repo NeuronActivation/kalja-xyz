@@ -6,6 +6,7 @@ import { ApplicationState } from '$lib/constants/applicationState';
 import { loadGameState, saveGameState } from '$lib/utils/storage';
 import { languageStore } from '$lib/stores/languageStore';
 import { loadCards, loadSingleCard } from '$lib/languages/load';
+import { Tag } from '$lib/constants/tag';
 
 /**
  * Creates a writable store to manage the game state and provides several actions
@@ -27,6 +28,7 @@ import { loadCards, loadSingleCard } from '$lib/languages/load';
  * - `loadSavedState`: Load the saved game state from sessionStorage.
  * - `reroll`: Reload a single card and update the game state.
  * - `replay`: Reload cards and restart the game.
+ * - `updateSelectedTags`: Updates the tags where the cards are gotten from.
  */
 function createGameStore() {
 	const { subscribe, set, update } = writable<GameState>(createNewGame());
@@ -71,7 +73,8 @@ function createGameStore() {
 			});
 		},
 		initializeMaxCards: async () => {
-			const maxCards = await loadCards();
+			const { selectedTags } = get(gameStore);
+			const maxCards = await loadCards(selectedTags);
 			if (maxCards) {
 				update((state) => ({
 					...state,
@@ -114,13 +117,21 @@ function createGameStore() {
 			}
 		},
 		reroll: async () => {
-			const cardIndex = get(gameStore).currentCardIndex;
-			await loadSingleCard(cardIndex);
+			const { currentCardIndex, selectedTags } = get(gameStore);
+			await loadSingleCard(currentCardIndex, selectedTags);
 			await gameStore.updateCards();
 		},
 		replay: async () => {
-			await loadCards();
+			const { selectedTags } = get(gameStore);
+			await loadCards(selectedTags);
 			await gameStore.startGame();
+		},
+		updateSelectedTags: (selectedTags: Tag[]) => {
+			update((state) => {
+				const updatedState = { ...state, selectedTags };
+				saveGameState(updatedState);
+				return updatedState;
+			});
 		}
 	};
 }

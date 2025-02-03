@@ -3,6 +3,7 @@
 	import { t } from 'svelte-i18n';
 	import { gameStore } from '$lib/stores/gameStore';
 	import type { GameState } from '$lib/interfaces/gameState';
+	import { Tag } from '$lib/constants/tag';
 
 	let playerName: string;
 	let gameState: GameState;
@@ -11,6 +12,14 @@
 	onMount(() => {
 		gameStore.initializeMaxCards();
 	});
+
+	function toggleTag(tag: Tag) {
+		const updatedTags = gameState.selectedTags.includes(tag)
+			? gameState.selectedTags.filter((t) => t !== tag)
+			: [...gameState.selectedTags, tag];
+
+		gameStore.updateSelectedTags(updatedTags);
+	}
 </script>
 
 <h2>{$t('add-player-names')}</h2>
@@ -54,6 +63,21 @@
 				max={gameState.maxCards ?? 10}
 				bind:value={gameState.cardAmount}
 			/>
+		</div>
+
+		<!-- Tag Selection Checkboxes -->
+		<div class="tag-selection">
+			<h3>{$t('select-tags')}</h3>
+			{#each Object.values(Tag) as tag}
+				<label>
+					<input
+						type="checkbox"
+						checked={gameState.selectedTags.includes(tag)}
+						on:change={() => toggleTag(tag)}
+					/>
+					{$t(`tag-${tag}`)}
+				</label>
+			{/each}
 		</div>
 	</div>
 </details>
