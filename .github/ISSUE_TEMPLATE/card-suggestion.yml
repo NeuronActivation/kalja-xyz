@@ -1,6 +1,6 @@
 name: 🃏 Card Suggestion
 description: Suggest a new card for the game
-title: "[Card]: {{ inputs.title }}" 
+title: "[CARD]: <title>" 
 labels: ["card-suggestion"]
 body:
   - type: input
