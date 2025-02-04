@@ -56,7 +56,7 @@ nix develop
 ## 🤝 Contributing
 
 🃏 **Card Suggestions**  
-Created a card that should come with a breathalyzer? Create an [issue](https://github.com/NeuronActivation/kalja-xyz/issues) - we'll drink to that idea! 🍻
+Created a card that should come with a breathalyzer? Create an [issue](https://github.com/NeuronActivation/kalja-xyz/issues/new?template=card-suggestion.yml) - we'll drink to that idea! 🍻
 
 🤓 **Code Contributions**  
 Our cocktail recipe for clean code:
