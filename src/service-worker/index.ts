@@ -1,12 +1,38 @@
+/**
+ * Service worker for offline functionality and asset caching.
+ * @module ServiceWorker
+ * @see {@link https://kit.svelte.dev/docs/service-workers SvelteKit Service Workers}
+ */
+
 import { build, files, version } from '$service-worker';
 
 const CACHE = `kalja-xyz-cache-${version}`;
+
+/**
+ * Core assets required for the app to function offline.
+ * @type {string[]}
+ * @description Includes:
+ * - Built JS/CSS assets (`build`)
+ * - Static files from `static` directory (`files`)
+ * - Additional runtime assets (manifest, etc.)
+ */
 const ASSETS: string[] = [
-	...build, // the app itself
-	...files // everything in `static`
+	...build, // Compiled application code
+	...files // Static assets
 ];
 
+// Service worker lifecycle event handlers
+
+/**
+ * Handles installation event for service worker.
+ * Caches core assets during install phase.
+ * @event install
+ */
 self.addEventListener('install', (event: ExtendableEvent) => {
+	/**
+	 * Cache core application assets during installation.
+	 * Uses waitUntil to extend service worker lifecycle.
+	 */
 	async function addFilesToCache() {
 		const cache = await caches.open(CACHE);
 		await cache.addAll(ASSETS);
@@ -15,44 +41,63 @@ self.addEventListener('install', (event: ExtendableEvent) => {
 	event.waitUntil(addFilesToCache());
 });
 
+/**
+ * Handles activation event for service worker.
+ * Cleans up old cache versions during activation.
+ * @event activate
+ */
 self.addEventListener('activate', (event: ExtendableEvent) => {
+	/**
+	 * Remove outdated caches to free storage space.
+	 * Preserves only current version's cache.
+	 */
 	async function deleteOldCaches() {
-		for (const key of await caches.keys()) {
-			if (key !== CACHE) await caches.delete(key);
-		}
+		const keys = await caches.keys();
+		await Promise.all(keys.map((key) => key !== CACHE && caches.delete(key)));
 	}
 
 	event.waitUntil(deleteOldCaches());
 });
 
+/**
+ * Handles fetch events with cache-first strategy for core assets
+ * and network-first with cache fallback for other requests.
+ * @event fetch
+ */
 self.addEventListener('fetch', (event: FetchEvent) => {
-	if (event.request.method !== 'GET') return;
+	// Skip non-GET requests and browser extensions
+	if (event.request.method !== 'GET' || event.request.url.startsWith('chrome-extension:')) return;
 
+	/**
+	 * Core fetch handler implementing caching strategies:
+	 * - Cache-first for known assets
+	 * - Network-first with cache fallback for other requests
+	 */
 	async function respond() {
 		const url = new URL(event.request.url);
 		const cache = await caches.open(CACHE);
 
+		// Cache-first for core assets
 		if (ASSETS.includes(url.pathname)) {
-			const response = await cache.match(url.pathname);
-			if (response) return response;
+			const cached = await cache.match(url.pathname);
+			if (cached) return cached;
 		}
 
 		try {
+			// Attempt network request
 			const response = await fetch(event.request);
 
-			if (!(response instanceof Response)) {
-				throw new Error('Invalid response from fetch');
-			}
-
+			// Validate successful response before caching
 			if (response.status === 200) {
+				// Clone response for cache storage
 				cache.put(event.request, response.clone());
 			}
 
 			return response;
 		} catch (err) {
-			const response = await cache.match(event.request);
-			if (response) return response;
-			throw err;
+			// Network failure: attempt cache fallback
+			const cached = await cache.match(event.request);
+			return cached || Promise.reject(err);
 		}
 	}
 
