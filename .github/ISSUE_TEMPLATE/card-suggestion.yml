@@ -1,16 +1,8 @@
 name: 🃏 Card Suggestion
 description: Suggest a new card for the game
-title: "[CARD]: <title>" 
+title: "[CARD]: " 
 labels: ["card-suggestion"]
 body:
-  - type: input
-    id: title
-    attributes:
-      label: Card Title
-      placeholder: Enter a concise card name
-    validations:
-      required: true
-
   - type: textarea
     id: description
     attributes:
