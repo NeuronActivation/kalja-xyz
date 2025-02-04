@@ -19,7 +19,6 @@ body:
     id: event-based
     attributes:
       label: Event Type
-      description: Check all that apply
       options:
         - label: "🎉 Event-based (time-limited occurrence)"
 
