@@ -52,7 +52,7 @@ init({
 });
 
 /**
- * Fetches, tags, filters and shuffles cards for a given language.
+ * Fetches, filters and shuffles cards for a given language.
  * @param language The language to fetch cards for.
  * @param includedTags - Tags that the card must have at least one of to be included.
  * @param excludedTags - Tags that the card must not have any of to be included.

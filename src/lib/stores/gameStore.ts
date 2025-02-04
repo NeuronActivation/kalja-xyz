@@ -79,13 +79,11 @@ function createGameStore() {
 			// Card amount slider starts from the middle.
 			const cardAmount = Math.round(maxCards / 2);
 
-			if (maxCards) {
-				update((state) => ({
-					...state,
-					cardAmount,
-					maxCards
-				}));
-			}
+			update((state) => ({
+				...state,
+				cardAmount,
+				maxCards
+			}));
 		},
 		startGame: async () => {
 			const cards = await languageStore.getCards();
