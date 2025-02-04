@@ -10,7 +10,6 @@ const CACHE = `kalja-xyz-cache-${version}`;
 
 /**
  * Core assets required for the app to function offline.
- * @type {string[]}
  * @description Includes:
  * - Built JS/CSS assets (`build`)
  * - Static files from `static` directory (`files`)
