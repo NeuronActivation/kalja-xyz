@@ -1,20 +1,10 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
 	import type { Metadata } from '$lib/interfaces/metadata';
 
 	import '@picocss/pico';
 	import '@picocss/pico/css/pico.colors.css';
-
-	onMount(() => {
-		if (browser && 'serviceWorker' in navigator) {
-			navigator.serviceWorker.register('/service-worker.js').catch((error) => {
-				console.error('Service Worker registration failed:', error);
-			});
-		}
-	});
 
 	const metadata: Metadata = {
 		name: 'kalja.xyz',
