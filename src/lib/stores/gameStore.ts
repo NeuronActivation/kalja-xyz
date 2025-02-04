@@ -75,9 +75,14 @@ function createGameStore() {
 		initializeMaxCards: async () => {
 			const { selectedTags } = get(gameStore);
 			const maxCards = await loadCards(selectedTags);
+
+			// Card amount slider starts from the middle.
+			const cardAmount = Math.round(maxCards / 2);
+
 			if (maxCards) {
 				update((state) => ({
 					...state,
+					cardAmount,
 					maxCards
 				}));
 			}

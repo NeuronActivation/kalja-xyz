@@ -15,12 +15,50 @@
     "reroll": "Vaihda kortti",
     "select-tags": "Valitse tagit",
 
-	"tag-targeted": "Kohdistettu",
-	"tag-physical": "Fyysinen",
-	"tag-creative": "Luova",
-	"tag-roleplay": "Roolipeli",
-	"tag-voting": "Äänestys",
-	"tag-humiliation": "Nöyryytys",
-	"tag-knowledge": "Tieto",
-	"tag-other": "Muut"
+    "tags": {
+        "chosen_target": {
+            "name": "Kohdistettu",
+            "tooltip": "Sisältää pelaajien valitseman kohteen."
+        },
+        "random_target": {
+            "name": "Satunnaiskohdistettu",
+            "tooltip": "Kohdistuvat satunnaiseen pelaajaan."
+        },
+        "physical": {
+            "name": "Paikan päällä",
+            "tooltip": "Vaativat fyysistä läsnäoloa tai toimintaa."
+        },
+        "creative": {
+            "name": "Luova",
+            "tooltip": "Kannustavat luovaan ajatteluun ja ideointiin."
+        },
+        "roleplay": {
+            "name": "Roolipeli",
+            "tooltip": "Sisältävät roolipelaamiseen liittyviä tehtäviä."
+        },
+        "voting": {
+            "name": "Äänestys",
+            "tooltip": "Pelaajat äänestävät pelaajien keskuudesta."
+        },
+        "humiliation": {
+            "name": "Nöyryytys",
+            "tooltip": "Voivat asettaa pelaajan noloihin tilanteisiin."
+        },
+        "knowledge": {
+            "name": "Tieto",
+            "tooltip": "Testaavat pelaajien tietämystä."
+        },
+        "event": {
+            "name": "Koko kierros",
+            "tooltip": "Vaikuttavat koko pelikierrokseen."
+        },
+        "classic": {
+            "name": "Klassikko",
+            "tooltip": "Juomapelien klassikkokortit."
+        },
+        "untagged": {
+            "name": "Tagiton",
+            "tooltip": "Kortit ilman sopivaa tagia."
+        }
+    }
 }

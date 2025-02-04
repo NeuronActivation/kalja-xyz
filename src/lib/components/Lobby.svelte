@@ -19,6 +19,7 @@
 			: [...gameState.selectedTags, tag];
 
 		gameStore.updateSelectedTags(updatedTags);
+		gameStore.initializeMaxCards();
 	}
 </script>
 
@@ -59,8 +60,8 @@
 				type="range"
 				id="cardAmount"
 				name="cardAmount"
-				min="10"
-				max={gameState.maxCards ?? 10}
+				min="1"
+				max={gameState.maxCards}
 				bind:value={gameState.cardAmount}
 			/>
 		</div>
@@ -75,7 +76,7 @@
 						checked={gameState.selectedTags.includes(tag)}
 						on:change={() => toggleTag(tag)}
 					/>
-					{$t(`tag-${tag}`)}
+					{$t(`tags.${tag}.name`)}
 				</label>
 			{/each}
 		</div>

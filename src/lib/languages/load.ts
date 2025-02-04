@@ -61,12 +61,14 @@ init({
 async function fetchAndFilterCards(language: Language, tags: Tag[], seed: number): Promise<Card[]> {
 	try {
 		const response = await fetch(getCardUrl(language));
-		const { cards } = await response.json();
-		const taggedCards = await createTags(cards);
+		const { cards }: { cards: Card[] } = await response.json();
 
 		// Filter only cards that contain at least one of the given tags.
-		const filteredCards = taggedCards.filter(
-			(card) => Array.isArray(card.tags) && card.tags.some((tag) => tags.includes(tag))
+		// If "untagged" is selected, include cards with no tags.
+		const filteredCards = cards.filter(
+			(card) =>
+				card.tags.some((tag) => tags.includes(tag)) ||
+				(tags.includes(Tag.UNTAGGED) && card.tags.length === 0)
 		);
 		return seededShuffle(filteredCards, seed);
 	} catch (error) {
@@ -101,19 +103,6 @@ async function createCards(
 		console.error('Failed to create cards:', error);
 		return null;
 	}
-}
-
-/**
- * Maps cards with tag data based on their id.
- * @param cards The list of cards to process.
- * @returns A new array of cards with added tag information.
- */
-async function createTags(cards: Card[]): Promise<Card[]> {
-	const tagData = await fetch(`${base}/tags/tags.json`).then((res) => res.json());
-	return cards.map((card) => ({
-		...card,
-		tags: tagData.tags[card.id] || []
-	}));
 }
 
 /**
