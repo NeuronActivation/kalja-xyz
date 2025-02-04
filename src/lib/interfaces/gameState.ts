@@ -32,8 +32,11 @@ export interface GameState {
 	/** The list of events currently active in the game. */
 	events: GameEvent[];
 
-	/** Tags which the user selects where the cards are from. All tags are on by default. */
-	selectedTags: Tag[];
+	/** Tags which the user selects where the cards are included from. All tags are on by default. */
+	includedTags: Tag[];
+
+	/** Tags which the user selects where the cards are excluded. */
+	excludedTags: Tag[];
 }
 
 /**
@@ -55,6 +58,7 @@ export function createNewGame(): GameState {
 		state: ApplicationState.START,
 		players: [],
 		events: [],
-		selectedTags: Object.values(Tag)
+		includedTags: Object.values(Tag),
+		excludedTags: []
 	};
 }

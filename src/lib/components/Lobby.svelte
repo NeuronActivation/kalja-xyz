@@ -9,17 +9,34 @@
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
 
-	onMount(() => {
-		gameStore.initializeMaxCards();
+	onMount(async () => {
+		await gameStore.initializeMaxCards();
 	});
 
-	function toggleTag(tag: Tag) {
-		const updatedTags = gameState.selectedTags.includes(tag)
-			? gameState.selectedTags.filter((t) => t !== tag)
-			: [...gameState.selectedTags, tag];
+	/**
+	 * Updates the state of a tag in the game state by setting it to 'include', 'exclude', or 'neutral'.
+	 * Only one state can be active for a tag at a time.
+	 *
+	 * @param tag - The tag to update.
+	 * @param state - The new state of the tag ('include', 'exclude', or 'neutral').
+	 */
+	async function setTagState(tag: Tag, state: 'include' | 'exclude' | 'neutral') {
+		let newIncludedTags = [...gameState.includedTags];
+		let newExcludedTags = [...gameState.excludedTags];
 
-		gameStore.updateSelectedTags(updatedTags);
-		gameStore.initializeMaxCards();
+		// Reset any previous selection of the tag.
+		newIncludedTags = newIncludedTags.filter((t) => t !== tag);
+		newExcludedTags = newExcludedTags.filter((t) => t !== tag);
+
+		// Apply the new state.
+		if (state === 'include') {
+			newIncludedTags.push(tag);
+		} else if (state === 'exclude') {
+			newExcludedTags.push(tag);
+		}
+
+		gameStore.updateTags(newIncludedTags, newExcludedTags);
+		await gameStore.initializeMaxCards();
 	}
 </script>
 
@@ -66,18 +83,36 @@
 			/>
 		</div>
 
-		<!-- Tag Selection Checkboxes -->
+		<!-- Tag Selection -->
 		<div class="tag-selection">
 			<h3>{$t('select-tags')}</h3>
 			{#each Object.values(Tag) as tag}
-				<label>
-					<input
-						type="checkbox"
-						checked={gameState.selectedTags.includes(tag)}
-						on:change={() => toggleTag(tag)}
-					/>
-					{$t(`tags.${tag}.name`)}
-				</label>
+				<div class="tag-toggle">
+					<span>{$t(`tags.${tag}.name`)}</span>
+					<div class="tag-buttons">
+						<button
+							class="include {gameState.includedTags.includes(tag) ? 'active' : ''}"
+							on:click={() => setTagState(tag, 'include')}
+						>
+							✅
+						</button>
+						<button
+							class="neutral {!gameState.excludedTags.includes(tag) &&
+							!$gameStore.includedTags.includes(tag)
+								? 'active'
+								: ''}"
+							on:click={() => setTagState(tag, 'neutral')}
+						>
+							➖
+						</button>
+						<button
+							class="exclude {gameState.excludedTags.includes(tag) ? 'active' : ''}"
+							on:click={() => setTagState(tag, 'exclude')}
+						>
+							❌
+						</button>
+					</div>
+				</div>
 			{/each}
 		</div>
 	</div>
@@ -144,5 +179,42 @@
 		padding: 0;
 		margin: 0;
 		flex: 1;
+	}
+
+	.tag-selection {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.tag-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 5px;
+	}
+
+	.tag-buttons {
+		display: flex;
+		gap: 5px;
+	}
+
+	.tag-buttons button:not(.active) {
+		opacity: 0.3;
+	}
+
+	.include {
+		background-color: #4caf50;
+		color: white;
+	}
+
+	.exclude {
+		background-color: #f44336;
+		color: white;
+	}
+
+	.neutral {
+		background-color: #9e9e9e;
+		color: white;
 	}
 </style>

@@ -54,22 +54,36 @@ init({
 /**
  * Fetches, tags, filters and shuffles cards for a given language.
  * @param language The language to fetch cards for.
- * @param tags The tags to filter by.
+ * @param includedTags - Tags that the card must have at least one of to be included.
+ * @param excludedTags - Tags that the card must not have any of to be included.
  * @param seed The seed for shuffling.
  * @returns Shuffled and filtered cards for the given language.
  */
-async function fetchAndFilterCards(language: Language, tags: Tag[], seed: number): Promise<Card[]> {
+async function fetchAndFilterCards(
+	language: Language,
+	includedTags: Tag[],
+	excludedTags: Tag[],
+	seed: number
+): Promise<Card[]> {
 	try {
 		const response = await fetch(getCardUrl(language));
 		const { cards }: { cards: Card[] } = await response.json();
 
 		// Filter only cards that contain at least one of the given tags.
 		// If "untagged" is selected, include cards with no tags.
-		const filteredCards = cards.filter(
+		const includedCards = cards.filter(
 			(card) =>
-				card.tags.some((tag) => tags.includes(tag)) ||
-				(tags.includes(Tag.UNTAGGED) && card.tags.length === 0)
+				card.tags.some((tag) => includedTags.includes(tag)) ||
+				(includedTags.includes(Tag.UNTAGGED) && card.tags.length === 0)
 		);
+
+		// Exclude cards that contain at least one of the excluded tags.
+		const filteredCards = includedCards.filter(
+			(card) =>
+				!card.tags.some((tag) => excludedTags.includes(tag)) &&
+				!(excludedTags.includes(Tag.UNTAGGED) && card.tags.length === 0)
+		);
+
 		return seededShuffle(filteredCards, seed);
 	} catch (error) {
 		console.error(`Failed to fetch cards for language ${language}:`, error);
@@ -80,19 +94,21 @@ async function fetchAndFilterCards(language: Language, tags: Tag[], seed: number
 /**
  * Creates the card data for each language, shuffling them with a seeded random generator.
  * @param cardAmount The number of cards to retrieve for each language.
- * @param tags The tags that a card must contain at least one of.
+ * @param includedTags - Tags that the card must have at least one of to be included.
+ * @param excludedTags - Tags that the card must not have any of to be included.
  * @returns A record of shuffled card data for each language or null if fetching fails.
  */
 async function createCards(
 	cardAmount: number,
-	tags: Tag[]
+	includedTags: Tag[],
+	excludedTags: Tag[]
 ): Promise<Record<Language, LanguageData> | null> {
 	try {
 		const seed = Math.random();
 
 		const [fiShuffledCards, enShuffledCards] = await Promise.all([
-			fetchAndFilterCards(Language.FI, tags, seed),
-			fetchAndFilterCards(Language.EN, tags, seed)
+			fetchAndFilterCards(Language.FI, includedTags, excludedTags, seed),
+			fetchAndFilterCards(Language.EN, includedTags, excludedTags, seed)
 		]);
 
 		return {
@@ -107,12 +123,13 @@ async function createCards(
 
 /**
  * Loads card data for all supported languages and stores it in the languageData store.
- * @param tags The tags that a card must contain at least one of.
+ * @param includedTags - Tags that the card must have at least one of to be included.
+ * @param excludedTags - Tags that the card must not have any of to be included.
  * @returns The number of cards available across all languages.
  */
-export async function loadCards(tags: Tag[]): Promise<number> {
+export async function loadCards(includedTags: Tag[], excludedTags: Tag[]): Promise<number> {
 	try {
-		const cardsData = await createCards(Number.MAX_SAFE_INTEGER, tags);
+		const cardsData = await createCards(Number.MAX_SAFE_INTEGER, includedTags, excludedTags);
 		if (!cardsData) {
 			return 0;
 		}
@@ -133,15 +150,20 @@ export async function loadCards(tags: Tag[]): Promise<number> {
 /**
  * Loads a single card and updates the data for all languages, replacing the card at the specified index.
  * @param cardIndex The index of the card to be replaced.
- * @param tags The tags that the card must contain at least one of.
+ * @param includedTags - Tags that the card must have at least one of to be included.
+ * @param excludedTags - Tags that the card must not have any of to be included.
  */
-export async function loadSingleCard(cardIndex: number, tags: Tag[]): Promise<void> {
+export async function loadSingleCard(
+	cardIndex: number,
+	includedTags: Tag[],
+	excludedTags: Tag[]
+): Promise<void> {
 	try {
 		const currentData = get(languageData);
 		if (!currentData) return;
 
 		// Fetch a new single card for each language.
-		const newCardData = await createCards(1, tags);
+		const newCardData = await createCards(1, includedTags, excludedTags);
 		if (!newCardData) return;
 
 		const updatedData: Record<Language, LanguageData> = { ...currentData };

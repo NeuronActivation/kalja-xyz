@@ -28,7 +28,7 @@ import { Tag } from '$lib/constants/tag';
  * - `loadSavedState`: Load the saved game state from sessionStorage.
  * - `reroll`: Reload a single card and update the game state.
  * - `replay`: Reload cards and restart the game.
- * - `updateSelectedTags`: Updates the tags where the cards are gotten from.
+ * - `updateTags`: Updates the tags where the cards are drawn from and the tags where the cards are discarded.
  */
 function createGameStore() {
 	const { subscribe, set, update } = writable<GameState>(createNewGame());
@@ -73,8 +73,8 @@ function createGameStore() {
 			});
 		},
 		initializeMaxCards: async () => {
-			const { selectedTags } = get(gameStore);
-			const maxCards = await loadCards(selectedTags);
+			const { includedTags, excludedTags } = get(gameStore);
+			const maxCards = await loadCards(includedTags, excludedTags);
 
 			// Card amount slider starts from the middle.
 			const cardAmount = Math.round(maxCards / 2);
@@ -122,18 +122,18 @@ function createGameStore() {
 			}
 		},
 		reroll: async () => {
-			const { currentCardIndex, selectedTags } = get(gameStore);
-			await loadSingleCard(currentCardIndex, selectedTags);
+			const { currentCardIndex, includedTags, excludedTags } = get(gameStore);
+			await loadSingleCard(currentCardIndex, includedTags, excludedTags);
 			await gameStore.updateCards();
 		},
 		replay: async () => {
-			const { selectedTags } = get(gameStore);
-			await loadCards(selectedTags);
+			const { includedTags, excludedTags } = get(gameStore);
+			await loadCards(includedTags, excludedTags);
 			await gameStore.startGame();
 		},
-		updateSelectedTags: (selectedTags: Tag[]) => {
+		updateTags: (includedTags: Tag[], excludedTags: Tag[]) => {
 			update((state) => {
-				const updatedState = { ...state, selectedTags };
+				const updatedState = { ...state, includedTags, excludedTags };
 				saveGameState(updatedState);
 				return updatedState;
 			});
