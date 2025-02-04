@@ -34,7 +34,7 @@ Because bookmarks are for sober people
 ## 🛠️ Building
 ```bash
 # Clone the repository
-git clone https://github.com/kalja-xyz.git && cd kalja-xyz
+git clone https://github.com/NeuronActivation/kalja-xyz.git && cd kalja-xyz
 
 # Install dependencies 
 pnpm install
