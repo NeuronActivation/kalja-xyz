@@ -84,12 +84,10 @@ self.addEventListener('fetch', (event: FetchEvent) => {
 		}
 
 		try {
-			// Attempt network request
 			const response = await fetch(event.request);
 
 			// Validate successful response before caching
 			if (response.status === 200) {
-				// Clone response for cache storage
 				cache.put(event.request, response.clone());
 			}
 
