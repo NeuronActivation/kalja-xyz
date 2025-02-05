@@ -842,7 +842,7 @@
         },
         {
             "title": "Language master",
-            "description": "Player who can speak the most languages get to choose who drinks.",
+            "description": "The player who can speak the most languages gets to choose who drinks.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 105,
