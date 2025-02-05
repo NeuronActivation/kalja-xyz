@@ -14,25 +14,34 @@
 	});
 
 	/**
-	 * Updates the state of a tag in the game state by setting it to 'include', 'exclude', or 'neutral'.
+	 * Updates the state of a tag in the game state by setting it to 'include' or 'exclude'.
 	 * Only one state can be active for a tag at a time.
 	 *
 	 * @param tag - The tag to update.
-	 * @param state - The new state of the tag ('include', 'exclude', or 'neutral').
+	 * @param state - The new state of the tag ('include' or 'exclude').
 	 */
-	async function setTagState(tag: Tag, state: 'include' | 'exclude' | 'neutral') {
+	async function setTagState(tag: Tag, state: 'include' | 'exclude') {
 		let newIncludedTags = [...gameState.includedTags];
 		let newExcludedTags = [...gameState.excludedTags];
 
-		// Reset any previous selection of the tag.
-		newIncludedTags = newIncludedTags.filter((t) => t !== tag);
-		newExcludedTags = newExcludedTags.filter((t) => t !== tag);
-
-		// Apply the new state.
 		if (state === 'include') {
-			newIncludedTags.push(tag);
+			if (newIncludedTags.includes(tag)) {
+				// If already included, reset to neutral.
+				newIncludedTags = newIncludedTags.filter((t) => t !== tag);
+			} else {
+				// Set as included and ensure it's not excluded.
+				newExcludedTags = newExcludedTags.filter((t) => t !== tag);
+				newIncludedTags.push(tag);
+			}
 		} else if (state === 'exclude') {
-			newExcludedTags.push(tag);
+			if (newExcludedTags.includes(tag)) {
+				// If already excluded, reset to neutral.
+				newExcludedTags = newExcludedTags.filter((t) => t !== tag);
+			} else {
+				// Set as excluded and ensure it's not included.
+				newIncludedTags = newIncludedTags.filter((t) => t !== tag);
+				newExcludedTags.push(tag);
+			}
 		}
 
 		gameStore.updateTags(newIncludedTags, newExcludedTags);
@@ -84,36 +93,29 @@
 		</div>
 
 		<!-- Tag Selection -->
-		<div class="tag-selection">
+		<div class="tag-selection-container">
 			<h3>{$t('select-tags')}</h3>
-			{#each Object.values(Tag) as tag}
-				<div class="tag-toggle">
-					<span>{$t(`tags.${tag}.name`)}</span>
-					<div class="tag-buttons">
-						<button
-							class="include {gameState.includedTags.includes(tag) ? 'active' : ''}"
-							on:click={() => setTagState(tag, 'include')}
-						>
-							✅
-						</button>
-						<button
-							class="neutral {!gameState.excludedTags.includes(tag) &&
-							!$gameStore.includedTags.includes(tag)
-								? 'active'
-								: ''}"
-							on:click={() => setTagState(tag, 'neutral')}
-						>
-							➖
-						</button>
-						<button
-							class="exclude {gameState.excludedTags.includes(tag) ? 'active' : ''}"
-							on:click={() => setTagState(tag, 'exclude')}
-						>
-							❌
-						</button>
+			<div class="tag-selection">
+				{#each Object.values(Tag) as tag}
+					<div class="tag-toggle">
+						<span>{$t(`tags.${tag}.name`)}</span>
+						<div class="tag-options">
+							<button
+								class="tag-option include {gameState.includedTags.includes(tag) ? 'active' : ''}"
+								on:click={() => setTagState(tag, 'include')}
+							>
+								✅
+							</button>
+							<button
+								class="tag-option exclude {gameState.excludedTags.includes(tag) ? 'active' : ''}"
+								on:click={() => setTagState(tag, 'exclude')}
+							>
+								❌
+							</button>
+						</div>
 					</div>
-				</div>
-			{/each}
+				{/each}
+			</div>
 		</div>
 	</div>
 </details>
@@ -165,6 +167,9 @@
 	}
 
 	.settings {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 		font-size: 0.9rem;
 	}
 
@@ -181,40 +186,49 @@
 		flex: 1;
 	}
 
-	.tag-selection {
+	.tag-selection-container {
+		width: 100%;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+	}
+
+	.tag-selection {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
 		gap: 10px;
+		width: 100%;
 	}
 
 	.tag-toggle {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 5px;
 	}
 
-	.tag-buttons {
+	.tag-options {
 		display: flex;
-		gap: 5px;
+		gap: 10px;
 	}
 
-	.tag-buttons button:not(.active) {
+	.tag-option {
+		cursor: pointer;
+		padding: 5px;
+		font-size: 1rem;
+		border-radius: 0.25rem;
+	}
+
+	.tag-option:not(.active) {
 		opacity: 0.3;
 	}
 
-	.include {
+	.tag-option.include {
 		background-color: #4caf50;
 		color: white;
 	}
 
-	.exclude {
+	.tag-option.exclude {
 		background-color: #f44336;
-		color: white;
-	}
-
-	.neutral {
-		background-color: #9e9e9e;
 		color: white;
 	}
 </style>

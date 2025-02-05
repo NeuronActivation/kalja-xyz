@@ -57,7 +57,7 @@
             "tooltip": "Juomapelien klassikkokortit."
         },
         "untagged": {
-            "name": "Tagiton",
+            "name": "Kategorisoimaton",
             "tooltip": "Kortit ilman sopivaa tagia."
         }
     }
