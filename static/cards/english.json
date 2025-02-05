@@ -818,7 +818,7 @@
         },
         {
             "title": "Consonant-initial",
-            "description": "All players whos name starts with consonant must drink.",
+            "description": "All players whose name starts with a consonant must drink.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 102,
