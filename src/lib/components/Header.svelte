@@ -48,6 +48,13 @@
 		justify-content: center;
 		text-align: center;
 		border-radius: 50%;
+
+		/* Needed for WebKit compatibility */
+		-webkit-appearance: none;
+		text-align-last: center;
+		text-indent: 0;
+		padding-left: 0;
+		padding-right: 0;
 	}
 
 	.reset {
