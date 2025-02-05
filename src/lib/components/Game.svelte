@@ -72,7 +72,7 @@
 <style>
 	article {
 		position: relative;
-		max-width: 90%;
+		width: 600px;
 	}
 
 	.game-status {
@@ -94,5 +94,11 @@
 		color: #666;
 		top: 0;
 		right: 0;
+	}
+
+	@media (max-width: 768px) {
+		article {
+			max-width: 90%;
+		}
 	}
 </style>
