@@ -144,7 +144,7 @@ export function getStoredCards(lang: Language): Card[] | null {
 
 /**
  * Retrieves the stored language from sessionStorage.
- * @returns The selected language code, or the fallback language (FI) if no selection exists.
+ * @returns The selected language code, or the fallback language (EN) if no selection exists.
  */
 export function getStoredLanguage(): Language {
 	const storedLanguage = sessionStorage.getItem('selectedLanguage');
