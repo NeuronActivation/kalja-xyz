@@ -610,7 +610,7 @@
         },
         {
             "title": "Sanonta",
-            "description": "Keksi uusi sanonta ja käytä sitä mahdollisimman paljon loppupelin ajan",
+            "description": "Keksi uusi sanonta ja käytä sitä mahdollisimman paljon loppupelin ajan.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 76,
@@ -634,7 +634,7 @@
         },
         {
             "title": "Pääotsikko",
-            "description": "Keksi toisesta pelaajasta etusivun uutisotsikko",
+            "description": "Keksi toisesta pelaajasta etusivun uutisotsikko.",
             "timedEvent": false,
             "targetPlayer": true,
             "id": 79,
@@ -722,11 +722,140 @@
         },
         {
             "title": "Kolme asiaa viidessä sekunnissa",
-            "description": "Luettele kolme asiaa viidessä sekunissa, kohde päättää aiheen. Esim. alkuaineet",
+            "description": "Luettele kolme asiaa viidessä sekunissa, kohde päättää aiheen. Esim. alkuaineet.",
             "timedEvent": false,
             "targetPlayer": true,
             "id": 90,
             "tags": ["random_target"]
+        },
+        {
+            "title": "Esitä striimaajaa",
+            "description": "Esitä, että pidät live-lähetystä yhden kierroksen ajan, eli puhu katsojille, lue kommenneteja ja vilkuile kameraan yms.",
+            "timedEvent": true,
+            "targetPlayer": false,
+            "id": 91,
+            "tags": ["humiliation", "creative", "event", "roleplay"]
+        },
+        {
+            "title": "Vanhin kännykkä",
+            "description": "Pelaaja, jonka kännykkä on vanhin juo.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 92,
+            "tags": [""]
+        },
+        {
+            "title": "Android-käyttäjät juovat",
+            "description": "Pelaajat, jotka käyttävät Android-puhelimia juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 93,
+            "tags": [""]
+        },
+        {
+            "title": "iPhone-käyttäjät juovat",
+            "description": "Pelaajat, jotka käyttävät iPhone-puhelimia juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 94,
+            "tags": [""]
+        },
+        {
+            "title": "Deittailija-pro",
+            "description": "Kaikki pelaajat, joiden kännykästä löytyy mikä tahansa deittisovellus juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 95,
+            "tags": [""]
+        },
+        {
+            "title": "Virta vähissä",
+            "description": "Jokainen pelaaja juo huikkia kännykkänsä akunvarausprosenttien kymmennyksien mukaan. Esim. 76% = 7 huikkaa.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 96,
+            "tags": [""]
+        },
+        {
+            "title": "Aika tarkistaa ilmoitukset",
+            "description": "Jokainen pelaaja juo huikkia kännykässään aktiivisina näkyvien ilmoituksien mukaan.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 97,
+            "tags": [""]
+        },
+        {
+            "title": "Jatka lausetta",
+            "description": "Sano kohteelle jonkin lauseen alku ja hänen tulee jatkaa lause loppuun. Lause voi olla esimerkiksi laulun sanat tai muu tunnettu lausahdus. Jos hän epäonnistuu hän juo ja jos hän onnistuu sinä juot.",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 98,
+            "tags": ["random_target", "knowledge"]
+        },
+        {
+            "title": "Rahamiehiä",
+            "description": "Pelaaja, jolla on eniten käteistä käden ulottuvilla saa päättää kuka juo.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 99,
+            "tags": ["chosen_target"]
+        },
+        {
+            "title": "Eniten asusteita",
+            "description": "Pelaaja, jolla on eniten asusteita yllään juo.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 100,
+            "tags": [""]
+        },
+        {
+            "title": "Vokaalialkuiset",
+            "description": "Kaikki pelaajat, joiden nimi alkaa vokaalilla juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 101,
+            "tags": [""]
+        },
+        {
+            "title": "Konsonanttialkuiset",
+            "description": "Kaikki pelaajat, joiden nimi alkaa konsonantilla juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 102,
+            "tags": [""]
+        },
+        {
+            "title": "Mustikset",
+            "description": "Kaikki musta sukkaiset pelaajat juovat.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 103,
+            "tags": [""]
+        },
+        {
+            "title": "Äänestys: uskovaisin",
+            "description": "Äänestäkää joukostanne uskovaisin pelaaja. Hän juo Herransa nimeen.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 104,
+            "tags": ["voting"]
+        },
+        {
+            "title": "Kielinainen",
+            "description": "Pelaaja, joka osaa eniten eri kieliä saa päättää kuka juo.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 105,
+            "tags": ["chosen_target"]
+        },
+        {
+            "title": "Älä vastaa -osasto",
+            "description": "Viimeisin puhelun vastaanottanut pelaaja juo.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 106,
+            "tags": [""]
         }
+        
     ]
 }

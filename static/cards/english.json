@@ -727,6 +727,134 @@
             "targetPlayer": true,
             "id": 90,
             "tags": ["random_target"]
+        },
+        {
+            "title": "Act as a streamer",
+            "description": "Act as you were live streaming for one round. Talk to the audience, read comments from the chat and look in to the camera etc.",
+            "timedEvent": true,
+            "targetPlayer": false,
+            "id": 91,
+            "tags": ["humiliation", "creative", "event", "roleplay"]
+        },
+        {
+            "title": "Oldest phone",
+            "description": "Player with the oldest phone drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 92,
+            "tags": [""]
+        },
+        {
+            "title": "Android users",
+            "description": "Players who have Android must drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 93,
+            "tags": [""]
+        },
+        {
+            "title": "iPhone users",
+            "description": "Players who have iPhone must drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 94,
+            "tags": [""]
+        },
+        {
+            "title": "Pro dating",
+            "description": "All players who have any dating app on their phone must drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 95,
+            "tags": [""]
+        },
+        {
+            "title": "Low battery",
+            "description": "Each player drinks according to the tenths of their phone's battery charge percentage. For example, 76% = 7 drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 96,
+            "tags": [""]
+        },
+        {
+            "title": "Time to check notifications",
+            "description": "Each player drinks the amount according to the notifications on their phone's.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 97,
+            "tags": [""]
+        },
+        {
+            "title": "Continue the sentence",
+            "description": "Tell the target the beginning of a sentence and they must finish it. The sentence can be, for example, the lyrics of a song or some another well-known phrase. If they fail, they drink and if they succeed, you drink.",
+            "timedEvent": false,
+            "targetPlayer": true,
+            "id": 98,
+            "tags": ["random_target", "knowledge"]
+        },
+        {
+            "title": "Money man",
+            "description": "Player with the most cash within reach gets to choose who drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 99,
+            "tags": ["chosen_target"]
+        },
+        {
+            "title": "Most accessories",
+            "description": "Player with the most accessories on drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 100,
+            "tags": [""]
+        },
+        {
+            "title": "Vowel-initial",
+            "description": "All players whos name starts with vowel must drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 101,
+            "tags": [""]
+        },
+        {
+            "title": "Consonant-initial",
+            "description": "All players whos name starts with consonant must drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 102,
+            "tags": [""]
+        },
+        {
+            "title": "Black socks",
+            "description": "All players wearing black socks must drink.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 103,
+            "tags": [""]
+        },
+        {
+            "title": "Vote: most religous",
+            "description": "Vote the most religious player among you. They will drink in the name of their lord.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 104,
+            "tags": ["voting"]
+        },
+        {
+            "title": "Language master",
+            "description": "Player who can speak the most languages get to choose who drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 105,
+            "tags": ["chosen_target"]
+        },
+        {
+            "title": "Not answering",
+            "description": "The last player who received a call drinks.",
+            "timedEvent": false,
+            "targetPlayer": false,
+            "id": 106,
+            "tags": [""]
         }
     ]
 }
