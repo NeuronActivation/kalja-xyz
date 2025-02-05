@@ -10,13 +10,13 @@
 <details>
 <summary>Screenshots</summary>
 
-**Start**
+<b>Start</b><br>
 <img src="images/start.png" width="800" alt="Start screenshot"> 
 
-**Lobby**
+<b>Lobby</b><br>
 <img src="images/lobby.png" width="800" alt="Lobby screenshot"> 
 
-**Start**
+<b>Gameplay</b><br>
 <img src="images/gameplay.png" width="800" alt="Gameplay screenshot"> 
 </details>
 
