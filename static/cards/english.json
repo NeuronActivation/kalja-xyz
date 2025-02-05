@@ -810,7 +810,7 @@
         },
         {
             "title": "Vowel-initial",
-            "description": "All players whos name starts with vowel must drink.",
+            "description": "All players whose name starts with a vowel must drink.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 101,
