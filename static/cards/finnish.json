@@ -826,7 +826,7 @@
         },
         {
             "title": "Mustikset",
-            "description": "Kaikki musta sukkaiset pelaajat juovat.",
+            "description": "Kaikki mustia sukkia käyttävät pelaajat juovat.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 103,
