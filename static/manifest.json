@@ -1,0 +1,42 @@
+{
+  "name": "Kalja.xyz",
+  "short_name": "kalja.xyz",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#13171F",
+  "theme_color": "#017FC0",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/desktop.png",
+      "sizes": "2360x1640",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Homepage of the app"
+    },
+    {
+      "src": "screenshots/mobile.png",
+      "sizes": "1170x2532",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile view of the app"
+    }
+  ]
+}

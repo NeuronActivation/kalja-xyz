@@ -1,8 +1,11 @@
-import type { LoadEvent } from '@sveltejs/kit';
 import { waitLocale } from 'svelte-i18n';
 import { registerLocales } from '$lib/languages/load';
 
-export async function load({ fetch }: LoadEvent) {
+/**
+ * This function ensures that the necessary locale data is loaded and available before the
+ * page is rendered, which is important for multi-language support.
+ */
+export async function load({ fetch }) {
 	registerLocales(fetch);
 	await waitLocale();
 	return {};

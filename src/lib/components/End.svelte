@@ -6,7 +6,7 @@
 <h1>{$t('game-over')}</h1>
 
 <div class="button-container">
-	<button class="pico-background-jade-500" on:click={gameStore.startGame}>{$t('replay')}</button>
+	<button class="pico-background-jade-500" on:click={gameStore.replay}>{$t('replay')}</button>
 	<button class="pico-background-red-500" on:click={gameStore.reset}>{$t('back-to-start')}</button>
 </div>
 

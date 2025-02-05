@@ -6,7 +6,30 @@ import { ApplicationState } from '$lib/constants/applicationState';
 import { loadGameState, saveGameState } from '$lib/utils/storage';
 import { languageStore } from '$lib/stores/languageStore';
 import { loadCards, loadSingleCard } from '$lib/languages/load';
+import { Tag } from '$lib/constants/tag';
 
+/**
+ * Creates a writable store to manage the game state and provides several actions
+ * for manipulating the game state such as adding/removing players, changing the
+ * game state, starting the game, updating cards, etc. The game state is saved to
+ * sessionStorage to persist between page reloads.
+ *
+ * The store provides the following actions:
+ * - `set`: Set the game state and save it to storage.
+ * - `reset`: Reset the game state to its initial state and clear the saved state.
+ * - `changeGameState`: Change the game state to a new application state and save it.
+ * - `addPlayer`: Add a player to the game and save the new state.
+ * - `removePlayer`: Remove a player by ID and save the new state.
+ * - `setCardAmount`: Set the number of cards in the game and save the new state.
+ * - `initializeMaxCards`: Check how many cards can exist in the game and set the amount in the game state.
+ * - `startGame`: Start the game and save the updated state.
+ * - `showNextCard`: Show the next card in the game and save the new state.
+ * - `updateCards`: Update the cards in the game and save the new state.
+ * - `loadSavedState`: Load the saved game state from sessionStorage.
+ * - `reroll`: Reload a single card and update the game state.
+ * - `replay`: Reload cards and restart the game.
+ * - `updateTags`: Updates the tags where the cards are drawn from and the tags where the cards are discarded.
+ */
 function createGameStore() {
 	const { subscribe, set, update } = writable<GameState>(createNewGame());
 
@@ -50,21 +73,21 @@ function createGameStore() {
 			});
 		},
 		initializeMaxCards: async () => {
-			const maxCards = await loadCards(fetch, get(gameStore).cardAmount);
-			if (maxCards) {
-				update((state) => ({
-					...state,
-					maxCards
-				}));
-			}
+			const { includedTags, excludedTags } = get(gameStore);
+			const maxCards = await loadCards(includedTags, excludedTags);
+			const cardAmount = maxCards;
+
+			update((state) => ({
+				...state,
+				cardAmount,
+				maxCards
+			}));
 		},
 		startGame: async () => {
-			const maxCards = await loadCards(fetch, get(gameStore).cardAmount);
 			const cards = await languageStore.getCards();
 			if (cards) {
 				update((state) => {
 					state.cards = cards;
-					state.maxCards = maxCards;
 					state.events = [];
 					const updatedState = game.startGame(state);
 					saveGameState(updatedState);
@@ -95,22 +118,27 @@ function createGameStore() {
 			}
 		},
 		reroll: async () => {
-			const cardIndex = get(gameStore).currentCardIndex;
-			await loadSingleCard(fetch, cardIndex);
-
-			const cards = await languageStore.getCards();
-			if (cards) {
-				update((state) => {
-					const updatedState = {
-						...state,
-						cards: cards
-					};
-					saveGameState(updatedState);
-					return updatedState;
-				});
-			}
+			const { currentCardIndex, includedTags, excludedTags } = get(gameStore);
+			await loadSingleCard(currentCardIndex, includedTags, excludedTags);
+			await gameStore.updateCards();
+		},
+		replay: async () => {
+			const { includedTags, excludedTags } = get(gameStore);
+			await loadCards(includedTags, excludedTags);
+			await gameStore.startGame();
+		},
+		updateTags: (includedTags: Tag[], excludedTags: Tag[]) => {
+			update((state) => {
+				const updatedState = { ...state, includedTags, excludedTags };
+				saveGameState(updatedState);
+				return updatedState;
+			});
 		}
 	};
 }
 
 export const gameStore = createGameStore();
+
+languageStore.setGameStoreUpdate(() => {
+	gameStore.updateCards();
+});

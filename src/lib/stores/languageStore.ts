@@ -1,24 +1,88 @@
-import { get, writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 import { Language } from '$lib/languages/language';
-import { setLanguage } from '$lib/languages/load';
-import { getCardData } from '$lib/languages/translation';
+import { getStoredCards, setLanguage, getStoredLanguage } from '$lib/languages/load';
+import { isBrowser } from '$lib/constants/isBrowser';
+import { type Card } from '$lib/interfaces/card';
+import { type Subscriber, type Invalidator, type Unsubscriber } from 'svelte/motion';
 
-function createLanguageStore() {
-	const { subscribe, set, update } = writable(Language.FI);
-	const store = { subscribe, set, update };
+interface LanguageStore {
+	/**
+	 * Subscribes to language store updates.
+	 *
+	 * @param run - The function to run when the store's value changes.
+	 * @param invalidate - Optional function to invalidate the store's value.
+	 *
+	 * @returns An unsubscribe function to stop receiving updates.
+	 */
+	subscribe: (
+		run: Subscriber<{ language: Language }>,
+		invalidate?: Invalidator<{ language: Language }> | undefined
+	) => Unsubscriber;
+
+	/**
+	 * Changes the current language and updates the store.
+	 *
+	 * @param newLanguage - The language to switch to.
+	 * @returns A promise that resolves when the language change is complete.
+	 */
+	changeLanguage(newLanguage: Language): Promise<void>;
+
+	/**
+	 * Retrieves the cards available for the current language.
+	 *
+	 * @returns A promise that resolves to an array of cards or null if no cards are found.
+	 */
+	getCards(): Promise<Card[] | null>;
+
+	/**
+	 * Sets a callback function to be executed once the store initialization is complete.
+	 *
+	 * @param cb - The callback function to call once initialization is done.
+	 */
+	setGameStoreUpdate(cb: () => void): void;
+}
+
+/**
+ * Creates a writable store for managing language settings.
+ * Initializes the store with the stored language (if available) or defaults to Finnish.
+ * The store handles language changes and provides access to cards in the current language.
+ *
+ * @returns {LanguageStore} The language store with methods to change language, get cards, and set game store updates.
+ */
+function createLanguageStore(): LanguageStore {
+	const { subscribe, set } = writable({
+		language: Language.FI
+	});
+
+	let onInitComplete: (() => void) | null = null;
+
+	// Ensure that the store updates once the client-side JavaScript takes over.
+	async function initialize() {
+		if (isBrowser) {
+			const storedLanguage = getStoredLanguage();
+
+			await setLanguage(storedLanguage);
+			set({ language: storedLanguage });
+		}
+	}
+	initialize();
 
 	return {
 		subscribe,
 		async changeLanguage(newLanguage: Language) {
-			const currentLanguage = get(store);
-			if (newLanguage !== currentLanguage) {
-				await setLanguage(newLanguage);
-				set(newLanguage);
+			await setLanguage(newLanguage);
+
+			set({ language: newLanguage });
+			if (onInitComplete) {
+				onInitComplete();
 			}
 		},
-		async getCards() {
-			const currentLanguage = get(store);
-			return await getCardData(currentLanguage);
+		async getCards(): Promise<Card[] | null> {
+			const currentLanguage = getStoredLanguage();
+			return getStoredCards(currentLanguage);
+		},
+		setGameStoreUpdate(cb: () => void) {
+			onInitComplete = cb;
 		}
 	};
 }

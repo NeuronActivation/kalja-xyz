@@ -5,637 +5,728 @@
             "description": "Tarvitseeko tätä selittää?",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 0
+            "id": 0,
+            "tags": []
         },
         {
             "title": "Jaa huikkia",
             "description": "Jaa kolme huikkaa muille pelaajille mielesi mukaan",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 1
+            "id": 1,
+            "tags": ["chosen_target"]
         },
         {
             "title": "Vesiputous",
             "description": "Jokainen pelaaja aloittaa juomisen. Kortin saaneen vasemmalla puolella oleva pelaaja saa lopettaa juomisen ensin ja sen jälkeen hänen vasemmalla puolellaan oleva jne.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 2
+            "id": 2,
+            "tags": ["classic"]
         },
         {
             "title": "Sääntö",
             "description": "Saat päättää uuden säännön. Säännöt pysyvät pelin loppuun tai jos joku käyttää uuden säännön aikaisemman säännön kumoamiseen.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 3
+            "id": 3,
+            "tags": ["classic"]
         },
         {
             "title": "Huora",
             "description": "Saat valita itsellesi huoran. Aina kun kortin nostajalle määräytyy huikkia, huora joutuu juomaan saman määrän.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 4
+            "id": 4,
+            "tags": ["classic", "chosen_target"]
         },
         {
             "title": "Tarina",
             "description": "Aloita tarina valitsemallasi sanalla ja seuraavan tulee toistaa sana ja lisätä uusi sana. Jokaisen pelaajan on toistettava kaikki edelliset sanat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 5
+            "id": 5,
+            "tags": ["classic", "creative"]
         },
         {
             "title": "Kategoria",
             "description": "Valitse haluamasi kategoria ja sano ensimmäinen kategoriaan kuuluva asia, esim. automerkit, viikonpäivät tai planeetat. Asioita luetellaan vuorotellen kunnes joku ei keksi tai sanoo jo sanotun asian.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 6
+            "id": 6,
+            "tags": ["classic", "creative"]
         },
         {
             "title": "123",
             "description": "Juo yksi huikka. Seuraava juo kaksi huikkaa, sitä seuraava kolme jne.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 7
+            "id": 7,
+            "tags": ["classic"]
         },
         {
             "title": "Totuus vai tehtävä",
-            "description": "Kysy uhrilta 'totuus vai tehtävä?' ja toimi sen mukaan.",
+            "description": "Kysy kohteelta 'totuus vai tehtävä?' ja toimi sen mukaan.",
             "timedEvent": false,
             "targetPlayer": true,
-            "id": 8
+            "id": 8,
+            "tags": ["classic", "random_target"]
         },
         {
             "title": "Vanhin juo",
             "description": "Vanhin pelaaja juo",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 9
+            "id": 9,
+            "tags": []
         },
         {
             "title": "Nuorin juo",
             "description": "Nuorin pelaaja juo",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 10
+            "id": 10,
+            "tags": []
         },
         {
             "title": "Pisin juo",
             "description": "Pisin pelaaja juo",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 11
+            "id": 11,
+            "tags": []
         },
         {
             "title": "Lyhyin juo",
             "description": "Lyhyin pelaaja juo",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 12
+            "id": 12,
+            "tags": []
         },
         {
             "title": "Vahvinta juomaa juova juo",
             "description": "Vahvinta juomaa lipittävä pelaaja pääsee katumaan valintaansa. Tasapelissä molemmat/kaikki juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 13
+            "id": 13,
+            "tags": []
         },
         {
             "title": "Laimeinta juomaa juova juo",
             "description": "Juo nössö. Tasapelissä molemmat/kaikki juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 14
+            "id": 14,
+            "tags": []
         },
         {
             "title": "Luettele sukunimet",
             "description": "Luettele jokaisen pelaajan sukunimi. Jos saat kaikki oikein muut juovat, muuten sinä juot.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 15
+            "id": 15,
+            "tags": ["knowledge"]
         },
         {
             "title": "Tee kuperkeikka ja juo",
             "description": "Tee kuperkeikka ja juo. Tehtävästä kieltäytymisestä juot enemmän.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 16
+            "id": 16,
+            "tags": ["physical", "humiliation"]
         },
         {
             "title": "En ole koskaan...",
             "description": "Käykää kierros läpi niin että jokainen sanoo vuorollaan asian mitä hän ei ole koskaan tehnyt. Kaikki asian tehneet juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 17
+            "id": 17,
+            "tags": ["classic", "creative"]
         },
         {
             "title": "Kaikki juovat",
             "description": "Sitähän tänne tultiin tekemään.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 18
+            "id": 18,
+            "tags": []
         },
         {
             "title": "Puhu laulamalla",
             "description": "Kaiken puheesi tulee tapahtua laulamalla kierroksen ajan. Muut pelaajat päättävät onnistumisesta.",
             "timedEvent": true,
             "targetPlayer": false,
-            "id": 19
+            "id": 19,
+            "tags": ["creative", "event", "humiliation"]
         },
         {
             "title": "Puhu riimitellen",
-            "description": "kaikkien puhumiesi lauseiden tulee rimmata kierroksen ajan, esim. 'Onko se mun vuoro? Kysyy juoppo kuoro'. Muut pelaajat päättävät onnistumisesta.",
+            "description": "Kaikkien puhumiesi lauseiden tulee rimmata kierroksen ajan, esim. 'Onko se mun vuoro? Kysyy juoppo kuoro'. Muut pelaajat päättävät onnistumisesta.",
             "timedEvent": true,
             "targetPlayer": false,
-            "id": 20
+            "id": 20,
+            "tags": ["creative", "event", "humiliation"]
         },
         {
             "title": "Juo koskettamatta huuliasi",
             "description": "Juo pullosta/tölkistä/yms ilman että se koskettaa huuliasi.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 21
+            "id": 21,
+            "tags": ["physical"]
         },
         {
             "title": "Viimeisin viesti",
             "description": "Lue viimeisin saamasi viesti ääneen.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 22
+            "id": 22,
+            "tags": ["humiliation"]
         },
         {
             "title": "Ota selfie",
             "description": "Ota selfie toisen pelaajan kanssa. Tärkeät hetket on ikuistettava!",
             "timedEvent": false,
             "targetPlayer": true,
-            "id": 23
+            "id": 23,
+            "tags": ["physical", "random_target"]
         },
         {
             "title": "Ota kuva jaloistasi",
             "description": "Ota kuva ja lähetä se vanhemmillesi tai puolisolle. Pelissä mukana olevia ei hyväksytä",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 24
+            "id": 24,
+            "tags": ["humiliation"]
         },
         {
             "title": "Salatehtävä",
-            "description": " Keksi jokin ele/liike kertomatta sitä muille. Tee elettä satunnaisesti ja muut yrittävät keksiä mitä elettä teet. Kun muut keksivät oikean toiminnan, heidän tulee alkaa tehdä elettä myös. Viimeinen toiminnan keksinyt pelaaja juo. Voi alkaa muiden korttien aikana.",
+            "description": "Keksi jokin ele/liike kertomatta sitä muille. Tee elettä satunnaisesti ja muut yrittävät keksiä mitä elettä teet. Kun muut keksivät oikean toiminnan, heidän tulee alkaa tehdä elettä myös. Viimeinen toiminnan keksinyt pelaaja juo. Voi alkaa muiden korttien aikana.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 25
+            "id": 25,
+            "tags": ["creative", "physical"]
         },
         {
             "title": "Sympatiaa",
             "description": "Juo kolme, muut juovat yhden.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 26
+            "id": 26,
+            "tags": []
         },
         {
             "title": "KPS-PVE",
             "description": "Pelaa Kivi-paperi-sakset kaikkia muita vastaan vuorotellen. Juo jokaisesta hävitystä pelistä.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 27
+            "id": 27,
+            "tags": ["physical"]
         },
         {
             "title": "KPS-PVP",
             "description": "Pelaa kivi-paperi-sakset yhtä pelaajaa vastaan. Häviäjä juo.",
             "timedEvent": false,
             "targetPlayer": true,
-            "id": 28
+            "id": 28,
+            "tags": ["physical", "random_target"]
         },
         {
             "title": "'Snap'",
             "description": "Kaikkien juomien nykyisestä määrästä on hävittävä puolet.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 29
+            "id": 29,
+            "tags": []
         },
         {
             "title": "Smurffaa mua",
             "description": "Korvaa puheessasi sanoja 'smurffi'-puheella yhden kierroksen ajan.",
             "timedEvent": true,
             "targetPlayer": false,
-            "id": 30
+            "id": 30,
+            "tags": ["humiliation"]
         },
         {
             "title": "Äänestys: äänekkäin",
             "description": "Äänestäkää joukostanne äänekkäin pelaaja. Eniten ääniä saanut pelaaja juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 31
+            "id": 31,
+            "tags": ["voting"]
         },
         {
             "title": "Äänestys: kovin juoppo",
             "description": "Äänestäkää joukostanne kovin juoppo. Eniten ääniä saanut pelaaja juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 32
+            "id": 32,
+            "tags": ["voting"]
         },
         {
             "title": "Äänestys: pihein",
             "description": "Äänestäkää joukostanne pihein pelaaja. Eniten ääniä saanut pelaaja juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 33
+            "id": 33,
+            "tags": ["voting"]
         },
         {
             "title": "Äänestys: älykkäin",
             "description": "Äänestäkää joukostanne älykkäin pelaaja. Eniten ääniä saanut pelaaja juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 34
+            "id": 34,
+            "tags": ["voting"]
         },
         {
             "title": "Vitun rotat",
             "description": "Kaikki työttömät juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 35
+            "id": 35,
+            "tags": []
         },
         {
             "title": "Bää bää",
             "description": "Kaikki työssäkäyvät juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 36
+            "id": 36,
+            "tags": []
         },
         {
-            "title": "Nikotiini addiktit",
+            "title": "Nikotiiniaddiktit",
             "description": "Kaikki tällä hetkellä nikotiinin vaikutuksen alaisina olevat juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 37
+            "id": 37,
+            "tags": []
         },
         {
             "title": "Juomapeli-neitsyt",
             "description": "Kaikki, jotka pelaavat tätä peliä ensimmäistä kertaa juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 38
+            "id": 38,
+            "tags": []
         },
         {
             "title": "Veteraanit",
             "description": "Kaikki, jotka ovat pelanneet tätä peliä ennenkin juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 39
+            "id": 39,
+            "tags": []
         },
         {
             "title": "Kannattaako tämä?",
             "description": "Pohdi hetki elämänvalintojasi. Sitten juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 40
+            "id": 40,
+            "tags": []
         },
         {
             "title": "Vitsiniekka",
             "description": "Kerro vitsi, kaikki nauravat pelaajat juovat. Jos kukaan ei naura sinä juot.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 41
+            "id": 41,
+            "tags": ["creative"]
         },
         {
             "title": "Mr. DJ",
             "description": "Ala hyräilemään jotakin kappaletta. Ensimmäisenä oikean kappaleen arvannut pelaaja saa päättää kuka juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 42
+            "id": 42,
+            "tags": ["creative"]
         },
         {
             "title": "Olen joskus...",
             "description": "Käykää kierros läpi niin että jokainen sanoo vuorollaan asian mitä hän on tehnyt. Kaikki jotka eivät ole asiaa tehneet juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 43
+            "id": 43,
+            "tags": []
         },
         {
             "title": "Parhaiten pukeutunut",
             "description": "Päätä kuka pelaajista on pukeutunut parhaiten. Hän päättää kuka juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 44
+            "id": 44,
+            "tags": ["voting"]
         },
         {
             "title": "Kusettaja",
             "description": "Puhu yhden kierroksen ajan pelkkiä valheita. Jos jäät kiinni totuuden puhumisesta, juo.",
             "timedEvent": true,
             "targetPlayer": false,
-            "id": 45
+            "id": 45,
+            "tags": ["creative", "roleplay"]
         },
         {
             "title": "Hylkiö",
             "description": "Kaikkien tulee ignoorata sinut kierroksen ajan",
             "timedEvent": true,
             "targetPlayer": false,
-            "id": 46
+            "id": 46,
+            "tags": ["roleplay", "humiliation"]
         },
         {
             "title": "Pervo",
             "description": "Läpsäise toisen pelaajan persettä.",
             "timedEvent": false,
             "targetPlayer": true,
-            "id": 47
+            "id": 47,
+            "tags": ["random_target", "humiliation", "physical"]
         },
         {
             "title": "Ventti",
             "description": "Alkakaa laskemaan lukuja. Jokainen pelaaja sanoo vuorollaan yhden, kaksi tai kolme seuraavaa lukua. Pelaaja jolle osuu luku 21 juo. Esim. yksi... kaksi, kolme... neljä.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 48
+            "id": 48,
+            "tags": []
         },
         {
-            "title": "Vastakkain asettelu",
+            "title": "Vastakkainasettelu",
             "description": "Keksi kaksi eri vaihtoehtoa. Jokainen pelaaja valitsee kumman vaihtoehdon ottaa. Vähemmistö joutuu juomaan. Esim. Pizza vai hampurilainen.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 49
+            "id": 49,
+            "tags": ["creative", "voting"]
         },
         {
             "title": "Kippis!",
             "description": "Kippistelkää juomianne ja juokaa",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 50
+            "id": 50,
+            "tags": ["physical"]
         },
         {
             "title": "Macho",
             "description": "Pullista hauistasi ja juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 51
+            "id": 51,
+            "tags": ["physical"]
         },
         {
             "title": "Maa-asukki",
             "description": "Istu lattialla yhden kierroksen ajan.",
             "timedEvent": true,
             "targetPlayer": false,
-            "id": 52
+            "id": 52,
+            "tags": ["humiliation", "physical"]
         },
         {
             "title": "Yleistieto",
             "description": "Kysy uhrilta yleistietokysymys. Jos hän vastaa väärin hän juo, muuten sinä juot.",
             "timedEvent": false,
             "targetPlayer": true,
-            "id": 53
+            "id": 53,
+            "tags": ["knowledge", "random_target"]
         },
         {
             "title": "Vittu mitkä... silmät",
             "description": "Päätä kenellä pelaajista on kivoimmat silmät. Hän juo",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 54
+            "id": 54,
+            "tags": ["physical", "chosen_target"]
         },
         {
             "title": "Eksä tunne mua???",
             "description": "Kerro itsestäsi jokin väite. Muut pelaajat päättävät yksilöllisesti onko väite totta vai ei. Väärin arvanneet juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 55
+            "id": 55,
+            "tags": ["knowledge", "voting"]
         },
         {
             "title": "Puhelin-addikti",
             "description": "Viimeisin puhelintaan vilkaissut pelaaja juo. Sääntöjen lukijaa ei lasketa.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 56
+            "id": 56,
+            "tags": ["physical"]
         },
         {
             "title": "Karvakasa",
             "description": "Karvaisin pelaaja juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 57
+            "id": 57,
+            "tags": ["physical"]
         },
         {
             "title": "Lattia on laavaa",
             "description": "Kukaan ei saa koskettaa lattiaa yhden kierroksen ajan. Jos kosketat, juot.",
             "timedEvent": true,
             "targetPlayer": false,
-            "id": 58
+            "id": 58,
+            "tags": ["physical", "event"]
         },
         {
             "title": "Kiusaaja",
             "description": "Hauku toista pelaajaa.",
             "timedEvent": false,
             "targetPlayer": true,
-            "id": 59
+            "id": 59,
+            "tags": ["humiliation", "random_target"]
         },
         {
             "title": "Suosittu",
             "description": "Kaikkien pitää kehua sinua tai juoda.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 60
+            "id": 60,
+            "tags": []
         },
         {
-            "title": "Juonut ennen klo 18",
+            "title": "Aamu alkaa A:lla",
             "description": "Kaikki, jotka ovat juoneet alkoholia ennen klo 18 tänään, juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 61
+            "id": 61,
+            "tags": []
         },
         {
             "title": "Nimeä musiikkigenre",
             "description": "Valitse joku musiikkigenre, ja jokainen pelaaja vuorollaan laulaa tai huutaa yhden kappaleen kyseisestä genrestä. Jos joku ei keksi kappaletta, hän juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 62
+            "id": 62,
+            "tags": ["creative", "humiliation"]
         },
         {
             "title": "Imitointi",
             "description": "Imitoi tunnettua henkilöä tai hahmoa. Muut pelaajat arvaavat, ketä imitoit. Jos kukaan ei arvaa oikein, imitoija juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 63
+            "id": 63,
+            "tags": ["creative", "roleplay", "knowledge"]
         },
         {
             "title": "Kielletty sana",
             "description": "Valitse sana, jota kohde ei saa sanoa koko kierroksen aikana. Jos hän sanoo kyseisen sanan, hän juo.",
             "timedEvent": true,
             "targetPlayer": true,
-            "id": 64
+            "id": 64,
+            "tags": ["random_target", "event"]
         },
         {
             "title": "Emoji",
             "description": "Lähetä lyhyt viesti kohteelle pelkkiä emojita käyttäen. Vastaanottaja yrittää lausua viestin sanoin ääneen. Jos vastaanottaja ymmärtää viestin aiheen väärin, hän juo.",
             "timedEvent": false,
             "targetPlayer": true,
-            "id": 65
+            "id": 65,
+            "tags": ["random_target", "creative"]
         },
         {
             "title": "Väärä vastaus",
             "description": "Keksi kohteelle kysymys, johon on mahdollista antaa kyllä/ei-vastaus. Kohteen tulee vastata tietämättä itse kysymystä etukäteen ja jos hän vastaa väärin, hän juo.",
             "timedEvent": false,
             "targetPlayer": true,
-            "id": 66
+            "id": 66,
+            "tags": []
         },
         {
             "title": "Muistoja vai fantasiaa?",
             "description": "Kerro lyhyt tuulesta temmattu tarina tai oikea muisto menneisyydestäsi. Muut pelaajat arvaavat, onko tarina totta vai tarua. Väärin arvanneet pelaajat juovat. Jos kaikki vastaavat oikein, sinä juot.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 67
+            "id": 67,
+            "tags": ["knowledge", "creative"]
         },
         {
             "title": "Tunnettu lainaus",
             "description": "Esitä tunnetun henkilön tai hahmon lainaus. Muut pelaajat yrittävät arvata, kuka tai mikä hahmo on kyseessä. Väärin arvanneet juovat. Jos kaikki arvaavat oikein, sinä juot.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 68
+            "id": 68,
+            "tags": ["knowledge"]
         },
         {
             "title": "Noppapeli",
             "description": "Heitä noppaa ja yritä saada tietty numero, jonka päätät etukäteen. Jos epäonnistut, juot. Jos onnistut, kaikki muut juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 69
+            "id": 69,
+            "tags": []
         },
         {
             "title": "Viihdearvoitus",
             "description": "Kerro valitsemasi elokuvan, sarjan tai pelin juoni mainitsematta sen nimeä. Ensimmäinen oikein arvannut pelaaja päättää kuka tai ketkä juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 70
+            "id": 70,
+            "tags": ["knowledge"]
         },
         {
             "title": "Tilipäivä",
             "description": "Viimeisimmäksi palkan, Kelan tukia tai lahjarahaa vastaanottanut pelaaja juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 71
+            "id": 71,
+            "tags": []
         },
         {
             "title": "isEven(bday)",
             "description": "Parillisena päivänä syntyneet juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 72
+            "id": 72,
+            "tags": []
         },
         {
             "title": "isOdd(bday)",
             "description": "Parittomana päivänä syntyneet juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 73
+            "id": 73,
+            "tags": []
         },
         {
             "title": "Sukkaralli",
             "description": "Laita sukka jalkaasi käyttäen vain yhtä kättä. Jos et onnistu tai suorituksessa kestää liian kauan, juot.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 74
+            "id": 74,
+            "tags": ["humiliation", "physical"]
         },
         {
             "title": "Imitaattori",
             "description": "Imitoi toista pelaajaa kierroksen ajan.",
             "timedEvent": true,
             "targetPlayer": true,
-            "id": 75
+            "id": 75,
+            "tags": ["humiliation", "creative", "random_target", "event"]
         },
         {
             "title": "Sanonta",
             "description": "Keksi uusi sanonta ja käytä sitä mahdollisimman paljon loppupelin ajan",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 76
+            "id": 76,
+            "tags": ["creative"]
         },
         {
             "title": "Dance king",
             "description": "Keksi uusi Fortnite-tanssi ja esitä se.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 77
+            "id": 77,
+            "tags": ["creative", "physical", "humiliation"]
         },
         {
-            "title": "Ootsä se...",
+            "title": "Ootsä se...?",
             "description": "Keksi joku henkilö tai hahmo. Muut pelaajat vuorottelevat ja kysyvät joko kyllä/ei-kysymyksen tai esittävät arvauksen henkilöllisyydestäsi. Väärän arvauksen esittänyt pelaaja juo. Oikein arvannut pelaaja päättää kuka juo.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 78
+            "id": 78,
+            "tags": ["creative", "knowledge"]
         },
         {
             "title": "Pääotsikko",
             "description": "Keksi toisesta pelaajasta etusivun uutisotsikko",
             "timedEvent": false,
             "targetPlayer": true,
-            "id": 79
+            "id": 79,
+            "tags": ["creative", "humiliation", "random_target"]
         },
         {
             "title": "Ja ajokortti kiitos",
             "description": "Jokainen pelaaja juo jokaisesta ajokortistaan löytyvästä ajoneuvoluokasta. Jos pelaajalla ei ole ajokorttia, hän juo yhtä paljon kuin eniten ajoneuvoluokkia omaava pelaaja.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 80
+            "id": 80,
+            "tags": []
         },
         {
             "title": "Keikkahumua",
             "description": "Käykää kierros läpi niin että jokainen pelaaja luettelee vuorollaan artisteja joiden keikalla hän on käynyt. Kaikki saman artistin keikalla käyneet pelaajat juovat luettelijan kanssa.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 81
+            "id": 81,
+            "tags": []
         },
         {
             "title": "Merkkiuskollinen",
             "description": "Käykää kierros läpi niin että jokainen pelaaja luettelee vuorollaan jokaisen automerkin jonka hän on omistanut. Kaikki saman automerkin omistaneet pelaajat juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 82
+            "id": 82,
+            "tags": []
         },
         {
             "title": "Nimihirviö",
             "description": "Pelaaja jolla on pisin etunimi juo. Tasapelissä molemmat/kaikki juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 83
+            "id": 83,
+            "tags": []
         },
         {
             "title": "Nörtti",
             "description": "Kaikki silmälaseja käyttävät juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 84
+            "id": 84,
+            "tags": []
         },
         {
             "title": "Sinkkujen Siemaus",
             "description": "Kaikki sinkut juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 85
+            "id": 85,
+            "tags": []
         },
         {
             "title": "Röyhtäise ja Rankaise",
             "description": "Kaikki juovat niin paljon kuin pystyvät, sitten kovaäänisimmin tai parhaiten röyhtäisevä valitsee jonkun tyhjentämään juomansa.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 86
+            "id": 86,
+            "tags": ["humiliation"]
         },
         {
             "title": "Jokeri",
             "description": "Keksi tälle kortille toiminto.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 87
+            "id": 87,
+            "tags": []
         },
         {
             "title": "Nyt on jännä",
             "description": "Kerro jokin jännä juttu. Kaikki joiden mielestä juttusi oli jännä juovat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 88
+            "id": 88,
+            "tags": ["creative", "knowledge"]
         },
         {
             "title": "Fuck, marry, kill",
             "description": "Pelaa Fuck, marry, kill -peli paikalla olevilla ihmisillä. Jos paikalla olijoita ei ole oikea määrä, edellinen pelaaja päättää ehdokkaat.",
             "timedEvent": false,
             "targetPlayer": false,
-            "id": 89
+            "id": 89,
+            "tags": ["humiliation"]
         },
         {
             "title": "Kolme asiaa viidessä sekunnissa",
-            "description": "Käykää kierros läpi niin että jokainen luettelee vuorollaan kolme asiaa annetusta kategorista viidessä sekunnissa. Pelivuorossa edellinen pelaaja päättää kategorian seuraavalle pelaajalle. Epäonnistumisista juodaan.",
+            "description": "Luettele kolme asiaa viidessä sekunissa, kohde päättää aiheen. Esim. alkuaineet",
             "timedEvent": false,
-            "targetPlayer": false,
-            "id": 90
+            "targetPlayer": true,
+            "id": 90,
+            "tags": ["random_target"]
         }
     ]
 }
