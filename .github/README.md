@@ -9,14 +9,14 @@
 
 <details>
 <summary>Screenshots</summary>
-<br>
-<b>Start</b>
+
+**Start**
 <img src="images/start.png" width="800" alt="Start screenshot"> 
 
-<b>Lobby</b>
+**Lobby**
 <img src="images/lobby.png" width="800" alt="Lobby screenshot"> 
 
-<b>Start</b>
+**Start**
 <img src="images/gameplay.png" width="800" alt="Gameplay screenshot"> 
 </details>
 
