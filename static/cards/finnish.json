@@ -730,7 +730,7 @@
         },
         {
             "title": "Esitä striimaajaa",
-            "description": "Esitä, että pidät live-lähetystä yhden kierroksen ajan, eli puhu katsojille, lue kommenneteja ja vilkuile kameraan yms.",
+            "description": "Esitä pitäväsi live-lähetystä yhden kierroksen ajan – puhu katsojille, lue kommentteja ja vilkuile kameraan jne.",
             "timedEvent": true,
             "targetPlayer": false,
             "id": 91,
