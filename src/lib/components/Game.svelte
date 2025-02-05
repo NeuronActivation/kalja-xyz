@@ -55,7 +55,7 @@
 
 {#each gameState.events as event}
 	{#if event.ended === true}
-		<h1 class="event-text">{event.person}, {$t('can-stop-the-mission')} {event.title}</h1>
+		<h2 class="event-text">{event.person}, {$t('can-stop-the-mission')} {event.title}</h2>
 	{/if}
 {/each}
 
@@ -71,18 +71,25 @@
 
 <style>
 	article {
-		width: 50%;
-		max-width: 600px;
 		position: relative;
+		max-width: 90%;
 	}
+
 	.game-status {
 		margin-top: 1rem;
+		text-align: center;
 	}
+
+	.event-text {
+		text-align: center;
+	}
+
 	.reroll {
 		all: unset;
 		cursor: pointer;
 		position: absolute;
 		margin: 10px;
+		padding: 8px;
 		line-height: 0;
 		color: #666;
 		top: 0;
