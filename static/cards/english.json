@@ -786,7 +786,7 @@
         },
         {
             "title": "Continue the sentence",
-            "description": "Tell the target the beginning of a sentence and they must finish it. The sentence can be, for example, the lyrics of a song or some another well-known phrase. If they fail, they drink and if they succeed, you drink.",
+            "description": "Tell the target the beginning of a sentence and they must finish it. The sentence can be, for example, the lyrics of a song or another well-known phrase. If they fail, they drink and if they succeed, you drink.",
             "timedEvent": false,
             "targetPlayer": true,
             "id": 98,
