@@ -802,7 +802,7 @@
         },
         {
             "title": "Most accessories",
-            "description": "Player with the most accessories on drinks.",
+            "description": "The player wearing the most accessories drinks.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 100,
