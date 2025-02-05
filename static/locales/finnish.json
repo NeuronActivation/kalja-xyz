@@ -21,7 +21,7 @@
             "tooltip": "Sisältää pelaajien valitseman kohteen."
         },
         "random_target": {
-            "name": "Satunnaiskohdistettu",
+            "name": "Satunnaistettu",
             "tooltip": "Kohdistuvat satunnaiseen pelaajaan."
         },
         "physical": {
