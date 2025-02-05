@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { t } from 'svelte-i18n';
+	import { t, locale } from 'svelte-i18n';
 	import { Language } from '$lib/languages/language';
 	import { gameStore } from '$lib/stores/gameStore';
 	import { languageStore } from '$lib/stores/languageStore';
@@ -21,7 +21,7 @@
 	}
 </script>
 
-<select class="language pico-background-azure-500" on:change={changeLanguage}>
+<select class="language pico-background-azure-500" bind:value={$locale} on:change={changeLanguage}>
 	{#each Object.values(Language) as language}
 		<option value={language}>{language}</option>
 	{/each}

@@ -3,7 +3,7 @@
  * and interact with the Svelte i18n library.
  */
 
-import { init, register, locale as $locale } from 'svelte-i18n';
+import { init, getLocaleFromNavigator, register, locale as $locale } from 'svelte-i18n';
 import { writable, get } from 'svelte/store';
 import { base } from '$app/paths';
 import { getCardUrl, Language } from '$lib/languages/language';
@@ -45,8 +45,8 @@ export function registerLocales(fetchFn: typeof fetch) {
  * Initializes the Svelte i18n library with a fallback locale and an initial locale.
  */
 init({
-	fallbackLocale: 'fi',
-	initialLocale: 'fi'
+	fallbackLocale: 'en',
+	initialLocale: getLocaleFromNavigator()?.split('-')[0]
 });
 
 /**
@@ -151,7 +151,11 @@ export function getStoredLanguage(): Language {
 	if (storedLanguage) {
 		return storedLanguage as Language;
 	}
-	return Language.FI;
+	// Normalize navigator locale.
+	const detectedLocale = getLocaleFromNavigator()?.split('-')[0] as Language;
+
+	// Ensure detectedLocale is a valid Language, otherwise default to English.
+	return Object.values(Language).includes(detectedLocale) ? detectedLocale : Language.EN;
 }
 
 /**
