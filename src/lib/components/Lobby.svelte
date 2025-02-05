@@ -84,7 +84,9 @@
 			<div class="grid tag-selection">
 				{#each Object.values(Tag) as tag}
 					<div class="tag-toggle flex justify-between align-center">
-						<span class="text-sm">{$t(`tags.${tag}.name`)}</span>
+						<span class="text-sm" title={$t(`tags.${tag}.tooltip`)}>
+							{$t(`tags.${tag}.name`)}
+						</span>
 						<div class="flex gap-0">
 							<button
 								class="tag-option include"
