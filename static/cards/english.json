@@ -834,7 +834,7 @@
         },
         {
             "title": "Vote: most religous",
-            "description": "Vote the most religious player among you. They will drink in the name of their lord.",
+            "description": "Vote the most religious player among you. They will drink in the name of their Lord.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 104,
