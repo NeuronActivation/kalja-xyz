@@ -74,12 +74,40 @@
 		{/each}
 	</ul>
 {/if}
-<details>
+<details open>
 	<summary>
 		<span>{$t('settings')}</span>
 	</summary>
 	<div class="settings">
-		<span>{$t('settings-cards')}:</span>
+		<div class="tag-selection-container">
+			<span><b>{$t('select-tags')}:</b></span>
+			<div class="grid tag-selection">
+				{#each Object.values(Tag) as tag}
+					<div class="tag-toggle flex justify-between align-center">
+						<span class="text-sm">{$t(`tags.${tag}.name`)}</span>
+						<div class="flex gap-0">
+							<button
+								class="tag-option include"
+								class:active={gameState.includedTags.includes(tag)}
+								on:click={() => setTagState(tag, 'include')}
+								aria-label="Include tag"
+							>
+								✓
+							</button>
+							<button
+								class="tag-option exclude small"
+								class:active={gameState.excludedTags.includes(tag)}
+								on:click={() => setTagState(tag, 'exclude')}
+								aria-label="Exclude tag"
+							>
+								⨯
+							</button>
+						</div>
+					</div>
+				{/each}
+			</div>
+		</div>
+		<span><b>{$t('settings-cards')}</b>:</span>
 		<div class="slider-container">
 			<span>{gameState.cardAmount}</span>
 			<input
@@ -91,37 +119,11 @@
 				bind:value={gameState.cardAmount}
 			/>
 		</div>
-
-		<!-- Tag Selection -->
-		<div class="tag-selection-container">
-			<h3>{$t('select-tags')}</h3>
-			<div class="tag-selection">
-				{#each Object.values(Tag) as tag}
-					<div class="tag-toggle">
-						<span>{$t(`tags.${tag}.name`)}</span>
-						<div class="tag-options">
-							<button
-								class="tag-option include {gameState.includedTags.includes(tag) ? 'active' : ''}"
-								on:click={() => setTagState(tag, 'include')}
-							>
-								✅
-							</button>
-							<button
-								class="tag-option exclude {gameState.excludedTags.includes(tag) ? 'active' : ''}"
-								on:click={() => setTagState(tag, 'exclude')}
-							>
-								❌
-							</button>
-						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
 	</div>
 </details>
 <button
-	class="pico-background-jade-500"
-	disabled={gameState.players.length < 2}
+	class="start-button pico-background-jade-500"
+	disabled={gameState.players.length < 2 || gameState.cardAmount < 1}
 	on:click={() => gameStore.startGame()}
 >
 	{$t('game-start-button')}
@@ -188,6 +190,7 @@
 
 	.tag-selection-container {
 		width: 100%;
+		padding: 5px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -196,7 +199,9 @@
 	.tag-selection {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
+		margin: 0 30px;
 		gap: 10px;
+		margin: 10px;
 		width: 100%;
 	}
 
@@ -206,16 +211,15 @@
 		justify-content: space-between;
 	}
 
-	.tag-options {
-		display: flex;
-		gap: 10px;
-	}
-
 	.tag-option {
 		cursor: pointer;
-		padding: 5px;
-		font-size: 1rem;
-		border-radius: 0.25rem;
+		padding: 0;
+		width: 25px;
+		height: 25px;
+		font-size: 0.8rem;
+		color: white;
+		border-radius: 50%;
+		line-height: 1;
 	}
 
 	.tag-option:not(.active) {
@@ -224,11 +228,9 @@
 
 	.tag-option.include {
 		background-color: #4caf50;
-		color: white;
 	}
 
 	.tag-option.exclude {
 		background-color: #f44336;
-		color: white;
 	}
 </style>
