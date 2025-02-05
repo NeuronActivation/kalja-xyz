@@ -1,0 +1,37 @@
+name: 🃏 Card Suggestion
+description: Suggest a new card for the game
+title: "[CARD]: " 
+labels: ["card-suggestion"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Card Title
+      placeholder: Enter a concise card name
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Card Description
+      description: Explain the card's rules and drinking mechanics
+      placeholder: |
+        - When does this card activate?
+        - What's the drinking penalty/reward?
+        - Special conditions?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: event-based
+    attributes:
+      label: Event Type
+      options:
+        - label: "🎉 Event-based (time-limited occurrence)"
+
+  - type: checkboxes
+    id: targeting
+    attributes:
+      label: Targeting
+      options:
+        - label: "🎯 Affects randomly chosen players"
