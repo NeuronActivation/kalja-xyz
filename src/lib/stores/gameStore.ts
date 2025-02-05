@@ -6,6 +6,7 @@ import { ApplicationState } from '$lib/constants/applicationState';
 import { loadGameState, saveGameState } from '$lib/utils/storage';
 import { languageStore } from '$lib/stores/languageStore';
 import { loadCards, loadSingleCard } from '$lib/languages/load';
+import { Tag } from '$lib/constants/tag';
 
 /**
  * Creates a writable store to manage the game state and provides several actions
@@ -27,6 +28,7 @@ import { loadCards, loadSingleCard } from '$lib/languages/load';
  * - `loadSavedState`: Load the saved game state from sessionStorage.
  * - `reroll`: Reload a single card and update the game state.
  * - `replay`: Reload cards and restart the game.
+ * - `updateTags`: Updates the tags where the cards are drawn from and the tags where the cards are discarded.
  */
 function createGameStore() {
 	const { subscribe, set, update } = writable<GameState>(createNewGame());
@@ -71,13 +73,15 @@ function createGameStore() {
 			});
 		},
 		initializeMaxCards: async () => {
-			const maxCards = await loadCards();
-			if (maxCards) {
-				update((state) => ({
-					...state,
-					maxCards
-				}));
-			}
+			const { includedTags, excludedTags } = get(gameStore);
+			const maxCards = await loadCards(includedTags, excludedTags);
+			const cardAmount = maxCards;
+
+			update((state) => ({
+				...state,
+				cardAmount,
+				maxCards
+			}));
 		},
 		startGame: async () => {
 			const cards = await languageStore.getCards();
@@ -114,13 +118,21 @@ function createGameStore() {
 			}
 		},
 		reroll: async () => {
-			const cardIndex = get(gameStore).currentCardIndex;
-			await loadSingleCard(cardIndex);
+			const { currentCardIndex, includedTags, excludedTags } = get(gameStore);
+			await loadSingleCard(currentCardIndex, includedTags, excludedTags);
 			await gameStore.updateCards();
 		},
 		replay: async () => {
-			await loadCards();
+			const { includedTags, excludedTags } = get(gameStore);
+			await loadCards(includedTags, excludedTags);
 			await gameStore.startGame();
+		},
+		updateTags: (includedTags: Tag[], excludedTags: Tag[]) => {
+			update((state) => {
+				const updatedState = { ...state, includedTags, excludedTags };
+				saveGameState(updatedState);
+				return updatedState;
+			});
 		}
 	};
 }

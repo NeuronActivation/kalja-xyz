@@ -12,5 +12,53 @@
     "game-over": "Game over",
     "back-to-start": "Back to start",
     "replay": "Replay",
-    "reroll": "Reroll"
+    "reroll": "Reroll",
+    "select-tags": "Tags",
+
+    "tags": {
+        "chosen_target": {
+            "name": "Chosen target",
+            "tooltip": "Target chosen by players"
+        },
+        "random_target": {
+            "name": "Random target",
+            "tooltip": "Affects a random player."
+        },
+        "physical": {
+            "name": "Physical",
+            "tooltip": "Requires physical presence or action."
+        },
+        "creative": {
+            "name": "Creative",
+            "tooltip": "Encourages creative thinking and ideation."
+        },
+        "roleplay": {
+            "name": "Roleplay",
+            "tooltip": "Includes roleplaying-related tasks."
+        },
+        "voting": {
+            "name": "Voting",
+            "tooltip": "Players vote among themselves."
+        },
+        "humiliation": {
+            "name": "Humiliation",
+            "tooltip": "May put players in embarrassing situations."
+        },
+        "knowledge": {
+            "name": "Knowledge",
+            "tooltip": "Tests players' knowledge."
+        },
+        "event": {
+            "name": "Whole Round",
+            "tooltip": "Affects the entire round of the game."
+        },
+        "classic": {
+            "name": "Classic",
+            "tooltip": "Classic drinking game cards."
+        },
+        "untagged": {
+            "name": "Untagged",
+            "tooltip": "Cards without fitting tag."
+        }
+    }
 }

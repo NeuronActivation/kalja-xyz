@@ -12,5 +12,53 @@
     "game-over": "Peli ohi",
     "back-to-start": "Takaisin alkuun",
     "replay": "Pelaa uudelleen",
-    "reroll": "Vaihda kortti"
+    "reroll": "Vaihda kortti",
+    "select-tags": "Tagit",
+
+    "tags": {
+        "chosen_target": {
+            "name": "Kohdistettu",
+            "tooltip": "Sisältää pelaajien valitseman kohteen."
+        },
+        "random_target": {
+            "name": "Satunnaistettu",
+            "tooltip": "Kohdistuvat satunnaiseen pelaajaan."
+        },
+        "physical": {
+            "name": "Paikan päällä",
+            "tooltip": "Vaativat fyysistä läsnäoloa tai toimintaa."
+        },
+        "creative": {
+            "name": "Luova",
+            "tooltip": "Kannustavat luovaan ajatteluun ja ideointiin."
+        },
+        "roleplay": {
+            "name": "Roolipeli",
+            "tooltip": "Sisältävät roolipelaamiseen liittyviä tehtäviä."
+        },
+        "voting": {
+            "name": "Äänestys",
+            "tooltip": "Pelaajat äänestävät pelaajien keskuudesta."
+        },
+        "humiliation": {
+            "name": "Nöyryytys",
+            "tooltip": "Voivat asettaa pelaajan noloihin tilanteisiin."
+        },
+        "knowledge": {
+            "name": "Tieto",
+            "tooltip": "Testaavat pelaajien tietämystä."
+        },
+        "event": {
+            "name": "Koko kierros",
+            "tooltip": "Vaikuttavat koko pelikierrokseen."
+        },
+        "classic": {
+            "name": "Klassikko",
+            "tooltip": "Juomapelien klassikkokortit."
+        },
+        "untagged": {
+            "name": "Kategorisoimaton",
+            "tooltip": "Kortit ilman sopivaa tagia."
+        }
+    }
 }

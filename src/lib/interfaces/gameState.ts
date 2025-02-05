@@ -2,6 +2,7 @@ import { ApplicationState } from '$lib/constants/applicationState';
 import { type Card } from '$lib/interfaces/card';
 import { type GameEvent } from '$lib/interfaces/gameEvent';
 import { type Player } from '$lib/interfaces/player';
+import { Tag } from '$lib/constants/tag';
 
 /**
  * Represents the state of the game at a given moment.
@@ -30,6 +31,12 @@ export interface GameState {
 
 	/** The list of events currently active in the game. */
 	events: GameEvent[];
+
+	/** Tags which the user selects where the cards are included from. All tags are on by default. */
+	includedTags: Tag[];
+
+	/** Tags which the user selects where the cards are excluded. */
+	excludedTags: Tag[];
 }
 
 /**
@@ -50,6 +57,8 @@ export function createNewGame(): GameState {
 		currentPlayerIndex: 0,
 		state: ApplicationState.START,
 		players: [],
-		events: []
+		events: [],
+		includedTags: Object.values(Tag),
+		excludedTags: []
 	};
 }
