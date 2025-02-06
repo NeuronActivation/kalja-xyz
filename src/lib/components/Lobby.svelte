@@ -74,7 +74,7 @@
 		{/each}
 	</ul>
 {/if}
-<details open>
+<details>
 	<summary>
 		<span>{$t('settings')}</span>
 	</summary>
