@@ -778,7 +778,7 @@
         },
         {
             "title": "Time to check notifications",
-            "description": "Each player drinks the amount according to the notifications on their phone's.",
+            "description": "Each player drinks the amount according to the notifications on their phone",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 97,
@@ -786,7 +786,7 @@
         },
         {
             "title": "Continue the sentence",
-            "description": "Tell the target the beginning of a sentence and they must finish it. The sentence can be, for example, the lyrics of a song or some another well-known phrase. If they fail, they drink and if they succeed, you drink.",
+            "description": "Tell the target the beginning of a sentence and they must finish it. The sentence can be, for example, the lyrics of a song or another well-known phrase. If they fail, they drink and if they succeed, you drink.",
             "timedEvent": false,
             "targetPlayer": true,
             "id": 98,
@@ -802,7 +802,7 @@
         },
         {
             "title": "Most accessories",
-            "description": "Player with the most accessories on drinks.",
+            "description": "The player wearing the most accessories drinks.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 100,
@@ -810,7 +810,7 @@
         },
         {
             "title": "Vowel-initial",
-            "description": "All players whos name starts with vowel must drink.",
+            "description": "All players whose name starts with a vowel must drink.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 101,
@@ -818,7 +818,7 @@
         },
         {
             "title": "Consonant-initial",
-            "description": "All players whos name starts with consonant must drink.",
+            "description": "All players whose name starts with a consonant must drink.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 102,
@@ -834,7 +834,7 @@
         },
         {
             "title": "Vote: most religous",
-            "description": "Vote the most religious player among you. They will drink in the name of their lord.",
+            "description": "Vote the most religious player among you. They will drink in the name of their Lord.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 104,
@@ -842,7 +842,7 @@
         },
         {
             "title": "Language master",
-            "description": "Player who can speak the most languages get to choose who drinks.",
+            "description": "The player who can speak the most languages gets to choose who drinks.",
             "timedEvent": false,
             "targetPlayer": false,
             "id": 105,
