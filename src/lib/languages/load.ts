@@ -103,32 +103,26 @@ async function createCards(
 ): Promise<Record<Language, LanguageData> | null> {
 	try {
 		const seed = Math.random();
-
 		const shuffledCards = await fetchAndFilterCards(includedTags, excludedTags, seed);
 
-		// Extract language-specific versions of the cards.
-		const fiShuffledCards = shuffledCards.slice(0, cardAmount).map((card) => ({
-			id: card.id,
-			title: card.title.fi,
-			description: card.description.fi,
-			timedEvent: card.timedEvent,
-			targetPlayer: card.targetPlayer,
-			tags: card.tags
-		}));
+		// Initialize an empty record to store cards per language.
+		const languageCards: Record<Language, LanguageData> = {} as Record<Language, LanguageData>;
 
-		const enShuffledCards = shuffledCards.slice(0, cardAmount).map((card) => ({
-			id: card.id,
-			title: card.title.en,
-			description: card.description.en,
-			timedEvent: card.timedEvent,
-			targetPlayer: card.targetPlayer,
-			tags: card.tags
-		}));
-
-		return {
-			[Language.FI]: { cards: fiShuffledCards.slice(0, cardAmount), language: Language.FI },
-			[Language.EN]: { cards: enShuffledCards.slice(0, cardAmount), language: Language.EN }
-		};
+		// Process all languages.
+		Object.values(Language).forEach((lang) => {
+			languageCards[lang] = {
+				cards: shuffledCards.slice(0, cardAmount).map((card) => ({
+					id: card.id,
+					title: card.title[lang],
+					description: card.description[lang],
+					timedEvent: card.timedEvent,
+					targetPlayer: card.targetPlayer,
+					tags: card.tags
+				})),
+				language: lang
+			};
+		});
+		return languageCards;
 	} catch (error) {
 		console.error('Failed to create cards:', error);
 		return null;
