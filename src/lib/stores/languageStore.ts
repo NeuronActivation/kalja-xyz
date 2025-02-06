@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import { Language } from '$lib/languages/language';
 import { getStoredCards, setLanguage, getStoredLanguage } from '$lib/languages/load';
 import { isBrowser } from '$lib/constants/isBrowser';
-import { type Card } from '$lib/interfaces/card';
+import { type LanguageSpecificCard } from '$lib/interfaces/card';
 import { type Subscriber, type Invalidator, type Unsubscriber } from 'svelte/motion';
 
 interface LanguageStore {
@@ -30,9 +30,9 @@ interface LanguageStore {
 	/**
 	 * Retrieves the cards available for the current language.
 	 *
-	 * @returns A promise that resolves to an array of cards or null if no cards are found.
+	 * @returns A promise that resolves to an array of language specific cards or null if no cards are found.
 	 */
-	getCards(): Promise<Card[] | null>;
+	getCards(): Promise<LanguageSpecificCard[] | null>;
 
 	/**
 	 * Sets a callback function to be executed once the store initialization is complete.
@@ -77,7 +77,7 @@ function createLanguageStore(): LanguageStore {
 				onInitComplete();
 			}
 		},
-		async getCards(): Promise<Card[] | null> {
+		async getCards(): Promise<LanguageSpecificCard[] | null> {
 			const currentLanguage = getStoredLanguage();
 			return getStoredCards(currentLanguage);
 		},
