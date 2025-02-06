@@ -742,7 +742,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 92,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "Android users",
@@ -750,7 +750,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 93,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "iPhone users",
@@ -758,7 +758,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 94,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "Pro dating",
@@ -766,7 +766,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 95,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "Low battery",
@@ -774,7 +774,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 96,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "Time to check notifications",
@@ -782,7 +782,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 97,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "Continue the sentence",
@@ -806,7 +806,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 100,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "Vowel-initial",
@@ -814,7 +814,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 101,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "Consonant-initial",
@@ -822,7 +822,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 102,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "Black socks",
@@ -830,7 +830,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 103,
-            "tags": [""]
+            "tags": []
         },
         {
             "title": "Vote: most religous",
@@ -854,7 +854,7 @@
             "timedEvent": false,
             "targetPlayer": false,
             "id": 106,
-            "tags": [""]
+            "tags": []
         }
     ]
 }
