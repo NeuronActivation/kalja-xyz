@@ -1,5 +1,5 @@
 import { ApplicationState } from '$lib/constants/applicationState';
-import { type Card } from '$lib/interfaces/card';
+import { type LanguageSpecificCard } from '$lib/interfaces/card';
 import { type GameEvent } from '$lib/interfaces/gameEvent';
 import { type Player } from '$lib/interfaces/player';
 import { Tag } from '$lib/constants/tag';
@@ -9,7 +9,7 @@ import { Tag } from '$lib/constants/tag';
  */
 export interface GameState {
 	/** The list of cards in the game. */
-	cards: Card[];
+	cards: LanguageSpecificCard[];
 
 	/** The number of cards available in the game. Defaults to 30. */
 	cardAmount: number;

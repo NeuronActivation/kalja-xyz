@@ -6,8 +6,8 @@
 import { init, getLocaleFromNavigator, register, locale as $locale } from 'svelte-i18n';
 import { writable, get } from 'svelte/store';
 import { base } from '$app/paths';
-import { getCardUrl, Language } from '$lib/languages/language';
-import { type Card } from '$lib/interfaces/card';
+import { Language } from '$lib/languages/language';
+import { type Card, type LanguageSpecificCard } from '$lib/interfaces/card';
 import { seededShuffle } from '$lib/utils/seed';
 import { isBrowser } from '$lib/constants/isBrowser';
 import { Tag } from '$lib/constants/tag';
@@ -16,7 +16,7 @@ import { Tag } from '$lib/constants/tag';
  * Represents the data associated with a language, including the cards and language code.
  */
 interface LanguageData {
-	cards?: Card[];
+	cards?: LanguageSpecificCard[];
 	language: Language;
 }
 
@@ -52,21 +52,19 @@ init({
 });
 
 /**
- * Fetches, filters and shuffles cards for a given language.
- * @param language The language to fetch cards for.
+ * Fetches, filters and shuffles cards.
  * @param includedTags - Tags that the card must have at least one of to be included.
  * @param excludedTags - Tags that the card must not have any of to be included.
  * @param seed The seed for shuffling.
- * @returns Shuffled and filtered cards for the given language.
+ * @returns Shuffled and filtered cards.
  */
 async function fetchAndFilterCards(
-	language: Language,
 	includedTags: Tag[],
 	excludedTags: Tag[],
 	seed: number
 ): Promise<Card[]> {
 	try {
-		const response = await fetch(getCardUrl(language));
+		const response = await fetch(`${base}/cards/cards.json`);
 		const { cards }: { cards: Card[] } = await response.json();
 
 		// Filter only cards that contain at least one of the given tags.
@@ -86,7 +84,7 @@ async function fetchAndFilterCards(
 
 		return seededShuffle(filteredCards, seed);
 	} catch (error) {
-		console.error(`Failed to fetch cards for language ${language}:`, error);
+		console.error(`Failed to fetch cards:`, error);
 		return [];
 	}
 }
@@ -105,16 +103,26 @@ async function createCards(
 ): Promise<Record<Language, LanguageData> | null> {
 	try {
 		const seed = Math.random();
+		const shuffledCards = await fetchAndFilterCards(includedTags, excludedTags, seed);
 
-		const [fiShuffledCards, enShuffledCards] = await Promise.all([
-			fetchAndFilterCards(Language.FI, includedTags, excludedTags, seed),
-			fetchAndFilterCards(Language.EN, includedTags, excludedTags, seed)
-		]);
+		// Initialize an empty record to store cards per language.
+		const languageCards: Record<Language, LanguageData> = {} as Record<Language, LanguageData>;
 
-		return {
-			[Language.FI]: { cards: fiShuffledCards.slice(0, cardAmount), language: Language.FI },
-			[Language.EN]: { cards: enShuffledCards.slice(0, cardAmount), language: Language.EN }
-		};
+		// Process all languages.
+		Object.values(Language).forEach((lang) => {
+			languageCards[lang] = {
+				cards: shuffledCards.slice(0, cardAmount).map((card) => ({
+					id: card.id,
+					title: card.title[lang],
+					description: card.description[lang],
+					timedEvent: card.timedEvent,
+					targetPlayer: card.targetPlayer,
+					tags: card.tags
+				})),
+				language: lang
+			};
+		});
+		return languageCards;
 	} catch (error) {
 		console.error('Failed to create cards:', error);
 		return null;
@@ -191,7 +199,7 @@ export async function loadSingleCard(
  * @param lang The language for which to retrieve the cards.
  * @returns An array of cards for the specified language, or null if no cards are stored.
  */
-export function getStoredCards(lang: Language): Card[] | null {
+export function getStoredCards(lang: Language): LanguageSpecificCard[] | null {
 	return get(languageData)[lang]?.cards || null;
 }
 
