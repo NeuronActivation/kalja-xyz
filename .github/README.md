@@ -22,7 +22,7 @@
 
 
 ## ✨ Features
-- 🍻 **90+ Cards**  
+- 🍻 **100+ Cards**  
 From "Sip" to "Strip" (okay, maybe not *that* kind of game)
 - 🎚️ **Custom Rounds**  
 Select your card quantity and mix the cocktail with tags.
