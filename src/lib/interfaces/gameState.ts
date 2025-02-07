@@ -11,7 +11,7 @@ export interface GameState {
 	/** The list of cards in the game. */
 	cards: LanguageSpecificCard[];
 
-	/** The number of cards available in the game. Defaults to 30. */
+	/** The number of cards available in the game. */
 	cardAmount: number;
 
 	/** The maximum number of cards allowed in the game. Must be explicitly initialized using `initializeMaxCards`. */
@@ -32,17 +32,16 @@ export interface GameState {
 	/** The list of events currently active in the game. */
 	events: GameEvent[];
 
-	/** Tags which the user selects where the cards are included from. All tags are on by default. */
+	/** Tags that determine where the cards are included from. All tags are enabled by default. */
 	includedTags: Tag[];
 
-	/** Tags which the user selects where the cards are excluded. */
+	/** Tags that determine which cards are filtered out. */
 	excludedTags: Tag[];
 }
 
 /**
  * Creates a new game state with default values.
  *
- * - `cardAmount` is initialized to `30`.
  * - `maxCards` is `undefined` and **must be explicitly set** using the `initializeMaxCards` function.
  * - All other properties are initialized with default values.
  *
@@ -51,7 +50,7 @@ export interface GameState {
 export function createNewGame(): GameState {
 	return {
 		cards: [],
-		cardAmount: 30,
+		cardAmount: 0,
 		maxCards: undefined,
 		currentCardIndex: 0,
 		currentPlayerIndex: 0,
