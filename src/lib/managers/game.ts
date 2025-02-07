@@ -76,7 +76,7 @@ export namespace game {
 
 		// Go to game over if out of cards.
 		// Card index doesn't have to be updated since it's always updated in startGame().
-		if (gameState.currentCardIndex >= gameState.cardAmount) {
+		if (gameState.currentCardIndex >= (gameState.cardAmount ?? 0)) {
 			// All ongoing events automatically end.
 			gameState.events.forEach((event) => {
 				event.ended = true;
