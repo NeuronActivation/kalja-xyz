@@ -116,8 +116,8 @@ async function createCards(
 					id: card.id,
 					title: card.title[lang],
 					description: card.description[lang],
-					timedEvent: card.timedEvent,
-					targetPlayer: card.targetPlayer,
+					timedEvent: card.tags.includes(Tag.EVENT),
+					targetPlayer: card.tags.includes(Tag.RANDOM_TARGET),
 					tags: card.tags
 				})),
 				language: lang
