@@ -13,7 +13,7 @@ import { isBrowser } from '$lib/constants/isBrowser';
 import { Tag } from '$lib/constants/tag';
 
 /**
- * Represents the data associated with a language, including the cards and language code.
+ * Represents the data associated with a language, including the cards and a language code.
  */
 interface LanguageData {
 	cards?: LanguageSpecificCard[];
@@ -76,6 +76,7 @@ async function fetchAndFilterCards(
 		);
 
 		// Exclude cards that contain at least one of the excluded tags.
+		// If "untagged" is exluded, exclude cards without tags.
 		const filteredCards = includedCards.filter(
 			(card) =>
 				!card.tags.some((tag) => excludedTags.includes(tag)) &&

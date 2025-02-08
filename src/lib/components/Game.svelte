@@ -59,7 +59,7 @@
 	{/if}
 {/each}
 
-{#if gameState.currentCardIndex + 1 < gameState.cardAmount}
+{#if gameState.currentCardIndex + 1 < (gameState.cardAmount ?? 0)}
 	<button on:click={gameStore.showNextCard}>{$t('next-card')}</button>
 {:else}
 	<button class="pico-background-red-500" on:click={gameStore.showNextCard}>

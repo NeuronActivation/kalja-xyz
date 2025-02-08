@@ -21,7 +21,7 @@ interface LocalizedText {
 	fi: string;
 }
 
-/** Data structure corresponsing to "cards.json". */
+/** Data structure corresponding to "cards.json". */
 export interface Card extends BaseCard {
 	/** The title or name of the card. */
 	title: LocalizedText;
