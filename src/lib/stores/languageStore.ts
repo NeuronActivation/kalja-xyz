@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { Language } from '$lib/languages/language';
-import { getStoredCards, setLanguage, getStoredLanguage } from '$lib/languages/load';
+import { getStoredCards, getStoredLanguage, setLanguage } from '$lib/languages/load';
 import { isBrowser } from '$lib/constants/isBrowser';
 import { type LanguageSpecificCard } from '$lib/interfaces/card';
 import { type Subscriber, type Invalidator, type Unsubscriber } from 'svelte/motion';
@@ -16,7 +16,7 @@ interface LanguageStore {
 	 */
 	subscribe: (
 		run: Subscriber<{ language: Language }>,
-		invalidate?: Invalidator<{ language: Language }> | undefined
+		invalidate?: Invalidator<{ language: Language }> | undefined,
 	) => Unsubscriber;
 
 	/**
@@ -51,7 +51,7 @@ interface LanguageStore {
  */
 function createLanguageStore(): LanguageStore {
 	const { subscribe, set } = writable({
-		language: Language.FI
+		language: Language.FI,
 	});
 
 	let onInitComplete: (() => void) | null = null;
@@ -83,7 +83,7 @@ function createLanguageStore(): LanguageStore {
 		},
 		setGameStoreUpdate(cb: () => void) {
 			onInitComplete = cb;
-		}
+		},
 	};
 }
 

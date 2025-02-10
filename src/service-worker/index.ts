@@ -17,7 +17,7 @@ const CACHE = `kalja-xyz-cache-${version}`;
  */
 const ASSETS: string[] = [
 	...build, // Compiled application code
-	...files // Static assets
+	...files, // Static assets
 ];
 
 // Service worker lifecycle event handlers

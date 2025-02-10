@@ -80,7 +80,7 @@ function createGameStore() {
 			update((state) => ({
 				...state,
 				cardAmount,
-				maxCards
+				maxCards,
 			}));
 		},
 		startGame: async () => {
@@ -107,7 +107,7 @@ function createGameStore() {
 			if (cards) {
 				update((state) => ({
 					...state,
-					cards: cards
+					cards: cards,
 				}));
 			}
 		},
@@ -133,7 +133,7 @@ function createGameStore() {
 				saveGameState(updatedState);
 				return updatedState;
 			});
-		}
+		},
 	};
 }
 

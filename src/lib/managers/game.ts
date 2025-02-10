@@ -30,7 +30,7 @@ export namespace game {
 	export function addPlayer(gameState: GameState, playerName: string): GameState {
 		const newPlayer: Player = {
 			id: gameState.players.length + 1,
-			name: playerName
+			name: playerName,
 		};
 		gameState.players = [...gameState.players, newPlayer];
 		return gameState;
@@ -101,7 +101,7 @@ export namespace game {
 				title: gameState.cards[gameState.currentCardIndex].title,
 				person: gameState.players[gameState.currentPlayerIndex].name,
 				startingIndex: gameState.currentPlayerIndex,
-				ended: false
+				ended: false,
 			};
 			gameState.events.push(event);
 		}
