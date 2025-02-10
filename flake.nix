@@ -12,9 +12,9 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       devShell = pkgs.mkShell {
-        nativeBuildInputs = with pkgs.nodePackages; [
+        nativeBuildInputs = with pkgs; [
           deno
-          svelte-language-server
+          nodePackages.svelte-language-server
         ];
         buildInputs = with pkgs; [
           openssl
