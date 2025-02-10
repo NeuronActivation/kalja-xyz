@@ -3,7 +3,7 @@ import { Language } from '$lib/languages/language';
 import { getStoredCards, getStoredLanguage, setLanguage } from '$lib/languages/load';
 import { isBrowser } from '$lib/constants/isBrowser';
 import { type LanguageSpecificCard } from '$lib/interfaces/card';
-import { type Subscriber, type Invalidator, type Unsubscriber } from 'svelte/motion';
+import { type Invalidator, type Subscriber, type Unsubscriber } from 'svelte/motion';
 
 interface LanguageStore {
 	/**

@@ -118,9 +118,9 @@ async function createCards(
 					description: card.description[lang],
 					timedEvent: card.tags.includes(Tag.EVENT),
 					targetPlayer: card.tags.includes(Tag.RANDOM_TARGET),
-					tags: card.tags
+					tags: card.tags,
 				})),
-				language: lang
+				language: lang,
 			};
 		});
 		return languageCards;
