@@ -1,9 +1,11 @@
+import { type Subscriber, type Invalidator, type Unsubscriber } from 'svelte/motion';
 import { writable } from 'svelte/store';
-import { Language } from '$lib/languages/language';
-import { getStoredCards, getStoredLanguage, setLanguage } from '$lib/languages/load';
-import { isBrowser } from '$lib/constants/isBrowser';
 import { type LanguageSpecificCard } from '$lib/interfaces/card';
-import { type Invalidator, type Subscriber, type Unsubscriber } from 'svelte/motion';
+import { Language } from '$lib/constants/language';
+import { isBrowser } from '$lib/constants/isBrowser';
+import { getStoredLanguage } from '$lib/i18n/localeStorage';
+import { getStoredCards } from '$lib/cards/cardUtils';
+import { setLanguage } from '$lib/i18n/localeStorage';
 
 interface LanguageStore {
 	/**

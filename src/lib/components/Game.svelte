@@ -4,8 +4,8 @@
 	import { gameStore } from '$lib/stores/gameStore';
 	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
 	import { onMount } from 'svelte';
-	import { getPersistentTarget, setPersistentTarget } from '$lib/utils/storage';
 	import { getTarget } from '$lib/managers/game';
+	import { setPersistentTarget, getPersistentTarget } from '$lib/utils/targetStorage';
 
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
