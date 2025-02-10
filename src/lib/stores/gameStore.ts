@@ -1,11 +1,11 @@
 import { get, writable } from 'svelte/store';
-import type { GameState } from '$lib/interfaces/gameState';
-import { createNewGame } from '$lib/interfaces/gameState';
 import { ApplicationState } from '$lib/constants/applicationState';
-import { loadGameState, saveGameState } from '$lib/utils/storage';
+import type { GameState } from '$lib/interfaces/gameState';
 import { languageStore } from '$lib/stores/languageStore';
-import { loadCards, loadSingleCard } from '$lib/languages/load';
 import { Tag } from '$lib/constants/tag';
+import { createNewGame } from '$lib/gameState/createNewGame';
+import { loadGameState, saveGameState } from '$lib/gameState/gameStateStorage';
+import { loadCards, loadSingleCard } from '$lib/cards/cardStorage';
 import {
 	addPlayer,
 	changeGameState,

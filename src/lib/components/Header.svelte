@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { t, locale } from 'svelte-i18n';
-	import { Language } from '$lib/languages/language';
+	import { Language } from '$lib/constants/language';
 	import { gameStore } from '$lib/stores/gameStore';
 	import { languageStore } from '$lib/stores/languageStore';
 	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
