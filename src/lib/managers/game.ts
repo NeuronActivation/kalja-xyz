@@ -97,7 +97,7 @@ export namespace game {
 		});
 		// Add a new event.
 		if (gameState.cards[gameState.currentCardIndex].timedEvent) {
-			let event: GameEvent = {
+			const event: GameEvent = {
 				title: gameState.cards[gameState.currentCardIndex].title,
 				person: gameState.players[gameState.currentPlayerIndex].name,
 				startingIndex: gameState.currentPlayerIndex,

@@ -77,7 +77,7 @@ function createLanguageStore(): LanguageStore {
 				onInitComplete();
 			}
 		},
-		async getCards(): Promise<LanguageSpecificCard[] | null> {
+		getCards(): Promise<Card[] | null> {
 			const currentLanguage = getStoredLanguage();
 			return getStoredCards(currentLanguage);
 		},
