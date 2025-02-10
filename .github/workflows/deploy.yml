@@ -16,13 +16,13 @@ jobs:
           deno-version: v2.x
 
       - name: Install dependencies
-        run: deno install
+        run: deno install --allow-scripts
 
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
-          deno run build
+          deno task build
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
