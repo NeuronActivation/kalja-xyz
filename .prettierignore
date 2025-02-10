@@ -1,9 +1,0 @@
-# Ignore everything recursively
-*
-
-# But not the .ts or svelte files
-!*.ts
-!*.svelte
-
-# Check subdirectories too
-!*/
