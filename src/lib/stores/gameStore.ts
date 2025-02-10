@@ -4,9 +4,15 @@ import type { GameState } from '$lib/interfaces/gameState';
 import { languageStore } from '$lib/stores/languageStore';
 import { Tag } from '$lib/constants/tag';
 import { createNewGame } from '$lib/gameState/createNewGame';
-import { saveGameState, loadGameState } from '$lib/gameState/gameStateStorage';
+import { loadGameState, saveGameState } from '$lib/gameState/gameStateStorage';
 import { loadCards, loadSingleCard } from '$lib/cards/cardStorage';
-import { changeGameState, addPlayer, removePlayer, startGame, showNextCard } from '$lib/managers/game';
+import {
+	addPlayer,
+	changeGameState,
+	removePlayer,
+	showNextCard,
+	startGame,
+} from '$lib/managers/game';
 
 /**
  * Creates a writable store to manage the game state and provides several actions

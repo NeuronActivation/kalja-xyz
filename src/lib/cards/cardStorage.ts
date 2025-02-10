@@ -40,7 +40,7 @@ export async function loadCards(includedTags: Tag[], excludedTags: Tag[]): Promi
 export async function loadSingleCard(
 	cardIndex: number,
 	includedTags: Tag[],
-	excludedTags: Tag[]
+	excludedTags: Tag[],
 ): Promise<void> {
 	try {
 		const currentData = get(languageData);

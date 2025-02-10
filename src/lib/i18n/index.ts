@@ -1,4 +1,4 @@
-import { init, getLocaleFromNavigator, register } from 'svelte-i18n';
+import { getLocaleFromNavigator, init, register } from 'svelte-i18n';
 import { base } from '$app/paths';
 
 /**
@@ -13,5 +13,5 @@ export function registerLocales(fetchFn: typeof fetch) {
 // Initialize Svelte i18n with fallback locale
 init({
 	fallbackLocale: 'en',
-	initialLocale: getLocaleFromNavigator()?.split('-')[0]
+	initialLocale: getLocaleFromNavigator()?.split('-')[0],
 });

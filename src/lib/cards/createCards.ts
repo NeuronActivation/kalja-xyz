@@ -15,7 +15,7 @@ import { seededShuffle } from '$lib/utils/seed';
 export async function createCards(
 	cardAmount: number,
 	includedTags: Tag[],
-	excludedTags: Tag[]
+	excludedTags: Tag[],
 ): Promise<Record<Language, LanguageData> | null> {
 	try {
 		const seed = Math.random();
@@ -33,9 +33,9 @@ export async function createCards(
 					description: card.description[lang],
 					timedEvent: card.tags.includes(Tag.EVENT),
 					targetPlayer: card.tags.includes(Tag.RANDOM_TARGET),
-					tags: card.tags
+					tags: card.tags,
 				})),
-				language: lang
+				language: lang,
 			};
 		});
 		return languageCards;
@@ -55,7 +55,7 @@ export async function createCards(
 async function fetchAndFilterCards(
 	includedTags: Tag[],
 	excludedTags: Tag[],
-	seed: number
+	seed: number,
 ): Promise<Card[]> {
 	try {
 		const response = await fetch(`${base}/cards/cards.json`);
@@ -66,7 +66,7 @@ async function fetchAndFilterCards(
 		const includedCards = cards.filter(
 			(card) =>
 				card.tags.some((tag) => includedTags.includes(tag)) ||
-				(includedTags.includes(Tag.UNTAGGED) && card.tags.length === 0)
+				(includedTags.includes(Tag.UNTAGGED) && card.tags.length === 0),
 		);
 
 		// Exclude cards that contain at least one of the excluded tags.
@@ -74,7 +74,7 @@ async function fetchAndFilterCards(
 		const filteredCards = includedCards.filter(
 			(card) =>
 				!card.tags.some((tag) => excludedTags.includes(tag)) &&
-				!(excludedTags.includes(Tag.UNTAGGED) && card.tags.length === 0)
+				!(excludedTags.includes(Tag.UNTAGGED) && card.tags.length === 0),
 		);
 
 		return seededShuffle(filteredCards, seed);

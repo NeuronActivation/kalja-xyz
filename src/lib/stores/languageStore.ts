@@ -1,4 +1,4 @@
-import { type Subscriber, type Invalidator, type Unsubscriber } from 'svelte/motion';
+import { type Invalidator, type Subscriber, type Unsubscriber } from 'svelte/motion';
 import { writable } from 'svelte/store';
 import { type LanguageSpecificCard } from '$lib/interfaces/card';
 import { Language } from '$lib/constants/language';
