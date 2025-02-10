@@ -1,6 +1,6 @@
 import { get, writable } from 'svelte/store';
-import type { GameState } from '$lib/interfaces/gameState';
 import { ApplicationState } from '$lib/constants/applicationState';
+import type { GameState } from '$lib/interfaces/gameState';
 import { languageStore } from '$lib/stores/languageStore';
 import { Tag } from '$lib/constants/tag';
 import { createNewGame } from '$lib/gameState/createNewGame';
