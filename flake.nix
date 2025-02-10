@@ -13,12 +13,11 @@
     in {
       devShell = pkgs.mkShell {
         nativeBuildInputs = with pkgs.nodePackages; [
-          pnpm
+          deno
           svelte-language-server
         ];
         buildInputs = with pkgs; [
           openssl
-          nodejs
         ];
       };
     });
