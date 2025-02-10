@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
-	import { game } from '$lib/managers/game';
 	import type { GameState } from '$lib/interfaces/gameState';
 	import { gameStore } from '$lib/stores/gameStore';
 	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
 	import { onMount } from 'svelte';
 	import { getPersistentTarget, setPersistentTarget } from '$lib/utils/targetStorage';
+	import { getTarget } from '$lib/managers/game';
 
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
@@ -18,7 +18,7 @@
 			if (storedTarget) {
 				targetPlayer = storedTarget;
 			} else {
-				targetPlayer = game.getTarget(gameState);
+				targetPlayer = getTarget(gameState);
 				setPersistentTarget(index, targetPlayer);
 			}
 		}
@@ -28,7 +28,7 @@
 		// Ensure the target is set after mount.
 		const index = gameState.currentCardIndex;
 		if (!targetPlayer && gameState.cards[index]?.targetPlayer) {
-			targetPlayer = getPersistentTarget(index) || game.getTarget(gameState);
+			targetPlayer = getPersistentTarget(index) || getTarget(gameState);
 			setPersistentTarget(index, targetPlayer);
 		}
 		// Ensure shown card is a potentially rerolled new card.

@@ -21,6 +21,6 @@ export function createNewGame(): GameState {
 		players: [],
 		events: [],
 		includedTags: Object.values(Tag),
-		excludedTags: []
+		excludedTags: [],
 	};
 }

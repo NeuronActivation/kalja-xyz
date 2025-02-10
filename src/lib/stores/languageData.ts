@@ -7,7 +7,7 @@ import { isBrowser } from '$lib/constants/isBrowser';
  * A writable store holding the language data for each language, which is persisted in the browser's localStorage.
  */
 const languageData = writable<Record<Language, LanguageData>>(
-	isBrowser ? JSON.parse(localStorage.getItem('languageData') || '{}') : {}
+	isBrowser ? JSON.parse(localStorage.getItem('languageData') || '{}') : {},
 );
 
 // Only persist to localStorage on the client side.

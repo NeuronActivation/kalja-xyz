@@ -1,4 +1,4 @@
-import { type Subscriber, type Invalidator, type Unsubscriber } from 'svelte/motion';
+import { type Invalidator, type Subscriber, type Unsubscriber } from 'svelte/motion';
 import { writable } from 'svelte/store';
 import { type LanguageSpecificCard } from '$lib/interfaces/card';
 import { Language } from '$lib/constants/language';
@@ -18,7 +18,7 @@ interface LanguageStore {
 	 */
 	subscribe: (
 		run: Subscriber<{ language: Language }>,
-		invalidate?: Invalidator<{ language: Language }> | undefined
+		invalidate?: Invalidator<{ language: Language }> | undefined,
 	) => Unsubscriber;
 
 	/**
@@ -34,7 +34,7 @@ interface LanguageStore {
 	 *
 	 * @returns A promise that resolves to an array of language specific cards or null if no cards are found.
 	 */
-	getCards(): Promise<LanguageSpecificCard[] | null>;
+	getCards(): LanguageSpecificCard[] | null;
 
 	/**
 	 * Sets a callback function to be executed once the store initialization is complete.
@@ -53,7 +53,7 @@ interface LanguageStore {
  */
 function createLanguageStore(): LanguageStore {
 	const { subscribe, set } = writable({
-		language: Language.FI
+		language: Language.FI,
 	});
 
 	let onInitComplete: (() => void) | null = null;
@@ -79,13 +79,13 @@ function createLanguageStore(): LanguageStore {
 				onInitComplete();
 			}
 		},
-		async getCards(): Promise<LanguageSpecificCard[] | null> {
+		getCards(): LanguageSpecificCard[] | null {
 			const currentLanguage = getStoredLanguage();
 			return getStoredCards(currentLanguage);
 		},
 		setGameStoreUpdate(cb: () => void) {
 			onInitComplete = cb;
-		}
+		},
 	};
 }
 
