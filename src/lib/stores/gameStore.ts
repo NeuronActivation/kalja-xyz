@@ -1,12 +1,18 @@
 import { get, writable } from 'svelte/store';
 import type { GameState } from '$lib/interfaces/gameState';
 import { createNewGame } from '$lib/interfaces/gameState';
-import { game } from '$lib/managers/game';
 import { ApplicationState } from '$lib/constants/applicationState';
 import { loadGameState, saveGameState } from '$lib/utils/storage';
 import { languageStore } from '$lib/stores/languageStore';
 import { loadCards, loadSingleCard } from '$lib/languages/load';
 import { Tag } from '$lib/constants/tag';
+import {
+	addPlayer,
+	changeGameState,
+	removePlayer,
+	showNextCard,
+	startGame,
+} from '$lib/managers/game';
 
 /**
  * Creates a writable store to manage the game state and provides several actions
@@ -46,21 +52,21 @@ function createGameStore() {
 		},
 		changeGameState: (newState: ApplicationState) => {
 			update((state) => {
-				const updatedState = game.changeGameState(state, newState);
+				const updatedState = changeGameState(state, newState);
 				saveGameState(updatedState);
 				return updatedState;
 			});
 		},
 		addPlayer: (playerName: string) => {
 			update((state) => {
-				const updatedState = game.addPlayer(state, playerName);
+				const updatedState = addPlayer(state, playerName);
 				saveGameState(updatedState);
 				return updatedState;
 			});
 		},
 		removePlayer: (playerId: number) => {
 			update((state) => {
-				const updatedState = game.removePlayer(state, playerId);
+				const updatedState = removePlayer(state, playerId);
 				saveGameState(updatedState);
 				return updatedState;
 			});
@@ -80,16 +86,16 @@ function createGameStore() {
 			update((state) => ({
 				...state,
 				cardAmount,
-				maxCards
+				maxCards,
 			}));
 		},
-		startGame: async () => {
-			const cards = await languageStore.getCards();
+		startGame: () => {
+			const cards = languageStore.getCards();
 			if (cards) {
 				update((state) => {
 					state.cards = cards;
 					state.events = [];
-					const updatedState = game.startGame(state);
+					const updatedState = startGame(state);
 					saveGameState(updatedState);
 					return updatedState;
 				});
@@ -97,17 +103,17 @@ function createGameStore() {
 		},
 		showNextCard: () => {
 			update((state) => {
-				const updatedState = game.showNextCard(state);
+				const updatedState = showNextCard(state);
 				saveGameState(updatedState);
 				return updatedState;
 			});
 		},
-		updateCards: async () => {
-			const cards = await languageStore.getCards();
+		updateCards: () => {
+			const cards = languageStore.getCards();
 			if (cards) {
 				update((state) => ({
 					...state,
-					cards: cards
+					cards: cards,
 				}));
 			}
 		},
@@ -133,7 +139,7 @@ function createGameStore() {
 				saveGameState(updatedState);
 				return updatedState;
 			});
-		}
+		},
 	};
 }
 
