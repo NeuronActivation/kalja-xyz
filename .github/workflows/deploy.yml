@@ -21,7 +21,7 @@ jobs:
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
-          pnpm run build
+          deno run build
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
