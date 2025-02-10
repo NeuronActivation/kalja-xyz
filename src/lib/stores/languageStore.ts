@@ -32,7 +32,7 @@ interface LanguageStore {
 	 *
 	 * @returns A promise that resolves to an array of language specific cards or null if no cards are found.
 	 */
-	getCards(): Promise<LanguageSpecificCard[] | null>;
+	getCards(): LanguageSpecificCard[] | null;
 
 	/**
 	 * Sets a callback function to be executed once the store initialization is complete.
@@ -77,7 +77,7 @@ function createLanguageStore(): LanguageStore {
 				onInitComplete();
 			}
 		},
-		getCards(): Promise<Card[] | null> {
+		getCards(): LanguageSpecificCard[] | null {
 			const currentLanguage = getStoredLanguage();
 			return getStoredCards(currentLanguage);
 		},
