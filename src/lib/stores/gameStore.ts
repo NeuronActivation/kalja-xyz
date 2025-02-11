@@ -5,7 +5,7 @@ import { languageStore } from '$lib/stores/languageStore';
 import { Tag } from '$lib/constants/tag';
 import { createNewGame } from '$lib/gameState/createNewGame';
 import { loadGameState, saveGameState } from '$lib/gameState/gameStateStorage';
-import { loadCards, loadSingleCard } from '$lib/cards/cardStorage';
+import { loadCards, loadSingleCard, modifyCard } from '$lib/cards/cardStorage';
 import {
 	addPlayer,
 	changeGameState,
@@ -35,6 +35,7 @@ import {
  * - `reroll`: Reload a single card and update the game state.
  * - `replay`: Reload cards and restart the game.
  * - `updateTags`: Updates the tags where the cards are drawn from and the tags where the cards are discarded.
+ * - `setRequired`: Set specific card to required.
  */
 function createGameStore() {
 	const { subscribe, set, update } = writable<GameState>(createNewGame());
@@ -139,6 +140,17 @@ function createGameStore() {
 				saveGameState(updatedState);
 				return updatedState;
 			});
+		},
+		setRequired: (cardId: number, isRequired: boolean) => {
+			console.log('Set required called');
+
+			modifyCard(cardId, (card) => {
+				console.log('Updating card: ', card.id);
+				return { ...card, required: isRequired };
+			});
+		},
+		getCards: () => {
+			return languageStore.getCards();
 		},
 	};
 }
