@@ -76,8 +76,8 @@
         "fi": "Tarina"
       },
       "description": {
-        "en": "Start a story with a chosen word. The next player repeats the word and adds a new one. Each player must repeat all previous words.",
-        "fi": "Aloita tarina valitsemallasi sanalla ja seuraavan tulee toistaa sana ja lisätä uusi sana. Jokaisen pelaajan on toistettava kaikki edelliset sanat."
+        "en": "Start the story with a word of your choice. The next player must repeat all previous words and add one new word.",
+        "fi": "Aloita tarina valitsemallasi sanalla. Seuraavan pelaajan on toistettava kaikki aiemmat sanat ja lisättävä yksi uusi sana."
       },
       "tags": [
         "classic",
@@ -342,7 +342,8 @@
         "fi": "Ota kuva ja lähetä se vanhemmillesi tai puolisolle. Pelissä mukana olevia ei hyväksytä"
       },
       "tags": [
-        "humiliation"
+        "humiliation",
+        "physical"
       ]
     },
     {
