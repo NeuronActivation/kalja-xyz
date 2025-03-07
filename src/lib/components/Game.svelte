@@ -7,6 +7,38 @@
 	import { getTarget } from '$lib/managers/game';
 	import { setPersistentTarget, getPersistentTarget } from '$lib/utils/targetStorage';
 
+	// Timer logic.
+	const initialTime: number = 10;
+	let time: number = initialTime;
+	let isRunning: boolean = false;
+	let isTimerVisible: boolean = false;
+	let intervalId: number;
+
+	function startTimer() {
+		if (!isRunning) {
+			isRunning = true;
+			intervalId = setInterval(() => {
+				if (time > 0) {
+					time -= 1;
+				} else {
+					clearInterval(intervalId);
+					isRunning = false;
+				}
+			}, 1000);
+		}
+	}
+
+	function resetTimer() {
+		clearInterval(intervalId);
+		isRunning = false;
+		time = initialTime;
+	};
+
+	function toggleTimerVisibility() {
+		isTimerVisible = !isTimerVisible;
+	};
+
+
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
 	let targetPlayer: string;
@@ -35,6 +67,22 @@
 		gameStore.updateCards();
 	});
 </script>
+
+<!-- Timer UI -->
+<div class="timer-container">
+	<button class="timer-button" on:click={toggleTimerVisibility}>
+		{isTimerVisible ? 'Hide Timer' : 'Show Timer'}
+	</button>
+</div>
+
+{#if isTimerVisible}
+	<div class="timer-popup">
+		<h1>{time}</h1>
+		<input type="range" min="1" max="120" bind:value={time} disabled={isRunning} />
+		<button on:click={startTimer} disabled={isRunning}>Start Timer</button>
+		<button on:click={resetTimer}>Reset Timer</button>
+	</div>
+{/if}
 
 <h1 class="target">
 	{gameState.players[gameState.currentPlayerIndex].name}
@@ -100,5 +148,39 @@
 		article {
 			max-width: 90%;
 		}
+	}
+
+	.timer-container {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+	}
+
+	.timer-popup {
+		position: fixed;
+		top: 20%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: white;
+		padding: 20px;
+		border: 1px solid #ccc;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		z-index: 1000;
+		text-align: center;
+	}
+
+	.timer-button {
+		padding: 10px 20px;
+		background: #007bff;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 1rem;
+		transition: background 0.2s ease;
+	}
+
+	.timer-button:hover {
+		background: #0056b3;
 	}
 </style>
