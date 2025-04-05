@@ -1,0 +1,1461 @@
+{
+  "cards": [
+    {
+      "id": 0,
+      "title": {
+        "en": "Drink",
+        "fi": "Juo"
+      },
+      "description": {
+        "en": "Do I really have to explain this?",
+        "fi": "Tarvitseeko tätä selittää?"
+      },
+      "tags": []
+    },
+    {
+      "id": 1,
+      "title": {
+        "en": "Give chugs",
+        "fi": "Jaa huikkia"
+      },
+      "description": {
+        "en": "Give three chugs to other players however you decide.",
+        "fi": "Jaa kolme huikkaa muille pelaajille mielesi mukaan"
+      },
+      "tags": [
+        "chosen_target"
+      ]
+    },
+    {
+      "id": 2,
+      "title": {
+        "en": "Waterfall",
+        "fi": "Vesiputous"
+      },
+      "description": {
+        "en": "Every player starts drinking. The player from the left of the player gets to stop drinking first, and then from the left, etc.",
+        "fi": "Jokainen pelaaja aloittaa juomisen. Kortin saaneen vasemmalla puolella oleva pelaaja saa lopettaa juomisen ensin ja sen jälkeen hänen vasemmalla puolellaan oleva jne."
+      },
+      "tags": [
+        "classic"
+      ]
+    },
+    {
+      "id": 3,
+      "title": {
+        "en": "Rule",
+        "fi": "Sääntö"
+      },
+      "description": {
+        "en": "You get to make new rule. Rules stay until to the end of the game unless someone uses new rule to delete old rule",
+        "fi": "Saat päättää uuden säännön. Säännöt pysyvät pelin loppuun tai jos joku käyttää uuden säännön aikaisemman säännön kumoamiseen."
+      },
+      "tags": [
+        "classic"
+      ]
+    },
+    {
+      "id": 4,
+      "title": {
+        "en": "Bitch",
+        "fi": "Huora"
+      },
+      "description": {
+        "en": "You get yourself a bitch. Everytime you drink, the person also drinks.",
+        "fi": "Saat valita itsellesi huoran. Aina kun kortin nostajalle määräytyy huikkia, huora joutuu juomaan saman määrän."
+      },
+      "tags": [
+        "classic",
+        "chosen_target"
+      ]
+    },
+    {
+      "id": 5,
+      "title": {
+        "en": "Story",
+        "fi": "Tarina"
+      },
+      "description": {
+        "en": "Start the story with a word of your choice. The next player must repeat all previous words and add one new word.",
+        "fi": "Aloita tarina valitsemallasi sanalla. Seuraavan pelaajan on toistettava kaikki aiemmat sanat ja lisättävä yksi uusi sana."
+      },
+      "tags": [
+        "classic",
+        "creative"
+      ]
+    },
+    {
+      "id": 6,
+      "title": {
+        "en": "Category",
+        "fi": "Kategoria"
+      },
+      "description": {
+        "en": "Choose your desired category and say the first thing belonging to that category, for example, car brands, days of the week, or planets. Items are listed in turns until someone can't think of or repeats a previously mentioned item.",
+        "fi": "Valitse haluamasi kategoria ja sano ensimmäinen kategoriaan kuuluva asia, esim. automerkit, viikonpäivät tai planeetat. Asioita luetellaan vuorotellen kunnes joku ei keksi tai sanoo jo sanotun asian."
+      },
+      "tags": [
+        "classic",
+        "creative"
+      ]
+    },
+    {
+      "id": 7,
+      "title": {
+        "en": "123",
+        "fi": "123"
+      },
+      "description": {
+        "en": "Take one sip. The next person takes two sips, and then the following person takes three sips, and so on.",
+        "fi": "Juo yksi huikka. Seuraava juo kaksi huikkaa, sitä seuraava kolme jne."
+      },
+      "tags": [
+        "classic"
+      ]
+    },
+    {
+      "id": 8,
+      "title": {
+        "en": "Truth or Dare",
+        "fi": "Totuus vai tehtävä"
+      },
+      "description": {
+        "en": "Ask the target 'truth or dare?' and act accordingly.",
+        "fi": "Kysy kohteelta 'totuus vai tehtävä?' ja toimi sen mukaan."
+      },
+      "tags": [
+        "classic",
+        "random_target"
+      ]
+    },
+    {
+      "id": 9,
+      "title": {
+        "en": "Oldest Drinks",
+        "fi": "Vanhin juo"
+      },
+      "description": {
+        "en": "The oldest player drinks.",
+        "fi": "Vanhin pelaaja juo"
+      },
+      "tags": []
+    },
+    {
+      "id": 10,
+      "title": {
+        "en": "Youngest Drinks",
+        "fi": "Nuorin juo"
+      },
+      "description": {
+        "en": "The youngest player drinks.",
+        "fi": "Nuorin pelaaja juo"
+      },
+      "tags": []
+    },
+    {
+      "id": 11,
+      "title": {
+        "en": "Tallest Drinks",
+        "fi": "Pisin juo"
+      },
+      "description": {
+        "en": "The tallest player drinks.",
+        "fi": "Pisin pelaaja juo"
+      },
+      "tags": []
+    },
+    {
+      "id": 12,
+      "title": {
+        "en": "Shortest Drinks",
+        "fi": "Lyhyin juo"
+      },
+      "description": {
+        "en": "The shortest player drinks.",
+        "fi": "Lyhyin pelaaja juo"
+      },
+      "tags": []
+    },
+    {
+      "id": 13,
+      "title": {
+        "en": "Strongest Drink",
+        "fi": "Vahvinta juomaa juova juo"
+      },
+      "description": {
+        "en": "The player drinking the strongest beverage regrets their choice. In a tie, both/all drink.",
+        "fi": "Vahvinta juomaa lipittävä pelaaja pääsee katumaan valintaansa. Tasapelissä molemmat/kaikki juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 14,
+      "title": {
+        "en": "Weakest Drink",
+        "fi": "Laimeinta juomaa juova juo"
+      },
+      "description": {
+        "en": "Drink lightly. In a tie, both/all drink.",
+        "fi": "Juo nössö. Tasapelissä molemmat/kaikki juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 15,
+      "title": {
+        "en": "List Last Names",
+        "fi": "Luettele sukunimet"
+      },
+      "description": {
+        "en": "List the last names of each player. If you get all correct, others drink; otherwise, you drink.",
+        "fi": "Luettele jokaisen pelaajan sukunimi. Jos saat kaikki oikein muut juovat, muuten sinä juot."
+      },
+      "tags": [
+        "knowledge"
+      ]
+    },
+    {
+      "id": 16,
+      "title": {
+        "en": "Do a Somersault and Drink",
+        "fi": "Tee kuperkeikka ja juo"
+      },
+      "description": {
+        "en": "Do a somersault and drink. Refusing the task means drinking more.",
+        "fi": "Tee kuperkeikka ja juo. Tehtävästä kieltäytymisestä juot enemmän."
+      },
+      "tags": [
+        "physical",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 17,
+      "title": {
+        "en": "Never Have I Ever...",
+        "fi": "En ole koskaan..."
+      },
+      "description": {
+        "en": "Go through a round where each person says something they have never done. Everyone who has done that thing drinks.",
+        "fi": "Käykää kierros läpi niin että jokainen sanoo vuorollaan asian mitä hän ei ole koskaan tehnyt. Kaikki asian tehneet juovat."
+      },
+      "tags": [
+        "classic",
+        "creative"
+      ]
+    },
+    {
+      "id": 18,
+      "title": {
+        "en": "Everyone Drinks",
+        "fi": "Kaikki juovat"
+      },
+      "description": {
+        "en": "That's what we came here to do.",
+        "fi": "Sitähän tänne tultiin tekemään."
+      },
+      "tags": []
+    },
+    {
+      "id": 19,
+      "title": {
+        "en": "Speak in Song",
+        "fi": "Puhu laulamalla"
+      },
+      "description": {
+        "en": "All your speech must be sung for a round. Other players decide if you succeed.",
+        "fi": "Kaiken puheesi tulee tapahtua laulamalla kierroksen ajan. Muut pelaajat päättävät onnistumisesta."
+      },
+      "tags": [
+        "creative",
+        "event",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 20,
+      "title": {
+        "en": "Speak in Rhyme",
+        "fi": "Puhu riimitellen"
+      },
+      "description": {
+        "en": "All your spoken sentences must rhyme for a round, for example, 'Is it my turn? Asks the tipsy churn'. Other players decide if you succeed.",
+        "fi": "Kaikkien puhumiesi lauseiden tulee rimmata kierroksen ajan, esim. 'Onko se mun vuoro? Kysyy juoppo kuoro'. Muut pelaajat päättävät onnistumisesta."
+      },
+      "tags": [
+        "creative",
+        "event",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 21,
+      "title": {
+        "en": "Drink without touching your lips",
+        "fi": "Juo koskettamatta huuliasi"
+      },
+      "description": {
+        "en": "Drink from a bottle/can without it touching your lips.",
+        "fi": "Juo pullosta/tölkistä/yms ilman että se koskettaa huuliasi."
+      },
+      "tags": [
+        "physical"
+      ]
+    },
+    {
+      "id": 22,
+      "title": {
+        "en": "Last Message",
+        "fi": "Viimeisin viesti"
+      },
+      "description": {
+        "en": "Read aloud the last message you received.",
+        "fi": "Lue viimeisin saamasi viesti ääneen."
+      },
+      "tags": [
+        "humiliation"
+      ]
+    },
+    {
+      "id": 23,
+      "title": {
+        "en": "Take a Selfie",
+        "fi": "Ota selfie"
+      },
+      "description": {
+        "en": "Take a selfie with another player. Important moments need to be captured!",
+        "fi": "Ota selfie toisen pelaajan kanssa. Tärkeät hetket on ikuistettava!"
+      },
+      "tags": [
+        "physical",
+        "random_target"
+      ]
+    },
+    {
+      "id": 24,
+      "title": {
+        "en": "Take a Picture of Your Feet",
+        "fi": "Ota kuva jaloistasi"
+      },
+      "description": {
+        "en": "Take a picture and send it to your parents or partner. Participants in the game are not allowed.",
+        "fi": "Ota kuva ja lähetä se vanhemmillesi tai puolisolle. Pelissä mukana olevia ei hyväksytä"
+      },
+      "tags": [
+        "humiliation",
+        "physical"
+      ]
+    },
+    {
+      "id": 25,
+      "title": {
+        "en": "Secret Mission",
+        "fi": "Salatehtävä"
+      },
+      "description": {
+        "en": "Create a gesture/action without telling others. Perform it randomly and others try to guess what you're doing. When others guess correctly, they start doing the action too. The last player to figure out the action drinks. Can start during other cards.",
+        "fi": "Keksi jokin ele/liike kertomatta sitä muille. Tee elettä satunnaisesti ja muut yrittävät keksiä mitä elettä teet. Kun muut keksivät oikean toiminnan, heidän tulee alkaa tehdä elettä myös. Viimeinen toiminnan keksinyt pelaaja juo. Voi alkaa muiden korttien aikana."
+      },
+      "tags": [
+        "creative",
+        "physical"
+      ]
+    },
+    {
+      "id": 26,
+      "title": {
+        "en": "Sympathy",
+        "fi": "Sympatiaa"
+      },
+      "description": {
+        "en": "Drink three, others drink one.",
+        "fi": "Juo kolme, muut juovat yhden."
+      },
+      "tags": []
+    },
+    {
+      "id": 27,
+      "title": {
+        "en": "Rock-Paper-Scissors vs Everyone",
+        "fi": "KPS-PVE"
+      },
+      "description": {
+        "en": "Play Rock-Paper-Scissors against every other player in turns. Drink for each lost game.",
+        "fi": "Pelaa Kivi-paperi-sakset kaikkia muita vastaan vuorotellen. Juo jokaisesta hävitystä pelistä."
+      },
+      "tags": [
+        "physical"
+      ]
+    },
+    {
+      "id": 28,
+      "title": {
+        "en": "Rock-Paper-Scissors vs Player",
+        "fi": "KPS-PVP"
+      },
+      "description": {
+        "en": "Play rock-paper-scissors against one player. The loser drinks.",
+        "fi": "Pelaa kivi-paperi-sakset yhtä pelaajaa vastaan. Häviäjä juo."
+      },
+      "tags": [
+        "physical",
+        "random_target"
+      ]
+    },
+    {
+      "id": 29,
+      "title": {
+        "en": "'Snap'",
+        "fi": "'Snap'"
+      },
+      "description": {
+        "en": "Half of everyone's current drinks must be discarded.",
+        "fi": "Kaikkien juomien nykyisestä määrästä on hävittävä puolet."
+      },
+      "tags": []
+    },
+    {
+      "id": 30,
+      "title": {
+        "en": "Speak Smurf Language",
+        "fi": "Smurffaa mua"
+      },
+      "description": {
+        "en": "Replace words in your speech with 'smurf' language for one round.",
+        "fi": "Korvaa puheessasi sanoja 'smurffi'-puheella yhden kierroksen ajan."
+      },
+      "tags": [
+        "humiliation"
+      ]
+    },
+    {
+      "id": 31,
+      "title": {
+        "en": "Vote: Loudest Player",
+        "fi": "Äänestys: äänekkäin"
+      },
+      "description": {
+        "en": "Vote for the loudest player among you. The player with the most votes drinks.",
+        "fi": "Äänestäkää joukostanne äänekkäin pelaaja. Eniten ääniä saanut pelaaja juo."
+      },
+      "tags": [
+        "voting"
+      ]
+    },
+    {
+      "id": 32,
+      "title": {
+        "en": "Vote: Heaviest Drinker",
+        "fi": "Äänestys: kovin juoppo"
+      },
+      "description": {
+        "en": "Vote for the heaviest drinker among you. The player with the most votes drinks.",
+        "fi": "Äänestäkää joukostanne kovin juoppo. Eniten ääniä saanut pelaaja juo."
+      },
+      "tags": [
+        "voting"
+      ]
+    },
+    {
+      "id": 33,
+      "title": {
+        "en": "Vote: Stingiest",
+        "fi": "Äänestys: pihein"
+      },
+      "description": {
+        "en": "Vote for the stingiest player among you. The player with the most votes drinks.",
+        "fi": "Äänestäkää joukostanne pihein pelaaja. Eniten ääniä saanut pelaaja juo."
+      },
+      "tags": [
+        "voting"
+      ]
+    },
+    {
+      "id": 34,
+      "title": {
+        "en": "Vote: Smartest",
+        "fi": "Äänestys: älykkäin"
+      },
+      "description": {
+        "en": "Vote for the smartest player among you. The player with the most votes drinks.",
+        "fi": "Äänestäkää joukostanne älykkäin pelaaja. Eniten ääniä saanut pelaaja juo."
+      },
+      "tags": [
+        "voting"
+      ]
+    },
+    {
+      "id": 35,
+      "title": {
+        "en": "Damn Rats",
+        "fi": "Vitun rotat"
+      },
+      "description": {
+        "en": "All unemployed players drink.",
+        "fi": "Kaikki työttömät juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 36,
+      "title": {
+        "en": "Baa Baa",
+        "fi": "Bää bää"
+      },
+      "description": {
+        "en": "All employed players drink.",
+        "fi": "Kaikki työssäkäyvät juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 37,
+      "title": {
+        "en": "Nicotine Addicts",
+        "fi": "Nikotiiniaddiktit"
+      },
+      "description": {
+        "en": "All currently under the influence of nicotine drink.",
+        "fi": "Kaikki tällä hetkellä nikotiinin vaikutuksen alaisina olevat juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 38,
+      "title": {
+        "en": "Drinking Game Virgin",
+        "fi": "Juomapeli-neitsyt"
+      },
+      "description": {
+        "en": "All who are playing this game for the first time drink.",
+        "fi": "Kaikki, jotka pelaavat tätä peliä ensimmäistä kertaa juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 39,
+      "title": {
+        "en": "Veterans",
+        "fi": "Veteraanit"
+      },
+      "description": {
+        "en": "All who have played this game before drink.",
+        "fi": "Kaikki, jotka ovat pelanneet tätä peliä ennenkin juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 40,
+      "title": {
+        "en": "Is This Worth It?",
+        "fi": "Kannattaako tämä?"
+      },
+      "description": {
+        "en": "Take a moment to ponder your life choices. Then drink.",
+        "fi": "Pohdi hetki elämänvalintojasi. Sitten juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 41,
+      "title": {
+        "en": "Jokester",
+        "fi": "Vitsiniekka"
+      },
+      "description": {
+        "en": "Tell a joke, all laughing players drink. If nobody laughs, you drink.",
+        "fi": "Kerro vitsi, kaikki nauravat pelaajat juovat. Jos kukaan ei naura sinä juot."
+      },
+      "tags": [
+        "creative"
+      ]
+    },
+    {
+      "id": 42,
+      "title": {
+        "en": "Mr. DJ",
+        "fi": "Mr. DJ"
+      },
+      "description": {
+        "en": "Start humming a song. The first player to correctly guess the song gets to decide who drinks.",
+        "fi": "Ala hyräilemään jotakin kappaletta. Ensimmäisenä oikean kappaleen arvannut pelaaja saa päättää kuka juo."
+      },
+      "tags": [
+        "creative"
+      ]
+    },
+    {
+      "id": 43,
+      "title": {
+        "en": "I have ...",
+        "fi": "Olen joskus..."
+      },
+      "description": {
+        "en": "Take a tour so that everyone says something they has have done. If you haven't done it, you drink.",
+        "fi": "Käykää kierros läpi niin että jokainen sanoo vuorollaan asian mitä hän on tehnyt. Kaikki jotka eivät ole asiaa tehneet juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 44,
+      "title": {
+        "en": "Best dressed",
+        "fi": "Parhaiten pukeutunut"
+      },
+      "description": {
+        "en": "Decide who among the players is the best dressed. The decider drinks.",
+        "fi": "Päätä kuka pelaajista on pukeutunut parhaiten. Hän päättää kuka juo."
+      },
+      "tags": [
+        "voting"
+      ]
+    },
+    {
+      "id": 45,
+      "title": {
+        "en": "Liar",
+        "fi": "Kusettaja"
+      },
+      "description": {
+        "en": "For a single round, tell only lies. If you get caught speaking truth, you drink.",
+        "fi": "Puhu yhden kierroksen ajan pelkkiä valheita. Jos jäät kiinni totuuden puhumisesta, juo."
+      },
+      "tags": [
+        "creative",
+        "roleplay"
+      ]
+    },
+    {
+      "id": 46,
+      "title": {
+        "en": "Outcast",
+        "fi": "Hylkiö"
+      },
+      "description": {
+        "en": "All players must ignore you for one round.",
+        "fi": "Kaikkien tulee ignoorata sinut kierroksen ajan"
+      },
+      "tags": [
+        "roleplay",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 47,
+      "title": {
+        "en": "Pervert",
+        "fi": "Pervo"
+      },
+      "description": {
+        "en": "Slap another player's butt.",
+        "fi": "Läpsäise toisen pelaajan persettä."
+      },
+      "tags": [
+        "random_target",
+        "humiliation",
+        "physical"
+      ]
+    },
+    {
+      "id": 48,
+      "title": {
+        "en": "Twenty-One",
+        "fi": "Ventti"
+      },
+      "description": {
+        "en": "Start counting numbers. Each player says one, two, or three consecutive numbers. The player who lands on 21 drinks. For example: one... two, three... four.",
+        "fi": "Alkakaa laskemaan lukuja. Jokainen pelaaja sanoo vuorollaan yhden, kaksi tai kolme seuraavaa lukua. Pelaaja jolle osuu luku 21 juo. Esim. yksi... kaksi, kolme... neljä."
+      },
+      "tags": []
+    },
+    {
+      "id": 49,
+      "title": {
+        "en": "Opposition",
+        "fi": "Vastakkainasettelu"
+      },
+      "description": {
+        "en": "Come up with two different options. Each player chooses one option. The minority drinks. For example: Pizza or hamburger.",
+        "fi": "Keksi kaksi eri vaihtoehtoa. Jokainen pelaaja valitsee kumman vaihtoehdon ottaa. Vähemmistö joutuu juomaan. Esim. Pizza vai hampurilainen."
+      },
+      "tags": [
+        "creative",
+        "voting"
+      ]
+    },
+    {
+      "id": 50,
+      "title": {
+        "en": "Cheers!",
+        "fi": "Kippis!"
+      },
+      "description": {
+        "en": "Cheers your drinks and drink up.",
+        "fi": "Kippistelkää juomianne ja juokaa"
+      },
+      "tags": [
+        "physical"
+      ]
+    },
+    {
+      "id": 51,
+      "title": {
+        "en": "Macho",
+        "fi": "Macho"
+      },
+      "description": {
+        "en": "Flex your biceps and drink.",
+        "fi": "Pullista hauistasi ja juo."
+      },
+      "tags": [
+        "physical"
+      ]
+    },
+    {
+      "id": 52,
+      "title": {
+        "en": "Earthling",
+        "fi": "Maa-asukki"
+      },
+      "description": {
+        "en": "Sit on the floor for one round.",
+        "fi": "Istu lattialla yhden kierroksen ajan."
+      },
+      "tags": [
+        "humiliation",
+        "physical"
+      ]
+    },
+    {
+      "id": 53,
+      "title": {
+        "en": "General Knowledge",
+        "fi": "Yleistieto"
+      },
+      "description": {
+        "en": "Ask the victim a general knowledge question. If they answer incorrectly, they drink; otherwise, you drink.",
+        "fi": "Kysy uhrilta yleistietokysymys. Jos hän vastaa väärin hän juo, muuten sinä juot."
+      },
+      "tags": [
+        "knowledge",
+        "random_target"
+      ]
+    },
+    {
+      "id": 54,
+      "title": {
+        "en": "Damn Eyes",
+        "fi": "Vittu mitkä... silmät"
+      },
+      "description": {
+        "en": "Decide who among the players has the nicest eyes. They drink.",
+        "fi": "Päätä kenellä pelaajista on kivoimmat silmät. Hän juo"
+      },
+      "tags": [
+        "physical",
+        "chosen_target"
+      ]
+    },
+    {
+      "id": 55,
+      "title": {
+        "en": "Don't You Know Me???",
+        "fi": "Eksä tunne mua???"
+      },
+      "description": {
+        "en": "Make a statement about yourself. Other players individually decide if the statement is true or false. Those who guess wrong drink.",
+        "fi": "Kerro itsestäsi jokin väite. Muut pelaajat päättävät yksilöllisesti onko väite totta vai ei. Väärin arvanneet juovat."
+      },
+      "tags": [
+        "knowledge",
+        "voting"
+      ]
+    },
+    {
+      "id": 56,
+      "title": {
+        "en": "Phone Addict",
+        "fi": "Puhelin-addikti"
+      },
+      "description": {
+        "en": "The player who last checked their phone drinks. The rule reader is excluded.",
+        "fi": "Viimeisin puhelintaan vilkaissut pelaaja juo. Sääntöjen lukijaa ei lasketa."
+      },
+      "tags": [
+        "physical"
+      ]
+    },
+    {
+      "id": 57,
+      "title": {
+        "en": "Furry Creature",
+        "fi": "Karvakasa"
+      },
+      "description": {
+        "en": "The hairiest player drinks.",
+        "fi": "Karvaisin pelaaja juo."
+      },
+      "tags": [
+        "physical"
+      ]
+    },
+    {
+      "id": 58,
+      "title": {
+        "en": "Floor is Lava",
+        "fi": "Lattia on laavaa"
+      },
+      "description": {
+        "en": "No one is allowed to touch the floor for one round. If you do, drink.",
+        "fi": "Kukaan ei saa koskettaa lattiaa yhden kierroksen ajan. Jos kosketat, juot."
+      },
+      "tags": [
+        "physical",
+        "event"
+      ]
+    },
+    {
+      "id": 59,
+      "title": {
+        "en": "Bully",
+        "fi": "Kiusaaja"
+      },
+      "description": {
+        "en": "Insult another player.",
+        "fi": "Hauku toista pelaajaa."
+      },
+      "tags": [
+        "humiliation",
+        "random_target"
+      ]
+    },
+    {
+      "id": 60,
+      "title": {
+        "en": "Popular",
+        "fi": "Suosittu"
+      },
+      "description": {
+        "en": "All players must compliment you or drink.",
+        "fi": "Kaikkien pitää kehua sinua tai juoda."
+      },
+      "tags": []
+    },
+    {
+      "id": 61,
+      "title": {
+        "en": "Drank before 6 PM",
+        "fi": "Aamu alkaa A:lla"
+      },
+      "description": {
+        "en": "Everyone who has consumed alcohol before 6 PM today drinks.",
+        "fi": "Kaikki, jotka ovat juoneet alkoholia ennen klo 18 tänään, juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 62,
+      "title": {
+        "en": "Name a Music Genre",
+        "fi": "Nimeä musiikkigenre"
+      },
+      "description": {
+        "en": "Choose a music genre, and each player takes turns singing or shouting one song from that genre. If someone can't think of a song, they drink.",
+        "fi": "Valitse joku musiikkigenre, ja jokainen pelaaja vuorollaan laulaa tai huutaa yhden kappaleen kyseisestä genrestä. Jos joku ei keksi kappaletta, hän juo."
+      },
+      "tags": [
+        "creative",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 63,
+      "title": {
+        "en": "Impersonation",
+        "fi": "Imitointi"
+      },
+      "description": {
+        "en": "Imitate a famous person or character for one minute. Other players guess who you are impersonating. If no one guesses correctly, the impersonator drinks.",
+        "fi": "Imitoi tunnettua henkilöä tai hahmoa. Muut pelaajat arvaavat, ketä imitoit. Jos kukaan ei arvaa oikein, imitoija juo."
+      },
+      "tags": [
+        "creative",
+        "roleplay",
+        "knowledge"
+      ]
+    },
+    {
+      "id": 64,
+      "title": {
+        "en": "Forbidden Word",
+        "fi": "Kielletty sana"
+      },
+      "description": {
+        "en": "Select a word that the target player cannot say throughout the round. If they say the word, they drink.",
+        "fi": "Valitse sana, jota kohde ei saa sanoa koko kierroksen aikana. Jos hän sanoo kyseisen sanan, hän juo."
+      },
+      "tags": [
+        "random_target",
+        "event"
+      ]
+    },
+    {
+      "id": 65,
+      "title": {
+        "en": "Emoji Message",
+        "fi": "Emoji"
+      },
+      "description": {
+        "en": "Send a short message to the target player using only emojis. The recipient tries to pronounce the message in words. If they misunderstand the message, they drink.",
+        "fi": "Lähetä lyhyt viesti kohteelle pelkkiä emojita käyttäen. Vastaanottaja yrittää lausua viestin sanoin ääneen. Jos vastaanottaja ymmärtää viestin aiheen väärin, hän juo."
+      },
+      "tags": [
+        "random_target",
+        "creative"
+      ]
+    },
+    {
+      "id": 66,
+      "title": {
+        "en": "Wrong Answer",
+        "fi": "Väärä vastaus"
+      },
+      "description": {
+        "en": "Come up with a question for the target player that can be answered with yes/no or a specific number, and indicate the type of answer. The target must answer without knowing the question beforehand, and if they answer incorrectly, they drink.",
+        "fi": "Keksi kohteelle kysymys, johon on mahdollista antaa kyllä/ei-vastaus. Kohteen tulee vastata tietämättä itse kysymystä etukäteen ja jos hän vastaa väärin, hän juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 67,
+      "title": {
+        "en": "Memories or Fantasy?",
+        "fi": "Muistoja vai fantasiaa?"
+      },
+      "description": {
+        "en": "The target must tell a short, impromptu story or a real memory from their past. Other players guess whether the story is true or false. If half or more guess wrong, the target drinks.",
+        "fi": "Kerro lyhyt tuulesta temmattu tarina tai oikea muisto menneisyydestäsi. Muut pelaajat arvaavat, onko tarina totta vai tarua. Väärin arvanneet pelaajat juovat. Jos kaikki vastaavat oikein, sinä juot."
+      },
+      "tags": [
+        "knowledge",
+        "creative"
+      ]
+    },
+    {
+      "id": 68,
+      "title": {
+        "en": "Famous Quote",
+        "fi": "Tunnettu lainaus"
+      },
+      "description": {
+        "en": "The target must recite a famous line from a person or character. Other players try to guess who or what the character is. Incorrect guessers drink. If everyone guesses correctly, only the target drinks.",
+        "fi": "Esitä tunnetun henkilön tai hahmon lainaus. Muut pelaajat yrittävät arvata, kuka tai mikä hahmo on kyseessä. Väärin arvanneet juovat. Jos kaikki arvaavat oikein, sinä juot."
+      },
+      "tags": [
+        "knowledge"
+      ]
+    },
+    {
+      "id": 69,
+      "title": {
+        "en": "Dice Game",
+        "fi": "Noppapeli"
+      },
+      "description": {
+        "en": "The player must roll a die and get a specific number predetermined by them. If they fail, they drink. If they succeed, everyone else drinks.",
+        "fi": "Heitä noppaa ja yritä saada tietty numero, jonka päätät etukäteen. Jos epäonnistut, juot. Jos onnistut, kaikki muut juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 70,
+      "title": {
+        "en": "Entertainment Riddle",
+        "fi": "Viihdearvoitus"
+      },
+      "description": {
+        "en": "The player describes the plot of their chosen movie, series, or game without mentioning its name. The first player to guess correctly decides who or who drinks.",
+        "fi": "Kerro valitsemasi elokuvan, sarjan tai pelin juoni mainitsematta sen nimeä. Ensimmäinen oikein arvannut pelaaja päättää kuka tai ketkä juovat."
+      },
+      "tags": [
+        "knowledge"
+      ]
+    },
+    {
+      "id": 71,
+      "title": {
+        "en": "Payday",
+        "fi": "Tilipäivä"
+      },
+      "description": {
+        "en": "The player who most recently received their paycheck, social benefits from the government, or gift money drinks.",
+        "fi": "Viimeisimmäksi palkan, Kelan tukia tai lahjarahaa vastaanottanut pelaaja juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 72,
+      "title": {
+        "en": "isEven(bday)",
+        "fi": "isEven(bday)"
+      },
+      "description": {
+        "en": "Players born on an even-numbered day drink.",
+        "fi": "Parillisena päivänä syntyneet juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 73,
+      "title": {
+        "en": "isOdd(bday)",
+        "fi": "isOdd(bday)"
+      },
+      "description": {
+        "en": "Players born on an odd-numbered day drink.",
+        "fi": "Parittomana päivänä syntyneet juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 74,
+      "title": {
+        "en": "Sockrally",
+        "fi": "Sukkaralli"
+      },
+      "description": {
+        "en": "Put a sock on your foot only using one hand, if you fail or you're deemed too slow you drink.",
+        "fi": "Laita sukka jalkaasi käyttäen vain yhtä kättä. Jos et onnistu tai suorituksessa kestää liian kauan, juot."
+      },
+      "tags": [
+        "humiliation",
+        "physical"
+      ]
+    },
+    {
+      "id": 75,
+      "title": {
+        "en": "The Imitator",
+        "fi": "Imitaattori"
+      },
+      "description": {
+        "en": "Imitate another player for one round.",
+        "fi": "Imitoi toista pelaajaa kierroksen ajan."
+      },
+      "tags": [
+        "humiliation",
+        "creative",
+        "random_target",
+        "event"
+      ]
+    },
+    {
+      "id": 76,
+      "title": {
+        "en": "A Saying",
+        "fi": "Sanonta"
+      },
+      "description": {
+        "en": "Make up a new saying and use it as much as possible for the rest of the game.",
+        "fi": "Keksi uusi sanonta ja käytä sitä mahdollisimman paljon loppupelin ajan."
+      },
+      "tags": [
+        "creative"
+      ]
+    },
+    {
+      "id": 77,
+      "title": {
+        "en": "Dance king",
+        "fi": "Dance king"
+      },
+      "description": {
+        "en": "Invent a new Fortnite dance and present it.",
+        "fi": "Keksi uusi Fortnite-tanssi ja esitä se."
+      },
+      "tags": [
+        "creative",
+        "physical",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 78,
+      "title": {
+        "en": "Are you...",
+        "fi": "Ootsä se...?"
+      },
+      "description": {
+        "en": "Come up with a person or character. Other players take turns asking yes or no questions about your identity. Wrong answer, you drink. Correct answer, you decide who drinks",
+        "fi": "Keksi joku henkilö tai hahmo. Muut pelaajat vuorottelevat ja kysyvät joko kyllä/ei-kysymyksen tai esittävät arvauksen henkilöllisyydestäsi. Väärän arvauksen esittänyt pelaaja juo. Oikein arvannut pelaaja päättää kuka juo."
+      },
+      "tags": [
+        "creative",
+        "knowledge"
+      ]
+    },
+    {
+      "id": 79,
+      "title": {
+        "en": "Headline",
+        "fi": "Pääotsikko"
+      },
+      "description": {
+        "en": "Make up a news headline about another player",
+        "fi": "Keksi toisesta pelaajasta etusivun uutisotsikko."
+      },
+      "tags": [
+        "creative",
+        "humiliation",
+        "random_target"
+      ]
+    },
+    {
+      "id": 80,
+      "title": {
+        "en": "And drivers license please",
+        "fi": "Ja ajokortti kiitos"
+      },
+      "description": {
+        "en": "Every player must drink an amount equal to the number of vehicle categories found on their driver's license. If a player doesn't own a driver's license, they must drink as much as the player with the most categories",
+        "fi": "Jokainen pelaaja juo jokaisesta ajokortistaan löytyvästä ajoneuvoluokasta. Jos pelaajalla ei ole ajokorttia, hän juo yhtä paljon kuin eniten ajoneuvoluokkia omaava pelaaja."
+      },
+      "tags": []
+    },
+    {
+      "id": 81,
+      "title": {
+        "en": "Concert frenzy",
+        "fi": "Keikkahumua"
+      },
+      "description": {
+        "en": "Each player takes turns listing artists they have seen live in concert. Any players who have also seen that artist perform must drink with the player who listed them",
+        "fi": "Käykää kierros läpi niin että jokainen pelaaja luettelee vuorollaan artisteja joiden keikalla hän on käynyt. Kaikki saman artistin keikalla käyneet pelaajat juovat luettelijan kanssa."
+      },
+      "tags": []
+    },
+    {
+      "id": 82,
+      "title": {
+        "en": "Brand loyal",
+        "fi": "Merkkiuskollinen"
+      },
+      "description": {
+        "en": "Each player takes turns listing every car brand they have owned. All players who have owned the same car brand must drink.",
+        "fi": "Käykää kierros läpi niin että jokainen pelaaja luettelee vuorollaan jokaisen automerkin jonka hän on omistanut. Kaikki saman automerkin omistaneet pelaajat juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 83,
+      "title": {
+        "en": "Name Monster",
+        "fi": "Nimihirviö"
+      },
+      "description": {
+        "en": "The person with the longest first name drinks. If there's a tie you both drink.",
+        "fi": "Pelaaja jolla on pisin etunimi juo. Tasapelissä molemmat/kaikki juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 84,
+      "title": {
+        "en": "Nerd",
+        "fi": "Nörtti"
+      },
+      "description": {
+        "en": "Everyone wearing glasses drinks.",
+        "fi": "Kaikki silmälaseja käyttävät juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 85,
+      "title": {
+        "en": "Bachelor's Brew",
+        "fi": "Sinkkujen Siemaus"
+      },
+      "description": {
+        "en": "Everyone who is single drinks.",
+        "fi": "Kaikki sinkut juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 86,
+      "title": {
+        "en": "Burp & Burden",
+        "fi": "Röyhtäise ja Rankaise"
+      },
+      "description": {
+        "en": "Everyone drinks as much as they can, then the person with the loudest or best burp chooses someone to finish their drink",
+        "fi": "Kaikki juovat niin paljon kuin pystyvät, sitten kovaäänisimmin tai parhaiten röyhtäisevä valitsee jonkun tyhjentämään juomansa."
+      },
+      "tags": [
+        "humiliation"
+      ]
+    },
+    {
+      "id": 87,
+      "title": {
+        "en": "Joker",
+        "fi": "Jokeri"
+      },
+      "description": {
+        "en": "Come up with a functionality for this card",
+        "fi": "Keksi tälle kortille toiminto."
+      },
+      "tags": []
+    },
+    {
+      "id": 88,
+      "title": {
+        "en": "Quite interesting",
+        "fi": "Nyt on jännä"
+      },
+      "description": {
+        "en": "Tell something interesting. Everyone who finds that to be interesting drinks.",
+        "fi": "Kerro jokin jännä juttu. Kaikki joiden mielestä juttusi oli jännä juovat."
+      },
+      "tags": [
+        "creative",
+        "knowledge"
+      ]
+    },
+    {
+      "id": 89,
+      "title": {
+        "en": "Fuck, marry, kill",
+        "fi": "Fuck, marry, kill"
+      },
+      "description": {
+        "en": "Play Fuck, marry, kill with the people present. If there isn't a correct amount of people present previous player decides participants.",
+        "fi": "Pelaa Fuck, marry, kill -peli paikalla olevilla ihmisillä. Jos paikalla olijoita ei ole oikea määrä, edellinen pelaaja päättää ehdokkaat."
+      },
+      "tags": [
+        "humiliation"
+      ]
+    },
+    {
+      "id": 90,
+      "title": {
+        "en": "Three things in five seconds",
+        "fi": "Kolme asiaa viidessä sekunnissa"
+      },
+      "description": {
+        "en": "Name three things in five seconds, target chooses the subject. E.g. chemical elements",
+        "fi": "Luettele kolme asiaa viidessä sekunissa, kohde päättää aiheen. Esim. alkuaineet."
+      },
+      "tags": [
+        "random_target"
+      ]
+    },
+    {
+      "id": 91,
+      "title": {
+        "en": "Act as a streamer",
+        "fi": "Esitä striimaajaa"
+      },
+      "description": {
+        "en": "Act as you were live streaming for one round. Talk to the audience, read comments from the chat and look in to the camera etc.",
+        "fi": "Esitä pitäväsi live-lähetystä yhden kierroksen ajan – puhu katsojille, lue kommentteja ja vilkuile kameraan jne."
+      },
+      "tags": [
+        "humiliation",
+        "creative",
+        "event",
+        "roleplay"
+      ]
+    },
+    {
+      "id": 92,
+      "title": {
+        "en": "Oldest phone",
+        "fi": "Vanhin kännykkä"
+      },
+      "description": {
+        "en": "Player with the oldest phone drinks.",
+        "fi": "Pelaaja, jonka kännykkä on vanhin juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 93,
+      "title": {
+        "en": "Android users",
+        "fi": "Android-käyttäjät juovat"
+      },
+      "description": {
+        "en": "Players who have Android must drink.",
+        "fi": "Pelaajat, jotka käyttävät Android-puhelimia juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 94,
+      "title": {
+        "en": "iPhone users",
+        "fi": "iPhone-käyttäjät juovat"
+      },
+      "description": {
+        "en": "Players who have iPhone must drink.",
+        "fi": "Pelaajat, jotka käyttävät iPhone-puhelimia juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 95,
+      "title": {
+        "en": "Pro dating",
+        "fi": "Deittailija-pro"
+      },
+      "description": {
+        "en": "All players who have any dating app on their phone must drink.",
+        "fi": "Kaikki pelaajat, joiden kännykästä löytyy mikä tahansa deittisovellus juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 96,
+      "title": {
+        "en": "Low battery",
+        "fi": "Virta vähissä"
+      },
+      "description": {
+        "en": "Each player drinks according to the tenths of their phone's battery charge percentage. For example, 76% = 7 drinks.",
+        "fi": "Jokainen pelaaja juo huikkia kännykkänsä akunvarausprosenttien kymmennyksien mukaan. Esim. 76% = 7 huikkaa."
+      },
+      "tags": []
+    },
+    {
+      "id": 97,
+      "title": {
+        "en": "Time to check notifications",
+        "fi": "Aika tarkistaa ilmoitukset"
+      },
+      "description": {
+        "en": "Each player drinks the amount according to the notifications on their phone",
+        "fi": "Jokainen pelaaja juo huikkia kännykässään aktiivisina näkyvien ilmoituksien mukaan."
+      },
+      "tags": []
+    },
+    {
+      "id": 98,
+      "title": {
+        "en": "Continue the sentence",
+        "fi": "Jatka lausetta"
+      },
+      "description": {
+        "en": "Tell the target the beginning of a sentence and they must finish it. The sentence can be, for example, the lyrics of a song or another well-known phrase. If they fail, they drink and if they succeed, you drink.",
+        "fi": "Sano kohteelle jonkin lauseen alku ja hänen tulee jatkaa lause loppuun. Lause voi olla esimerkiksi laulun sanat tai muu tunnettu lausahdus. Jos hän epäonnistuu hän juo ja jos hän onnistuu sinä juot."
+      },
+      "tags": [
+        "random_target",
+        "knowledge"
+      ]
+    },
+    {
+      "id": 99,
+      "title": {
+        "en": "Money man",
+        "fi": "Rahamiehiä"
+      },
+      "description": {
+        "en": "Player with the most cash within reach gets to choose who drinks.",
+        "fi": "Pelaaja, jolla on eniten käteistä käden ulottuvilla saa päättää kuka juo."
+      },
+      "tags": [
+        "chosen_target"
+      ]
+    },
+    {
+      "id": 100,
+      "title": {
+        "en": "Most accessories",
+        "fi": "Eniten asusteita"
+      },
+      "description": {
+        "en": "The player wearing the most accessories drinks.",
+        "fi": "Pelaaja, jolla on eniten asusteita yllään juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 101,
+      "title": {
+        "en": "Vowel-initial",
+        "fi": "Vokaalialkuiset"
+      },
+      "description": {
+        "en": "All players whose name starts with a vowel must drink.",
+        "fi": "Kaikki pelaajat, joiden nimi alkaa vokaalilla juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 102,
+      "title": {
+        "en": "Consonant-initial",
+        "fi": "Konsonanttialkuiset"
+      },
+      "description": {
+        "en": "All players whose name starts with a consonant must drink.",
+        "fi": "Kaikki pelaajat, joiden nimi alkaa konsonantilla juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 103,
+      "title": {
+        "en": "Black socks",
+        "fi": "Mustikset"
+      },
+      "description": {
+        "en": "All players wearing black socks must drink.",
+        "fi": "Kaikki mustia sukkia käyttävät pelaajat juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 104,
+      "title": {
+        "en": "Vote: most religous",
+        "fi": "Äänestys: uskovaisin"
+      },
+      "description": {
+        "en": "Vote the most religious player among you. They will drink in the name of their Lord.",
+        "fi": "Äänestäkää joukostanne uskovaisin pelaaja. Hän juo Herransa nimeen."
+      },
+      "tags": [
+        "voting"
+      ]
+    },
+    {
+      "id": 105,
+      "title": {
+        "en": "Language master",
+        "fi": "Kielinainen"
+      },
+      "description": {
+        "en": "The player who can speak the most languages gets to choose who drinks.",
+        "fi": "Pelaaja, joka osaa eniten eri kieliä saa päättää kuka juo."
+      },
+      "tags": [
+        "chosen_target"
+      ]
+    },
+    {
+      "id": 106,
+      "title": {
+        "en": "Not answering",
+        "fi": "Älä vastaa -osasto"
+      },
+      "description": {
+        "en": "The last player who received a call drinks.",
+        "fi": "Viimeisin puhelun vastaanottanut pelaaja juo."
+      },
+      "tags": []
+    }
+  ]
+}

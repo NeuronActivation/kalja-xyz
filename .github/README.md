@@ -22,7 +22,7 @@
 
 
 ## ✨ Features
-- 🍻 **90+ Cards**  
+- 🍻 **100+ Cards**  
 From "Sip" to "Strip" (okay, maybe not *that* kind of game)
 - 🎚️ **Custom Rounds**  
 Select your card quantity and mix the cocktail with tags.
@@ -33,15 +33,18 @@ Because bookmarks are for sober people
 
 
 ## 🛠️ Building
+
+>**Note:** We are using [Deno](https://docs.deno.com/runtime/getting_started/installation/) instead of NodeJS
+
 ```bash
 # Clone the repository
 git clone https://github.com/NeuronActivation/kalja-xyz.git && cd kalja-xyz
 
 # Install dependencies 
-pnpm install
+deno install --allow-scripts
 
 # Start development server
-pnpm dev
+deno task dev
 
 ```
 
@@ -61,7 +64,7 @@ Created a card that should come with a breathalyzer? Create an [issue](https://g
 
 🤓 **Code Contributions**  
 Our cocktail recipe for clean code:
-1. 🍹 **Shake well** - Run `pnpm format`
+1. 🍹 **Shake well** - Run `deno fmt`
 2. 📜 **Leave instructions** - TSDoc comments so we remember it tomorrow
 3. 🧪 *Optional garnish* - Tests (like olives in a martini)
 

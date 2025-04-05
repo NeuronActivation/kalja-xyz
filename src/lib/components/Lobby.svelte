@@ -125,7 +125,7 @@
 </details>
 <button
 	class="start-button pico-background-jade-500"
-	disabled={gameState.players.length < 2 || gameState.cardAmount < 1}
+	disabled={gameState.players.length < 2 || (gameState.cardAmount ?? 0) < 1}
 	on:click={() => gameStore.startGame()}
 >
 	{$t('game-start-button')}

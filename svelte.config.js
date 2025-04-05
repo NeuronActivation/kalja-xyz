@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import process from "node:process";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
