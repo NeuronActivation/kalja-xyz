@@ -1834,7 +1834,7 @@
         "fi": "Ei-pelattava hahmo"
       },
       "description": {
-        "en": "For one round act as a NPC.",
+        "en": "For one round act as an NPC.",
         "fi": "Toimi kuten NPC yhden kierroksen ajan."
       },
       "tags": [
