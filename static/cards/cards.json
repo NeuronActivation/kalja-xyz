@@ -1976,7 +1976,7 @@
         "fi": "Tölkki kädessä"
       },
       "description": {
-        "en": "All players who drink from a can must drink.",
+        "en": "All players who are drinking from a can must drink.",
         "fi": "Kaikki jotka juovat tölkistä juovat."
       },
       "tags": []
