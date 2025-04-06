@@ -1964,7 +1964,7 @@
         "fi": "Pullo kädessä"
       },
       "description": {
-        "en": "All players who drink from a bottle must drink.",
+        "en": "All players who are drinking from a bottle must drink.",
         "fi": "Kaikki jotka juovat pullosta juovat."
       },
       "tags": []
