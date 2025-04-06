@@ -1649,7 +1649,7 @@
         "fi": "Korkeasti koulutettu"
       },
       "description": {
-        "en": "The player with the highest education must drink.",
+        "en": "The player(s) with the highest education must drink.",
         "fi": "Korkeimmin koulutettu juo."
       },
       "tags": []
