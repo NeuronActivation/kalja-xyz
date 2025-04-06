@@ -1988,7 +1988,7 @@
         "fi": "Lasi kädessä"
       },
       "description": {
-        "en": "All players who drink from a glass must drink.",
+        "en": "All players who are drinking from a glass must drink.",
         "fi": "Kaikki jotka juovat lasista juovat."
       },
       "tags": []
