@@ -1479,8 +1479,8 @@
         "fi": "Totuus vai totuus"
       },
       "description": {
-        "en": "Ask the target 'truth or truth?' and act accordingly.",
-        "fi": "Kysy kohteelta 'totuus vai totuus?' ja toimi sen mukaan."
+        "en": "Ask the target 'Truth or truth?' and act accordingly.",
+        "fi": "Kysy kohteelta 'Totuus vai totuus?' ja toimi sen mukaan."
       },
       "tags": [
         "random_target"
