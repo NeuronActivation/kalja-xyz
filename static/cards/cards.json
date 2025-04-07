@@ -1493,8 +1493,8 @@
         "fi": "Tehtävä vai tehtävä"
       },
       "description": {
-        "en": "Ask the target 'dare or dare?' and act accordingly.",
-        "fi": "Kysy kohteelta 'tehtävä vai tehtävä?' ja toimi sen mukaan."
+        "en": "Ask the target 'Dare or dare?' and act accordingly.",
+        "fi": "Kysy kohteelta 'Tehtävä vai tehtävä?' ja toimi sen mukaan."
       },
       "tags": [
         "random_target"
