@@ -1691,7 +1691,9 @@
         "en": "Players belonging to a racial minority must drink.",
         "fi": "Rotuvähemmistö juo."
       },
-      "tags": []
+      "tags": [
+        "humiliation"
+      ]
     },
     {
       "id": 125,
