@@ -12,6 +12,7 @@ import {
 	removePlayer,
 	showNextCard,
 	startGame,
+	updateEvents,
 } from '$lib/managers/game';
 
 /**
@@ -116,6 +117,13 @@ function createGameStore() {
 					cards: cards,
 				}));
 			}
+		},
+		updateEvents: () => {
+			update((state) => {
+				const updatedState = updateEvents(state);
+				saveGameState(updatedState);
+				return updatedState;
+			});
 		},
 		loadSavedState: () => {
 			const savedState = loadGameState();

@@ -85,6 +85,12 @@ export function showNextCard(gameState: GameState): GameState {
 	if (gameState.currentPlayerIndex >= gameState.players.length) {
 		gameState.currentPlayerIndex = 0;
 	}
+	// Update events.
+	gameState = updateEvents(gameState);
+	return gameState;
+}
+
+export function updateEvents(gameState: GameState): GameState {
 	// Clearing ended events.
 	gameState.events = gameState.events.filter((item) => !item.ended);
 
