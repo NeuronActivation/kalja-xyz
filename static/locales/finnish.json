@@ -56,6 +56,10 @@
             "name": "Klassikko",
             "tooltip": "Juomapelien klassikkokortit."
         },
+        "finland": {
+            "name": "Suomi",
+            "tooltip": "Kortit jotka liittyvät Suomeen."
+        },
         "untagged": {
             "name": "Kategorisoimaton",
             "tooltip": "Kortit ilman sopivaa tagia."
