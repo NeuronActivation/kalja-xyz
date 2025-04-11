@@ -56,6 +56,10 @@
             "name": "Classic",
             "tooltip": "Classic drinking game cards."
         },
+        "finland": {
+            "name": "Finland",
+            "tooltip": "Cards related to Finland."
+        },
         "untagged": {
             "name": "Untagged",
             "tooltip": "Cards without fitting tag."

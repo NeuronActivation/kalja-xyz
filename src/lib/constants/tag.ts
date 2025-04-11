@@ -12,5 +12,6 @@ export enum Tag {
 	KNOWLEDGE = 'knowledge',
 	EVENT = 'event',
 	CLASSIC = 'classic',
+	FINLAND = 'finland',
 	UNTAGGED = 'untagged',
 }
