@@ -1456,6 +1456,642 @@
         "fi": "Viimeisin puhelun vastaanottanut pelaaja juo."
       },
       "tags": []
+    },
+    {
+      "id": 107,
+      "title": {
+        "en": "Punchline",
+        "fi": "Loppuhuipennus"
+      },
+      "description": {
+        "en": "Make up a beginning of a joke. Target must tell the punchline.",
+        "fi": "Keksi vitsille alustus. Kohde kertoo vitsin lopun."
+      },
+      "tags": [
+        "creative",
+        "random_target"
+      ]
+    },
+    {
+      "id": 108,
+      "title": {
+        "en": "Truth or truth",
+        "fi": "Totuus vai totuus"
+      },
+      "description": {
+        "en": "Ask the target 'Truth or truth?' and act accordingly.",
+        "fi": "Kysy kohteelta 'Totuus vai totuus?' ja toimi sen mukaan."
+      },
+      "tags": [
+        "random_target"
+      ]
+    },
+    {
+      "id": 109,
+      "title": {
+        "en": "Dare or dare",
+        "fi": "Tehtävä vai tehtävä"
+      },
+      "description": {
+        "en": "Ask the target 'Dare or dare?' and act accordingly.",
+        "fi": "Kysy kohteelta 'Tehtävä vai tehtävä?' ja toimi sen mukaan."
+      },
+      "tags": [
+        "random_target"
+      ]
+    },
+    {
+      "id": 110,
+      "title": {
+        "en": "Lastly fired",
+        "fi": "Viimeisimmät potkut"
+      },
+      "description": {
+        "en": "The last player who got fired from a job drinks.",
+        "fi": "Viimeisin töistä potkut saanut pelaaja juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 111,
+      "title": {
+        "en": "Lastly graduated",
+        "fi": "Viimeisimmäksi valmistunut"
+      },
+      "description": {
+        "en": "The most recent graduate drinks.",
+        "fi": "Viimeisin koulusta valmistunut juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 112,
+      "title": {
+        "en": "Battle of residencies",
+        "fi": "Asumismuodot vastakkain"
+      },
+      "description": {
+        "en": "Each player says what type of residency they live in. The smallest minority drinks.",
+        "fi": "Jokainen kertoo millaisessa rakennuksessa asuu (kerrostalo, omakotitalo...). Pienin ryhmittymä juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 113,
+      "title": {
+        "en": "A drink for a floor",
+        "fi": "Juoma per kerros"
+      },
+      "description": {
+        "en": "Each player must drink according to the number of their floor.",
+        "fi": "Jokainen pelaaja juo asunkerroksensa numeron verran."
+      },
+      "tags": []
+    },
+    {
+      "id": 114,
+      "title": {
+        "en": "I'm a vegan btw",
+        "fi": "Olen muutes vegaani"
+      },
+      "description": {
+        "en": "All vegans must drink.",
+        "fi": "Vegaanit juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 115,
+      "title": {
+        "en": "Meathead",
+        "fi": "Lihapää"
+      },
+      "description": {
+        "en": "All meat eaters must drink.",
+        "fi": "Lihansyöjät juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 116,
+      "title": {
+        "en": "Shazam wizard",
+        "fi": "Shazam velho"
+      },
+      "description": {
+        "en": "Play any song for two seconds. The first player who can name the song or the artist gets to choose who drinks.",
+        "fi": "Soita haluamaasi kappaletta kahden sekunnin ajan. Ensimmäinen pelaaja, joka tunnistaa kappaleen tai esittäjän saa päättää kuka juo."
+      },
+      "tags": [
+        "physical",
+        "knowledge"
+      ]
+    },
+    {
+      "id": 117,
+      "title": {
+        "en": "Homesick",
+        "fi": "Koti-ikävä"
+      },
+      "description": {
+        "en": "The player who is the furthest away from home must drink.",
+        "fi": "Kauimpana kotoa oleva pelaaja juo."
+      },
+      "tags": [
+        "physical"
+      ]
+    },
+    {
+      "id": 118,
+      "title": {
+        "en": "Ring 3 dwellers",
+        "fi": "Kehä 3 asukit"
+      },
+      "description": {
+        "en": "All players living inside the Ring 3 must drink.",
+        "fi": "Kaikki Kehä 3:n sisällä asuvat pelaajat juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 119,
+      "title": {
+        "en": "Language immersion",
+        "fi": "Kielikylpy"
+      },
+      "description": {
+        "en": "For one round, speak only a different language.",
+        "fi": "Puhu yhden kierroksen ajan pelkästään englantia."
+      },
+      "tags": [
+        "event"
+      ]
+    },
+    {
+      "id": 120,
+      "title": {
+        "en": "Staring contest",
+        "fi": "Tuijotuskilpailu"
+      },
+      "description": {
+        "en": "Have a staring contest with the target. Loser must drink.",
+        "fi": "Ottakaa tuijotuskilpailu kohteen kanssa. Häviäjä juo."
+      },
+      "tags": [
+        "random_target",
+        "physical"
+      ]
+    },
+    {
+      "id": 121,
+      "title": {
+        "en": "Higher education",
+        "fi": "Korkeasti koulutettu"
+      },
+      "description": {
+        "en": "The player(s) with the highest education must drink.",
+        "fi": "Korkeimmalla koulutuksella juodaan."
+      },
+      "tags": []
+    },
+    {
+      "id": 122,
+      "title": {
+        "en": "Vocational school vs highschool",
+        "fi": "Amis vs lukio"
+      },
+      "description": {
+        "en": "Confrontation between the players who went to vocational school and players who went to high school. Minority must drink.",
+        "fi": "Asettukaa vastakkain ammattikoulun käyneisiin ja lukion käyneisiin. Vähemmistö juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 123,
+      "title": {
+        "en": "They drink now",
+        "fi": "Hän juo nyt"
+      },
+      "description": {
+        "en": "For one round, refer to yourself in third person.",
+        "fi": "Puhu yhden kierroksen ajan itsestäsi kolmannessa persoonassa."
+      },
+      "tags": [
+        "event",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 124,
+      "title": {
+        "en": "Segregation",
+        "fi": "Rotuerottelua"
+      },
+      "description": {
+        "en": "Players belonging to a racial minority must drink.",
+        "fi": "Rotuvähemmistö juo."
+      },
+      "tags": [
+        "humiliation"
+      ]
+    },
+    {
+      "id": 125,
+      "title": {
+        "en": "Tabs wide open",
+        "fi": "Välilehtien levitystä"
+      },
+      "description": {
+        "en": "Read aloud the title or web address of the oldest tab open in your phone's browser. If any of the other players laugh or find it weird, you must drink.",
+        "fi": "Lue ääneen kännykkäsi selaimesta löytyvän vanhimman välilehden otsikko / nettisivun osoite. Jos kukaan muu pelaajista nauraa tai pitää outona, juo."
+      },
+      "tags": [
+        "physical",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 126,
+      "title": {
+        "en": "Who is the most likely to...",
+        "fi": "Kuka todennäköisimmin..."
+      },
+      "description": {
+        "en": "Come up with a vote starting with the words “Who is most likely to…” and choose the player that best fits the description. The player with the most votes must drink.",
+        "fi": "Keksi äänestys alkaen sanoilla 'Kuka todennäköisimmin...' ja äänestäkää joukostanne sopivin pelaaja. Äänestyksen voittanut pelaaja juo."
+      },
+      "tags": [
+        "voting"
+      ]
+    },
+    {
+      "id": 127,
+      "title": {
+        "en": "Apes together strong",
+        "fi": "Apinat yhdessä vahvoja"
+      },
+      "description": {
+        "en": "For one round speak only one word at a time.",
+        "fi": "Puhu vain yksi sana kerrallaan kierroksen ajan."
+      },
+      "tags": [
+        "event",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 128,
+      "title": {
+        "en": "Colors of the rainbow",
+        "fi": "Värisuora"
+      },
+      "description": {
+        "en": "Every player must say their favorite color. All players who said the same color must drink.",
+        "fi": "Jokainen pelaaja sanoo lempivärinsä. Saman värin sanoneet pelaajat juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 129,
+      "title": {
+        "en": "Moanings",
+        "fi": "Voihkings"
+      },
+      "description": {
+        "en": "Do moaning sounds. Every player who laughs must drink.",
+        "fi": "Tee voihkimisääniä. Jokainen äänille naurava pelaaja juo."
+      },
+      "tags": [
+        "humiliation"
+      ]
+    },
+    {
+      "id": 130,
+      "title": {
+        "en": "Bathroom break",
+        "fi": "Kusitauko"
+      },
+      "description": {
+        "en": "Bathroom break. If you don't need to go then drink for every player that goes.",
+        "fi": "Vessatauko. Jos ei ole tarvetta käydä, juo vessaan menevien pelaajien lukumäärä huikkia."
+      },
+      "tags": []
+    },
+    {
+      "id": 131,
+      "title": {
+        "en": "Love birds",
+        "fi": "Rakastavaiset"
+      },
+      "description": {
+        "en": "Hug the target player like you mean it.",
+        "fi": "Halaa kohteen kanssa tunteella."
+      },
+      "tags": [
+        "physical",
+        "humiliation",
+        "random_target"
+      ]
+    },
+    {
+      "id": 132,
+      "title": {
+        "en": "Popular kid",
+        "fi": "Kaikkien kaveri"
+      },
+      "description": {
+        "en": "The player with the most friends on one social media platform must drink.",
+        "fi": "Pelaaja jolla on eniten kavereita yhdellä some-alustalla juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 133,
+      "title": {
+        "en": "Blonds must drink",
+        "fi": "Blondit juovat"
+      },
+      "description": {
+        "en": "All blonds must drink.",
+        "fi": "Kaikki vaaleahiuksiset juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 134,
+      "title": {
+        "en": "Brunettes must drink",
+        "fi": "Brunetet juovat"
+      },
+      "description": {
+        "en": "All brunettes must drink.",
+        "fi": "Kaikki tummahiuksiset juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 135,
+      "title": {
+        "en": "Non-playable character",
+        "fi": "Ei-pelattava hahmo"
+      },
+      "description": {
+        "en": "For one round act as an NPC.",
+        "fi": "Toimi kuten NPC yhden kierroksen ajan."
+      },
+      "tags": [
+        "humiliation",
+        "event"
+      ]
+    },
+    {
+      "id": 136,
+      "title": {
+        "en": "Stuffy nose",
+        "fi": "Dedä dukossa"
+      },
+      "description": {
+        "en": "For one round you must hold your nose everytime you speak.",
+        "fi": "Pidä yhden kierroksen ajan nenästäsi kiinni aina kun puhut."
+      },
+      "tags": [
+        "event",
+        "humiliation"
+      ]
+    },
+    {
+      "id": 137,
+      "title": {
+        "en": "Name carousel",
+        "fi": "Nimikaruselli"
+      },
+      "description": {
+        "en": "For one round every players name shifts to the player on their right. You must drink if you react to your real name or you use wrong name on someone else.",
+        "fi": "Jokaisen nimi vaihtuu oikealla puolella olevalle pelaajalle yhden kierroksen ajaksi. Jos reagoit oikeaan nimeesi tai käytät toisesta väärää nimeä, juot."
+      },
+      "tags": [
+        "event"
+      ]
+    },
+    {
+      "id": 138,
+      "title": {
+        "en": "Shield",
+        "fi": "Kilpi"
+      },
+      "description": {
+        "en": "For one round whenever you have to drink, you get to choose new target to drink.",
+        "fi": "Yhden kierroksen saat päättää uuden kohteen kaikille sinulle tuleville huikille."
+      },
+      "tags": [
+        "event"
+      ]
+    },
+    {
+      "id": 139,
+      "title": {
+        "en": "Zip it",
+        "fi": "Suut suppuun"
+      },
+      "description": {
+        "en": "Last player to speak aloud must drink.",
+        "fi": "Viimeisin ääneen puhunut pelaaja juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 140,
+      "title": {
+        "en": "Beard guy",
+        "fi": "Partaheppu"
+      },
+      "description": {
+        "en": "All players with a beard must drink.",
+        "fi": "Parrakkaat pelaajat juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 141,
+      "title": {
+        "en": "Moustache guy",
+        "fi": "Viiksiheppu"
+      },
+      "description": {
+        "en": "All players with a moustache must drink.",
+        "fi": "Viiksekkäät pelaajat juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 142,
+      "title": {
+        "en": "Baldy",
+        "fi": "Kuulapää"
+      },
+      "description": {
+        "en": "All bald players must drink.",
+        "fi": "Kaljut pelaajat juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 143,
+      "title": {
+        "en": "Calm your tits",
+        "fi": "Tissit tiskiin"
+      },
+      "description": {
+        "en": "The player with biggest cleavage must drink.",
+        "fi": "Isorintaisin pelaaja juo."
+      },
+      "tags": [ "physical" ]
+    },
+    {
+      "id": 144,
+      "title": {
+        "en": "Pretty nails",
+        "fi": "Lakkakynsi"
+      },
+      "description": {
+        "en": "All players with nail polish must drink.",
+        "fi": "Kaikki pelaajat joilla on lakatut kynnet juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 145,
+      "title": {
+        "en": "Bottle in hand",
+        "fi": "Pullo kädessä"
+      },
+      "description": {
+        "en": "All players who are drinking from a bottle must drink.",
+        "fi": "Kaikki jotka juovat pullosta juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 146,
+      "title": {
+        "en": "Can in hand",
+        "fi": "Tölkki kädessä"
+      },
+      "description": {
+        "en": "All players who are drinking from a can must drink.",
+        "fi": "Kaikki jotka juovat tölkistä juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 147,
+      "title": {
+        "en": "Glass in hand",
+        "fi": "Lasi kädessä"
+      },
+      "description": {
+        "en": "All players who are drinking from a glass must drink.",
+        "fi": "Kaikki jotka juovat lasista juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 148,
+      "title": {
+        "en": "Word game",
+        "fi": "Sanapeli"
+      },
+      "description": {
+        "en": "Say a random word. The next player must, within two seconds, say a word that is related to the previous one. The game continues until someone can't think of a word and they have to drink.",
+        "fi": "Sano jokin satunnainen sana. Seuraavan pelaajan tulee kahden sekunnin sisällä sanoa sana, joka liittyy edelliseen sanaan. Peli jatkuu kunnes joku ei keksi sanaa ja hän joutuu juomaan."
+      },
+      "tags": [
+        "creative"
+      ]
+    },
+    {
+      "id": 149,
+      "title": {
+        "en": "Guys' night",
+        "fi": "Äijien ilta"
+      },
+      "description": {
+        "en": "Every male must drink.",
+        "fi": "Kaikki miehet juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 150,
+      "title": {
+        "en": "Girls' night",
+        "fi": "Tyttöjen ilta"
+      },
+      "description": {
+        "en": "Every woman must drink.",
+        "fi": "Kaikki naiset juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 151,
+      "title": {
+        "en": "Woodworking",
+        "fi": "Puuhommissa"
+      },
+      "description": {
+        "en": "The player who last did any woodwork gets to decide who drinks.",
+        "fi": "Viimeksi puuhommissa ollut pelaaja päättää kuka juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 152,
+      "title": {
+        "en": "Sauna night",
+        "fi": "Saunailta"
+      },
+      "description": {
+        "en": "The player who last went to sauna gets to decide who drinks.",
+        "fi": "Viimeksi saunassa käynyt pelaaja päättää kuka juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 153,
+      "title": {
+        "en": "World traveller",
+        "fi": "Maailmanmatkaaja"
+      },
+      "description": {
+        "en": "The player who last travelled to a foreign country gets to decide who drinks.",
+        "fi": "Viimeksi ulkomailla käynyt pelaaja päättää kuka juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 154,
+      "title": {
+        "en": "Avenger",
+        "fi": "Kostaja"
+      },
+      "description": {
+        "en": "The player who has drunk the most during this game gets to choose who drinks.",
+        "fi": "Eniten tämän pelin aikana juomaan joutunut pelaaja pääsee kostamaan ja saa päättää kuka juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 155,
+      "title": {
+        "en": "Joker 2",
+        "fi": "Jokeri 2"
+      },
+      "description": {
+        "en": "Come up with a functionality for this card.",
+        "fi": "Keksi tälle kortille toiminto."
+      },
+      "tags": []
     }
   ]
 }
