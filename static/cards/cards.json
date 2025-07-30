@@ -622,6 +622,7 @@
       },
       "tags": [
         "creative",
+        "event",
         "roleplay"
       ]
     },
@@ -637,6 +638,7 @@
       },
       "tags": [
         "roleplay",
+        "event",
         "humiliation"
       ]
     },
@@ -924,7 +926,9 @@
         "en": "Come up with a question for the target player that can be answered with yes/no or a specific number, and indicate the type of answer. The target must answer without knowing the question beforehand, and if they answer incorrectly, they drink.",
         "fi": "Keksi kohteelle kysymys, johon on mahdollista antaa kyllä/ei-vastaus. Kohteen tulee vastata tietämättä itse kysymystä etukäteen ja jos hän vastaa väärin, hän juo."
       },
-      "tags": []
+      "tags": [
+        "random_target"
+      ]
     },
     {
       "id": 67,
