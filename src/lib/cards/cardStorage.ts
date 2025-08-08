@@ -4,6 +4,7 @@ import { Language } from '$lib/constants/language';
 import { type LanguageData } from '$lib/interfaces/languageData';
 import { createCards } from '$lib/cards/createCards';
 import { languageData } from '$lib/stores/languageData';
+import type { LanguageSpecificCard } from '$lib/interfaces/card';
 
 /**
  * Loads card data for all supported languages and stores it in the languageData store.
@@ -68,4 +69,32 @@ export async function loadSingleCard(
 	} catch (error) {
 		console.error('Failed to load a single card:', error);
 	}
+}
+
+/**
+ * Modifies a specific card across all language data.
+ * @param cardId The ID of the card to modify.
+ * @param modifyFn A function that takes a card and returns a modified version.
+ */
+export function modifyCard(
+	cardId: number,
+	modifyFn: (card: LanguageSpecificCard) => LanguageSpecificCard,
+) {
+	const currentData = get(languageData);
+	if (!currentData) return;
+
+	const updatedData: Record<Language, LanguageData> = { ...currentData };
+
+	for (const lang of Object.values(Language)) {
+		const langData = updatedData[lang];
+		if (!langData?.cards) continue;
+
+		// Find and modify the card with the given ID.
+		updatedData[lang] = {
+			...langData,
+			cards: langData.cards.map((card) => card.id === cardId ? modifyFn(card) : card),
+		};
+	}
+
+	languageData.set(updatedData);
 }
