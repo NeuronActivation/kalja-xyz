@@ -2094,6 +2094,114 @@
         "fi": "Keksi tälle kortille toiminto."
       },
       "tags": []
+    },
+    {
+      "id": 156,
+      "title": {
+        "en": "University grads",
+        "fi": "Korkeakoulusta valmistuneet"
+      },
+      "description": {
+        "en": "People with college degrees drink.",
+        "fi": "Korkeakoulusta valmistuneet juovat."
+      },
+        "tags": []
+    },
+    {
+      "id": 157,
+      "title": {
+        "en": "Blue collars",
+        "fi": "Elämänkoululaiset"
+      },
+      "description": {
+        "en": "People without college degrees drink.",
+        "fi": "Vain lukion tai amiksen käyneet juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 158,
+      "title": {
+        "en": "Tattooed",
+        "fi": "Tatuoidut"
+      },
+      "description": {
+        "en": "Drink if you have atleast one tattoo.",
+        "fi": "Juo jos omistat vähintään yhden tatuoinnin."
+      },
+      "tags": []
+    },
+    {
+      "id": 159,
+      "title": {
+        "en": "Do you remember?",
+        "fi": "Muistatko?"
+      },
+      "description": {
+        "en": "Drink if you don't remeber your last card.",
+        "fi": "Juo jos et muista viime korttiasi"
+      },
+      "tags": []
+    },
+    {
+      "id": 160,
+      "title": {
+        "en": "Spin the bottle",
+        "fi": "Pullonpyöritys"
+      },
+      "description": {
+        "en": "Spin the bottle, to whoever it lands, must drink.",
+        "fi": "Pyöritä pulloa, pullon osoittama henkilö juo."
+      },
+      "tags": [ "physical" ]
+    },
+    {
+      "id": 161,
+      "title": {
+        "en": "Most unopened emails",
+        "fi": "Eniten avaamattomia sähköposteja"
+      },
+      "description": {
+        "en": "The player with the most unopened emails drinks.",
+        "fi": "Pelaaja jolla on eniten avaamattomia sähköposteja juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 162,
+      "title": {
+        "en": "Most tabs open",
+        "fi": "Eniten tabeja auki"
+      },
+      "description": {
+        "en": "The player with the most tabs open drinks.",
+        "fi": "Pelaaja jolla on eniten tabeja auki juo."
+      },
+      "tags": []
+    },
+    {
+      "id": 163,
+      "title": {
+        "en": "Take it easy",
+        "fi": "Siinä se lepää"
+      },
+      "description": {
+        "en": "Lie on your back and drink",
+        "fi": "Makaa selälläsi ja juo."
+      },
+      "tags": [ "physical" ]
+    },
+    {
+      "id": 164,
+      "title": {
+        "en": "Flamingo",
+        "fi": "Flamingo"
+      },
+      "description": {
+        "en": "Everyone stands on one leg like a flamingo for one round.",
+        "fi": "Kaikki seisovat yhdellä jalalla kuten flamingo yhden kierroksen ajan."
+      },
+      "tags": [ "event" ]
     }
   ]
 }
