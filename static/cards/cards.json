@@ -2174,7 +2174,7 @@
         "fi": "Eniten tabeja auki"
       },
       "description": {
-        "en": "The player with the most open tabs drinks.",
+        "en": "The player with the most browser tabs open drinks.",
         "fi": "Pelaaja jolla on eniten tabeja auki juo."
       },
       "tags": []
