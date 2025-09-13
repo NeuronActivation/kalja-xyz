@@ -53,11 +53,9 @@
 	{/if}
 </article>
 
-{#each gameState.events as event}
-	{#if event.ended === true}
-		<h2 class="event-text">{event.person}, {$t('can-stop-the-mission')} {event.title}</h2>
-	{/if}
-{/each}
+{#if gameState.endingEvent}
+	<h2 class="event-text">{gameState.endingEvent.person}, {$t('can-stop-the-mission')} {gameState.endingEvent.title}</h2>
+{/if}
 
 {#if gameState.currentCardIndex + 1 < (gameState.cardAmount ?? 0)}
 	<button on:click={gameStore.showNextCard}>{$t('next-card')}</button>

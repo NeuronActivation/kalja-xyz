@@ -70,8 +70,13 @@ export function changeGameState(gameState: GameState, newState: ApplicationState
  * @returns The updated game state with the next card, player, and event status.
  */
 export function showNextCard(gameState: GameState): GameState {
+	gameState = updateEvents(gameState);
 	gameState.currentCardIndex += 1;
 	gameState.currentPlayerIndex += 1;
+
+	if (gameState.currentPlayerIndex >= gameState.players.length) {
+		gameState.currentPlayerIndex = 0;
+	}
 
 	// Go to game over if out of cards.
 	// Card index doesn't have to be updated since it's always updated in startGame().
@@ -80,26 +85,33 @@ export function showNextCard(gameState: GameState): GameState {
 		gameState.events.forEach((event) => {
 			event.ended = true;
 		});
+		gameState.endingEvent = null;
 		return changeGameState(gameState, ApplicationState.ENDING);
 	}
-	if (gameState.currentPlayerIndex >= gameState.players.length) {
-		gameState.currentPlayerIndex = 0;
-	}
-	// Update events.
-	gameState = updateEvents(gameState);
 	return gameState;
 }
 
 export function updateEvents(gameState: GameState): GameState {
-	// Clearing ended events.
-	gameState.events = gameState.events.filter((item) => !item.ended);
-
 	// Event ends normally.
+	let oldEndedEvent = gameState.endingEvent;
+	let checkIndex = gameState.currentPlayerIndex > 0
+		? gameState.currentPlayerIndex - 1
+		: gameState.players.length - 1;
 	gameState.events.forEach((event) => {
-		if (gameState.currentPlayerIndex === event.startingIndex) {
+		if (checkIndex === event.startingIndex) {
+			gameState.endingEvent = event;
 			event.ended = true;
 		}
 	});
+
+	// Mark the last ended event as null if there is no new ending event.
+	if (oldEndedEvent && gameState.endingEvent === oldEndedEvent) {
+		gameState.endingEvent = null;
+	}
+
+	// Clearing ended events.
+	gameState.events = gameState.events.filter((item) => !item.ended);
+
 	// Add a new event.
 	if (gameState.cards[gameState.currentCardIndex].timedEvent) {
 		const event: GameEvent = {

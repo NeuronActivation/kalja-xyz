@@ -37,4 +37,7 @@ export interface GameState {
 
 	/** Tags that determine which cards are filtered out. */
 	excludedTags: Tag[];
+
+	/** Event that ended with the current card, only one event can end at a time. */
+	endingEvent: GameEvent | null;
 }

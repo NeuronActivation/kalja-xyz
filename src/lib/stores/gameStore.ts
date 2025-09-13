@@ -12,7 +12,6 @@ import {
 	removePlayer,
 	showNextCard,
 	startGame,
-	updateEvents,
 } from '$lib/managers/game';
 
 /**
@@ -97,7 +96,6 @@ function createGameStore() {
 					state.cards = cards;
 					state.events = [];
 					const updatedState = startGame(state);
-					saveGameState(updatedState);
 					return updatedState;
 				});
 			}
@@ -118,13 +116,6 @@ function createGameStore() {
 				}));
 			}
 		},
-		updateEvents: () => {
-			update((state) => {
-				const updatedState = updateEvents(state);
-				saveGameState(updatedState);
-				return updatedState;
-			});
-		},
 		loadSavedState: () => {
 			const savedState = loadGameState();
 			if (savedState) {
@@ -134,12 +125,12 @@ function createGameStore() {
 		reroll: async () => {
 			const { currentCardIndex, includedTags, excludedTags } = get(gameStore);
 			await loadSingleCard(currentCardIndex, includedTags, excludedTags);
-			await gameStore.updateCards();
+			gameStore.updateCards();
 		},
 		replay: async () => {
 			const { includedTags, excludedTags } = get(gameStore);
 			await loadCards(includedTags, excludedTags);
-			await gameStore.startGame();
+			gameStore.startGame();
 		},
 		updateTags: (includedTags: Tag[], excludedTags: Tag[]) => {
 			update((state) => {
