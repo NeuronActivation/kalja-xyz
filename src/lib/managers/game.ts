@@ -93,8 +93,8 @@ export function showNextCard(gameState: GameState): GameState {
 
 export function updateEvents(gameState: GameState): GameState {
 	// Event ends normally.
-	let oldEndedEvent = gameState.endingEvent;
-	let checkIndex = gameState.currentPlayerIndex > 0
+	const oldEndedEvent = gameState.endingEvent;
+	const checkIndex = gameState.currentPlayerIndex > 0
 		? gameState.currentPlayerIndex - 1
 		: gameState.players.length - 1;
 	gameState.events.forEach((event) => {
