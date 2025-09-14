@@ -94,7 +94,6 @@ function createGameStore() {
 			if (cards) {
 				update((state) => {
 					state.cards = cards;
-					state.events = [];
 					const updatedState = startGame(state);
 					saveGameState(updatedState);
 					return updatedState;
@@ -126,12 +125,12 @@ function createGameStore() {
 		reroll: async () => {
 			const { currentCardIndex, includedTags, excludedTags } = get(gameStore);
 			await loadSingleCard(currentCardIndex, includedTags, excludedTags);
-			await gameStore.updateCards();
+			gameStore.updateCards();
 		},
 		replay: async () => {
 			const { includedTags, excludedTags } = get(gameStore);
 			await loadCards(includedTags, excludedTags);
-			await gameStore.startGame();
+			gameStore.startGame();
 		},
 		updateTags: (includedTags: Tag[], excludedTags: Tag[]) => {
 			update((state) => {

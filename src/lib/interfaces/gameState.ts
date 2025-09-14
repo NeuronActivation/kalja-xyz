@@ -1,6 +1,5 @@
 import { ApplicationState } from '$lib/constants/applicationState';
 import { type LanguageSpecificCard } from '$lib/interfaces/card';
-import { type GameEvent } from '$lib/interfaces/gameEvent';
 import { type Player } from '$lib/interfaces/player';
 import { Tag } from '$lib/constants/tag';
 
@@ -28,9 +27,6 @@ export interface GameState {
 
 	/** The list of players in the game. */
 	players: Player[];
-
-	/** The list of events currently active in the game. */
-	events: GameEvent[];
 
 	/** Tags that determine where the cards are included from. All tags are enabled by default. */
 	includedTags: Tag[];
