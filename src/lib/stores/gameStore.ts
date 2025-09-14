@@ -94,7 +94,6 @@ function createGameStore() {
 			if (cards) {
 				update((state) => {
 					state.cards = cards;
-					state.events = [];
 					const updatedState = startGame(state);
 					saveGameState(updatedState);
 					return updatedState;

@@ -52,9 +52,8 @@
 		<b>{$t('target')}: {targetPlayer}</b>
 	{/if}
 </article>
-
-{#if gameState.endingEvent}
-	<h2 class="event-text">{gameState.endingEvent.person}, {$t('can-stop-the-mission')} {gameState.endingEvent.title}</h2>
+{#if gameState.players[gameState.currentPlayerIndex].event}
+	<h2 class="event-text">{gameState.players[gameState.currentPlayerIndex].event?.person}, {$t('can-stop-the-mission')} {gameState.players[gameState.currentPlayerIndex].event?.title}</h2>
 {/if}
 
 {#if gameState.currentCardIndex + 1 < (gameState.cardAmount ?? 0)}

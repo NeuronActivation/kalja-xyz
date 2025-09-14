@@ -30,6 +30,7 @@ export function addPlayer(gameState: GameState, playerName: string): GameState {
 	const newPlayer: Player = {
 		id: gameState.players.length + 1,
 		name: playerName,
+		event: null,
 	};
 	gameState.players = [...gameState.players, newPlayer];
 	return gameState;
@@ -82,35 +83,26 @@ export function showNextCard(gameState: GameState): GameState {
 	// Card index doesn't have to be updated since it's always updated in startGame().
 	if (gameState.currentCardIndex >= (gameState.cardAmount ?? 0)) {
 		// All ongoing events automatically end.
-		gameState.events.forEach((event) => {
-			event.ended = true;
+		gameState.players.forEach((player) => {
+			player.event = null;
 		});
-		gameState.endingEvent = null;
 		return changeGameState(gameState, ApplicationState.ENDING);
 	}
 	return gameState;
 }
 
-export function updateEvents(gameState: GameState): GameState {
-	// Event ends normally.
-	const oldEndedEvent = gameState.endingEvent;
-	const checkIndex = gameState.currentPlayerIndex > 0
-		? gameState.currentPlayerIndex - 1
-		: gameState.players.length - 1;
-	gameState.events.forEach((event) => {
-		if (checkIndex === event.startingIndex) {
-			gameState.endingEvent = event;
-			event.ended = true;
-		}
-	});
-
-	// Mark the last ended event as null if there is no new ending event.
-	if (oldEndedEvent && gameState.endingEvent === oldEndedEvent) {
-		gameState.endingEvent = null;
+/**
+ * Updates the events in the game state.
+ * If the player had an ongoing event, it is nulled.
+ * If the new card has a timed event, a new event is created for the current player.
+ * @param gameState - The current state of the game.
+ * @returns The updated game state with modified events.
+ */
+function updateEvents(gameState: GameState): GameState {
+	// This is the event that was just displayed as ended, we don't need it anymore.
+	if (gameState.players[gameState.currentPlayerIndex].event) {
+		gameState.players[gameState.currentPlayerIndex].event = null;
 	}
-
-	// Clearing ended events.
-	gameState.events = gameState.events.filter((item) => !item.ended);
 
 	// Add a new event.
 	if (gameState.cards[gameState.currentCardIndex].timedEvent) {
@@ -120,7 +112,7 @@ export function updateEvents(gameState: GameState): GameState {
 			startingIndex: gameState.currentPlayerIndex,
 			ended: false,
 		};
-		gameState.events.push(event);
+		gameState.players[gameState.currentPlayerIndex].event = event;
 	}
 	return gameState;
 }
