@@ -19,7 +19,6 @@ export function createNewGame(): GameState {
 		currentPlayerIndex: 0,
 		state: ApplicationState.START,
 		players: [],
-		events: [],
 		includedTags: Object.values(Tag),
 		excludedTags: [],
 	};
