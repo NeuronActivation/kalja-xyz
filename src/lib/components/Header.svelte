@@ -17,7 +17,7 @@
 		const select = event.target as HTMLSelectElement;
 		const newLanguage = select.value as Language;
 		await languageStore.changeLanguage(newLanguage);
-		await gameStore.updateCards();
+		gameStore.updateCards();
 	}
 </script>
 
