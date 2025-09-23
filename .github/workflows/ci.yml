@@ -19,4 +19,4 @@ jobs:
       - name: Formatting
         run: deno fmt --check
       - name: Tests
-        run: deno task test:run --reporter=verbose
+        run: deno -A npm:vitest run --reporter=verbose
