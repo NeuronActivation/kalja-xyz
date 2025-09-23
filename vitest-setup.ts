@@ -7,4 +7,4 @@ const localStorageMock = {
   clear: vi.fn(),
 };
 
-globalThis.localStorage = localStorageMock as any;
+globalThis.localStorage = localStorageMock as unknown as Storage;

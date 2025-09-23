@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 import { get } from 'svelte/store';
 import { Language } from '$lib/constants/language';
 import type { LanguageSpecificCard } from '$lib/interfaces/card';
@@ -17,7 +17,7 @@ vi.mock('$lib/cards/cardUtils', () => ({
 	getStoredCards: vi.fn(),
 }));
 
-import { languageStore } from '../languageStore';
+import { languageStore } from '$lib/stores/languageStore';
 import * as localeStorage from '$lib/i18n/localeStorage';
 import * as cardUtils from '$lib/cards/cardUtils';
 
@@ -41,10 +41,13 @@ describe('languageStore', () => {
 		},
 	];
 
-	beforeEach(async () => {
+	beforeEach(() => {
 		vi.clearAllMocks();
-		(localeStorage.getStoredLanguage as any).mockReturnValue(Language.FI);
-		(localeStorage.setLanguage as any).mockResolvedValue(undefined);
+
+		(localeStorage.getStoredLanguage as Mock).mockReturnValue(Language.FI);
+
+		vi.mocked(localeStorage.getStoredLanguage).mockReturnValue(Language.FI);
+		(localeStorage.setLanguage as Mock).mockResolvedValue(undefined);
 	});
 
 	afterEach(() => {
@@ -73,7 +76,7 @@ describe('languageStore', () => {
 
 	describe('changeLanguage', () => {
 		it('should change language and update store', async () => {
-			(localeStorage.setLanguage as any).mockResolvedValue(undefined);
+			(localeStorage.setLanguage as Mock).mockResolvedValue(undefined);
 
 			await languageStore.changeLanguage(Language.EN);
 
@@ -98,8 +101,8 @@ describe('languageStore', () => {
 
 	describe('getCards', () => {
 		it('should return cards for current language', () => {
-			(localeStorage.getStoredLanguage as any).mockReturnValue(Language.FI);
-			(cardUtils.getStoredCards as any).mockReturnValue(mockCards);
+			(localeStorage.setLanguage as Mock).mockReturnValue(undefined);
+			(cardUtils.getStoredCards as Mock).mockReturnValue(mockCards);
 
 			const cards = languageStore.getCards();
 			expect(cards).toEqual(mockCards);
@@ -107,15 +110,15 @@ describe('languageStore', () => {
 		});
 
 		it('should return null if no cards found', () => {
-			(cardUtils.getStoredCards as any).mockReturnValue(null);
+			(cardUtils.getStoredCards as Mock).mockReturnValue(null);
 
 			const cards = languageStore.getCards();
 			expect(cards).toBeNull();
 		});
 
 		it('should use current stored language', () => {
-			(localeStorage.getStoredLanguage as any).mockReturnValue(Language.EN);
-			(cardUtils.getStoredCards as any).mockReturnValue([]);
+			(localeStorage.getStoredLanguage as Mock).mockReturnValue(Language.EN);
+			(cardUtils.getStoredCards as Mock).mockReturnValue([]);
 
 			languageStore.getCards();
 			expect(cardUtils.getStoredCards).toHaveBeenCalledWith(Language.EN);
@@ -167,7 +170,7 @@ describe('languageStore', () => {
 			}));
 
 			// Reset mocks
-			(localeStorage.setLanguage as any).mockClear();
+			(localeStorage.setLanguage as Mock).mockClear();
 
 			// Wait for any potential initialization
 			await new Promise((resolve) => setTimeout(resolve, 0));

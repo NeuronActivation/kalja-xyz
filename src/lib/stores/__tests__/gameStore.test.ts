@@ -1,8 +1,8 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 import { get } from 'svelte/store';
 import { ApplicationState } from '$lib/constants/applicationState';
 import { Tag } from '$lib/constants/tag';
-import { gameStore } from '../gameStore';
+import { gameStore } from '$lib/stores/gameStore';
 import * as gameStateStorage from '$lib/gameState/gameStateStorage';
 import * as cardStorage from '$lib/cards/cardStorage';
 import * as gameManagers from '$lib/managers/game';
@@ -63,9 +63,9 @@ describe('gameStore', () => {
 
 	beforeEach(() => {
 		vi.clearAllMocks();
-		(createNewGameModule.createNewGame as any).mockReturnValue(mockNewGameState);
-		(gameStateStorage.saveGameState as any).mockImplementation(() => {});
-		(gameStateStorage.loadGameState as any).mockReturnValue(null);
+		(createNewGameModule.createNewGame as Mock).mockReturnValue(mockNewGameState);
+		(gameStateStorage.saveGameState as Mock).mockImplementation(() => {});
+		(gameStateStorage.loadGameState as Mock).mockReturnValue(null);
 		gameStore.reset();
 	});
 
@@ -102,7 +102,7 @@ describe('gameStore', () => {
 				...mockNewGameState,
 				players: [{ id: 1, name: 'New Player' }],
 			};
-			(gameManagers.addPlayer as any).mockReturnValue(mockUpdatedState);
+			(gameManagers.addPlayer as Mock).mockReturnValue(mockUpdatedState);
 
 			gameStore.addPlayer('New Player');
 
@@ -114,7 +114,7 @@ describe('gameStore', () => {
 	describe('removePlayer', () => {
 		it('should remove a player', () => {
 			const mockUpdatedState = { ...mockNewGameState, players: [] };
-			(gameManagers.removePlayer as any).mockReturnValue(mockUpdatedState);
+			(gameManagers.removePlayer as Mock).mockReturnValue(mockUpdatedState);
 
 			gameStore.removePlayer(1);
 
@@ -135,7 +135,7 @@ describe('gameStore', () => {
 
 	describe('initializeMaxCards', () => {
 		it('should initialize max cards', async () => {
-			(cardStorage.loadCards as any).mockResolvedValue(25);
+			(cardStorage.loadCards as Mock).mockResolvedValue(25);
 
 			await gameStore.initializeMaxCards();
 
@@ -150,8 +150,8 @@ describe('gameStore', () => {
 			const mockCards = ['card1', 'card2', 'card3'];
 			const mockUpdatedState = { ...mockNewGameState, cards: mockCards, events: [] };
 
-			(languageStore.getCards as any).mockReturnValue(mockCards);
-			(gameManagers.startGame as any).mockReturnValue(mockUpdatedState);
+			(languageStore.getCards as Mock).mockReturnValue(mockCards);
+			(gameManagers.startGame as Mock).mockReturnValue(mockUpdatedState);
 
 			gameStore.startGame();
 
@@ -160,7 +160,7 @@ describe('gameStore', () => {
 		});
 
 		it('should not start game when no cards are available', () => {
-			(languageStore.getCards as any).mockReturnValue(null);
+			(languageStore.getCards as Mock).mockReturnValue(null);
 
 			gameStore.startGame();
 
@@ -171,7 +171,7 @@ describe('gameStore', () => {
 	describe('showNextCard', () => {
 		it('should show next card', () => {
 			const mockUpdatedState = { ...mockNewGameState, currentCardIndex: 1 };
-			(gameManagers.showNextCard as any).mockReturnValue(mockUpdatedState);
+			(gameManagers.showNextCard as Mock).mockReturnValue(mockUpdatedState);
 
 			gameStore.showNextCard();
 
@@ -183,7 +183,7 @@ describe('gameStore', () => {
 	describe('updateCards', () => {
 		it('should update cards when available', () => {
 			const mockCards = ['card1', 'card2'];
-			(languageStore.getCards as any).mockReturnValue(mockCards);
+			(languageStore.getCards as Mock).mockReturnValue(mockCards);
 
 			gameStore.updateCards();
 
@@ -192,7 +192,7 @@ describe('gameStore', () => {
 		});
 
 		it('should not update cards when not available', () => {
-			(languageStore.getCards as any).mockReturnValue(null);
+			(languageStore.getCards as Mock).mockReturnValue(null);
 			const initialState = get(gameStore);
 
 			gameStore.updateCards();
@@ -204,7 +204,7 @@ describe('gameStore', () => {
 
 	describe('loadSavedState', () => {
 		it('should load saved state when available', () => {
-			(gameStateStorage.loadGameState as any).mockReturnValue(mockGameState);
+			(gameStateStorage.loadGameState as Mock).mockReturnValue(mockGameState);
 
 			gameStore.loadSavedState();
 
@@ -213,7 +213,7 @@ describe('gameStore', () => {
 		});
 
 		it('should not load state when not available', () => {
-			(gameStateStorage.loadGameState as any).mockReturnValue(null);
+			(gameStateStorage.loadGameState as Mock).mockReturnValue(null);
 			const initialState = get(gameStore);
 
 			gameStore.loadSavedState();
