@@ -1,4 +1,4 @@
-name: Linting and formatting
+name: Linting, formatting and testing
 on:
   push:
     branches: [main]
@@ -16,3 +16,5 @@ jobs:
           deno-version: v2.x
       - name: Lint and format checks
         run: 'deno lint && deno fmt --check'
+      - name: Run tests
+        run: 'deno task test:run'
