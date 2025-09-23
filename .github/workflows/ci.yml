@@ -14,8 +14,9 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
-      - name: Run all checks
-        run: |
-        deno lint
-        deno fmt --check
-        deno run -A npm:vitest run
+      - name: Linting
+        run: deno lint
+      - name: Formatting
+        run: deno fmt --check
+      - name: Tests
+        run: deno task test:run --reporter=verbose
