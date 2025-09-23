@@ -8,5 +8,11 @@
     "include": [
       "src/"
     ]
+  },
+  "tasks": {
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
   }
 }

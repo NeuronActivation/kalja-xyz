@@ -7,6 +7,9 @@ import { Tag } from '$lib/constants/tag';
  * Represents the state of the game at a given moment.
  */
 export interface GameState {
+	/** The current state of the game. */
+	state: ApplicationState;
+
 	/** The list of cards in the game. */
 	cards: LanguageSpecificCard[];
 
@@ -21,9 +24,6 @@ export interface GameState {
 
 	/** The index of the current player in the turn order. */
 	currentPlayerIndex: number;
-
-	/** The current state of the game. */
-	state: ApplicationState;
 
 	/** The list of players in the game. */
 	players: Player[];

@@ -1,4 +1,4 @@
-import { type Invalidator, type Subscriber, type Unsubscriber } from 'svelte/motion';
+import { type Subscriber, type Unsubscriber } from 'svelte/store';
 import { writable } from 'svelte/store';
 import { type LanguageSpecificCard } from '$lib/interfaces/card';
 import { Language } from '$lib/constants/language';
@@ -18,7 +18,7 @@ interface LanguageStore {
 	 */
 	subscribe: (
 		run: Subscriber<{ language: Language }>,
-		invalidate?: Invalidator<{ language: Language }> | undefined,
+		invalidate?: ((value?: { language: Language }) => void) | undefined,
 	) => Unsubscriber;
 
 	/**
