@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { t, locale } from 'svelte-i18n';
+	import { locale, t } from 'svelte-i18n';
 	import { Language } from '$lib/constants/language';
 	import { gameStore } from '$lib/stores/gameStore';
 	import { languageStore } from '$lib/stores/languageStore';
@@ -48,15 +48,12 @@
 		justify-content: center;
 		text-align: center;
 		border-radius: 50%;
+		border: none;
 
 		/* Needed for WebKit compatibility */
 		-webkit-appearance: none;
 		text-align-last: center;
-		text-indent: 0;
-		padding-left: 0;
-		padding-right: 0;
 	}
-
 	.reset {
 		right: 1rem;
 		font-size: 1.3rem;

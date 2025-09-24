@@ -13,7 +13,7 @@
 			'Legendaarinen juomapeli uudessa kuosissa. Helppo pelata, vaikea lopettaa. Bileet alkaa nappia painamalla!',
 		type: 'website',
 		url: $page.url.href,
-		image: `${base}/favicon.png`
+		image: `${base}/favicon.png`,
 	};
 </script>
 

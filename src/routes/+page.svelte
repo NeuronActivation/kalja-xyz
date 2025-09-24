@@ -22,8 +22,7 @@
 </script>
 
 <Header />
-
-<div class="game-container">
+<main class="game-container">
 	{#if gameState.state === ApplicationState.START}
 		<Start />
 	{:else if gameState.state === ApplicationState.LOBBY}
@@ -33,17 +32,34 @@
 	{:else if gameState.state === ApplicationState.ENDING}
 		<End />
 	{/if}
-</div>
-
+</main>
 <Footer />
 
 <style>
+	:root {
+		--nav-height: 80px;
+		--footer-height: 80px;
+	}
 	.game-container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		min-height: calc(100vh - var(--nav-height, 80px) - var(--footer-height, 80px));
 		width: 100%;
-		height: 100vh;
+		padding: var(--spacing);
+	}
+
+	/* Ensure proper layout flow */
+	:global(body) {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		margin: 0;
+	}
+
+	/* Make main content area flexible */
+	.game-container {
+		flex: 1;
 	}
 </style>

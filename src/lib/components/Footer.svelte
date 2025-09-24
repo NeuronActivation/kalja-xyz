@@ -4,8 +4,8 @@
 			🍺 Drink responsibly • <a
 				href="https://github.com/NeuronActivation/kalja-xyz"
 				target="_blank"
-				rel="noopener">Code</a
-			>
+				rel="noopener"
+			>Code</a>
 		</small>
 	</div>
 </footer>

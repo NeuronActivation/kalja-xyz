@@ -5,7 +5,7 @@
 	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
 	import { onMount } from 'svelte';
 	import { getTarget } from '$lib/managers/game';
-	import { setPersistentTarget, getPersistentTarget } from '$lib/utils/targetStorage';
+	import { getPersistentTarget, setPersistentTarget } from '$lib/utils/targetStorage';
 
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
@@ -49,11 +49,18 @@
 		{gameState.cards[gameState.currentCardIndex].description}
 	</p>
 	{#if gameState.cards[gameState.currentCardIndex].targetPlayer}
-		<b>{$t('target')}: {targetPlayer}</b>
+		<b>{$t('target')}: <span class="target-name pico-background-zinc-600">{
+				targetPlayer
+			}</span></b>
 	{/if}
 </article>
+
 {#if gameState.players[gameState.currentPlayerIndex].event}
-	<h2 class="event-text">{gameState.players[gameState.currentPlayerIndex].event?.person}, {$t('can-stop-the-mission')} {gameState.players[gameState.currentPlayerIndex].event?.title}</h2>
+	<article class="event-notice">
+		<strong>{gameState.players[gameState.currentPlayerIndex].event?.person}</strong>,
+		{$t('can-stop-the-mission')}
+		<em>{gameState.players[gameState.currentPlayerIndex].event?.title}</em>
+	</article>
 {/if}
 
 {#if gameState.currentCardIndex + 1 < (gameState.cardAmount ?? 0)}
@@ -64,21 +71,60 @@
 	</button>
 {/if}
 
-<p class="game-status">{gameState.currentCardIndex + 1}/{gameState.cardAmount}</p>
+<div class="progress-section">
+	<p class="game-status">{gameState.currentCardIndex + 1}/{gameState.cardAmount}</p>
+	<progress value={gameState.currentCardIndex + 1} max={gameState.cardAmount}></progress>
+</div>
 
 <style>
 	article {
-		position: relative;
 		width: 600px;
+		position: relative;
+		border-radius: 1rem;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	}
+
+	.target-name {
+		padding: 0.25rem 0.75rem;
+		border-radius: 1rem;
+		font-size: 0.9rem;
+		color: white;
+	}
+
+	.event-notice {
+		text-align: center;
+		padding: 1.5rem;
+		border-radius: 1rem;
+		font-size: 1rem;
+		max-width: 600px;
+		position: relative;
+	}
+
+	.event-notice::before {
+		content: '⏳';
+		position: absolute;
+		top: -10px;
+		left: 50%;
+		transform: translateX(-50%);
+		background: var(--card-background-color);
+		padding: 0 0.5rem;
+		font-size: 1.2rem;
+	}
+
+	.progress-section {
+		text-align: center;
+		max-width: 300px;
 	}
 
 	.game-status {
-		margin-top: 1rem;
-		text-align: center;
+		margin: 1rem 0 0.5rem 0;
+		font-size: 0.9rem;
+		color: var(--muted-color);
 	}
 
-	.event-text {
-		text-align: center;
+	progress {
+		width: 100%;
+		height: 0.5rem;
 	}
 
 	.reroll {
@@ -94,7 +140,11 @@
 	}
 
 	@media (max-width: 768px) {
-		article {
+		article, .event-notice {
+			max-width: 90%;
+		}
+
+		.progress-section {
 			max-width: 90%;
 		}
 	}
