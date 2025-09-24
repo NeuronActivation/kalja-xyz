@@ -65,11 +65,11 @@
 {#if gameState.players.length > 0}
 	<ul class="player-list">
 		{#each gameState.players as player (player.id)}
-			<li>
-				<button class="remove-player" on:click={() => gameStore.removePlayer(player.id)}>
-					&#x2716;
-				</button>
+			<li class="pico-background-zinc-600">
 				{player.name}
+				<button class="remove-player" on:click={() => gameStore.removePlayer(player.id)}>
+					×
+				</button>
 			</li>
 		{/each}
 	</ul>
@@ -111,7 +111,7 @@
 		</div>
 		<span><b>{$t('settings-cards')}</b>:</span>
 		<div class="slider-container">
-			<span>{gameState.cardAmount}</span>
+			<span class="card-count">{gameState.cardAmount}</span>
 			<input
 				type="range"
 				id="cardAmount"
@@ -134,23 +134,42 @@
 <style>
 	.player-list {
 		padding-left: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+		justify-content: center;
+		max-width: 600px;
+		margin: 1rem auto;
 	}
 
 	.player-list li {
 		list-style-type: none;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.9rem;
+		border-radius: 1rem;
+		padding: 0.4rem 0.6rem;
 	}
 
 	.remove-player {
-		all: unset;
-		background-color: transparent;
+		background: none;
+		border: none;
+		color: inherit;
 		cursor: pointer;
-		font-size: 14px;
-		color: #666;
-		transition: color 0.2s ease;
+		font-size: 1.2rem;
+		line-height: 1;
+		opacity: 0.8;
+		transition: opacity 0.2s ease;
+		padding: 0;
+		margin: 0;
+		margin-left: 0.25rem;
+		vertical-align: middle;
+		transform: translateY(-1px); /* Fine-tune on y-axis */
 	}
 
 	.remove-player:hover {
-		color: #e74c3c;
+		opacity: 1;
 	}
 
 	input {
@@ -182,6 +201,11 @@
 		align-items: center;
 		gap: 0.5rem;
 		flex: 1;
+	}
+
+	.card-count {
+		min-width: 3ch;
+		text-align: center;
 	}
 
 	input[type='range'] {
