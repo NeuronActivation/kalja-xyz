@@ -22,12 +22,12 @@
 
 
 ## ✨ Features
-- 🍻 **100+ Cards**  
+- 🍻 **150+ Cards**
 From "Sip" to "Strip" (okay, maybe not *that* kind of game)
 - 🎚️ **Custom Rounds**  
 Select your card quantity and mix the cocktail with tags.
 - 🌍 **Bilingual Hangovers**  
-Play in English or Finnish - regret knows no borders
+Switch dynamically between English or Finnish - regret knows no borders
 - 📲 **Add to Home Screen (PWA)**  
 Because bookmarks are for sober people
 
@@ -66,7 +66,7 @@ Created a card that should come with a breathalyzer? Create an [issue](https://g
 Our cocktail recipe for clean code:
 1. 🍹 **Shake well** - Run `deno fmt`
 2. 📜 **Leave instructions** - TSDoc comments so we remember it tomorrow
-3. 🧪 *Optional garnish* - Tests (like olives in a martini)
+3. 🧪 **Optional garnish** - Tests, with vitest (like olives in a martini)
 
 
 **Pro Tip:** All PRs are code-reviewed with a drink in hand 🥃 - the tipsier the review, the more creative the feedback!
