@@ -5,6 +5,34 @@
 	import type { GameState } from '$lib/interfaces/gameState';
 	import { Tag } from '$lib/constants/tag';
 
+	// Proof of concept: Setting the card required by index.
+	let inputValue: number | null = null;
+	function handleInput(event: KeyboardEvent) {
+		if (event.key === "Enter" && inputValue !== null) {
+			const target = event.target as HTMLInputElement;
+			const value = Number(target.value);
+			inputValue = isNaN(value) ? null : value;
+			if (inputValue || inputValue == 0)
+			{
+				const cards = gameStore.getCards();
+				if (cards)
+				{
+					const card = cards.find((card) => card.id === inputValue);
+					if (card)
+					{
+						console.log("Chosen card: ", card.title);
+						const isCurrentlyRequired = card.required;
+						gameStore.setRequired(card.id, !isCurrentlyRequired);
+
+						const newCards = gameStore.getCards();
+						const updatedCard = newCards?.find((card) => card.id === inputValue);
+						console.log("Updated card: ", updatedCard);
+					}
+				}
+			}
+		}
+	}
+
 	let playerName: string;
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
@@ -130,6 +158,13 @@
 >
 	{$t('game-start-button')}
 </button>
+
+<input
+  type="number"
+  bind:value={inputValue}
+  on:keydown={handleInput}
+  placeholder="Enter a number and press Enter"
+/>
 
 <style>
 	.player-list {
