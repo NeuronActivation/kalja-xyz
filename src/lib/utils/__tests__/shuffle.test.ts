@@ -39,7 +39,7 @@ describe('seededShuffle', () => {
 			},
 		];
 
-    // Use slice to pass a copy, so original array is not mutated for other tests.
+		// Use slice to pass a copy, so original array is not mutated for other tests.
 		const result = seededShuffle(cards.slice(), 42);
 
 		// It should return the same reference passed in (function mutates the array in place).
@@ -69,7 +69,7 @@ describe('seededShuffle', () => {
 		const a = seededShuffle(deck1, 1).map((c) => c.id);
 		const b = seededShuffle(deck2, 2).map((c) => c.id);
 
-    // It's unlikely that two different seeds produce identical order.
+		// It's unlikely that two different seeds produce identical order.
 		// but to avoid flaky tests we assert that at least one position differs.
 		const identical = a.every((val, idx) => val === b[idx]);
 		expect(identical).toBe(false);
@@ -123,7 +123,7 @@ describe('seededShuffle', () => {
 });
 
 describe('seededRandom behavior (indirect tests)', () => {
-  // Seeded random is not exported, but still validating behavior.
+	// Seeded random is not exported, but still validating behavior.
 
 	it('generates numbers in [0, 1) and is deterministic per seed', () => {
 		let seededRandom: ((seed: number) => () => number) | undefined;
@@ -136,7 +136,7 @@ describe('seededRandom behavior (indirect tests)', () => {
 		}
 
 		if (!seededRandom) {
-      // If not exported, pass.
+			// If not exported, pass.
 			expect(true).toBe(true);
 			return;
 		}
