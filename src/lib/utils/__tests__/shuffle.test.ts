@@ -39,8 +39,6 @@ describe('seededShuffle', () => {
 			},
 		];
 
-		const originalRef = cards;
-
     // Use slice to pass a copy, so original array is not mutated for other tests.
 		const result = seededShuffle(cards.slice(), 42);
 

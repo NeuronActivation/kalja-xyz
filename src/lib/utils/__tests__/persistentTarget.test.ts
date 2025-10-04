@@ -8,7 +8,7 @@ vi.mock('$lib/constants/isBrowser', () => ({
 const storage = new Map<string, string>();
 
 // Provide a mock implementation of sessionStorage.
-Object.defineProperty(global, 'sessionStorage', {
+Object.defineProperty(globalThis, 'sessionStorage', {
   value: {
     getItem: vi.fn((key: string) => storage.get(key) ?? null),
     setItem: vi.fn((key: string, value: string) => storage.set(key, value)),
