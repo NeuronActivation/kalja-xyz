@@ -15,5 +15,8 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage"
   },
-  "unstable": ["fmt-component"]
+  "unstable": ["fmt-component"],
+  "lint": {
+    "exclude": ["scripts"]
+  }
 }
