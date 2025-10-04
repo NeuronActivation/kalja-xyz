@@ -1,4 +1,3 @@
-import { resolve } from '$app/paths';
 import { Language } from '$lib/constants/language';
 import { Tag } from '$lib/constants/tag';
 import { type LanguageData } from '$lib/interfaces/languageData';
@@ -58,8 +57,7 @@ async function fetchAndFilterCards(
 	seed: number,
 ): Promise<Card[]> {
 	try {
-		const cardsUrl = resolve('/cards/cards.json' as '/');
-		const response = await fetch(cardsUrl);
+		const response = await fetch('/cards/cards.json');
 		const { cards }: { cards: Card[] } = await response.json();
 
 		// Filter only cards that contain at least one of the given tags.
