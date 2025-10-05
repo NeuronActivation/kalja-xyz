@@ -3,6 +3,7 @@ import { ApplicationState } from '$lib/constants/applicationState';
 import type { GameState } from '$lib/interfaces/gameState';
 import { languageStore } from '$lib/stores/languageStore';
 import { Tag } from '$lib/constants/tag';
+import * as analytics from '$lib/utils/analytics';
 import { createNewGame } from '$lib/gameState/createNewGame';
 import { loadGameState, saveGameState } from '$lib/gameState/gameStateStorage';
 import { loadCards, loadSingleCard } from '$lib/cards/cardStorage';
@@ -96,6 +97,9 @@ function createGameStore() {
 					state.cards = cards;
 					const updatedState = startGame(state);
 					saveGameState(updatedState);
+					analytics.trackEvent('players', {
+						players: updatedState.players.length,
+					});
 					return updatedState;
 				});
 			}
