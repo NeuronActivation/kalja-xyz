@@ -14,7 +14,7 @@
         "test": "vitest",
         "test:watch": "vitest --watch",
         "test:coverage": "vitest --coverage",
-        "update-coverage": "node scripts/update-coverage.js"
+        "update-coverage": "deno run --allow-read --allow-write --allow-env scripts/update-coverage.ts"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.9",
