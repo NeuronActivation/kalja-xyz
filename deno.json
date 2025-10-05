@@ -21,6 +21,7 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "update-coverage": "deno run --allow-read --allow-write --allow-env scripts/update-coverage.ts"
+    "test:coverage": "vitest --coverage"
   },
   "unstable": ["fmt-component"]
 }
