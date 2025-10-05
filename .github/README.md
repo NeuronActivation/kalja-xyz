@@ -30,6 +30,8 @@ Select your card quantity and mix the cocktail with tags.
 Switch dynamically between English or Finnish - regret knows no borders
 - 📲 **Add to Home Screen (PWA)**  
 Because bookmarks are for sober people
+- 📊 **Privacy-Respecting Analytics**  
+We count shots taken (metaphorically) without checking IDs. [View our public dashboard](https://cloud.umami.is/share/CrXiQx0T4O8Xjxy1/kalja.xyz)
 
 
 ## 🛠️ Building
