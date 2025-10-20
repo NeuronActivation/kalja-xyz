@@ -1559,8 +1559,8 @@
         "fi": "Olen muutes vegaani"
       },
       "description": {
-        "en": "All vegans must drink.",
-        "fi": "Vegaanit juovat."
+        "en": "All vegetarians must drink, vegans drink double.",
+        "fi": "Vegetaristit juovat, vegaanit juovat tuplana."
       },
       "tags": []
     },
