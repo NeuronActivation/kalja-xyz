@@ -51,7 +51,7 @@ export async function createCards(
  * @param seed The seed for shuffling.
  * @returns Shuffled and filtered cards.
  */
-async function fetchAndFilterCards(
+export async function fetchAndFilterCards(
 	includedTags: Tag[],
 	excludedTags: Tag[],
 	seed: number,
