@@ -1,7 +1,7 @@
-import { type GameState } from '$lib/interfaces/gameState';
-import { type Player } from '$lib/interfaces/player';
-import { type GameEvent } from '$lib/interfaces/gameEvent';
-import { ApplicationState } from '$lib/constants/applicationState';
+import { type GameState } from '$lib/interfaces/gameState.ts';
+import { type Player } from '$lib/interfaces/player.ts';
+import { type GameEvent } from '$lib/interfaces/gameEvent.ts';
+import { ApplicationState } from '$lib/constants/applicationState.ts';
 
 /**
  * Starts the game by shuffling players and setting initial game states.

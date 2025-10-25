@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { seededShuffle } from '$lib/utils/seed';
-import type { Card } from '$lib/interfaces/card';
+import { seededShuffle } from '$lib/utils/seed.ts';
+import type { Card } from '$lib/interfaces/card.ts';
 
 describe('seededShuffle', () => {
 	it('returns the same array reference (shuffles in-place)', () => {
@@ -128,8 +128,7 @@ describe('seededRandom behavior (indirect tests)', () => {
 	it('generates numbers in [0, 1) and is deterministic per seed', () => {
 		let seededRandom: ((seed: number) => () => number) | undefined;
 		try {
-			// eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module
-			const mod = require('./seededShuffle');
+			const mod = require('$lib/utils/seed.ts');
 			seededRandom = mod.seededRandom;
 		} catch {
 			seededRandom = undefined;

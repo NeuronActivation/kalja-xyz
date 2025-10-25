@@ -17,7 +17,7 @@ Object.defineProperty(globalThis, 'sessionStorage', {
 	writable: true,
 });
 
-import { getPersistentTarget, setPersistentTarget } from '$lib/utils/targetStorage';
+import { getPersistentTarget, setPersistentTarget } from '$lib/utils/targetStorage.ts';
 
 describe('getPersistentTarget & setPersistentTarget', () => {
 	beforeEach(() => {
@@ -49,7 +49,7 @@ describe('getPersistentTarget & setPersistentTarget', () => {
 		const {
 			getPersistentTarget: getPersistentTargetNoBrowser,
 			setPersistentTarget: setPersistentTargetNoBrowser,
-		} = await import('$lib/utils/targetStorage');
+		} = await import('$lib/utils/targetStorage.ts');
 
 		// Clear any previous calls.
 		storage.clear();

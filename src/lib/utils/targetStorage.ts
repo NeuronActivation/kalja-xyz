@@ -1,4 +1,4 @@
-import { isBrowser } from '$lib/constants/isBrowser';
+import { isBrowser } from '$lib/constants/isBrowser.ts';
 
 /**
  * Retrieves the persistent target player from session storage for a given index.

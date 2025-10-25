@@ -1,7 +1,7 @@
 import { get } from 'svelte/store';
-import { Language } from '$lib/constants/language';
-import { type LanguageSpecificCard } from '$lib/interfaces/card';
-import { languageData } from '$lib/stores/languageData';
+import { Language } from '$lib/constants/language.ts';
+import { type LanguageSpecificCard } from '$lib/interfaces/card.ts';
+import { languageData } from '$lib/stores/languageData.ts';
 
 /**
  * Retrieves the stored cards for a given language.

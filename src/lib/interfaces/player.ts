@@ -1,4 +1,4 @@
-import { type GameEvent } from '$lib/interfaces/gameEvent';
+import { type GameEvent } from '$lib/interfaces/gameEvent.ts';
 
 /**
  * Represents a player in the game.

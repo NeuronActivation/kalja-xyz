@@ -1,7 +1,7 @@
-import { ApplicationState } from '$lib/constants/applicationState';
-import { type LanguageSpecificCard } from '$lib/interfaces/card';
-import { type Player } from '$lib/interfaces/player';
-import { Tag } from '$lib/constants/tag';
+import { ApplicationState } from '$lib/constants/applicationState.ts';
+import { type LanguageSpecificCard } from '$lib/interfaces/card.ts';
+import { type Player } from '$lib/interfaces/player.ts';
+import { Tag } from '$lib/constants/tag.ts';
 
 /**
  * Represents the state of the game at a given moment.

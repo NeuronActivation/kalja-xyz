@@ -1,13 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 import { get } from 'svelte/store';
-import { ApplicationState } from '$lib/constants/applicationState';
-import { Tag } from '$lib/constants/tag';
-import { gameStore } from '$lib/stores/gameStore';
-import * as gameStateStorage from '$lib/gameState/gameStateStorage';
-import * as cardStorage from '$lib/cards/cardStorage';
-import * as gameManagers from '$lib/managers/game';
-import * as createNewGameModule from '$lib/gameState/createNewGame';
-import { languageStore } from '$lib/stores/languageStore';
+import { ApplicationState } from '$lib/constants/applicationState.ts';
+import { Tag } from '$lib/constants/tag.ts';
+import { gameStore } from '$lib/stores/gameStore.ts';
+import * as gameStateStorage from '$lib/gameState/gameStateStorage.ts';
+import * as cardStorage from '$lib/cards/cardStorage.ts';
+import * as gameManagers from '$lib/managers/game.ts';
+import * as createNewGameModule from '$lib/gameState/createNewGame.ts';
+import { languageStore } from '$lib/stores/languageStore.ts';
 
 vi.mock('$lib/gameState/gameStateStorage', () => ({
 	loadGameState: vi.fn(),

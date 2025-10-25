@@ -1,4 +1,4 @@
-import { type GameState } from '$lib/interfaces/gameState';
+import { type GameState } from '$lib/interfaces/gameState.ts';
 
 /**
  * Saves the current game state to the session storage.
