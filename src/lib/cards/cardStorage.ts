@@ -1,9 +1,9 @@
 import { get } from 'svelte/store';
-import { Tag } from '$lib/constants/tag';
-import { Language } from '$lib/constants/language';
-import { type LanguageData } from '$lib/interfaces/languageData';
-import { createCards } from '$lib/cards/createCards';
-import { languageData } from '$lib/stores/languageData';
+import { Tag } from '$lib/constants/tag.ts';
+import { Language } from '$lib/constants/language.ts';
+import { type LanguageData } from '$lib/interfaces/languageData.ts';
+import { createCards } from '$lib/cards/createCards.ts';
+import { languageData } from '$lib/stores/languageData.ts';
 
 /**
  * Loads card data for all supported languages and stores it in the languageData store.

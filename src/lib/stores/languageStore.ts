@@ -1,11 +1,11 @@
 import { type Subscriber, type Unsubscriber } from 'svelte/store';
 import { writable } from 'svelte/store';
-import { type LanguageSpecificCard } from '$lib/interfaces/card';
-import { Language } from '$lib/constants/language';
-import { isBrowser } from '$lib/constants/isBrowser';
-import { getStoredLanguage } from '$lib/i18n/localeStorage';
-import { getStoredCards } from '$lib/cards/cardUtils';
-import { setLanguage } from '$lib/i18n/localeStorage';
+import { type LanguageSpecificCard } from '$lib/interfaces/card.ts';
+import { Language } from '$lib/constants/language.ts';
+import { isBrowser } from '$lib/constants/isBrowser.ts';
+import { getStoredLanguage } from '$lib/i18n/localeStorage.ts';
+import { getStoredCards } from '$lib/cards/cardUtils.ts';
+import { setLanguage } from '$lib/i18n/localeStorage.ts';
 
 interface LanguageStore {
 	/**

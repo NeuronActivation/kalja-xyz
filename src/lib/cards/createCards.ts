@@ -1,8 +1,8 @@
-import { Language } from '$lib/constants/language';
-import { Tag } from '$lib/constants/tag';
-import { type LanguageData } from '$lib/interfaces/languageData';
-import { type Card } from '$lib/interfaces/card';
-import { seededShuffle } from '$lib/utils/seed';
+import { Language } from '$lib/constants/language.ts';
+import { Tag } from '$lib/constants/tag.ts';
+import { type LanguageData } from '$lib/interfaces/languageData.ts';
+import { type Card } from '$lib/interfaces/card.ts';
+import { seededShuffle } from '$lib/utils/seed.ts';
 
 /**
  * Creates the card data for each language, shuffling them with a seeded random generator.

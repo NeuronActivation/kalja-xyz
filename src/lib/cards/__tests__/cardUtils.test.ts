@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { getStoredCards } from '$lib/cards/cardUtils';
-import { Language } from '$lib/constants/language';
+import { getStoredCards } from '$lib/cards/cardUtils.ts';
+import { Language } from '$lib/constants/language.ts';
 
 // Mock the store.
 vi.mock('$lib/stores/languageData', () => ({

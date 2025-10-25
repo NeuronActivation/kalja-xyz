@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { get } from 'svelte/store';
-import { Language } from '$lib/constants/language';
-import type { LanguageData } from '$lib/interfaces/languageData';
+import { Language } from '$lib/constants/language.ts';
+import type { LanguageData } from '$lib/interfaces/languageData.ts';
 
 // Mock dependencies
 vi.mock('$lib/constants/isBrowser', () => ({

@@ -1,4 +1,4 @@
-import { Tag } from '$lib/constants/tag';
+import { Tag } from '$lib/constants/tag.ts';
 
 /** Base interface for both Card and LanguageSpecificCard. */
 interface BaseCard {

@@ -1,5 +1,5 @@
 import { waitLocale } from 'svelte-i18n';
-import { registerLocales } from '$lib/i18n/index';
+import { registerLocales } from '$lib/i18n/index.ts';
 
 /**
  * This function ensures that the necessary locale data is loaded and available before the

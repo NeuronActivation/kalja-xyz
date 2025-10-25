@@ -1,5 +1,5 @@
 import { getLocaleFromNavigator, locale } from 'svelte-i18n';
-import { Language } from '$lib/constants/language';
+import { Language } from '$lib/constants/language.ts';
 
 /**
  * Retrieves the stored language from localStorage.

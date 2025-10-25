@@ -1,6 +1,6 @@
-import { ApplicationState } from '$lib/constants/applicationState';
-import { Tag } from '$lib/constants/tag';
-import { type GameState } from '$lib/interfaces/gameState';
+import { ApplicationState } from '$lib/constants/applicationState.ts';
+import { Tag } from '$lib/constants/tag.ts';
+import { type GameState } from '$lib/interfaces/gameState.ts';
 
 /**
  * Creates a new game state with default values.

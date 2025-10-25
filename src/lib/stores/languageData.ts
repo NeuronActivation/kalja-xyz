@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
-import { Language } from '$lib/constants/language';
-import { type LanguageData } from '$lib/interfaces/languageData';
-import { isBrowser } from '$lib/constants/isBrowser';
+import { Language } from '$lib/constants/language.ts';
+import { type LanguageData } from '$lib/interfaces/languageData.ts';
+import { isBrowser } from '$lib/constants/isBrowser.ts';
 
 /**
  * Safely parse localStorage data with error handling

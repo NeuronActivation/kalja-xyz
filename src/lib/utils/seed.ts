@@ -1,4 +1,4 @@
-import { type Card } from '$lib/interfaces/card';
+import { type Card } from '$lib/interfaces/card.ts';
 
 /**
  * Shuffles an array of cards in place using a seeded random number generator.
