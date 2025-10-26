@@ -21,14 +21,20 @@
 	}
 </script>
 
-<select class="language pico-background-azure-500" bind:value={$locale} on:change={changeLanguage}>
+<select
+	class="language pico-background-azure-700"
+	bind:value={$locale}
+	on:change={changeLanguage}
+	aria-label="Select language"
+	title="Language selection"
+>
 	{#each Object.values(Language) as language}
 		<option value={language}>{language}</option>
 	{/each}
 </select>
 
 <button
-	class="reset pico-background-azure-500"
+	class="reset pico-background-azure-700"
 	on:click={gameStore.reset}
 	title={$t('back-to-start')}
 >
