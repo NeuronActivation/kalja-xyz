@@ -22,8 +22,8 @@ export function getStoredLanguage(): Language {
  * @param lang The language to set.
  */
 export async function setLanguage(lang: Language) {
-	const localeCode = lang.toString();
-	if (localeCode) {
+	if (Object.values(Language).includes(lang)) {
+		const localeCode = lang.toString();
 		localStorage.setItem('selectedLanguage', lang);
 		await locale.set(localeCode);
 	} else {
