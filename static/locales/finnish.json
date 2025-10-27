@@ -14,6 +14,8 @@
     "replay": "Pelaa uudelleen",
     "reroll": "Vaihda kortti",
     "select-tags": "Tagit",
+    "select-language": "Valitse kieli",
+    "language-selection": "Kielen valinta",
 
     "tags": {
         "chosen_target": {

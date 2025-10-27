@@ -25,8 +25,8 @@
 	class="language pico-background-azure-700"
 	bind:value={$locale}
 	on:change={changeLanguage}
-	aria-label="Select language"
-	title="Language selection"
+	aria-label={$t('select-language')}
+	title={$t('language-selection')}
 >
 	{#each Object.values(Language) as language}
 		<option value={language}>{language}</option>
