@@ -21,7 +21,26 @@ export function loadGameState(): GameState | null {
 	const savedState = sessionStorage.getItem('gameState');
 	if (savedState) {
 		try {
-			return JSON.parse(savedState) as GameState;
+			const parsed = JSON.parse(savedState);
+
+			// Validate that it's a proper GameState object.
+			if (
+				parsed &&
+				typeof parsed === 'object' &&
+				!Array.isArray(parsed) &&
+				'cards' in parsed &&
+				'players' in parsed &&
+				'state' in parsed &&
+				'currentCardIndex' in parsed &&
+				'currentPlayerIndex' in parsed &&
+				'includedTags' in parsed &&
+				'excludedTags' in parsed
+			) {
+				return parsed as GameState;
+			}
+
+			// Return null for primitives, arrays, or invalid objects
+			return null;
 		} catch (error) {
 			console.error('Error parsing game state: ', error);
 		}
