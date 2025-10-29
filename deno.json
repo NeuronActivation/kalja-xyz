@@ -15,13 +15,7 @@
       "scripts/"
     ]
   },
-  "tasks": {
-    "test": "vitest",
-    "test:run": "vitest run",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage",
-    "update-coverage": "deno run --allow-read --allow-write --allow-env scripts/update-coverage.ts"
-  },
+  "tasks": {},
   "unstable": ["fmt-component"],
   "lint": {
     "rules": {

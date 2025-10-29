@@ -1,5 +1,9 @@
 # 🍻 kalja-xyz
-![GitHub package.json version](https://img.shields.io/github/package-json/v/NeuronActivation/kalja-xyz) [![License](https://img.shields.io/badge/license-ANAL-blue)](../LICENSE) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/NeuronActivation/kalja-xyz/deploy.yml) [![Shots](https://img.shields.io/badge/shots%20taken-∞-40E0D0)](https://kalja.xyz) ![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/NeuronActivation/kalja-xyz/main/.github/coverage-badge.json)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/NeuronActivation/kalja-xyz)
+[![License](https://img.shields.io/badge/license-ANAL-blue)](../LICENSE)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/NeuronActivation/kalja-xyz/deploy.yml)
+[![Shots](https://img.shields.io/badge/shots%20taken-∞-40E0D0)](https://kalja.xyz)
+![Coverage](https://img.shields.io/endpoint?url=https://kalja.xyz/coverage-badge.json)
 
 **The world's most blazingly fast drinking game platform**  
 *Powered by [SvelteKit](https://svelte.dev/docs/kit/introduction) magic and questionable life choices*

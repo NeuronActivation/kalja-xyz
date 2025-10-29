@@ -1,4 +1,4 @@
-name: Linting, formatting and testing
+name: Linting and formatting
 on:
   push:
     branches: [main]
@@ -20,5 +20,3 @@ jobs:
         run: deno lint
       - name: Formatting
         run: deno fmt --check
-      - name: Tests
-        run: deno task test:run --reporter=verbose

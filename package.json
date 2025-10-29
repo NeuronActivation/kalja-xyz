@@ -11,10 +11,9 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-        "test": "vitest",
-        "test:watch": "vitest --watch",
-        "test:coverage": "vitest --coverage",
-        "update-coverage": "deno run --allow-read --allow-write --allow-env scripts/update-coverage.ts"
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage --coverage.reporter=json-summary"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
