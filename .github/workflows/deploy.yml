@@ -18,30 +18,40 @@ jobs:
       - name: Install dependencies
         run: deno install --allow-scripts
 
-      - name: build
+      - name: Build site
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
           deno task build
 
+      - name: Try to download latest coverage badge
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Fetching latest coverage-badge artifact..."
+          gh run list --limit 1 --workflow "Tests and Coverage" --json databaseId -q '.[0].databaseId' > run_id.txt || true
+          RUN_ID=$(cat run_id.txt || echo "")
+          if [ -n "$RUN_ID" ]; then
+            gh run download "$RUN_ID" --name coverage-badge --dir build || echo "No artifact found."
+          else
+            echo "No test run found, skipping badge."
+          fi
+          [ -f build/coverage-badge.json ] && mv build/coverage-badge.json build/coverage-badge.json || true
+
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          # this should match the `pages` option in your adapter-static options
           path: 'build/'
 
   deploy:
     needs: build_site
     runs-on: ubuntu-latest
-
     permissions:
       pages: write
       id-token: write
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy
         id: deployment
