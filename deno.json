@@ -1,9 +1,4 @@
 {
-  "imports": {
-    "@std/fs": "https://deno.land/std@0.224.0/fs/mod.ts",
-    "@std/path": "https://deno.land/std@0.224.0/path/mod.ts",
-    "happy-dom": "https://esm.sh/happy-dom@12.10.3"
-  },
   "fmt": {
     "useTabs": true,
     "lineWidth": 100,
