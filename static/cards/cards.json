@@ -20,7 +20,7 @@
       },
       "description": {
         "en": "Give three chugs to other players however you decide.",
-        "fi": "Jaa kolme huikkaa muille pelaajille mielesi mukaan"
+        "fi": "Jaa kolme huikkaa muille pelaajille mielesi mukaan."
       },
       "tags": [
         "chosen_target"
@@ -33,8 +33,8 @@
         "fi": "Vesiputous"
       },
       "description": {
-        "en": "Every player starts drinking. The player from the left of the player gets to stop drinking first, and then from the left, etc.",
-        "fi": "Jokainen pelaaja aloittaa juomisen. Kortin saaneen vasemmalla puolella oleva pelaaja saa lopettaa juomisen ensin ja sen jälkeen hänen vasemmalla puolellaan oleva jne."
+        "en": "Everyone starts drinking. The player to the left of the card drawer may stop first, then the next player to the left, and so on. The card drawer stops last.",
+        "fi": "Jokainen aloittaa juomisen. Kortin nostajan vasemmalla puolella oleva pelaaja saa lopettaa ensin, sitten hänen vasemmallaan oleva, ja niin edelleen. Kortin nostaja lopettaa viimeisenä."
       },
       "tags": [
         "classic"
@@ -136,7 +136,7 @@
       },
       "description": {
         "en": "The oldest player drinks.",
-        "fi": "Vanhin pelaaja juo"
+        "fi": "Vanhin pelaaja juo."
       },
       "tags": []
     },
@@ -425,7 +425,8 @@
         "fi": "Korvaa puheessasi sanoja 'smurffi'-puheella yhden kierroksen ajan."
       },
       "tags": [
-        "humiliation"
+        "humiliation",
+        "event"
       ]
     },
     {
@@ -587,11 +588,11 @@
     {
       "id": 43,
       "title": {
-        "en": "I have ...",
+        "en": "I have...",
         "fi": "Olen joskus..."
       },
       "description": {
-        "en": "Take a tour so that everyone says something they has have done. If you haven't done it, you drink.",
+        "en": "Go around so that everyone says something they have done. If you haven't done it, you drink.",
         "fi": "Käykää kierros läpi niin että jokainen sanoo vuorollaan asian mitä hän on tehnyt. Kaikki jotka eivät ole asiaa tehneet juovat."
       },
       "tags": []
@@ -603,7 +604,7 @@
         "fi": "Parhaiten pukeutunut"
       },
       "description": {
-        "en": "Decide who among the players is the best dressed. The decider drinks.",
+        "en": "Decide who among the players is the best dressed. They get to decide who drinks.",
         "fi": "Päätä kuka pelaajista on pukeutunut parhaiten. Hän päättää kuka juo."
       },
       "tags": [
@@ -634,7 +635,7 @@
       },
       "description": {
         "en": "All players must ignore you for one round.",
-        "fi": "Kaikkien tulee ignoorata sinut kierroksen ajan"
+        "fi": "Kaikkien tulee ignoorata sinut kierroksen ajan."
       },
       "tags": [
         "roleplay",
@@ -725,7 +726,8 @@
       },
       "tags": [
         "humiliation",
-        "physical"
+        "physical",
+        "event"
       ]
     },
     {
@@ -923,8 +925,8 @@
         "fi": "Väärä vastaus"
       },
       "description": {
-        "en": "Come up with a question for the target player that can be answered with yes/no or a specific number, and indicate the type of answer. The target must answer without knowing the question beforehand, and if they answer incorrectly, they drink.",
-        "fi": "Keksi kohteelle kysymys, johon on mahdollista antaa kyllä/ei-vastaus. Kohteen tulee vastata tietämättä itse kysymystä etukäteen ja jos hän vastaa väärin, hän juo."
+        "en": "Think of a yes/no question. The target must answer before hearing the question. Reveal the question, if they answered wrong, they drink.",
+        "fi": "Mieti kyllä/ei-kysymys. Kohteen tulee vastata ennen kuin hän kuulee kysymyksen. Paljasta kysymys, jos hän vastasi väärin, hän juo."
       },
       "tags": [
         "random_target"
@@ -978,7 +980,7 @@
         "fi": "Viihdearvoitus"
       },
       "description": {
-        "en": "The player describes the plot of their chosen movie, series, or game without mentioning its name. The first player to guess correctly decides who or who drinks.",
+        "en": "The player describes the plot of their chosen movie, series, or game without mentioning its name. The first player to guess correctly decides who or which players drink.",
         "fi": "Kerro valitsemasi elokuvan, sarjan tai pelin juoni mainitsematta sen nimeä. Ensimmäinen oikein arvannut pelaaja päättää kuka tai ketkä juovat."
       },
       "tags": [
@@ -1339,8 +1341,8 @@
         "fi": "Aika tarkistaa ilmoitukset"
       },
       "description": {
-        "en": "Each player drinks the amount according to the notifications on their phone",
-        "fi": "Jokainen pelaaja juo huikkia kännykässään aktiivisina näkyvien ilmoituksien mukaan."
+        "en": "Each player drinks one sip for every active notification on their phone.",
+        "fi": "Jokainen pelaaja juo huikan jokaista aktiivista ilmoitusta kohden."
       },
       "tags": []
     },
@@ -1424,8 +1426,8 @@
     {
       "id": 104,
       "title": {
-        "en": "Vote: most religous",
-        "fi": "Äänestys: uskovaisin"
+        "en": "Vote: Most religious",
+        "fi": "Äänestys: Uskovaisin"
       },
       "description": {
         "en": "Vote the most religious player among you. They will drink in the name of their Lord.",
@@ -1438,8 +1440,8 @@
     {
       "id": 105,
       "title": {
-        "en": "Language master",
-        "fi": "Kielinainen"
+        "en": "Duolingo Pro",
+        "fi": "Duolingo Pro"
       },
       "description": {
         "en": "The player who can speak the most languages gets to choose who drinks.",
@@ -1627,7 +1629,7 @@
       },
       "description": {
         "en": "For one round, speak only a different language.",
-        "fi": "Puhu yhden kierroksen ajan pelkästään englantia."
+        "fi": "Puhu yhden kierroksen ajan muuta kieltä."
       },
       "tags": [
         "event"
