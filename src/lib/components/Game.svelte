@@ -43,7 +43,7 @@
 	});
 </script>
 
-<h1 class="target" style="color: {playerNameColor}">
+<h1 class="target" style:color={playerNameColor}>
 	{gameState.players[gameState.currentPlayerIndex].name}
 </h1>
 
