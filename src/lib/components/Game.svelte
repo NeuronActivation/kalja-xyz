@@ -11,6 +11,13 @@
 	gameStore.subscribe((value) => (gameState = value));
 	let targetPlayer: string;
 
+	$: playerNameColor = (() => {
+		const { currentCardIndex, cardAmount } = gameState;
+		if (cardAmount == null || cardAmount <= 1) return 'white';
+		const beerLevel = ((cardAmount - 1 - currentCardIndex) / (cardAmount - 1)) * 100;
+		return beerLevel >= 85 ? 'black' : 'white';
+	})();
+
 	$: {
 		const index = gameState.currentCardIndex;
 		if (gameState.cards[index]?.targetPlayer) {
@@ -36,7 +43,7 @@
 	});
 </script>
 
-<h1 class="target">
+<h1 class="target" style="color: {playerNameColor}">
 	{gameState.players[gameState.currentPlayerIndex].name}
 </h1>
 
@@ -77,11 +84,19 @@
 </div>
 
 <style>
+	.target {
+		transition: color 4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
 	article {
 		width: 600px;
 		position: relative;
 		border-radius: 1rem;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	}
+
+	h2 {
+		color: var(--pico-color);
 	}
 
 	.target-name {
@@ -119,7 +134,8 @@
 	.game-status {
 		margin: 1rem 0 0.5rem 0;
 		font-size: 0.9rem;
-		color: var(--muted-color);
+		color: white;
+		mix-blend-mode: difference;
 	}
 
 	progress {
@@ -134,7 +150,7 @@
 		margin: 10px;
 		padding: 8px;
 		line-height: 0;
-		color: #666;
+		color: var(--pico-muted-color);
 		top: 0;
 		right: 0;
 	}

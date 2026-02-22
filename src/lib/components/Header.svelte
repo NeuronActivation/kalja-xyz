@@ -22,7 +22,7 @@
 </script>
 
 <select
-	class="language pico-background-azure-700"
+	class="language pico-background-amber-700"
 	bind:value={$locale}
 	on:change={changeLanguage}
 	aria-label={$t('select-language')}
@@ -34,7 +34,7 @@
 </select>
 
 <button
-	class="reset pico-background-azure-700"
+	class="reset pico-background-amber-700"
 	on:click={gameStore.reset}
 	title={$t('back-to-start')}
 >

@@ -180,13 +180,8 @@
 		outline: none;
 	}
 
-	input:focus {
-		border-color: #2980b9;
-	}
-
 	summary {
 		font-size: 0.9rem;
-		color: #666;
 	}
 
 	.settings {
