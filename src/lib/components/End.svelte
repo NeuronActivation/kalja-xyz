@@ -13,6 +13,10 @@
 </div>
 
 <style>
+	h1 {
+		color: white;
+	}
+
 	.button-container {
 		display: flex;
 		flex-direction: column;
