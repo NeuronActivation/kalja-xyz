@@ -11,13 +11,32 @@
 		}
 		return Math.max(0, ((cardAmount - 1 - currentCardIndex) / (cardAmount - 1)) * 100);
 	})();
+
+	function randomBetween(min: number, max: number) {
+		return Math.random() * (max - min) + min;
+	}
+
+	const bubbles = Array.from({ length: 20 }, () => ({
+		left: randomBetween(2, 95),
+		size: randomBetween(5, 16),
+		duration: randomBetween(3.5, 7.2),
+		delay: -randomBetween(0, 5),
+	}));
 </script>
 
 <div class="beer-background" aria-hidden="true">
 	<div class="beer-fill" style:height="{beerLevel}%">
 		<div class="foam"></div>
-		{#each { length: 20 } as _}
-			<div class="bubble"></div>
+		{#each bubbles as { left, size, duration, delay }}
+			<div
+				class="bubble"
+				style:left="{left}%"
+				style:width="{size}px"
+				style:height="{size}px"
+				style:animation-duration="{duration}s"
+				style:animation-delay="{delay}s"
+			>
+			</div>
 		{/each}
 	</div>
 </div>
@@ -63,147 +82,6 @@
 		background: rgba(255, 245, 190, 0.3);
 		border: 1px solid rgba(255, 245, 190, 0.55);
 		animation: rise linear infinite;
-	}
-
-	.bubble:nth-child(2) {
-		left: 4%;
-		width: 6px;
-		height: 6px;
-		animation-duration: 4.2s;
-		animation-delay: -1s;
-	}
-	.bubble:nth-child(3) {
-		left: 10%;
-		width: 10px;
-		height: 10px;
-		animation-duration: 5.8s;
-		animation-delay: -3.2s;
-	}
-	.bubble:nth-child(4) {
-		left: 18%;
-		width: 5px;
-		height: 5px;
-		animation-duration: 3.9s;
-		animation-delay: -0.5s;
-	}
-	.bubble:nth-child(5) {
-		left: 25%;
-		width: 14px;
-		height: 14px;
-		animation-duration: 6.5s;
-		animation-delay: -2.1s;
-	}
-	.bubble:nth-child(6) {
-		left: 32%;
-		width: 8px;
-		height: 8px;
-		animation-duration: 4.8s;
-		animation-delay: -4s;
-	}
-	.bubble:nth-child(7) {
-		left: 40%;
-		width: 12px;
-		height: 12px;
-		animation-duration: 5.3s;
-		animation-delay: -1.7s;
-	}
-	.bubble:nth-child(8) {
-		left: 47%;
-		width: 6px;
-		height: 6px;
-		animation-duration: 3.7s;
-		animation-delay: -2.8s;
-	}
-	.bubble:nth-child(9) {
-		left: 54%;
-		width: 16px;
-		height: 16px;
-		animation-duration: 7.1s;
-		animation-delay: -0.3s;
-	}
-	.bubble:nth-child(10) {
-		left: 60%;
-		width: 7px;
-		height: 7px;
-		animation-duration: 4.4s;
-		animation-delay: -3.5s;
-	}
-	.bubble:nth-child(11) {
-		left: 67%;
-		width: 11px;
-		height: 11px;
-		animation-duration: 5.6s;
-		animation-delay: -1.2s;
-	}
-	.bubble:nth-child(12) {
-		left: 73%;
-		width: 5px;
-		height: 5px;
-		animation-duration: 3.5s;
-		animation-delay: -2.4s;
-	}
-	.bubble:nth-child(13) {
-		left: 79%;
-		width: 9px;
-		height: 9px;
-		animation-duration: 4.9s;
-		animation-delay: -0.8s;
-	}
-	.bubble:nth-child(14) {
-		left: 85%;
-		width: 13px;
-		height: 13px;
-		animation-duration: 6.2s;
-		animation-delay: -3.9s;
-	}
-	.bubble:nth-child(15) {
-		left: 91%;
-		width: 7px;
-		height: 7px;
-		animation-duration: 4.1s;
-		animation-delay: -1.5s;
-	}
-	.bubble:nth-child(16) {
-		left: 7%;
-		width: 11px;
-		height: 11px;
-		animation-duration: 5.5s;
-		animation-delay: -4.5s;
-	}
-	.bubble:nth-child(17) {
-		left: 22%;
-		width: 6px;
-		height: 6px;
-		animation-duration: 3.8s;
-		animation-delay: -2s;
-	}
-	.bubble:nth-child(18) {
-		left: 44%;
-		width: 9px;
-		height: 9px;
-		animation-duration: 5.1s;
-		animation-delay: -0.7s;
-	}
-	.bubble:nth-child(19) {
-		left: 58%;
-		width: 15px;
-		height: 15px;
-		animation-duration: 6.8s;
-		animation-delay: -3s;
-	}
-	.bubble:nth-child(20) {
-		left: 76%;
-		width: 6px;
-		height: 6px;
-		animation-duration: 4.3s;
-		animation-delay: -1.9s;
-	}
-	.bubble:nth-child(21) {
-		left: 88%;
-		width: 10px;
-		height: 10px;
-		animation-duration: 5.4s;
-		animation-delay: -4.8s;
 	}
 
 	@keyframes rise {
