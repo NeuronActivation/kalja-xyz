@@ -3,13 +3,44 @@
 	import type { GameState } from '$lib/interfaces/gameState';
 	import { gameStore } from '$lib/stores/gameStore';
 	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { getTarget } from '$lib/managers/game';
 	import { getPersistentTarget, setPersistentTarget } from '$lib/utils/targetStorage';
 
 	let gameState: GameState;
 	gameStore.subscribe((value) => (gameState = value));
 	let targetPlayer: string;
+	let nameEl: HTMLElement;
+	let statusEl: HTMLElement;
+
+	$: beerLevel = (() => {
+		const { currentCardIndex, cardAmount } = gameState;
+		if (cardAmount == null || cardAmount <= 1) return 0;
+		return ((cardAmount - 1 - currentCardIndex) / (cardAmount - 1)) * 100;
+	})();
+
+	let nameClips = { light: 'inset(0 0 100% 0)', dark: 'inset(0 0 0 0)' };
+	let statusClips = { light: 'inset(0 0 100% 0)', dark: 'inset(0 0 0 0)' };
+
+	function getClips(el: HTMLElement | undefined, surface: number) {
+		if (!el || typeof window === 'undefined') {
+			return { light: 'inset(0 0 100% 0)', dark: 'inset(0 0 0 0)' };
+		}
+		const rect = el.getBoundingClientRect();
+		const rel = Math.max(0, Math.min(rect.height, surface - rect.top));
+		return {
+			light: `inset(0 0 ${rect.height - rel}px 0)`,
+			dark: `inset(${rel}px 0 0 0)`,
+		};
+	}
+
+	$: beerLevel,
+		tick().then(() => {
+			if (typeof window === 'undefined') return;
+			const surface = (1 - beerLevel / 100) * window.innerHeight;
+			nameClips = getClips(nameEl, surface);
+			statusClips = getClips(statusEl, surface);
+		});
 
 	$: {
 		const index = gameState.currentCardIndex;
@@ -36,8 +67,13 @@
 	});
 </script>
 
-<h1 class="target">
-	{gameState.players[gameState.currentPlayerIndex].name}
+<h1 class="target" bind:this={nameEl}>
+	<span class="text-light" style:clip-path={nameClips.light}>{
+		gameState.players[gameState.currentPlayerIndex].name
+	}</span>
+	<span class="text-dark" style:clip-path={nameClips.dark}>{
+		gameState.players[gameState.currentPlayerIndex].name
+	}</span>
 </h1>
 
 <article>
@@ -49,7 +85,7 @@
 		{gameState.cards[gameState.currentCardIndex].description}
 	</p>
 	{#if gameState.cards[gameState.currentCardIndex].targetPlayer}
-		<b>{$t('target')}: <span class="target-name pico-background-zinc-600">{
+		<b>{$t('target')}: <span class="target-name pico-background-amber-700">{
 				targetPlayer
 			}</span></b>
 	{/if}
@@ -72,16 +108,45 @@
 {/if}
 
 <div class="progress-section">
-	<p class="game-status">{gameState.currentCardIndex + 1}/{gameState.cardAmount}</p>
+	<p class="game-status" bind:this={statusEl}>
+		<span class="text-light" style:clip-path={statusClips.light}>{
+				gameState.currentCardIndex + 1
+			}/{gameState.cardAmount}</span>
+		<span class="text-dark" style:clip-path={statusClips.dark}>{
+				gameState.currentCardIndex + 1
+			}/{gameState.cardAmount}</span>
+	</p>
 	<progress value={gameState.currentCardIndex + 1} max={gameState.cardAmount}></progress>
 </div>
 
 <style>
+	.target {
+		position: relative;
+	}
+
+	.text-light {
+		display: block;
+		color: white;
+		transition: clip-path 4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.text-dark {
+		display: block;
+		position: absolute;
+		inset: 0;
+		color: black;
+		transition: clip-path 4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
 	article {
 		width: 600px;
 		position: relative;
 		border-radius: 1rem;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	}
+
+	h2 {
+		color: var(--pico-color);
 	}
 
 	.target-name {
@@ -103,11 +168,9 @@
 	.event-notice::before {
 		content: '⏳';
 		position: absolute;
-		top: -10px;
+		top: -1.4rem;
 		left: 50%;
 		transform: translateX(-50%);
-		background: var(--card-background-color);
-		padding: 0 0.5rem;
 		font-size: 1.2rem;
 	}
 
@@ -117,9 +180,9 @@
 	}
 
 	.game-status {
+		position: relative;
 		margin: 1rem 0 0.5rem 0;
 		font-size: 0.9rem;
-		color: var(--muted-color);
 	}
 
 	progress {
@@ -134,7 +197,7 @@
 		margin: 10px;
 		padding: 8px;
 		line-height: 0;
-		color: #666;
+		color: var(--pico-muted-color);
 		top: 0;
 		right: 0;
 	}

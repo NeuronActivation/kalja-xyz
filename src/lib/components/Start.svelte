@@ -26,6 +26,8 @@
 
 	.title {
 		margin-bottom: 2rem;
+		color: white;
+		font-weight: 600;
 	}
 
 	.start-button {

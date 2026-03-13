@@ -18,5 +18,11 @@
 		right: 0;
 		padding: 0.5rem;
 		text-align: center;
+		background: var(--beer-overlay);
+		color: var(--beer-text);
+	}
+
+	footer a {
+		color: var(--beer-link);
 	}
 </style>
