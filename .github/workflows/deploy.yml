@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to server and GitHub Pages
 
 on:
   workflow_dispatch:
@@ -19,8 +19,6 @@ jobs:
         run: deno install --allow-scripts
 
       - name: Build site
-        env:
-          BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
           deno task build
 
@@ -38,10 +36,15 @@ jobs:
           fi
           [ -f build/coverage-badge.json ] && mv build/coverage-badge.json build/coverage-badge.json || true
 
-      - name: Upload Artifacts
+      - name: Upload Pages Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'build/'
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build/
 
   deploy:
     needs: build_site
@@ -51,8 +54,28 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy-pages.outputs.page_url }}
     steps:
-      - name: Deploy
-        id: deployment
+      - name: Download
+        id: download
+        uses: actions/download-artifact@v4
+        with:
+            name: build
+      - name: Setup SSH key
+        env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            ssh-agent -a "${{ env.SSH_AUTH_SOCK }}" > /dev/null
+            ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+      - name: Deploy to server
+        id: deploy-server
+        uses: burnett01/rsync-deployments@v8
+        with:
+          switches: -avzr --delete
+          remote_path: ${{ secrets.DEPLOY_REMOTE_PATH }}
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Deploy to GitHub Pages
+        id: deploy-pages
         uses: actions/deploy-pages@v4.0.5
