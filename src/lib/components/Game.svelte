@@ -79,7 +79,7 @@
 {/if}
 
 <div class="progress-section">
-	<p class="game-status">{gameState.currentCardIndex + 1}/{gameState.cardAmount}</p>
+	<p class="game-status" style:color={playerNameColor}>{gameState.currentCardIndex + 1}/{gameState.cardAmount}</p>
 	<progress value={gameState.currentCardIndex + 1} max={gameState.cardAmount}></progress>
 </div>
 
@@ -134,8 +134,6 @@
 	.game-status {
 		margin: 1rem 0 0.5rem 0;
 		font-size: 0.9rem;
-		color: white;
-		mix-blend-mode: difference;
 	}
 
 	progress {
