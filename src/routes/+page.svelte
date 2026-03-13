@@ -70,7 +70,6 @@
 		--pico-accordion-close-summary-color: #2d1200;
 		--pico-accordion-open-summary-color: #7a4a00;
 
-
 		/* Progress bar */
 		--pico-progress-color: var(--pico-color-amber-700);
 		--pico-progress-background-color: rgba(180, 110, 20, 0.2);
@@ -95,7 +94,7 @@
 	}
 
 	/* Override pico's primary color — must match pico's selector specificity */
-	:global(:root:not([data-theme=dark])) {
+	:global(:root:not([data-theme='dark'])) {
 		--pico-primary: var(--pico-color-amber-700);
 		--pico-primary-background: var(--pico-color-amber-700);
 		--pico-primary-border: var(--pico-color-amber-700);

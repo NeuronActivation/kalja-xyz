@@ -168,11 +168,9 @@
 	.event-notice::before {
 		content: '⏳';
 		position: absolute;
-		top: -10px;
+		top: -1.4rem;
 		left: 50%;
 		transform: translateX(-50%);
-		background: var(--pico-card-background-color);
-		padding: 0 0.5rem;
 		font-size: 1.2rem;
 	}
 
