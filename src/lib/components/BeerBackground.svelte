@@ -9,7 +9,6 @@
 		if (state !== ApplicationState.PLAYING || cardAmount == null || cardAmount === 0) {
 			return 100;
 		}
-		if (cardAmount === 1) return 0;
 		return Math.max(0, ((cardAmount - 1 - currentCardIndex) / (cardAmount - 1)) * 100);
 	})();
 </script>
