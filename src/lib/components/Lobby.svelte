@@ -182,6 +182,7 @@
 
 	summary span {
 		color: var(--pico-color);
+		font-weight: 700;
 	}
 
 	summary {
@@ -249,7 +250,7 @@
 	}
 
 	.tag-option:not(.active) {
-		opacity: 0.3;
+		opacity: 0.5;
 	}
 
 	.tag-option.include {
