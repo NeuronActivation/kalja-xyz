@@ -19,8 +19,6 @@ jobs:
         run: deno install --allow-scripts
 
       - name: Build site
-        env:
-          BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
           deno task build
 
@@ -51,8 +49,28 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy-pages.outputs.page_url }}
     steps:
-      - name: Deploy
-        id: deployment
+      - name: Download
+        id: download
+        uses: actions/download-artifact@v4
+        with:
+            name: build
+      - name: Setup SSH key
+        env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            ssh-agent -a "${{ env.SSH_AUTH_SOCK }}" > /dev/null
+            ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+      - name: Deploy to server
+        id: deploy-server
+        env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            REMOTE_TARGET: "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
+        run: |
+            rsync -ahvz --delete \
+              -e 'ssh -o StrictHostKeyChecking=no' \
+              ./ "${{ env.REMOTE_TARGET }}:/home/${{ secrets.SSH_USER }}/public_html"
+      - name: Deploy to GitHub Pages
+        id: deploy-pages
         uses: actions/deploy-pages@v4.0.5
