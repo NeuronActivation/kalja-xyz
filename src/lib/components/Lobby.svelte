@@ -65,7 +65,7 @@
 {#if gameState.players.length > 0}
 	<ul class="player-list">
 		{#each gameState.players as player (player.id)}
-			<li class="pico-background-zinc-600">
+			<li class="pico-background-amber-700">
 				{player.name}
 				<button class="remove-player" on:click={() => gameStore.removePlayer(player.id)}>
 					×
@@ -124,7 +124,7 @@
 	</div>
 </details>
 <button
-	class="start-button pico-background-jade-500"
+	class="start-button"
 	disabled={gameState.players.length < 2 || (gameState.cardAmount ?? 0) < 1}
 	on:click={() => gameStore.startGame()}
 >
@@ -248,10 +248,10 @@
 	}
 
 	.tag-option.include {
-		background-color: #4caf50;
+		background-color: var(--pico-color-jade-500);
 	}
 
 	.tag-option.exclude {
-		background-color: #f44336;
+		background-color: var(--pico-color-red-500);
 	}
 </style>

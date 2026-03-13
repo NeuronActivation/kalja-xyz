@@ -85,7 +85,7 @@
 		{gameState.cards[gameState.currentCardIndex].description}
 	</p>
 	{#if gameState.cards[gameState.currentCardIndex].targetPlayer}
-		<b>{$t('target')}: <span class="target-name pico-background-zinc-600">{
+		<b>{$t('target')}: <span class="target-name pico-background-amber-700">{
 				targetPlayer
 			}</span></b>
 	{/if}
@@ -171,7 +171,7 @@
 		top: -10px;
 		left: 50%;
 		transform: translateX(-50%);
-		background: var(--card-background-color);
+		background: var(--pico-card-background-color);
 		padding: 0 0.5rem;
 		font-size: 1.2rem;
 	}
