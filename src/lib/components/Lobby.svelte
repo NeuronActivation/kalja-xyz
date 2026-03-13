@@ -180,6 +180,10 @@
 		outline: none;
 	}
 
+	summary span {
+		color: var(--pico-color);
+	}
+
 	summary {
 		font-size: 0.9rem;
 	}
@@ -189,6 +193,7 @@
 		flex-direction: column;
 		align-items: center;
 		font-size: 0.9rem;
+		color: var(--pico-color);
 	}
 
 	.slider-container {
