@@ -17,26 +17,9 @@
 <div class="beer-background" aria-hidden="true">
 	<div class="beer-fill" style:height="{beerLevel}%">
 		<div class="foam"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
-		<div class="bubble"></div>
+		{#each { length: 20 } as _}
+			<div class="bubble"></div>
+		{/each}
 	</div>
 </div>
 
