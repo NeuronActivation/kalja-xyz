@@ -70,7 +70,7 @@ Created a card that should come with a breathalyzer? Create an [issue](https://g
 
 🤓 **Code Contributions**  
 Our cocktail recipe for clean code:
-1. 🍹 **Shake well** - Run `deno fmt`
+1. 🍹 **Shake well** - Run `deno fmt && deno task test`
 2. 📜 **Leave instructions** - TSDoc comments so we remember it tomorrow
 3. 🧪 **Optional garnish** - Tests, with vitest (like olives in a martini)
 
