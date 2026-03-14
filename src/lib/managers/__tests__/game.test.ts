@@ -1,8 +1,9 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ApplicationState } from '$lib/constants/applicationState';
 import {
 	addPlayer,
 	changeGameState,
+	getTarget,
 	removePlayer,
 	showNextCard,
 	startGame,
@@ -327,5 +328,70 @@ describe('Game Manager Functions', () => {
 		});
 	});
 
-	// TODO getTarget()
+	describe('getTarget', () => {
+		it('should return empty string when card has no targetPlayer', () => {
+			const state = JSON.parse(JSON.stringify({
+				...mockGameState,
+				currentCardIndex: 0, // card 0 has targetPlayer: false
+				currentPlayerIndex: 0,
+			}));
+
+			expect(getTarget(state)).toBe('');
+		});
+
+		it('should return a player name that is not the current player', () => {
+			const state = JSON.parse(JSON.stringify({
+				...mockGameState,
+				currentCardIndex: 2, // card 2 has targetPlayer: true
+				currentPlayerIndex: 0, // current player is Player 1
+			}));
+
+			// Math.floor(0.6 * 3) = 1 → Player 2 (not current player at index 0)
+			const mockRandom = vi.spyOn(Math, 'random').mockReturnValue(0.6);
+			const result = getTarget(state);
+
+			expect(result).not.toBe('Player 1');
+			expect(result).toBe('Player 2');
+			mockRandom.mockRestore();
+		});
+
+		it('should re-roll when random picks the current player', () => {
+			const state = JSON.parse(JSON.stringify({
+				...mockGameState,
+				currentCardIndex: 1, // card 1 has targetPlayer: true
+				currentPlayerIndex: 1, // current player is Player 2 (index 1)
+				players: [
+					{ id: 1, name: 'Player 1', event: null },
+					{ id: 2, name: 'Player 2', event: null },
+				],
+			}));
+
+			// First call: Math.floor(0.6 * 2) = 1 → same as currentPlayerIndex, retry
+			// Second call: Math.floor(0.1 * 2) = 0 → Player 1
+			vi.spyOn(Math, 'random')
+				.mockReturnValueOnce(0.6)
+				.mockReturnValueOnce(0.1);
+
+			const result = getTarget(state);
+
+			expect(result).toBe('Player 1');
+			vi.restoreAllMocks();
+		});
+
+		it('should always pick from the players array', () => {
+			const state = JSON.parse(JSON.stringify({
+				...mockGameState,
+				currentCardIndex: 2, // card 2 has targetPlayer: true
+				currentPlayerIndex: 0,
+			}));
+
+			// Run several times to ensure result is always one of the non-current players
+			for (let i = 0; i < 10; i++) {
+				const result = getTarget(JSON.parse(JSON.stringify(state)));
+				const playerNames = state.players.map((p: { name: string }) => p.name);
+				expect(playerNames).toContain(result);
+				expect(result).not.toBe('Player 1'); // not current player
+			}
+		});
+	});
 });
