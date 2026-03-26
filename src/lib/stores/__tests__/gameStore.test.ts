@@ -236,4 +236,82 @@ describe('gameStore', () => {
 			expect(gameStateStorage.saveGameState).toHaveBeenCalled();
 		});
 	});
+
+	describe('reset', () => {
+		it('should reset to new game state', () => {
+			gameStore.set(mockGameState);
+			gameStore.reset();
+
+			const state = get(gameStore);
+			expect(state).toEqual(mockNewGameState);
+		});
+
+		it('should clear the gameState key from sessionStorage', () => {
+			sessionStorage.setItem('gameState', JSON.stringify(mockGameState));
+			gameStore.reset();
+
+			expect(sessionStorage.getItem('gameState')).toBeNull();
+		});
+	});
+
+	describe('changeGameState', () => {
+		it('should change game state and save it', () => {
+			const mockUpdatedState = { ...mockNewGameState, state: ApplicationState.PLAYING };
+			(gameManagers.changeGameState as Mock).mockReturnValue(mockUpdatedState);
+
+			gameStore.changeGameState(ApplicationState.PLAYING);
+
+			expect(gameManagers.changeGameState).toHaveBeenCalledWith(
+				mockNewGameState,
+				ApplicationState.PLAYING,
+			);
+			expect(gameStateStorage.saveGameState).toHaveBeenCalledWith(mockUpdatedState);
+			const state = get(gameStore);
+			expect(state).toEqual(mockUpdatedState);
+		});
+	});
+
+	describe('reroll', () => {
+		it('should reload single card at current index and update cards', async () => {
+			const stateWithIndex = {
+				...mockNewGameState,
+				currentCardIndex: 2,
+				includedTags: [Tag.EVENT],
+				excludedTags: [Tag.CLASSIC],
+			};
+			gameStore.set(stateWithIndex);
+
+			const mockCards = ['card1', 'card2'];
+			(cardStorage.loadSingleCard as Mock).mockResolvedValue(undefined);
+			(languageStore.getCards as Mock).mockReturnValue(mockCards);
+
+			await gameStore.reroll();
+
+			expect(cardStorage.loadSingleCard).toHaveBeenCalledWith(2, [Tag.EVENT], [Tag.CLASSIC]);
+			const state = get(gameStore);
+			expect(state.cards).toEqual(mockCards);
+		});
+	});
+
+	describe('replay', () => {
+		it('should reload cards with current tags and restart the game', async () => {
+			const stateWithTags = {
+				...mockNewGameState,
+				includedTags: [Tag.EVENT],
+				excludedTags: [Tag.CLASSIC],
+			};
+			gameStore.set(stateWithTags);
+
+			const mockCards = ['card1', 'card2'];
+			(cardStorage.loadCards as Mock).mockResolvedValue(10);
+			(languageStore.getCards as Mock).mockReturnValue(mockCards);
+			const mockStartedState = { ...stateWithTags, state: ApplicationState.PLAYING };
+			(gameManagers.startGame as Mock).mockReturnValue(mockStartedState);
+
+			await gameStore.replay();
+
+			expect(cardStorage.loadCards).toHaveBeenCalledWith([Tag.EVENT], [Tag.CLASSIC]);
+			expect(gameManagers.startGame).toHaveBeenCalled();
+		});
+	});
 });
