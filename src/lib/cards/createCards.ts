@@ -20,18 +20,30 @@ export async function createCards(
 		const seed = Math.random();
 		const shuffledCards = await fetchAndFilterCards(includedTags, excludedTags, seed);
 
+		// Separate required and non-required cards
+		const requiredCards = shuffledCards.filter((card) => card.required);
+		console.log('Required cards in createCards: ', requiredCards);
+		const nonRequiredCards = shuffledCards.filter((card) => !card.required);
+
+		// Ensure required cards are always included
+		const finalSelection = [
+			...requiredCards,
+			...nonRequiredCards.slice(0, Math.max(0, cardAmount - requiredCards.length)),
+		];
+
 		// Initialize an empty record to store cards per language.
 		const languageCards: Record<Language, LanguageData> = {} as Record<Language, LanguageData>;
 
 		// Process all languages.
 		Object.values(Language).forEach((lang) => {
 			languageCards[lang] = {
-				cards: shuffledCards.slice(0, cardAmount).map((card) => ({
+				cards: finalSelection.slice(0, cardAmount).map((card) => ({
 					id: card.id,
 					title: card.title[lang],
 					description: card.description[lang],
 					timedEvent: card.tags.includes(Tag.EVENT),
 					targetPlayer: card.tags.includes(Tag.RANDOM_TARGET),
+					required: card.required ?? false,
 					tags: card.tags,
 				})),
 				language: lang,
