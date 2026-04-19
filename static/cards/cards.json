@@ -2208,6 +2208,54 @@
         "fi": "Kaikki seisovat yhdellä jalalla kuten flamingo yhden kierroksen ajan."
       },
       "tags": [ "event", "physical"]
+    },
+    {
+      "id": 165,
+      "title": {
+        "en": "Vote: Drug test",
+        "fi": "Äänestys: Huumetesti"
+      },
+      "description": {
+        "en": "Vote for the player who most likely wouldn't pass a drug test right now.",
+        "fi": "Äänestäkää joukostanne pelaaja joka todennäköisimmin ei läpäisisi huumetestiä juuri nyt."
+      },
+      "tags": [ "voting" ]
+    },
+    {
+      "id": 166,
+      "title": {
+        "en": "Oh Homie",
+        "fi": "Voi Homie"
+      },
+      "description": {
+        "en": "For one round talk with the voice of Marge Simpson.",
+        "fi": "Puhu yhden kierroksen ajan Marge Simpsonin äänellä."
+      },
+      "tags": [ "event", "humiliation" ]
+    },
+    {
+      "id": 167,
+      "title": {
+        "en": "Family guy",
+        "fi": "Lapsikatras"
+      },
+      "description": {
+        "en": "Every player with children must drink.",
+        "fi": "Kaikki pelaajat joilla on lapsia juovat."
+      },
+      "tags": []
+    },
+    {
+      "id": 168,
+      "title": {
+        "en": "Delta, Romeo, India, November, Kilo",
+        "fi": "Juliett, Uniform, Oscar"
+      },
+      "description": {
+        "en": "Start naming NATO alphabet in alphabetic order (Alpha, Bravo, Charlie...). The first player who fails drinks.",
+        "fi": "Alkakaa luettelemaan NATO-aakkosia aakkosjärjestyksessä (Alpha, Bravo, Charlie...). Ensimmäinen pelaaja joka epäonnistuu juo."
+      },
+      "tags": [ "knowledge" ]
     }
   ]
 }
