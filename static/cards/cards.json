@@ -10,7 +10,9 @@
         "en": "Do I really have to explain this?",
         "fi": "Tarvitseeko tätä selittää?"
       },
-      "tags": []
+      "tags": [
+        "classic"
+      ]
     },
     {
       "id": 1,
@@ -23,7 +25,8 @@
         "fi": "Jaa kolme huikkaa muille pelaajille mielesi mukaan."
       },
       "tags": [
-        "chosen_target"
+        "chosen_target",
+        "classic"
       ]
     },
     {
@@ -186,7 +189,9 @@
         "en": "The player drinking the strongest beverage regrets their choice. In a tie, both/all drink.",
         "fi": "Vahvinta juomaa lipittävä pelaaja pääsee katumaan valintaansa. Tasapelissä molemmat/kaikki juovat."
       },
-      "tags": []
+      "tags": [
+        "classic"
+      ]
     },
     {
       "id": 14,
@@ -198,7 +203,9 @@
         "en": "Drink lightly. In a tie, both/all drink.",
         "fi": "Juo nössö. Tasapelissä molemmat/kaikki juovat."
       },
-      "tags": []
+      "tags": [
+        "classic"
+      ]
     },
     {
       "id": 15,
@@ -254,7 +261,9 @@
         "en": "That's what we came here to do.",
         "fi": "Sitähän tänne tultiin tekemään."
       },
-      "tags": []
+      "tags": [
+        "classic"
+      ]
     },
     {
       "id": 19,
@@ -815,7 +824,8 @@
       },
       "tags": [
         "physical",
-        "event"
+        "event",
+        "classic"
       ]
     },
     {
@@ -1632,7 +1642,8 @@
         "fi": "Puhu yhden kierroksen ajan muuta kieltä."
       },
       "tags": [
-        "event"
+        "event",
+        "classic"
       ]
     },
     {
