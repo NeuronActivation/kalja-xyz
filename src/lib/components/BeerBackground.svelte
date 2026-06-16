@@ -87,17 +87,14 @@
 
 	@keyframes rise {
 		0% {
-			transform: translateY(0) translateX(0);
+			transform: translateY(0);
 			opacity: 0;
 		}
 		15% {
 			opacity: 0.75;
 		}
-		50% {
-			transform: translateY(-57.5vh) translateX(-6px);
-		}
 		100% {
-			transform: translateY(-115vh) translateX(8px);
+			transform: translateY(-115vh);
 			opacity: 0;
 		}
 	}
