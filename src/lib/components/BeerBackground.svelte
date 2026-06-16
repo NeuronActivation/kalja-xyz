@@ -82,7 +82,7 @@
 		background: rgba(255, 245, 190, 0.3);
 		border: 1px solid rgba(255, 245, 190, 0.55);
 		will-change: transform, opacity;
-		animation: rise linear infinite;
+		animation: rise cubic-bezier(0.45, 0, 0.55, 1) infinite;
 	}
 
 	@keyframes rise {
