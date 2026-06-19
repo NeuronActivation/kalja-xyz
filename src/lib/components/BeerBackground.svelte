@@ -81,28 +81,21 @@
 		border-radius: 50%;
 		background: rgba(255, 245, 190, 0.3);
 		border: 1px solid rgba(255, 245, 190, 0.55);
-		animation: rise linear infinite;
+		will-change: transform, opacity;
+		animation: rise cubic-bezier(0.45, 0, 0.55, 1) infinite;
 	}
 
 	@keyframes rise {
 		0% {
-			bottom: -10%;
+			transform: translateY(0);
 			opacity: 0;
-			transform: translateX(0);
 		}
 		15% {
 			opacity: 0.75;
 		}
-		50% {
-			transform: translateX(-6px);
-		}
-		85% {
-			opacity: 0.5;
-		}
 		100% {
-			bottom: 105%;
+			transform: translateY(-115vh);
 			opacity: 0;
-			transform: translateX(8px);
 		}
 	}
 
