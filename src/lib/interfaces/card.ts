@@ -11,6 +11,9 @@ interface BaseCard {
 	/** Whether the card targets a specific player. */
 	targetPlayer: boolean;
 
+	/** Whether the card is required to appear in the created selection. */
+	required: boolean;
+
 	/** Tags for the card. */
 	tags: Tag[];
 }
