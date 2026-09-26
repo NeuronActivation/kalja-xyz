@@ -1,4 +1,5 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
+import type { LocaleFetch } from '$lib/i18n/index';
 
 // Mock svelte-i18n
 vi.mock('svelte-i18n', () => ({
@@ -8,11 +9,11 @@ vi.mock('svelte-i18n', () => ({
 }));
 
 describe('i18n index', () => {
-	let mockFetch: ReturnType<typeof vi.fn>;
+	let mockFetch: Mock<LocaleFetch>;
 
 	beforeEach(() => {
 		vi.clearAllMocks();
-		mockFetch = vi.fn();
+		mockFetch = vi.fn<LocaleFetch>();
 
 		vi.resetModules();
 	});

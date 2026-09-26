@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
 const localStorageMock = {
   getItem: vi.fn(),
@@ -7,4 +7,8 @@ const localStorageMock = {
   clear: vi.fn(),
 };
 
-globalThis.localStorage = localStorageMock as unknown as Storage;
+Object.defineProperty(globalThis, "localStorage", {
+  value: localStorageMock as unknown as Storage,
+  writable: true,
+  configurable: true,
+});
