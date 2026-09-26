@@ -11,18 +11,18 @@
 </footer>
 
 <style>
-	footer {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		padding: 0.5rem;
-		text-align: center;
-		background: var(--beer-overlay);
-		color: var(--beer-text);
-	}
+footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 0.5rem;
+	text-align: center;
+	background: var(--beer-overlay);
+	color: var(--beer-text);
+}
 
-	footer a {
-		color: var(--beer-link);
-	}
+footer a {
+	color: var(--beer-link);
+}
 </style>
