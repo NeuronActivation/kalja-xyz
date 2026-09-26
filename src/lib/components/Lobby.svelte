@@ -118,7 +118,8 @@ async function setTagState(tag: Tag, state: 'include' | 'exclude') {
 				name="cardAmount"
 				min="1"
 				max={gameState.maxCards}
-				bind:value={gameState.cardAmount}
+				value={gameState.cardAmount}
+				on:input={(e) => gameStore.setCardAmount(Number(e.currentTarget.value))}
 			/>
 		</div>
 	</div>

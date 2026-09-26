@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 import { get } from 'svelte/store';
 import { ApplicationState } from '$lib/constants/applicationState';
+import { DEFAULT_CARD_AMOUNT } from '$lib/constants/cardAmount';
 import { Tag } from '$lib/constants/tag';
 import { gameStore } from '$lib/stores/gameStore';
 import * as gameStateStorage from '$lib/gameState/gameStateStorage';
@@ -134,6 +135,17 @@ describe('gameStore', () => {
 	});
 
 	describe('initializeMaxCards', () => {
+		it('should use the default amount when no amount has been chosen yet', async () => {
+			gameStore.set({ ...mockNewGameState, cardAmount: undefined });
+			(cardStorage.loadCards as Mock).mockResolvedValue(100);
+
+			await gameStore.initializeMaxCards();
+
+			const state = get(gameStore);
+			expect(state.maxCards).toBe(100);
+			expect(state.cardAmount).toBe(DEFAULT_CARD_AMOUNT);
+		});
+
 		it('should initialize max cards', async () => {
 			(cardStorage.loadCards as Mock).mockResolvedValue(25);
 
@@ -141,7 +153,28 @@ describe('gameStore', () => {
 
 			const state = get(gameStore);
 			expect(state.maxCards).toBe(25);
-			expect(state.cardAmount).toBe(25);
+		});
+
+		it('should keep the chosen amount when there are more cards available', async () => {
+			gameStore.set({ ...mockNewGameState, cardAmount: 5 });
+			(cardStorage.loadCards as Mock).mockResolvedValue(100);
+
+			await gameStore.initializeMaxCards();
+
+			const state = get(gameStore);
+			expect(state.maxCards).toBe(100);
+			expect(state.cardAmount).toBe(5);
+		});
+
+		it('should lower the amount to the maximum when there are fewer cards', async () => {
+			gameStore.set({ ...mockNewGameState, cardAmount: 50 });
+			(cardStorage.loadCards as Mock).mockResolvedValue(12);
+
+			await gameStore.initializeMaxCards();
+
+			const state = get(gameStore);
+			expect(state.maxCards).toBe(12);
+			expect(state.cardAmount).toBe(12);
 		});
 	});
 
