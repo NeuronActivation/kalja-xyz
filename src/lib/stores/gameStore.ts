@@ -1,5 +1,6 @@
 import { get, writable } from 'svelte/store';
 import { ApplicationState } from '$lib/constants/applicationState';
+import { DEFAULT_CARD_AMOUNT } from '$lib/constants/cardAmount';
 import type { GameState } from '$lib/interfaces/gameState';
 import { languageStore } from '$lib/stores/languageStore';
 import { Tag } from '$lib/constants/tag';
@@ -28,7 +29,7 @@ import {
  * - `addPlayer`: Add a player to the game and save the new state.
  * - `removePlayer`: Remove a player by ID and save the new state.
  * - `setCardAmount`: Set the number of cards in the game and save the new state.
- * - `initializeMaxCards`: Check how many cards can exist in the game and set the amount in the game state.
+ * - `initializeMaxCards`: Check how many cards can exist in the game and set the maximum. The chosen amount is kept as is, unless there are fewer cards available than requested, in which case the amount is lowered to the maximum.
  * - `startGame`: Start the game and save the updated state.
  * - `showNextCard`: Show the next card in the game and save the new state.
  * - `updateCards`: Update the cards in the game and save the new state.
@@ -82,11 +83,12 @@ function createGameStore() {
 		initializeMaxCards: async () => {
 			const { includedTags, excludedTags } = get(gameStore);
 			const maxCards = await loadCards(includedTags, excludedTags);
-			const cardAmount = maxCards;
 
 			update((state) => ({
 				...state,
-				cardAmount,
+				// Only lower the amount when the selected tags leave fewer cards than
+				// requested. Until an amount has been chosen, use the default one.
+				cardAmount: Math.min(state.cardAmount ?? DEFAULT_CARD_AMOUNT, maxCards),
 				maxCards,
 			}));
 		},
