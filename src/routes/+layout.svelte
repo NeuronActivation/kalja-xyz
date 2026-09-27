@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { base } from '$app/paths';
-	import type { Metadata } from '$lib/interfaces/metadata';
+import { page } from '$app/stores';
+import { base } from '$app/paths';
+import type { Metadata } from '$lib/interfaces/metadata';
 
-	import '@picocss/pico';
-	import '@picocss/pico/css/pico.colors.css';
+import '@picocss/pico';
+import '@picocss/pico/css/pico.colors.css';
 
-	const metadata: Metadata = {
-		name: 'kalja.xyz',
-		title: 'Kalja.xyz',
-		description:
-			'Legendaarinen juomapeli uudessa kuosissa. Helppo pelata, vaikea lopettaa. Bileet alkaa nappia painamalla!',
-		type: 'website',
-		url: $page.url.href,
-		image: `${base}/favicon.png`,
-	};
+const metadata: Metadata = {
+	name: 'kalja.xyz',
+	title: 'Kalja.xyz',
+	description:
+		'Legendaarinen juomapeli uudessa kuosissa. Helppo pelata, vaikea lopettaa. Bileet alkaa nappia painamalla!',
+	type: 'website',
+	url: $page.url.href,
+	image: `${base}/favicon.png`,
+};
 </script>
 
 <svelte:head>

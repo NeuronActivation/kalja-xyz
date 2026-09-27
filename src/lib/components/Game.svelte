@@ -1,70 +1,70 @@
 <script lang="ts">
-	import { t } from 'svelte-i18n';
-	import type { GameState } from '$lib/interfaces/gameState';
-	import { gameStore } from '$lib/stores/gameStore';
-	import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
-	import { onMount, tick } from 'svelte';
-	import { getTarget } from '$lib/managers/game';
-	import { getPersistentTarget, setPersistentTarget } from '$lib/utils/targetStorage';
+import { t } from 'svelte-i18n';
+import type { GameState } from '$lib/interfaces/gameState';
+import { gameStore } from '$lib/stores/gameStore';
+import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
+import { onMount, tick } from 'svelte';
+import { getTarget } from '$lib/managers/game';
+import { getPersistentTarget, setPersistentTarget } from '$lib/utils/targetStorage';
 
-	let gameState: GameState;
-	gameStore.subscribe((value) => (gameState = value));
-	let targetPlayer: string;
-	let nameEl: HTMLElement;
-	let statusEl: HTMLElement;
+let gameState: GameState;
+gameStore.subscribe((value) => (gameState = value));
+let targetPlayer: string;
+let nameEl: HTMLElement;
+let statusEl: HTMLElement;
 
-	$: beerLevel = (() => {
-		const { currentCardIndex, cardAmount } = gameState;
-		if (cardAmount == null || cardAmount <= 1) return 0;
-		return ((cardAmount - 1 - currentCardIndex) / (cardAmount - 1)) * 100;
-	})();
+$: beerLevel = (() => {
+	const { currentCardIndex, cardAmount } = gameState;
+	if (cardAmount == null || cardAmount <= 1) return 0;
+	return ((cardAmount - 1 - currentCardIndex) / (cardAmount - 1)) * 100;
+})();
 
-	let nameClips = { light: 'inset(0 0 100% 0)', dark: 'inset(0 0 0 0)' };
-	let statusClips = { light: 'inset(0 0 100% 0)', dark: 'inset(0 0 0 0)' };
+let nameClips = { light: 'inset(0 0 100% 0)', dark: 'inset(0 0 0 0)' };
+let statusClips = { light: 'inset(0 0 100% 0)', dark: 'inset(0 0 0 0)' };
 
-	function getClips(el: HTMLElement | undefined, surface: number) {
-		if (!el || typeof window === 'undefined') {
-			return { light: 'inset(0 0 100% 0)', dark: 'inset(0 0 0 0)' };
-		}
-		const rect = el.getBoundingClientRect();
-		const rel = Math.max(0, Math.min(rect.height, surface - rect.top));
-		return {
-			light: `inset(0 0 ${rect.height - rel}px 0)`,
-			dark: `inset(${rel}px 0 0 0)`,
-		};
+function getClips(el: HTMLElement | undefined, surface: number) {
+	if (!el || typeof window === 'undefined') {
+		return { light: 'inset(0 0 100% 0)', dark: 'inset(0 0 0 0)' };
 	}
+	const rect = el.getBoundingClientRect();
+	const rel = Math.max(0, Math.min(rect.height, surface - rect.top));
+	return {
+		light: `inset(0 0 ${rect.height - rel}px 0)`,
+		dark: `inset(${rel}px 0 0 0)`,
+	};
+}
 
-	$: beerLevel,
-		tick().then(() => {
-			if (typeof window === 'undefined') return;
-			const surface = (1 - beerLevel / 100) * window.innerHeight;
-			nameClips = getClips(nameEl, surface);
-			statusClips = getClips(statusEl, surface);
-		});
+$: beerLevel,
+	tick().then(() => {
+		if (typeof window === 'undefined') return;
+		const surface = (1 - beerLevel / 100) * window.innerHeight;
+		nameClips = getClips(nameEl, surface);
+		statusClips = getClips(statusEl, surface);
+	});
 
-	$: {
-		const index = gameState.currentCardIndex;
-		if (gameState.cards[index]?.targetPlayer) {
-			const storedTarget = getPersistentTarget(index);
-			if (storedTarget) {
-				targetPlayer = storedTarget;
-			} else {
-				targetPlayer = getTarget(gameState);
-				setPersistentTarget(index, targetPlayer);
-			}
-		}
-	}
-
-	onMount(() => {
-		// Ensure the target is set after mount.
-		const index = gameState.currentCardIndex;
-		if (!targetPlayer && gameState.cards[index]?.targetPlayer) {
-			targetPlayer = getPersistentTarget(index) || getTarget(gameState);
+$: {
+	const index = gameState.currentCardIndex;
+	if (gameState.cards[index]?.targetPlayer) {
+		const storedTarget = getPersistentTarget(index);
+		if (storedTarget) {
+			targetPlayer = storedTarget;
+		} else {
+			targetPlayer = getTarget(gameState);
 			setPersistentTarget(index, targetPlayer);
 		}
-		// Ensure shown card is a potentially rerolled new card.
-		gameStore.updateCards();
-	});
+	}
+}
+
+onMount(() => {
+	// Ensure the target is set after mount.
+	const index = gameState.currentCardIndex;
+	if (!targetPlayer && gameState.cards[index]?.targetPlayer) {
+		targetPlayer = getPersistentTarget(index) || getTarget(gameState);
+		setPersistentTarget(index, targetPlayer);
+	}
+	// Ensure shown card is a potentially rerolled new card.
+	gameStore.updateCards();
+});
 </script>
 
 <h1 class="target" bind:this={nameEl}>
@@ -120,95 +120,96 @@
 </div>
 
 <style>
-	.target {
-		position: relative;
-	}
+.target {
+	position: relative;
+}
 
-	.text-light {
-		display: block;
-		color: white;
-		transition: clip-path 4s cubic-bezier(0.4, 0, 0.2, 1);
-	}
+.text-light {
+	display: block;
+	color: white;
+	transition: clip-path 4s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-	.text-dark {
-		display: block;
-		position: absolute;
-		inset: 0;
-		color: black;
-		transition: clip-path 4s cubic-bezier(0.4, 0, 0.2, 1);
-	}
+.text-dark {
+	display: block;
+	position: absolute;
+	inset: 0;
+	color: black;
+	transition: clip-path 4s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-	article {
-		width: 600px;
-		position: relative;
-		border-radius: 1rem;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	}
+article {
+	width: 600px;
+	position: relative;
+	border-radius: 1rem;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-	h2 {
-		color: var(--pico-color);
-	}
+h2 {
+	color: var(--pico-color);
+}
 
-	.target-name {
-		padding: 0.25rem 0.75rem;
-		border-radius: 1rem;
-		font-size: 0.9rem;
-		color: white;
-	}
+.target-name {
+	padding: 0.25rem 0.75rem;
+	border-radius: 1rem;
+	font-size: 0.9rem;
+	color: white;
+}
 
+.event-notice {
+	text-align: center;
+	padding: 1.5rem;
+	border-radius: 1rem;
+	font-size: 1rem;
+	max-width: 600px;
+	position: relative;
+}
+
+.event-notice::before {
+	content: '⏳';
+	position: absolute;
+	top: -1.4rem;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 1.2rem;
+}
+
+.progress-section {
+	text-align: center;
+	max-width: 300px;
+}
+
+.game-status {
+	position: relative;
+	margin: 1rem 0 0.5rem 0;
+	font-size: 0.9rem;
+}
+
+progress {
+	width: 100%;
+	height: 0.5rem;
+}
+
+.reroll {
+	all: unset;
+	cursor: pointer;
+	position: absolute;
+	margin: 10px;
+	padding: 8px;
+	line-height: 0;
+	color: var(--pico-muted-color);
+	top: 0;
+	right: 0;
+}
+
+@media (max-width: 768px) {
+	article,
 	.event-notice {
-		text-align: center;
-		padding: 1.5rem;
-		border-radius: 1rem;
-		font-size: 1rem;
-		max-width: 600px;
-		position: relative;
-	}
-
-	.event-notice::before {
-		content: '⏳';
-		position: absolute;
-		top: -1.4rem;
-		left: 50%;
-		transform: translateX(-50%);
-		font-size: 1.2rem;
+		max-width: 90%;
 	}
 
 	.progress-section {
-		text-align: center;
-		max-width: 300px;
+		max-width: 90%;
 	}
-
-	.game-status {
-		position: relative;
-		margin: 1rem 0 0.5rem 0;
-		font-size: 0.9rem;
-	}
-
-	progress {
-		width: 100%;
-		height: 0.5rem;
-	}
-
-	.reroll {
-		all: unset;
-		cursor: pointer;
-		position: absolute;
-		margin: 10px;
-		padding: 8px;
-		line-height: 0;
-		color: var(--pico-muted-color);
-		top: 0;
-		right: 0;
-	}
-
-	@media (max-width: 768px) {
-		article, .event-notice {
-			max-width: 90%;
-		}
-
-		.progress-section {
-			max-width: 90%;
-		}
-	}
+}
 </style>

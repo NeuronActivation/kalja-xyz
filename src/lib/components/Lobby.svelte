@@ -1,52 +1,52 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { t } from 'svelte-i18n';
-	import { gameStore } from '$lib/stores/gameStore';
-	import type { GameState } from '$lib/interfaces/gameState';
-	import { Tag } from '$lib/constants/tag';
+import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
+import { gameStore } from '$lib/stores/gameStore';
+import type { GameState } from '$lib/interfaces/gameState';
+import { Tag } from '$lib/constants/tag';
 
-	let playerName: string;
-	let gameState: GameState;
-	gameStore.subscribe((value) => (gameState = value));
+let playerName: string;
+let gameState: GameState;
+gameStore.subscribe((value) => (gameState = value));
 
-	onMount(async () => {
-		await gameStore.initializeMaxCards();
-	});
+onMount(async () => {
+	await gameStore.initializeMaxCards();
+});
 
-	/**
-	 * Updates the state of a tag in the game state by setting it to 'include' or 'exclude'.
-	 * Only one state can be active for a tag at a time.
-	 *
-	 * @param tag - The tag to update.
-	 * @param state - The new state of the tag ('include' or 'exclude').
-	 */
-	async function setTagState(tag: Tag, state: 'include' | 'exclude') {
-		let newIncludedTags = [...gameState.includedTags];
-		let newExcludedTags = [...gameState.excludedTags];
+/**
+ * Updates the state of a tag in the game state by setting it to 'include' or 'exclude'.
+ * Only one state can be active for a tag at a time.
+ *
+ * @param tag - The tag to update.
+ * @param state - The new state of the tag ('include' or 'exclude').
+ */
+async function setTagState(tag: Tag, state: 'include' | 'exclude') {
+	let newIncludedTags = [...gameState.includedTags];
+	let newExcludedTags = [...gameState.excludedTags];
 
-		if (state === 'include') {
-			if (newIncludedTags.includes(tag)) {
-				// If already included, reset to neutral.
-				newIncludedTags = newIncludedTags.filter((t) => t !== tag);
-			} else {
-				// Set as included and ensure it's not excluded.
-				newExcludedTags = newExcludedTags.filter((t) => t !== tag);
-				newIncludedTags.push(tag);
-			}
-		} else if (state === 'exclude') {
-			if (newExcludedTags.includes(tag)) {
-				// If already excluded, reset to neutral.
-				newExcludedTags = newExcludedTags.filter((t) => t !== tag);
-			} else {
-				// Set as excluded and ensure it's not included.
-				newIncludedTags = newIncludedTags.filter((t) => t !== tag);
-				newExcludedTags.push(tag);
-			}
+	if (state === 'include') {
+		if (newIncludedTags.includes(tag)) {
+			// If already included, reset to neutral.
+			newIncludedTags = newIncludedTags.filter((t) => t !== tag);
+		} else {
+			// Set as included and ensure it's not excluded.
+			newExcludedTags = newExcludedTags.filter((t) => t !== tag);
+			newIncludedTags.push(tag);
 		}
-
-		gameStore.updateTags(newIncludedTags, newExcludedTags);
-		await gameStore.initializeMaxCards();
+	} else if (state === 'exclude') {
+		if (newExcludedTags.includes(tag)) {
+			// If already excluded, reset to neutral.
+			newExcludedTags = newExcludedTags.filter((t) => t !== tag);
+		} else {
+			// Set as excluded and ensure it's not included.
+			newIncludedTags = newIncludedTags.filter((t) => t !== tag);
+			newExcludedTags.push(tag);
+		}
 	}
+
+	gameStore.updateTags(newIncludedTags, newExcludedTags);
+	await gameStore.initializeMaxCards();
+}
 </script>
 
 <h2>{$t('add-player-names')}</h2>
@@ -132,132 +132,132 @@
 </button>
 
 <style>
-	.player-list {
-		padding-left: 0;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.25rem;
-		justify-content: center;
-		max-width: 600px;
-		margin: 1rem auto;
-	}
+.player-list {
+	padding-left: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+	justify-content: center;
+	max-width: 600px;
+	margin: 1rem auto;
+}
 
-	.player-list li {
-		list-style-type: none;
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.9rem;
-		border-radius: 1rem;
-		padding: 0.4rem 0.6rem;
-	}
+.player-list li {
+	list-style-type: none;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.9rem;
+	border-radius: 1rem;
+	padding: 0.4rem 0.6rem;
+}
 
-	.remove-player {
-		background: none;
-		border: none;
-		color: inherit;
-		cursor: pointer;
-		font-size: 1.2rem;
-		line-height: 1;
-		opacity: 0.8;
-		transition: opacity 0.2s ease;
-		padding: 0;
-		margin: 0;
-		margin-left: 0.25rem;
-		vertical-align: middle;
-		transform: translateY(-1px); /* Fine-tune on y-axis */
-	}
+.remove-player {
+	background: none;
+	border: none;
+	color: inherit;
+	cursor: pointer;
+	font-size: 1.2rem;
+	line-height: 1;
+	opacity: 0.8;
+	transition: opacity 0.2s ease;
+	padding: 0;
+	margin: 0;
+	margin-left: 0.25rem;
+	vertical-align: middle;
+	transform: translateY(-1px); /* Fine-tune on y-axis */
+}
 
-	.remove-player:hover {
-		opacity: 1;
-	}
+.remove-player:hover {
+	opacity: 1;
+}
 
-	input {
-		width: 50%;
-		max-width: 300px;
-		padding: 0.5rem 1rem;
-		border-radius: 0.5rem;
-		outline: none;
-	}
+input {
+	width: 50%;
+	max-width: 300px;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	outline: none;
+}
 
-	summary span {
-		color: var(--pico-color);
-		font-weight: 700;
-	}
+summary span {
+	color: var(--pico-color);
+	font-weight: 700;
+}
 
-	summary {
-		font-size: 0.9rem;
-	}
+summary {
+	font-size: 0.9rem;
+}
 
-	.settings {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		font-size: 0.9rem;
-		color: var(--pico-color);
-	}
+.settings {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 0.9rem;
+	color: var(--pico-color);
+}
 
-	.slider-container {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		flex: 1;
-	}
+.slider-container {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	flex: 1;
+}
 
-	.card-count {
-		min-width: 3ch;
-		text-align: center;
-	}
+.card-count {
+	min-width: 3ch;
+	text-align: center;
+}
 
-	input[type='range'] {
-		padding: 0;
-		margin: 0;
-		flex: 1;
-	}
+input[type='range'] {
+	padding: 0;
+	margin: 0;
+	flex: 1;
+}
 
-	.tag-selection-container {
-		width: 100%;
-		padding: 5px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
+.tag-selection-container {
+	width: 100%;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
-	.tag-selection {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		margin: 0 30px;
-		gap: 10px;
-		margin: 10px;
-		width: 100%;
-	}
+.tag-selection {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin: 0 30px;
+	gap: 10px;
+	margin: 10px;
+	width: 100%;
+}
 
-	.tag-toggle {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
+.tag-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 
-	.tag-option {
-		cursor: pointer;
-		padding: 0;
-		width: 25px;
-		height: 25px;
-		font-size: 0.8rem;
-		color: white;
-		border-radius: 50%;
-		line-height: 1;
-	}
+.tag-option {
+	cursor: pointer;
+	padding: 0;
+	width: 25px;
+	height: 25px;
+	font-size: 0.8rem;
+	color: white;
+	border-radius: 50%;
+	line-height: 1;
+}
 
-	.tag-option:not(.active) {
-		opacity: 0.5;
-	}
+.tag-option:not(.active) {
+	opacity: 0.5;
+}
 
-	.tag-option.include {
-		background-color: var(--pico-color-jade-500);
-	}
+.tag-option.include {
+	background-color: var(--pico-color-jade-500);
+}
 
-	.tag-option.exclude {
-		background-color: var(--pico-color-red-500);
-	}
+.tag-option.exclude {
+	background-color: var(--pico-color-red-500);
+}
 </style>
