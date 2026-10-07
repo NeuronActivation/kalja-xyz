@@ -35,5 +35,16 @@ jobs:
           name: coverage-badge
           path: coverage-badge.json
 
-
-          
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Install dependencies
+        run: deno install
+      - name: Install Chromium
+        run: deno run -A npm:playwright install --with-deps chromium
+      - name: Run browser tests
+        run: deno task test:e2e
