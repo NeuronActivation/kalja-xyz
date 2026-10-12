@@ -2,6 +2,7 @@
   "version": "5",
   "specifiers": {
     "npm:@picocss/pico@^2.1.1": "2.1.1",
+    "npm:@playwright/test@^1.63.0": "1.63.0",
     "npm:@sveltejs/adapter-static@^3.0.10": "3.0.10_@sveltejs+kit@2.70.3_@sveltejs+vite-plugin-svelte@7.3.1_@types+node@20.19.23_svelte@5.57.1_typescript@7.0.2_vite@8.3.1",
     "npm:@sveltejs/kit@^2.70.3": "2.70.3_@sveltejs+vite-plugin-svelte@7.3.1_svelte@5.57.1_typescript@7.0.2_vite@8.3.1_@types+node@20.19.23",
     "npm:@sveltejs/vite-plugin-svelte@^7.3.1": "7.3.1_svelte@5.57.1_vite@8.3.1_@types+node@20.19.23",
@@ -237,6 +238,13 @@
     },
     "@picocss/pico@2.1.1": {
       "integrity": "sha512-kIDugA7Ps4U+2BHxiNHmvgPIQDWPDU4IeU6TNRdvXQM1uZX+FibqDQT2xUOnnO2yq/LUHcwnGlu1hvf4KfXnMg=="
+    },
+    "@playwright/test@1.63.0": {
+      "integrity": "sha512-oxMK4vllB9RK5NQ2l1pq1IfOf2AvnEuj/vYGDj0H2nMtmtZpKtCwt/l00GEO6xjGfpBNAvjovvYdCm50dRQkpQ==",
+      "dependencies": [
+        "playwright"
+      ],
+      "bin": true
     },
     "@polka/url@1.0.0-next.29": {
       "integrity": "sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww=="
@@ -982,6 +990,17 @@
     "picomatch@4.0.7": {
       "integrity": "sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA=="
     },
+    "playwright-core@1.63.0": {
+      "integrity": "sha512-rYCsBF/M5HjUch52bbtVONEFjv6Xu8sm8h72dNlR5bzIE1fvC/bxgspzkjSfU+MweEMmPM8KJebG6nnyxo5mCg==",
+      "bin": true
+    },
+    "playwright@1.63.0": {
+      "integrity": "sha512-+7ziBLidS4NaNCdt57SUDT+wYmmd5fmiQejUic/kb+YsYSCPyOOE9sebzMjNmQrsnNpDJqd4WHvV/8lfKfUDUg==",
+      "dependencies": [
+        "playwright-core"
+      ],
+      "bin": true
+    },
     "postcss@8.5.28": {
       "integrity": "sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==",
       "dependencies": [
@@ -1378,6 +1397,7 @@
     "packageJson": {
       "dependencies": [
         "npm:@picocss/pico@^2.1.1",
+        "npm:@playwright/test@^1.63.0",
         "npm:@sveltejs/adapter-static@^3.0.10",
         "npm:@sveltejs/kit@^2.70.3",
         "npm:@sveltejs/vite-plugin-svelte@^7.3.1",
