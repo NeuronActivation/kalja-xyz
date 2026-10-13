@@ -1,3 +1,4 @@
+import { base } from '$app/paths';
 import { getLocaleFromNavigator, init, register } from 'svelte-i18n';
 
 /**
@@ -14,8 +15,8 @@ export type LocaleFetch = (
  * @param fetchFn The fetch function to load locale files.
  */
 export function registerLocales(fetchFn: LocaleFetch) {
-	register('fi', () => fetchFn('/locales/finnish.json').then((res) => res.json()));
-	register('en', () => fetchFn('/locales/english.json').then((res) => res.json()));
+	register('fi', () => fetchFn(`${base}/locales/finnish.json`).then((res) => res.json()));
+	register('en', () => fetchFn(`${base}/locales/english.json`).then((res) => res.json()));
 }
 
 // Initialize Svelte i18n with fallback locale
