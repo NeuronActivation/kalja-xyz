@@ -22,7 +22,7 @@ async function changeLanguage(event: Event) {
 </script>
 
 <select
-	class="language pico-background-amber-700"
+	class="language"
 	bind:value={$locale}
 	on:change={changeLanguage}
 	aria-label={$t('select-language')}
@@ -34,7 +34,7 @@ async function changeLanguage(event: Event) {
 </select>
 
 <button
-	class="reset pico-background-amber-700"
+	class="reset"
 	on:click={gameStore.reset}
 	title={$t('back-to-start')}
 >
@@ -42,33 +42,57 @@ async function changeLanguage(event: Event) {
 </button>
 
 <style>
+/* Ink discs with a foam rim, readable over both the foam and the empty glass. */
 .reset,
 .language {
 	position: absolute;
 	top: 1rem;
-	width: 2.5rem;
-	height: 2.5rem;
+	z-index: 1;
+	width: 2.75rem;
+	height: 2.75rem;
 	padding: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	border-radius: 50%;
-	border: none;
+	border: 2px solid rgba(255, 249, 238, 0.85);
+	background: var(--ink);
+	color: var(--foam);
+	box-shadow: 0 6px 14px -6px rgba(11, 17, 48, 0.7);
+	cursor: pointer;
+	transition: transform 0.12s var(--ease-out);
 
 	/* Needed for WebKit compatibility */
+	appearance: none;
 	-webkit-appearance: none;
 	text-align-last: center;
 }
+
+.reset:focus-visible,
+.language:focus-visible {
+	box-shadow: 0 0 0 3px var(--beer-high);
+}
+
+.reset:active,
+.language:active {
+	transform: scale(0.94);
+}
+
 .reset {
 	right: 1rem;
-	font-size: 1.3rem;
 	line-height: 0;
 }
 
 .language {
 	left: 1rem;
-	font-weight: 600;
-	background-image: none !important;
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 1;
+}
+
+.language option {
+	color: var(--ink);
+	background: var(--paper);
 }
 </style>

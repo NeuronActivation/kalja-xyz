@@ -1,5 +1,6 @@
 {
     "title": "Kalja.xyz",
+    "tagline": "Helppo pelata, vaikea lopettaa.",
     "main-menu-start-button": "Aloita",
     "add-player-names": "Lisää pelaajien nimet",
     "add-player-name": "Lisää pelaajan nimi",
@@ -16,6 +17,10 @@
     "select-tags": "Tagit",
     "select-language": "Valitse kieli",
     "language-selection": "Kielen valinta",
+    "drink-responsibly": "Juo vastuullisesti",
+    "source-code": "Lähdekoodi",
+    "original-logo": "Alkuperäinen vuodelta 2022, tehnyt",
+    "close": "Sulje",
 
     "tags": {
         "chosen_target": {

@@ -1,5 +1,6 @@
 {
     "title": "Kalja.xyz",
+    "tagline": "Easy to play, hard to stop.",
     "main-menu-start-button": "Start",
     "add-player-names": "Add player names",
     "add-player-name": "Insert player name",
@@ -16,6 +17,10 @@
     "select-tags": "Tags",
     "select-language": "Select language",
     "language-selection": "Language selection",
+    "drink-responsibly": "Drink responsibly",
+    "source-code": "Source code",
+    "original-logo": "The original from 2022 by",
+    "close": "Close",
 
     "tags": {
         "chosen_target": {

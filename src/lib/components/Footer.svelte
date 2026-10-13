@@ -1,28 +1,28 @@
+<script lang="ts">
+import { t } from 'svelte-i18n';
+</script>
+
 <footer>
-	<div class="container">
-		<small>
-			🍺 Drink responsibly • <a
-				href="https://github.com/NeuronActivation/kalja-xyz"
-				target="_blank"
-				rel="noopener"
-			>Code</a>
-		</small>
-	</div>
+	<p>{$t('drink-responsibly')}</p>
+	<a href="https://github.com/NeuronActivation/kalja-xyz" target="_blank" rel="noopener">{
+		$t('source-code')
+	}</a>
 </footer>
 
 <style>
 footer {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 0.5rem;
-	text-align: center;
-	background: var(--beer-overlay);
-	color: var(--beer-text);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.25rem 1.5rem;
+	padding: 1rem 1rem 1.25rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: rgba(255, 249, 238, 0.85);
+	text-shadow: 0 1px 2px rgba(60, 25, 0, 0.4);
 }
 
-footer a {
-	color: var(--beer-link);
+a {
+	color: var(--foam);
 }
 </style>
