@@ -40,81 +40,16 @@ onMount(() => {
 <style>
 :root {
 	--nav-height: 80px;
-	--footer-height: 80px;
-
-	/* Make page background transparent so the beer shows through */
-	--pico-background-color: transparent;
-
-	/* Warm dark brown for all floating text */
-	--pico-color: #2d1200;
-	--pico-muted-color: #7a4a00;
-	--pico-muted-border-color: rgba(180, 110, 20, 0.25);
-
-	/* Warm cream for cards / articles */
-	--pico-card-background-color: rgba(255, 248, 225, 0.93);
-	--pico-card-sectioning-background-color: rgba(255, 240, 195, 0.7);
-	--pico-card-border-color: rgba(180, 110, 20, 0.2);
-
-	/* Warm form inputs */
-	--pico-form-element-background-color: rgba(255, 252, 240, 0.96);
-	--pico-form-element-border-color: rgba(180, 110, 20, 0.4);
-	--pico-form-element-color: #2d1200;
-	--pico-form-element-placeholder-color: #9a6020;
-	--pico-form-element-active-background-color: #fffdf5;
-	--pico-form-element-active-border-color: #c07820;
-	--pico-form-element-focus-color: rgba(192, 120, 32, 0.4);
-
-	/* Warm accordion */
-	--pico-accordion-border-color: rgba(180, 110, 20, 0.25);
-	--pico-accordion-active-summary-color: #8b4513;
-	--pico-accordion-close-summary-color: #2d1200;
-	--pico-accordion-open-summary-color: #7a4a00;
-
-	/* Progress bar */
-	--pico-progress-color: var(--pico-color-amber-700);
-	--pico-progress-background-color: rgba(180, 110, 20, 0.2);
-
-	/* Settings / collapse background so text is readable */
-	--pico-collapse-background-color: var(--pico-card-background-color);
-
-	/* Beer theme overlay colors */
-	--beer-overlay: rgba(30, 12, 0, 0.45);
-	--beer-text: rgba(255, 235, 180, 0.85);
-	--beer-link: rgba(255, 220, 120, 0.9);
 }
 
 .game-container {
 	display: flex;
+	flex: 1;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: calc(100vh - var(--nav-height, 80px) - var(--footer-height, 80px));
+	gap: 1.25rem;
 	width: 100%;
-	padding: var(--spacing);
-}
-
-/* Override pico's primary color — must match pico's selector specificity */
-:global(:root:not([data-theme='dark'])) {
-	--pico-primary: var(--pico-color-amber-700);
-	--pico-primary-background: var(--pico-color-amber-700);
-	--pico-primary-border: var(--pico-color-amber-700);
-	--pico-primary-underline: rgba(192, 120, 32, 0.5);
-	--pico-primary-hover-background: var(--pico-color-amber-800);
-	--pico-primary-hover-border: var(--pico-color-amber-800);
-	--pico-primary-focus: rgba(192, 120, 32, 0.4);
-	--pico-primary-inverse: #fff5e0;
-}
-
-/* Ensure proper layout flow */
-:global(body) {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-	margin: 0;
-}
-
-/* Make main content area flexible */
-.game-container {
-	flex: 1;
+	padding: var(--nav-height, 80px) 1rem 1.5rem;
 }
 </style>

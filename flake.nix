@@ -14,7 +14,7 @@
       devShell = pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
           deno
-          nodePackages.svelte-language-server
+          svelte-language-server
         ];
         buildInputs = with pkgs; [
           openssl

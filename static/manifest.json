@@ -3,8 +3,8 @@
   "short_name": "kalja.xyz",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#13171F",
-  "theme_color": "#017FC0",
+  "background_color": "#141c33",
+  "theme_color": "#141c33",
   "icons": [
     {
       "src": "icons/icon-192x192.png",

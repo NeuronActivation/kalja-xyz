@@ -3,8 +3,10 @@ import { page } from '$app/stores';
 import { base } from '$app/paths';
 import type { Metadata } from '$lib/interfaces/metadata';
 
-import '@picocss/pico';
-import '@picocss/pico/css/pico.colors.css';
+import '@fontsource/shrikhand/latin.css';
+import '@fontsource/shrikhand/latin-ext.css';
+import '@fontsource-variable/atkinson-hyperlegible-next';
+import '../app.css';
 
 const metadata: Metadata = {
 	name: 'kalja.xyz',
