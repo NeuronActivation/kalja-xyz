@@ -1,7 +1,8 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@picocss/pico@^2.1.1": "2.1.1",
+    "npm:@fontsource-variable/atkinson-hyperlegible-next@^5.3.0": "5.3.0",
+    "npm:@fontsource/shrikhand@^5.3.0": "5.3.0",
     "npm:@playwright/test@^1.63.0": "1.63.0",
     "npm:@sveltejs/adapter-static@^3.0.10": "3.0.10_@sveltejs+kit@2.70.3_@sveltejs+vite-plugin-svelte@7.3.1_@types+node@20.19.23_svelte@5.57.1_typescript@7.0.2_vite@8.3.1",
     "npm:@sveltejs/kit@^2.70.3": "2.70.3_@sveltejs+vite-plugin-svelte@7.3.1_svelte@5.57.1_typescript@7.0.2_vite@8.3.1_@types+node@20.19.23",
@@ -170,6 +171,12 @@
       "os": ["win32"],
       "cpu": ["x64"]
     },
+    "@fontsource-variable/atkinson-hyperlegible-next@5.3.0": {
+      "integrity": "sha512-UnLzNUy1RWoLDfydAatP4NaRm99X/WbQEph7q/PymJnCFIOOwKOx3pBmp5ys8trO0dM+CKGuJgeZP9fAR4mQpA=="
+    },
+    "@fontsource/shrikhand@5.3.0": {
+      "integrity": "sha512-AWCCj1oNNpMK5hXfFo4JO5KyLhPrdBmpbA0wyIl4IUB05WTU0CGP2UgGX7Lcq/N8nS2+hcxzCPMSQ1R55FuMPg=="
+    },
     "@formatjs/ecma402-abstract@2.3.6": {
       "integrity": "sha512-HJnTFeRM2kVFVr5gr5kH1XP6K0JcJtE7Lzvtr3FS/so5f1kpsqqqxy5JF+FRaO6H2qmcMfAUIox7AJteieRtVw==",
       "dependencies": [
@@ -235,9 +242,6 @@
     },
     "@oxc-project/types@0.151.0": {
       "integrity": "sha512-J1yXrIlNDZVzE3ada310xeAw7nH8yCAyLPuUIsjKatFPmfn5bS1oW+cM+QsGOtVWd5nhSpbwZWx/rue+r5Z+PA=="
-    },
-    "@picocss/pico@2.1.1": {
-      "integrity": "sha512-kIDugA7Ps4U+2BHxiNHmvgPIQDWPDU4IeU6TNRdvXQM1uZX+FibqDQT2xUOnnO2yq/LUHcwnGlu1hvf4KfXnMg=="
     },
     "@playwright/test@1.63.0": {
       "integrity": "sha512-oxMK4vllB9RK5NQ2l1pq1IfOf2AvnEuj/vYGDj0H2nMtmtZpKtCwt/l00GEO6xjGfpBNAvjovvYdCm50dRQkpQ==",
@@ -1157,6 +1161,13 @@
         "picomatch"
       ]
     },
+    "tinyglobby@0.2.17_picomatch@4.0.7": {
+      "integrity": "sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==",
+      "dependencies": [
+        "fdir",
+        "picomatch"
+      ]
+    },
     "tinyrainbow@3.1.1": {
       "integrity": "sha512-yau8yJdTt989Mm0Bd/236QnzEiPf2xLLTqUZRUJOo/3CB078LSwzei343DgtJVmfJKJE3TMINY1u42SQsP6mXw=="
     },
@@ -1206,7 +1217,7 @@
         "picomatch",
         "postcss",
         "rolldown",
-        "tinyglobby"
+        "tinyglobby@0.2.17_picomatch@4.0.7"
       ],
       "optionalDependencies": [
         "fsevents"
@@ -1242,7 +1253,7 @@
         "std-env",
         "tinybench",
         "tinyexec",
-        "tinyglobby",
+        "tinyglobby@0.2.17_picomatch@4.0.7",
         "vite",
         "why-is-node-running"
       ],
@@ -1396,7 +1407,8 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
-        "npm:@picocss/pico@^2.1.1",
+        "npm:@fontsource-variable/atkinson-hyperlegible-next@^5.3.0",
+        "npm:@fontsource/shrikhand@^5.3.0",
         "npm:@playwright/test@^1.63.0",
         "npm:@sveltejs/adapter-static@^3.0.10",
         "npm:@sveltejs/kit@^2.70.3",
