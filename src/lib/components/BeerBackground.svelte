@@ -285,14 +285,17 @@ const bubbles = Array.from({ length: 14 }, () => ({
 	{#if rings.length > 0}
 		<svg class="lacing" xmlns="http://www.w3.org/2000/svg">
 			<defs>
-				{#each lacePatterns as { line, net }, i}
+				{#each lacePatterns as { line, net }, i (i)}
 					<pattern
 						id="lace-{i}"
 						width={LACE_WIDTH}
 						height={LACE_HEIGHT}
 						patternUnits="userSpaceOnUse"
 					>
+						<!-- SVG markup is generated in this component, never from user input. -->
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						<g fill="#fff9ee">{@html line}</g>
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						<g fill="none" stroke="#fff9ee">{@html net}</g>
 					</pattern>
 				{/each}
@@ -312,7 +315,7 @@ const bubbles = Array.from({ length: 14 }, () => ({
 		<div class="liquid">
 			<div class="depth"></div>
 			<div class="streams">
-				{#each streams as stream}
+				{#each streams as stream, i (i)}
 					<div
 						class="stream"
 						style:left="{stream.left}%"
@@ -326,7 +329,7 @@ const bubbles = Array.from({ length: 14 }, () => ({
 					</div>
 				{/each}
 			</div>
-			{#each bubbles as { left, size, duration, delay, sway }}
+			{#each bubbles as { left, size, duration, delay, sway }, i (i)}
 				<div
 					class="bubble"
 					style:left="{left}%"

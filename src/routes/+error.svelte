@@ -1,3 +1,7 @@
+<script lang="ts">
+import { resolve } from '$app/paths';
+</script>
+
 <main>
 	<div class="error-content">
 		<hgroup>
@@ -5,7 +9,7 @@
 			<h2>Page not found</h2>
 		</hgroup>
 		<p>The page you're looking for doesn't exist.</p>
-		<a href="/" class="button button--gold">Return Home</a>
+		<a href={resolve('/')} class="button button--gold">Return Home</a>
 	</div>
 </main>
 

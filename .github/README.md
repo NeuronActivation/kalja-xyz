@@ -40,17 +40,17 @@ We count shots taken (metaphorically) without checking IDs. [View our public das
 
 ## 🛠️ Building
 
->**Note:** We are using [Deno](https://docs.deno.com/runtime/getting_started/installation/) instead of NodeJS
+>**Note:** Requires [Node.js](https://nodejs.org/) 24 or newer
 
 ```bash
 # Clone the repository
 git clone https://github.com/NeuronActivation/kalja-xyz.git && cd kalja-xyz
 
 # Install dependencies 
-deno install --allow-scripts
+npm install
 
 # Start development server
-deno task dev
+npm run dev
 
 ```
 
@@ -70,7 +70,7 @@ Created a card that should come with a breathalyzer? Create an [issue](https://g
 
 🤓 **Code Contributions**  
 Our cocktail recipe for clean code:
-1. 🍹 **Shake well** - Run `deno fmt && deno task test`
+1. 🍹 **Shake well** - Run `npm run format && npm run lint && npm test`
 2. 📜 **Leave instructions** - TSDoc comments so we remember it tomorrow
 3. 🧪 **Optional garnish** - Tests, with vitest (like olives in a martini)
 

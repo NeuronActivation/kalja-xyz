@@ -16,7 +16,7 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: "deno task dev --host 127.0.0.1 --port 4173 --strictPort",
+    command: "npm run dev -- --host 127.0.0.1 --port 4173 --strictPort",
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,

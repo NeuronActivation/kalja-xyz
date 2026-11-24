@@ -106,7 +106,7 @@ describe('language utilities', () => {
 		it('should log error for unsupported language', async () => {
 			const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-			// @ts-ignore - Testing invalid input
+			// @ts-expect-error - Testing invalid input
 			await setLanguage('invalid');
 
 			expect(consoleSpy).toHaveBeenCalledWith('Unsupported language: invalid');
@@ -119,7 +119,7 @@ describe('language utilities', () => {
 		it('should handle empty string language', async () => {
 			const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-			// @ts-ignore - Testing invalid input
+			// @ts-expect-error - Testing invalid input
 			await setLanguage('');
 
 			expect(consoleSpy).toHaveBeenCalledWith('Unsupported language: ');

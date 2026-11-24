@@ -42,6 +42,8 @@ function updateClips() {
 	statusClips = getClips(statusEl, surface);
 }
 
+// Referencing beerLevel makes this statement re-run whenever it changes.
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 $: beerLevel, tick().then(updateClips);
 
 $: {

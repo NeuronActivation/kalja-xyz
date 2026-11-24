@@ -301,7 +301,7 @@ describe('languageData', () => {
 
 		it('should handle null values gracefully', async () => {
 			const { languageData } = await import('$lib/stores/languageData');
-			// @ts-ignore - testing edge case
+			// @ts-expect-error - testing edge case
 			languageData.set(null);
 
 			const storeValue = get(languageData);
@@ -314,7 +314,7 @@ describe('languageData', () => {
 
 		it('should handle undefined values gracefully', async () => {
 			const { languageData } = await import('$lib/stores/languageData');
-			// @ts-ignore - testing edge case
+			// @ts-expect-error - testing edge case
 			languageData.set(undefined);
 
 			const storeValue = get(languageData);

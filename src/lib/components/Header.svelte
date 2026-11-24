@@ -28,7 +28,7 @@ async function changeLanguage(event: Event) {
 	aria-label={$t('select-language')}
 	title={$t('language-selection')}
 >
-	{#each Object.values(Language) as language}
+	{#each Object.values(Language) as language (language)}
 		<option value={language}>{language}</option>
 	{/each}
 </select>

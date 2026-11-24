@@ -128,7 +128,7 @@ describe('seededRandom behavior (indirect tests)', () => {
 	it('generates numbers in [0, 1) and is deterministic per seed', () => {
 		let seededRandom: ((seed: number) => () => number) | undefined;
 		try {
-			// eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module
+			// eslint-disable-next-line @typescript-eslint/no-require-imports
 			const mod = require('./seededShuffle');
 			seededRandom = mod.seededRandom;
 		} catch {

@@ -11,18 +11,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: denoland/setup-deno@v2
+      - uses: actions/setup-node@v4
         with:
-          deno-version: v2.x
+          node-version: 24
+          cache: npm
 
       - name: Install dependencies
-        run: deno install --allow-scripts
+        run: npm ci
 
       - name: Build site
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
-          deno task build
+          npm run build
 
       - name: Try to download latest coverage badge
         env:
