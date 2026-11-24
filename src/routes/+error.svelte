@@ -2,6 +2,10 @@
 import { resolve } from '$app/paths';
 </script>
 
+<svelte:head>
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <main>
 	<div class="error-content">
 		<hgroup>

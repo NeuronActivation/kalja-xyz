@@ -113,5 +113,19 @@ describe('i18n index', () => {
 				initialLocale: undefined,
 			});
 		});
+
+		it('should use Finnish when prerendering outside the browser', async () => {
+			vi.resetModules();
+			vi.doMock('$lib/constants/isBrowser', () => ({ isBrowser: false }));
+
+			await import('$lib/i18n/index');
+			const { init } = await import('svelte-i18n');
+
+			expect(init).toHaveBeenCalledWith({
+				fallbackLocale: 'en',
+				initialLocale: 'fi',
+			});
+			vi.doUnmock('$lib/constants/isBrowser');
+		});
 	});
 });
