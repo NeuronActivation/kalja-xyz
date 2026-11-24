@@ -1,25 +1,25 @@
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 import { get } from 'svelte/store';
-import { Language } from '$lib/constants/language';
-import type { LanguageSpecificCard } from '$lib/interfaces/card';
+import { Language } from '#lib/constants/language.ts';
+import type { LanguageSpecificCard } from '#lib/interfaces/card.ts';
 
 // Mock dependencies first
-vi.mock('$lib/constants/isBrowser', () => ({
+vi.mock('#lib/constants/isBrowser.ts', () => ({
 	isBrowser: true,
 }));
 
-vi.mock('$lib/i18n/localeStorage', () => ({
+vi.mock('#lib/i18n/localeStorage.ts', () => ({
 	getStoredLanguage: vi.fn(),
 	setLanguage: vi.fn(),
 }));
 
-vi.mock('$lib/cards/cardUtils', () => ({
+vi.mock('#lib/cards/cardUtils.ts', () => ({
 	getStoredCards: vi.fn(),
 }));
 
-import { languageStore } from '$lib/stores/languageStore';
-import * as localeStorage from '$lib/i18n/localeStorage';
-import * as cardUtils from '$lib/cards/cardUtils';
+import { languageStore } from '#lib/stores/languageStore.ts';
+import * as localeStorage from '#lib/i18n/localeStorage.ts';
+import * as cardUtils from '#lib/cards/cardUtils.ts';
 
 describe('languageStore', () => {
 	const mockCards: LanguageSpecificCard[] = [
@@ -165,7 +165,7 @@ describe('languageStore', () => {
 	describe('browser vs server behavior', () => {
 		it('should not initialize language on server side', async () => {
 			// Temporarily mock isBrowser to false
-			vi.doMock('$lib/constants/isBrowser', () => ({
+			vi.doMock('#lib/constants/isBrowser.ts', () => ({
 				isBrowser: false,
 			}));
 
@@ -178,7 +178,7 @@ describe('languageStore', () => {
 			expect(localeStorage.setLanguage).not.toHaveBeenCalled();
 
 			// Restore original mock
-			vi.doMock('$lib/constants/isBrowser', () => ({
+			vi.doMock('#lib/constants/isBrowser.ts', () => ({
 				isBrowser: true,
 			}));
 		});

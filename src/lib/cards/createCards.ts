@@ -1,9 +1,9 @@
-import { base } from '$app/paths';
-import { Language } from '$lib/constants/language';
-import { Tag } from '$lib/constants/tag';
-import { type LanguageData } from '$lib/interfaces/languageData';
-import { type Card } from '$lib/interfaces/card';
-import { createSeed, seededShuffle } from '$lib/utils/seed';
+import { asset } from '$app/paths';
+import { Language } from '#lib/constants/language.ts';
+import { Tag } from '#lib/constants/tag.ts';
+import { type LanguageData } from '#lib/interfaces/languageData.ts';
+import { type Card } from '#lib/interfaces/card.ts';
+import { createSeed, seededShuffle } from '#lib/utils/seed.ts';
 
 /**
  * Creates the card data for each language, shuffling them with a seeded random generator.
@@ -58,7 +58,7 @@ export async function fetchAndFilterCards(
 	seed: number,
 ): Promise<Card[]> {
 	try {
-		const response = await fetch(`${base}/cards/cards.json`);
+		const response = await fetch(asset('cards/cards.json'));
 		const { cards }: { cards: Card[] } = await response.json();
 
 		// Filter only cards that contain at least one of the given tags.

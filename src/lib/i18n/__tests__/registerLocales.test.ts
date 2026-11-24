@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
-import type { LocaleFetch } from '$lib/i18n/index';
+import type { LocaleFetch } from '#lib/i18n/index.ts';
 
 // Mock svelte-i18n
 vi.mock('svelte-i18n', () => ({
@@ -20,7 +20,7 @@ describe('i18n index', () => {
 
 	describe('registerLocales', () => {
 		it('should register Finnish and English locales with correct paths', async () => {
-			const { registerLocales } = await import('$lib/i18n/index');
+			const { registerLocales } = await import('#lib/i18n/index.ts');
 			const { register } = await import('svelte-i18n');
 
 			const mockJsonResponse = { key: 'value' };
@@ -43,7 +43,7 @@ describe('i18n index', () => {
 		});
 
 		it('should handle fetch errors gracefully', async () => {
-			const { registerLocales } = await import('$lib/i18n/index');
+			const { registerLocales } = await import('#lib/i18n/index.ts');
 			const { register } = await import('svelte-i18n');
 
 			const fetchError = new Error('Network error');
@@ -60,7 +60,7 @@ describe('i18n index', () => {
 			mockFetch.mockResolvedValue({
 				json: () => Promise.reject(new Error('Invalid JSON')),
 			});
-			const { registerLocales } = await import('$lib/i18n/index');
+			const { registerLocales } = await import('#lib/i18n/index.ts');
 			const { register } = await import('svelte-i18n');
 
 			registerLocales(mockFetch);
@@ -76,7 +76,7 @@ describe('i18n index', () => {
 			const { getLocaleFromNavigator, init } = await import('svelte-i18n');
 			vi.mocked(getLocaleFromNavigator).mockReturnValue('en-US');
 
-			await import('$lib/i18n/index');
+			await import('#lib/i18n/index.ts');
 
 			expect(init).toHaveBeenCalledWith({
 				fallbackLocale: 'en',
@@ -88,12 +88,12 @@ describe('i18n index', () => {
 			const { getLocaleFromNavigator } = await import('svelte-i18n');
 			vi.mocked(getLocaleFromNavigator).mockReturnValue('fi-FI');
 
-			await import('$lib/i18n/index');
+			await import('#lib/i18n/index.ts');
 			const { init } = await import('svelte-i18n');
 
 			// Re-import the module to trigger the init with the mocked value
 			vi.resetModules();
-			await import('$lib/i18n/index');
+			await import('#lib/i18n/index.ts');
 
 			expect(init).toHaveBeenCalledWith({
 				fallbackLocale: 'en',
@@ -105,7 +105,7 @@ describe('i18n index', () => {
 			const { getLocaleFromNavigator } = await import('svelte-i18n');
 			vi.mocked(getLocaleFromNavigator).mockReturnValue(null);
 
-			await import('$lib/i18n/index');
+			await import('#lib/i18n/index.ts');
 			const { init } = await import('svelte-i18n');
 
 			expect(init).toHaveBeenCalledWith({
@@ -116,16 +116,16 @@ describe('i18n index', () => {
 
 		it('should use Finnish when prerendering outside the browser', async () => {
 			vi.resetModules();
-			vi.doMock('$lib/constants/isBrowser', () => ({ isBrowser: false }));
+			vi.doMock('#lib/constants/isBrowser.ts', () => ({ isBrowser: false }));
 
-			await import('$lib/i18n/index');
+			await import('#lib/i18n/index.ts');
 			const { init } = await import('svelte-i18n');
 
 			expect(init).toHaveBeenCalledWith({
 				fallbackLocale: 'en',
 				initialLocale: 'fi',
 			});
-			vi.doUnmock('$lib/constants/isBrowser');
+			vi.doUnmock('#lib/constants/isBrowser.ts');
 		});
 	});
 });

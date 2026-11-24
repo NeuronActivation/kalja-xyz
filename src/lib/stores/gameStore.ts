@@ -1,21 +1,21 @@
 import { get, writable } from 'svelte/store';
-import { ApplicationState } from '$lib/constants/applicationState';
-import { DEFAULT_CARD_AMOUNT } from '$lib/constants/cardAmount';
-import type { GameState } from '$lib/interfaces/gameState';
-import { languageStore } from '$lib/stores/languageStore';
-import { Tag } from '$lib/constants/tag';
-import * as analytics from '$lib/utils/analytics';
-import { clearPersistentTargets } from '$lib/utils/targetStorage';
-import { createNewGame } from '$lib/gameState/createNewGame';
-import { loadGameState, saveGameState } from '$lib/gameState/gameStateStorage';
-import { loadCards, loadSingleCard } from '$lib/cards/cardStorage';
+import { ApplicationState } from '#lib/constants/applicationState.ts';
+import { DEFAULT_CARD_AMOUNT } from '#lib/constants/cardAmount.ts';
+import type { GameState } from '#lib/interfaces/gameState.ts';
+import { languageStore } from '#lib/stores/languageStore.ts';
+import { Tag } from '#lib/constants/tag.ts';
+import * as analytics from '#lib/utils/analytics.ts';
+import { clearPersistentTargets } from '#lib/utils/targetStorage.ts';
+import { createNewGame } from '#lib/gameState/createNewGame.ts';
+import { loadGameState, saveGameState } from '#lib/gameState/gameStateStorage.ts';
+import { loadCards, loadSingleCard } from '#lib/cards/cardStorage.ts';
 import {
 	addPlayer,
 	changeGameState,
 	removePlayer,
 	showNextCard,
 	startGame,
-} from '$lib/managers/game';
+} from '#lib/managers/game.ts';
 
 /**
  * Creates a writable store to manage the game state and provides several actions

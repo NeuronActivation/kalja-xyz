@@ -1,13 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { loadCards, loadSingleCard } from '$lib/cards/cardStorage';
-import { createCards } from '$lib/cards/createCards';
-import { languageData } from '$lib/stores/languageData';
-import { Language } from '$lib/constants/language';
-import { Tag } from '$lib/constants/tag';
+import { loadCards, loadSingleCard } from '#lib/cards/cardStorage.ts';
+import { createCards } from '#lib/cards/createCards.ts';
+import { languageData } from '#lib/stores/languageData.ts';
+import { Language } from '#lib/constants/language.ts';
+import { Tag } from '#lib/constants/tag.ts';
 
 // Mock dependencies
-vi.mock('$lib/cards/createCards');
-vi.mock('$lib/stores/languageData', () => ({
+vi.mock('#lib/cards/createCards.ts');
+vi.mock('#lib/stores/languageData.ts', () => ({
 	languageData: {
 		set: vi.fn(),
 		subscribe: vi.fn(),

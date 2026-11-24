@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { createCards, fetchAndFilterCards } from '$lib/cards/createCards';
-import { Language } from '$lib/constants/language';
-import { Tag } from '$lib/constants/tag';
-import { createSeed, seededShuffle } from '$lib/utils/seed';
-import type { Card } from '$lib/interfaces/card';
+import { createCards, fetchAndFilterCards } from '#lib/cards/createCards.ts';
+import { Language } from '#lib/constants/language.ts';
+import { Tag } from '#lib/constants/tag.ts';
+import { createSeed, seededShuffle } from '#lib/utils/seed.ts';
+import type { Card } from '#lib/interfaces/card.ts';
 
 // Mock the dependencies
-vi.mock('$lib/utils/seed', () => ({
+vi.mock('#lib/utils/seed.ts', () => ({
 	createSeed: vi.fn(() => 42),
 	seededShuffle: vi.fn((cards) => cards), // Default to no shuffling
 }));

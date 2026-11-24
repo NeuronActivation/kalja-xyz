@@ -1,9 +1,9 @@
 <script lang="ts">
 import { tick } from 'svelte';
 import { t } from 'svelte-i18n';
-import { ApplicationState } from '$lib/constants/applicationState';
-import { gameStore } from '$lib/stores/gameStore';
-import santerinJuomapeli from '$lib/assets/santerin-juomapeli.webp';
+import { ApplicationState } from '#lib/constants/applicationState.ts';
+import { gameStore } from '#lib/stores/gameStore.ts';
+import santerinJuomapeli from '#lib/assets/santerin-juomapeli.webp';
 
 /** Quick taps on the wordmark that show the original Santerin Juomapeli logo. */
 const LOGO_TAPS = 5;

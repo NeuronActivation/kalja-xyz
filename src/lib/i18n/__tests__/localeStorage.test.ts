@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { getStoredLanguage, setLanguage } from '$lib/i18n/localeStorage';
-import { Language } from '$lib/constants/language';
+import { getStoredLanguage, setLanguage } from '#lib/i18n/localeStorage.ts';
+import { Language } from '#lib/constants/language.ts';
 import { getLocaleFromNavigator, locale } from 'svelte-i18n';
 
 // Mock svelte-i18n

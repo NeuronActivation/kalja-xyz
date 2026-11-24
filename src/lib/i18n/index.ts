@@ -1,6 +1,6 @@
-import { base } from '$app/paths';
+import { asset } from '$app/paths';
 import { getLocaleFromNavigator, init, register } from 'svelte-i18n';
-import { isBrowser } from '$lib/constants/isBrowser';
+import { isBrowser } from '#lib/constants/isBrowser.ts';
 
 /**
  * The part of the fetch API that the locale loaders actually rely on.
@@ -14,8 +14,8 @@ export type LocaleFetch = (path: string) => Promise<{ json: () => Promise<unknow
  * @param fetchFn The fetch function to load locale files.
  */
 export function registerLocales(fetchFn: LocaleFetch) {
-	register('fi', () => fetchFn(`${base}/locales/finnish.json`).then((res) => res.json()));
-	register('en', () => fetchFn(`${base}/locales/english.json`).then((res) => res.json()));
+	register('fi', () => fetchFn(asset('locales/finnish.json')).then((res) => res.json()));
+	register('en', () => fetchFn(asset('locales/english.json')).then((res) => res.json()));
 }
 
 // The prerendered page has no navigator, so it is rendered in Finnish to match the page's

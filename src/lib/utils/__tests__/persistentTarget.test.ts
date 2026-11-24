@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('$lib/constants/isBrowser', () => ({
+vi.mock('#lib/constants/isBrowser.ts', () => ({
 	isBrowser: true, // default: browser environment
 }));
 
@@ -26,7 +26,7 @@ import {
 	clearPersistentTargets,
 	getPersistentTarget,
 	setPersistentTarget,
-} from '$lib/utils/targetStorage';
+} from '#lib/utils/targetStorage.ts';
 
 describe('getPersistentTarget & setPersistentTarget', () => {
 	beforeEach(() => {
@@ -66,13 +66,13 @@ describe('getPersistentTarget & setPersistentTarget', () => {
 		vi.resetModules();
 
 		// Override our mock isBrowser.
-		vi.doMock('$lib/constants/isBrowser', () => ({ isBrowser: false }));
+		vi.doMock('#lib/constants/isBrowser.ts', () => ({ isBrowser: false }));
 
 		// We need to re-import the functions under the new mock.
 		const {
 			getPersistentTarget: getPersistentTargetNoBrowser,
 			setPersistentTarget: setPersistentTargetNoBrowser,
-		} = await import('$lib/utils/targetStorage');
+		} = await import('#lib/utils/targetStorage.ts');
 
 		// Clear any previous calls.
 		storage.clear();
@@ -85,6 +85,6 @@ describe('getPersistentTarget & setPersistentTarget', () => {
 		expect(sessionStorage.getItem).not.toHaveBeenCalled();
 
 		vi.resetModules();
-		vi.doMock('$lib/constants/isBrowser', () => ({ isBrowser: true }));
+		vi.doMock('#lib/constants/isBrowser.ts', () => ({ isBrowser: true }));
 	});
 });

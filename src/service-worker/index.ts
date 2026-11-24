@@ -4,21 +4,26 @@
  * @see {@link https://kit.svelte.dev/docs/service-workers SvelteKit Service Workers}
  */
 
-import { build, files, version } from '$service-worker';
+import { self } from '$app/service-worker';
+import { version } from '$app/env';
+import { immutable, assets } from '$app/manifest';
 
 const CACHE = `kalja-xyz-cache-${version}`;
 
 /**
  * Core assets required for the app to function offline.
  * @description Includes:
- * - Built JS/CSS assets (`build`)
- * - Static files from `static` directory (`files`)
- * - Additional runtime assets (manifest, etc.)
+ * - Built JS/CSS assets (`immutable`)
+ * - Static files from `static` directory (`assets`)
+ *
+ * Manifest paths are relative to the base path (the worker's scope), so they are resolved to
+ * absolute pathnames that can be matched against `url.pathname` in the fetch handler.
+ * `resolve()` from `$app/paths` would do the same, but its typed-route signature rejects plain
+ * file paths.
  */
-const ASSETS: string[] = [
-	...build, // Compiled application code
-	...files, // Static assets
-];
+const toPathname = ({ path }: { path: string }) => new URL(path, self.registration.scope).pathname;
+
+const ASSETS: string[] = [...immutable.map(toPathname), ...assets.map(toPathname)];
 
 // Service worker lifecycle event handlers
 

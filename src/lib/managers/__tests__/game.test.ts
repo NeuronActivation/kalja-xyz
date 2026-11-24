@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { ApplicationState } from '$lib/constants/applicationState';
+import { ApplicationState } from '#lib/constants/applicationState.ts';
 import {
 	addPlayer,
 	changeGameState,
@@ -7,8 +7,8 @@ import {
 	removePlayer,
 	showNextCard,
 	startGame,
-} from '$lib/managers/game';
-import type { GameState } from '$lib/interfaces/gameState';
+} from '#lib/managers/game.ts';
+import type { GameState } from '#lib/interfaces/gameState.ts';
 
 describe('Game Manager Functions', () => {
 	let mockGameState: GameState;

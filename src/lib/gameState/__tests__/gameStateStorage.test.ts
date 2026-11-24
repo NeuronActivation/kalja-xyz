@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { loadGameState, saveGameState } from '$lib/gameState/gameStateStorage';
-import type { GameState } from '$lib/interfaces/gameState';
-import { ApplicationState } from '$lib/constants/applicationState';
-import { Tag } from '$lib/constants/tag';
+import { loadGameState, saveGameState } from '#lib/gameState/gameStateStorage.ts';
+import type { GameState } from '#lib/interfaces/gameState.ts';
+import { ApplicationState } from '#lib/constants/applicationState.ts';
+import { Tag } from '#lib/constants/tag.ts';
 
 // Mock sessionStorage
 const mockSessionStorage = (() => {
