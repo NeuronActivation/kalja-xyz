@@ -21,6 +21,11 @@
     "source-code": "Lähdekoodi",
     "original-logo": "Alkuperäinen vuodelta 2022, tehnyt",
     "close": "Sulje",
+    "not-found": {
+        "title": "Sivua ei löytynyt",
+        "description": "Etsimääsi sivua ei ole olemassa.",
+        "return-home": "Takaisin etusivulle"
+    },
 
     "tags": {
         "chosen_target": {

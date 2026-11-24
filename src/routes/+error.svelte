@@ -1,15 +1,21 @@
 <script lang="ts">
+import { onMount } from 'svelte';
+import { t } from 'svelte-i18n';
 import { resolve } from '$app/paths';
+import { getStoredLanguage, setLanguage } from '$lib/i18n/localeStorage';
+
+// The error page skips the game's language store, so apply the visitor's chosen language here.
+onMount(() => setLanguage(getStoredLanguage()));
 </script>
 
 <main>
 	<div class="error-content">
 		<hgroup>
 			<h1>404</h1>
-			<h2>Page not found</h2>
+			<h2>{$t('not-found.title')}</h2>
 		</hgroup>
-		<p>The page you're looking for doesn't exist.</p>
-		<a href={resolve('/')} class="button button--gold">Return Home</a>
+		<p>{$t('not-found.description')}</p>
+		<a href={resolve('/')} class="button button--gold">{$t('not-found.return-home')}</a>
 	</div>
 </main>
 

@@ -160,3 +160,18 @@ test("restores an active game and persists the selected language", async ({
   ).toHaveValue("fi");
   await expect(page.locator("main article h2")).not.toBeEmpty();
 });
+
+test("shows the 404 page in the selected language", async ({ page }) => {
+  await page.goto("/does-not-exist");
+  await expect(
+    page.getByRole("heading", { name: "Page not found" }),
+  ).toBeVisible();
+
+  await page.evaluate(() => localStorage.setItem("selectedLanguage", "fi"));
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { name: "Sivua ei löytynyt" }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Takaisin etusivulle" }).click();
+  await expect(page).toHaveURL("/");
+});
