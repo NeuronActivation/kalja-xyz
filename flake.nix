@@ -13,7 +13,7 @@
     in {
       devShell = pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
-          deno
+          nodejs_24
           svelte-language-server
         ];
         buildInputs = with pkgs; [
