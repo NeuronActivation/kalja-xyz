@@ -19,8 +19,8 @@ main {
 	display: grid;
 	place-items: center;
 	padding: 2rem 1rem;
-	background: radial-gradient(120% 60% at 50% 0%, var(--dusk-glow) 0%, transparent 70%),
-		var(--dusk);
+	background:
+		radial-gradient(120% 60% at 50% 0%, var(--dusk-glow) 0%, transparent 70%), var(--dusk);
 	color: var(--foam);
 }
 

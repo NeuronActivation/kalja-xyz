@@ -33,11 +33,7 @@ async function changeLanguage(event: Event) {
 	{/each}
 </select>
 
-<button
-	class="reset"
-	on:click={gameStore.reset}
-	title={$t('back-to-start')}
->
+<button class="reset" on:click={gameStore.reset} title={$t('back-to-start')}>
 	<ReloadIcon size="1.3rem" />
 </button>
 

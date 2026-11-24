@@ -81,9 +81,11 @@ describe('loadCards', () => {
 
 		const result = await loadCards([Tag.EVENT], [Tag.RANDOM_TARGET]);
 
-		expect(createCards).toHaveBeenCalledWith(Number.MAX_SAFE_INTEGER, [Tag.EVENT], [
-			Tag.RANDOM_TARGET,
-		]);
+		expect(createCards).toHaveBeenCalledWith(
+			Number.MAX_SAFE_INTEGER,
+			[Tag.EVENT],
+			[Tag.RANDOM_TARGET],
+		);
 		expect(languageData.set).toHaveBeenCalledWith(mockCardsData);
 		expect(result).toBe(2); // Minimum of [2, 2]
 	});
@@ -174,25 +176,29 @@ describe('loadSingleCard', () => {
 
 		const newCardData = {
 			[Language.EN]: {
-				cards: [{
-					id: 3,
-					title: 'New Card',
-					description: 'New Desc',
-					timedEvent: true,
-					targetPlayer: false,
-					tags: [Tag.EVENT],
-				}],
+				cards: [
+					{
+						id: 3,
+						title: 'New Card',
+						description: 'New Desc',
+						timedEvent: true,
+						targetPlayer: false,
+						tags: [Tag.EVENT],
+					},
+				],
 				language: Language.EN,
 			},
 			[Language.FI]: {
-				cards: [{
-					id: 3,
-					title: 'Uusi kortti',
-					description: 'Uusi kuvaus',
-					timedEvent: true,
-					targetPlayer: false,
-					tags: [Tag.EVENT],
-				}],
+				cards: [
+					{
+						id: 3,
+						title: 'Uusi kortti',
+						description: 'Uusi kuvaus',
+						timedEvent: true,
+						targetPlayer: false,
+						tags: [Tag.EVENT],
+					},
+				],
 				language: Language.FI,
 			},
 		};

@@ -293,10 +293,7 @@ describe('languageData', () => {
 
 			const storeValue = get(languageData);
 			expect(storeValue).toEqual({});
-			expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
-				'languageData',
-				'{}',
-			);
+			expect(mockLocalStorage.setItem).toHaveBeenCalledWith('languageData', '{}');
 		});
 
 		it('should handle null values gracefully', async () => {
@@ -306,10 +303,7 @@ describe('languageData', () => {
 
 			const storeValue = get(languageData);
 			expect(storeValue).toBeNull();
-			expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
-				'languageData',
-				'null',
-			);
+			expect(mockLocalStorage.setItem).toHaveBeenCalledWith('languageData', 'null');
 		});
 
 		it('should handle undefined values gracefully', async () => {
@@ -319,10 +313,7 @@ describe('languageData', () => {
 
 			const storeValue = get(languageData);
 			expect(storeValue).toBeUndefined();
-			expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
-				'languageData',
-				undefined,
-			);
+			expect(mockLocalStorage.setItem).toHaveBeenCalledWith('languageData', undefined);
 		});
 	});
 

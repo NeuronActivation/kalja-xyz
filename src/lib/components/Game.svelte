@@ -44,7 +44,7 @@ function updateClips() {
 
 // Referencing beerLevel makes this statement re-run whenever it changes.
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-$: beerLevel, tick().then(updateClips);
+$: (beerLevel, tick().then(updateClips));
 
 $: {
 	const index = gameState.currentCardIndex;
@@ -76,12 +76,12 @@ onMount(() => {
 <svelte:window on:resize={updateClips} />
 
 <h1 class="target" bind:this={nameEl}>
-	<span class="text-light" style:clip-path={nameClips.light}>{
-		gameState.players[gameState.currentPlayerIndex].name
-	}</span>
-	<span class="text-dark" style:clip-path={nameClips.dark} aria-hidden="true">{
-		gameState.players[gameState.currentPlayerIndex].name
-	}</span>
+	<span class="text-light" style:clip-path={nameClips.light}>
+		{gameState.players[gameState.currentPlayerIndex].name}
+	</span>
+	<span class="text-dark" style:clip-path={nameClips.dark} aria-hidden="true">
+		{gameState.players[gameState.currentPlayerIndex].name}
+	</span>
 </h1>
 
 {#key gameState.cards[gameState.currentCardIndex].id}
@@ -94,7 +94,9 @@ onMount(() => {
 			{gameState.cards[gameState.currentCardIndex].description}
 		</p>
 		{#if gameState.cards[gameState.currentCardIndex].targetPlayer}
-			<b class="target-line">{$t('target')}: <span class="target-name">{targetPlayer}</span></b>
+			<b class="target-line">
+				{$t('target')}: <span class="target-name">{targetPlayer}</span>
+			</b>
 		{/if}
 	</article>
 {/key}
@@ -108,9 +110,9 @@ onMount(() => {
 {/if}
 
 {#if gameState.currentCardIndex + 1 < (gameState.cardAmount ?? 0)}
-	<button class="button button--large" on:click={gameStore.showNextCard}>{
-		$t('next-card')
-	}</button>
+	<button class="button button--large" on:click={gameStore.showNextCard}>
+		{$t('next-card')}
+	</button>
 {:else}
 	<button class="button button--large button--chili" on:click={gameStore.showNextCard}>
 		{$t('game-over')}
@@ -119,12 +121,12 @@ onMount(() => {
 
 <div class="progress-section">
 	<p class="game-status" bind:this={statusEl}>
-		<span class="text-light" style:clip-path={statusClips.light}>{
-				gameState.currentCardIndex + 1
-			}/{gameState.cardAmount}</span>
-		<span class="text-dark" style:clip-path={statusClips.dark} aria-hidden="true">{
-				gameState.currentCardIndex + 1
-			}/{gameState.cardAmount}</span>
+		<span class="text-light" style:clip-path={statusClips.light}>
+			{gameState.currentCardIndex + 1}/{gameState.cardAmount}
+		</span>
+		<span class="text-dark" style:clip-path={statusClips.dark} aria-hidden="true">
+			{gameState.currentCardIndex + 1}/{gameState.cardAmount}
+		</span>
 	</p>
 	<progress value={gameState.currentCardIndex + 1} max={gameState.cardAmount}></progress>
 </div>

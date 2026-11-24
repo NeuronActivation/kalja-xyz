@@ -78,13 +78,13 @@ describe('createCards', () => {
 
 		expect(consoleSpy).toHaveBeenCalled();
 		expect(result).toStrictEqual({
-			'en': {
-				'cards': [],
-				'language': 'en',
+			en: {
+				cards: [],
+				language: 'en',
 			},
-			'fi': {
-				'cards': [],
-				'language': 'fi',
+			fi: {
+				cards: [],
+				language: 'fi',
 			},
 		});
 		consoleSpy.mockRestore();

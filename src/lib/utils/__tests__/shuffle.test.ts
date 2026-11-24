@@ -50,7 +50,7 @@ describe('seededShuffle', () => {
 	});
 
 	it('is deterministic for the same seed', () => {
-		const makeDeck = () => Array.from({ length: 10 }, (_, i) => ({ id: i + 1 } as Card));
+		const makeDeck = () => Array.from({ length: 10 }, (_, i) => ({ id: i + 1 }) as Card);
 
 		const deckA = makeDeck();
 		const deckB = makeDeck();
@@ -63,7 +63,7 @@ describe('seededShuffle', () => {
 	});
 
 	it('produces different order for different seeds', () => {
-		const deck1 = Array.from({ length: 15 }, (_, i) => ({ id: i + 1 } as Card));
+		const deck1 = Array.from({ length: 15 }, (_, i) => ({ id: i + 1 }) as Card);
 		const deck2 = deck1.map((c) => ({ ...c }));
 
 		const a = seededShuffle(deck1, 1).map((c) => c.id);
@@ -95,8 +95,8 @@ describe('seededShuffle', () => {
 	});
 
 	it('is stable across large and negative seeds (normalizes seed)', () => {
-		const deckA = Array.from({ length: 8 }, (_, i) => ({ id: i + 1 } as Card));
-		const deckB = Array.from({ length: 8 }, (_, i) => ({ id: i + 1 } as Card));
+		const deckA = Array.from({ length: 8 }, (_, i) => ({ id: i + 1 }) as Card);
+		const deckB = Array.from({ length: 8 }, (_, i) => ({ id: i + 1 }) as Card);
 
 		const outA = seededShuffle(deckA, 2147483647); // exactly modulus
 		const outB = seededShuffle(deckB, -2147483647); // negative large
@@ -112,11 +112,17 @@ describe('seededShuffle', () => {
 	});
 
 	it('does not create or lose cards (permutation of input)', () => {
-		const deck = Array.from({ length: 12 }, (_, i) => ({ id: i + 1 } as Card));
-		const originalIds = deck.map((c) => c.id).slice().sort((a, b) => a - b);
+		const deck = Array.from({ length: 12 }, (_, i) => ({ id: i + 1 }) as Card);
+		const originalIds = deck
+			.map((c) => c.id)
+			.slice()
+			.sort((a, b) => a - b);
 
 		const out = seededShuffle(deck, 77);
-		const outIds = out.map((c) => c.id).slice().sort((a, b) => a - b);
+		const outIds = out
+			.map((c) => c.id)
+			.slice()
+			.sort((a, b) => a - b);
 
 		expect(outIds).toEqual(originalIds);
 	});

@@ -6,9 +6,7 @@ import { getLocaleFromNavigator, init, register } from 'svelte-i18n';
  * Deliberately narrower than `typeof fetch` so that locale loading can be
  * stubbed with a plain function in tests. The global `fetch` satisfies it.
  */
-export type LocaleFetch = (
-	path: string,
-) => Promise<{ json: () => Promise<unknown> }>;
+export type LocaleFetch = (path: string) => Promise<{ json: () => Promise<unknown> }>;
 
 /**
  * Registers locales for the application, making them available to the Svelte i18n library.
