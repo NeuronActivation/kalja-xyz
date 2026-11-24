@@ -21,6 +21,11 @@
     "source-code": "Source code",
     "original-logo": "The original from 2022 by",
     "close": "Close",
+    "not-found": {
+        "title": "Page not found",
+        "description": "The page you're looking for doesn't exist.",
+        "return-home": "Return home"
+    },
 
     "tags": {
         "chosen_target": {
