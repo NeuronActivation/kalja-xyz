@@ -192,6 +192,16 @@ describe('gameStore', () => {
 			expect(gameStateStorage.saveGameState).toHaveBeenCalledWith(mockUpdatedState);
 		});
 
+		it('should clear target players from the previous game', () => {
+			sessionStorage.setItem('targetPlayer-0', 'Old Player');
+			(languageStore.getCards as Mock).mockReturnValue(['card1']);
+			(gameManagers.startGame as Mock).mockReturnValue(mockNewGameState);
+
+			gameStore.startGame();
+
+			expect(sessionStorage.getItem('targetPlayer-0')).toBeNull();
+		});
+
 		it('should not start game when no cards are available', () => {
 			(languageStore.getCards as Mock).mockReturnValue(null);
 
@@ -284,6 +294,13 @@ describe('gameStore', () => {
 			gameStore.reset();
 
 			expect(sessionStorage.getItem('gameState')).toBeNull();
+		});
+
+		it('should clear stored target players', () => {
+			sessionStorage.setItem('targetPlayer-3', 'Old Player');
+			gameStore.reset();
+
+			expect(sessionStorage.getItem('targetPlayer-3')).toBeNull();
 		});
 	});
 

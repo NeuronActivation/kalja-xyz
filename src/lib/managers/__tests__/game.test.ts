@@ -95,7 +95,7 @@ describe('Game Manager Functions', () => {
 
 			expect(result.players).toHaveLength(4);
 			expect(result.players[3]).toEqual({
-				id: 4, // players.length + 1 (3 + 1)
+				id: 4, // highest id + 1
 				name: newPlayerName,
 				event: null,
 			});
@@ -111,10 +111,23 @@ describe('Game Manager Functions', () => {
 
 			expect(result.players).toHaveLength(1);
 			expect(result.players[0]).toEqual({
-				id: 1, // players.length + 1 (0 + 1)
+				id: 1,
 				name: 'First Player',
 				event: null,
 			});
+		});
+
+		it('should keep ids unique after a player is removed', () => {
+			let state: GameState = { ...mockGameState, players: [] };
+			state = addPlayer(state, 'A');
+			state = addPlayer(state, 'B');
+			state = removePlayer(state, 1);
+			state = addPlayer(state, 'C');
+
+			expect(state.players.map((player) => player.id)).toEqual([2, 3]);
+
+			state = removePlayer(state, 3);
+			expect(state.players.map((player) => player.name)).toEqual(['B']);
 		});
 
 		it('should not modify existing players', () => {

@@ -12,12 +12,21 @@ Object.defineProperty(globalThis, 'sessionStorage', {
 	value: {
 		getItem: vi.fn((key: string) => storage.get(key) ?? null),
 		setItem: vi.fn((key: string, value: string) => storage.set(key, value)),
+		removeItem: vi.fn((key: string) => storage.delete(key)),
+		key: vi.fn((index: number) => [...storage.keys()][index] ?? null),
+		get length() {
+			return storage.size;
+		},
 		clear: vi.fn(() => storage.clear()),
 	},
 	writable: true,
 });
 
-import { getPersistentTarget, setPersistentTarget } from '$lib/utils/targetStorage';
+import {
+	clearPersistentTargets,
+	getPersistentTarget,
+	setPersistentTarget,
+} from '$lib/utils/targetStorage';
 
 describe('getPersistentTarget & setPersistentTarget', () => {
 	beforeEach(() => {
@@ -36,6 +45,20 @@ describe('getPersistentTarget & setPersistentTarget', () => {
 		expect(result).toBe('Matti');
 		expect(sessionStorage.setItem).toHaveBeenCalledWith('targetPlayer-2', 'Matti');
 		expect(sessionStorage.getItem).toHaveBeenCalledWith('targetPlayer-2');
+	});
+
+	it('clears all stored targets but leaves other keys alone', () => {
+		setPersistentTarget(0, 'Matti');
+		setPersistentTarget(1, 'Teppo');
+		setPersistentTarget(2, 'Seppo');
+		storage.set('gameState', '{}');
+
+		clearPersistentTargets();
+
+		expect(getPersistentTarget(0)).toBeNull();
+		expect(getPersistentTarget(1)).toBeNull();
+		expect(getPersistentTarget(2)).toBeNull();
+		expect(storage.get('gameState')).toBe('{}');
 	});
 
 	it('returns null when not in browser (isBrowser = false)', async () => {

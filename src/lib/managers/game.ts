@@ -2,6 +2,7 @@ import { type GameState } from '$lib/interfaces/gameState';
 import { type Player } from '$lib/interfaces/player';
 import { type GameEvent } from '$lib/interfaces/gameEvent';
 import { ApplicationState } from '$lib/constants/applicationState';
+import { shuffle } from '$lib/utils/shuffle';
 
 /**
  * Starts the game by shuffling players and setting initial game states.
@@ -11,7 +12,7 @@ import { ApplicationState } from '$lib/constants/applicationState';
  * @returns The updated game state with shuffled players and the game set to `PLAYING`.
  */
 export function startGame(gameState: GameState): GameState {
-	gameState.players.sort(() => Math.random() - 0.5);
+	shuffle(gameState.players);
 	gameState.currentCardIndex = 0;
 	gameState.currentPlayerIndex = 0;
 	gameState = changeGameState(gameState, ApplicationState.PLAYING);
@@ -20,7 +21,7 @@ export function startGame(gameState: GameState): GameState {
 
 /**
  * Adds a new player to the game.
- * Creates a player object with a unique ID and the provided name, then adds it to the players list.
+ * The new ID is one higher than the highest existing ID, so IDs stay unique after removals.
  *
  * @param gameState - The current state of the game.
  * @param playerName - The name of the player to add.
@@ -28,7 +29,7 @@ export function startGame(gameState: GameState): GameState {
  */
 export function addPlayer(gameState: GameState, playerName: string): GameState {
 	const newPlayer: Player = {
-		id: gameState.players.length + 1,
+		id: Math.max(0, ...gameState.players.map((player) => player.id)) + 1,
 		name: playerName,
 		event: null,
 	};
