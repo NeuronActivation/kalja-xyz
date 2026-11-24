@@ -1,47 +1,42 @@
-import { type Card } from '$lib/interfaces/card';
+import { shuffle } from '$lib/utils/shuffle';
+
+const MODULUS = 2147483647;
 
 /**
- * Shuffles an array of cards in place using a seeded random number generator.
- * This function ensures a deterministic shuffle based on the provided seed, which allows
- * reproducibility of the shuffle order.
+ * Creates a random seed that can be passed to `seededShuffle`.
  *
- * @param array - The array of `Card` objects to shuffle.
- * @param seed - The seed value to initialize the random number generator.
- *               This ensures the shuffle order is consistent across calls with the same seed.
- * @returns A new shuffled array of `Card` objects.
+ * @returns An integer between 1 and 2147483646.
  */
-export function seededShuffle(array: Card[], seed: number): Card[] {
-	const random = seededRandom(seed);
-
-	for (let i = array.length - 1; i > 0; i--) {
-		const j = Math.floor(random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
-	}
-	return array;
+export function createSeed(): number {
+	return Math.floor(Math.random() * (MODULUS - 1)) + 1;
 }
 
 /**
- * Creates a seeded random number generator using a linear congruential generator (LCG).
- * The generator produces pseudorandom numbers based on the given seed.
+ * Shuffles an array in place, so that the same seed always produces the same order.
  *
- * @param seed - The seed value to initialize the random number generator.
- *               It should be a positive integer less than 2147483647.
- * @returns A function that generates a pseudorandom number between 0 and 1.
- *          Each call to the returned function produces a new pseudorandom number.
+ * @param array - The array to shuffle.
+ * @param seed - An integer seed, for example from `createSeed`.
+ * @returns The same array, shuffled.
  */
-function seededRandom(seed: number): () => number {
-	// Ensure the seed is a positive number between 1 and 2147483646.
-	let s = seed % 2147483647;
+export function seededShuffle<T>(array: T[], seed: number): T[] {
+	return shuffle(array, seededRandom(seed));
+}
 
-	// Adjust seed if non-positive.
-	if (s <= 0) s += 2147483646;
+/**
+ * Creates a seeded random number generator using the Park–Miller linear congruential generator.
+ *
+ * @param seed - The seed value. Fractions are dropped, and values outside 1–2147483646 are wrapped
+ *               into that range.
+ * @returns A function that returns a pseudorandom number in [0, 1) on each call.
+ */
+export function seededRandom(seed: number): () => number {
+	// A fractional seed (such as one from Math.random()) can make the state smaller than 1,
+	// which produces negative numbers and broke the shuffle.
+	let s = Math.floor(seed) % MODULUS;
+	if (s <= 0) s += MODULUS - 1;
 
-	// Return a function that generates pseudorandom numbers.
 	return () => {
-		// Advance the internal state using the LCG formula: s = (s * 16807) % 2147483647.
-		s = (s * 16807) % 2147483647;
-
-		// Normalize the result to a floating-point number in the range [0, 1].
-		return (s - 1) / 2147483646;
+		s = (s * 16807) % MODULUS;
+		return (s - 1) / (MODULUS - 1);
 	};
 }

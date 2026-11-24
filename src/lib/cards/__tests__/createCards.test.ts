@@ -2,11 +2,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createCards, fetchAndFilterCards } from '$lib/cards/createCards';
 import { Language } from '$lib/constants/language';
 import { Tag } from '$lib/constants/tag';
-import { seededShuffle } from '$lib/utils/seed';
+import { createSeed, seededShuffle } from '$lib/utils/seed';
 import type { Card } from '$lib/interfaces/card';
 
 // Mock the dependencies
 vi.mock('$lib/utils/seed', () => ({
+	createSeed: vi.fn(() => 42),
 	seededShuffle: vi.fn((cards) => cards), // Default to no shuffling
 }));
 
@@ -71,6 +72,17 @@ describe('createCards', () => {
 		});
 	});
 
+	it('should shuffle with a seed from createSeed', async () => {
+		vi.mocked(fetch).mockResolvedValueOnce({
+			json: () => Promise.resolve({ cards: mockCards }),
+		} as Response);
+
+		await createCards(2, [Tag.EVENT], []);
+
+		expect(createSeed).toHaveBeenCalledOnce();
+		expect(seededShuffle).toHaveBeenCalledWith(expect.any(Array), 42);
+	});
+
 	it('should return empty when fetching fails', async () => {
 		const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 		vi.mocked(fetch).mockRejectedValueOnce(new Error('Network error'));
@@ -112,7 +124,7 @@ describe('fetchAndFilterCards', () => {
 			json: () => Promise.resolve({ cards: mockCards }),
 		} as Response);
 
-		const result = await fetchAndFilterCards([Tag.EVENT], [], 0.5);
+		const result = await fetchAndFilterCards([Tag.EVENT], [], 42);
 
 		expect(result).toHaveLength(2);
 		expect(result[0].id).toBe(1);
@@ -123,7 +135,7 @@ describe('fetchAndFilterCards', () => {
 			json: () => Promise.resolve({ cards: mockCards }),
 		} as Response);
 
-		const result = await fetchAndFilterCards([Tag.UNTAGGED], [], 0.5);
+		const result = await fetchAndFilterCards([Tag.UNTAGGED], [], 42);
 
 		expect(result).toHaveLength(1);
 		expect(result[0].id).toBe(3);
@@ -134,7 +146,7 @@ describe('fetchAndFilterCards', () => {
 			json: () => Promise.resolve({ cards: mockCards }),
 		} as Response);
 
-		const result = await fetchAndFilterCards([Tag.EVENT], [Tag.RANDOM_TARGET], 0.5);
+		const result = await fetchAndFilterCards([Tag.EVENT], [Tag.RANDOM_TARGET], 42);
 
 		expect(result).toHaveLength(1);
 		expect(result[0].id).toBe(2);
@@ -145,7 +157,7 @@ describe('fetchAndFilterCards', () => {
 			json: () => Promise.resolve({ cards: mockCards }),
 		} as Response);
 
-		const result = await fetchAndFilterCards([Tag.EVENT], [Tag.UNTAGGED], 0.5);
+		const result = await fetchAndFilterCards([Tag.EVENT], [Tag.UNTAGGED], 42);
 
 		expect(result).toHaveLength(2);
 		expect(result.map((card) => card.id)).toEqual([1, 2]);
@@ -155,7 +167,7 @@ describe('fetchAndFilterCards', () => {
 		const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 		vi.mocked(fetch).mockRejectedValueOnce(new Error('Failed to fetch'));
 
-		const result = await fetchAndFilterCards([Tag.EVENT], [], 0.5);
+		const result = await fetchAndFilterCards([Tag.EVENT], [], 42);
 
 		expect(result).toEqual([]);
 		expect(consoleSpy).toHaveBeenCalledWith('Failed to fetch cards:', expect.any(Error));
@@ -171,9 +183,9 @@ describe('fetchAndFilterCards', () => {
 
 		vi.mocked(seededShuffle).mockReturnValueOnce(shuffledCards);
 
-		const result = await fetchAndFilterCards([Tag.EVENT], [], 0.5);
+		const result = await fetchAndFilterCards([Tag.EVENT], [], 42);
 
-		expect(seededShuffle).toHaveBeenCalledWith(expect.any(Array), 0.5);
+		expect(seededShuffle).toHaveBeenCalledWith(expect.any(Array), 42);
 		expect(result).toBe(shuffledCards);
 	});
 });

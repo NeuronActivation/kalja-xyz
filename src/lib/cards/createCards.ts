@@ -3,7 +3,7 @@ import { Language } from '$lib/constants/language';
 import { Tag } from '$lib/constants/tag';
 import { type LanguageData } from '$lib/interfaces/languageData';
 import { type Card } from '$lib/interfaces/card';
-import { seededShuffle } from '$lib/utils/seed';
+import { createSeed, seededShuffle } from '$lib/utils/seed';
 
 /**
  * Creates the card data for each language, shuffling them with a seeded random generator.
@@ -18,7 +18,7 @@ export async function createCards(
 	excludedTags: Tag[],
 ): Promise<Record<Language, LanguageData> | null> {
 	try {
-		const seed = Math.random();
+		const seed = createSeed();
 		const shuffledCards = await fetchAndFilterCards(includedTags, excludedTags, seed);
 
 		// Initialize an empty record to store cards per language.

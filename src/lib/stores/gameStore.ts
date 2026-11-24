@@ -5,6 +5,7 @@ import type { GameState } from '$lib/interfaces/gameState';
 import { languageStore } from '$lib/stores/languageStore';
 import { Tag } from '$lib/constants/tag';
 import * as analytics from '$lib/utils/analytics';
+import { clearPersistentTargets } from '$lib/utils/targetStorage';
 import { createNewGame } from '$lib/gameState/createNewGame';
 import { loadGameState, saveGameState } from '$lib/gameState/gameStateStorage';
 import { loadCards, loadSingleCard } from '$lib/cards/cardStorage';
@@ -50,6 +51,7 @@ function createGameStore() {
 		reset: () => {
 			const newState = createNewGame();
 			sessionStorage.removeItem('gameState');
+			clearPersistentTargets();
 			set(newState);
 		},
 		changeGameState: (newState: ApplicationState) => {
@@ -95,6 +97,7 @@ function createGameStore() {
 		startGame: () => {
 			const cards = languageStore.getCards();
 			if (cards) {
+				clearPersistentTargets();
 				update((state) => {
 					state.cards = cards;
 					const updatedState = startGame(state);
