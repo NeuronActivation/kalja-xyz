@@ -6,9 +6,9 @@ import { gameStore } from '$lib/stores/gameStore';
 <h1>{$t('game-over')}</h1>
 
 <div class="button-container">
-	<button class="button button--large button--gold" on:click={gameStore.replay}>{
-		$t('replay')
-	}</button>
+	<button class="button button--large button--gold" on:click={gameStore.replay}>
+		{$t('replay')}
+	</button>
 	<button class="button button--ghost" on:click={gameStore.reset}>
 		{$t('back-to-start')}
 	</button>

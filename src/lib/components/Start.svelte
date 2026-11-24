@@ -22,10 +22,7 @@ function tapTitle() {
 
 	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		titleEl.animate(
-			[
-				{ transform: 'rotate(-4deg) scale(0.93)' },
-				{ transform: 'rotate(-4deg) scale(1)' },
-			],
+			[{ transform: 'rotate(-4deg) scale(0.93)' }, { transform: 'rotate(-4deg) scale(1)' }],
 			{ duration: 220, easing: 'cubic-bezier(0.2, 0.9, 0.25, 1.4)' },
 		);
 	}
@@ -57,7 +54,6 @@ function clickDialog(event: MouseEvent) {
 	</button>
 </div>
 
-<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_noninteractive_element_interactions -->
 <dialog
 	class="original-logo"
 	bind:this={dialog}

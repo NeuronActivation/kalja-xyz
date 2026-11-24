@@ -4,9 +4,9 @@ import { t } from 'svelte-i18n';
 
 <footer>
 	<p>{$t('drink-responsibly')}</p>
-	<a href="https://github.com/NeuronActivation/kalja-xyz" target="_blank" rel="noopener">{
-		$t('source-code')
-	}</a>
+	<a href="https://github.com/NeuronActivation/kalja-xyz" target="_blank" rel="noopener">
+		{$t('source-code')}
+	</a>
 </footer>
 
 <style>

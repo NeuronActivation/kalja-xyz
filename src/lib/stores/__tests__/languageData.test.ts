@@ -293,36 +293,27 @@ describe('languageData', () => {
 
 			const storeValue = get(languageData);
 			expect(storeValue).toEqual({});
-			expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
-				'languageData',
-				'{}',
-			);
+			expect(mockLocalStorage.setItem).toHaveBeenCalledWith('languageData', '{}');
 		});
 
 		it('should handle null values gracefully', async () => {
 			const { languageData } = await import('$lib/stores/languageData');
-			// @ts-ignore - testing edge case
+			// @ts-expect-error - testing edge case
 			languageData.set(null);
 
 			const storeValue = get(languageData);
 			expect(storeValue).toBeNull();
-			expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
-				'languageData',
-				'null',
-			);
+			expect(mockLocalStorage.setItem).toHaveBeenCalledWith('languageData', 'null');
 		});
 
 		it('should handle undefined values gracefully', async () => {
 			const { languageData } = await import('$lib/stores/languageData');
-			// @ts-ignore - testing edge case
+			// @ts-expect-error - testing edge case
 			languageData.set(undefined);
 
 			const storeValue = get(languageData);
 			expect(storeValue).toBeUndefined();
-			expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
-				'languageData',
-				undefined,
-			);
+			expect(mockLocalStorage.setItem).toHaveBeenCalledWith('languageData', undefined);
 		});
 	});
 

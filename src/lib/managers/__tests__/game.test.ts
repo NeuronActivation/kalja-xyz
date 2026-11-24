@@ -192,11 +192,13 @@ describe('Game Manager Functions', () => {
 		});
 
 		it('should wrap player index when reaching end', () => {
-			const stateAtLastPlayer: GameState = JSON.parse(JSON.stringify({
-				...mockGameState,
-				currentPlayerIndex: 2, // Last player index
-				cards: mockGameState.cards.map((card) => ({ ...card, timedEvent: false })),
-			}));
+			const stateAtLastPlayer: GameState = JSON.parse(
+				JSON.stringify({
+					...mockGameState,
+					currentPlayerIndex: 2, // Last player index
+					cards: mockGameState.cards.map((card) => ({ ...card, timedEvent: false })),
+				}),
+			);
 
 			const result = showNextCard(stateAtLastPlayer);
 
@@ -205,12 +207,14 @@ describe('Game Manager Functions', () => {
 		});
 
 		it('should end game when no more cards', () => {
-			const stateAtLastCard: GameState = JSON.parse(JSON.stringify({
-				...mockGameState,
-				currentCardIndex: 2, // Last card (index 2 of 3 cards)
-				cardAmount: 3,
-				cards: mockGameState.cards.map((card) => ({ ...card, timedEvent: false })),
-			}));
+			const stateAtLastCard: GameState = JSON.parse(
+				JSON.stringify({
+					...mockGameState,
+					currentCardIndex: 2, // Last card (index 2 of 3 cards)
+					cardAmount: 3,
+					cards: mockGameState.cards.map((card) => ({ ...card, timedEvent: false })),
+				}),
+			);
 
 			const result = showNextCard(stateAtLastCard);
 
@@ -219,33 +223,35 @@ describe('Game Manager Functions', () => {
 		});
 
 		it('should clear all player events when game ends', () => {
-			const stateWithEvents: GameState = JSON.parse(JSON.stringify({
-				...mockGameState,
-				currentCardIndex: 2,
-				cardAmount: 3,
-				players: [
-					{
-						id: 1,
-						name: 'Player 1',
-						event: {
-							title: 'Event 1',
-							person: 'Player 1',
-							startingIndex: 0,
-							ended: false,
+			const stateWithEvents: GameState = JSON.parse(
+				JSON.stringify({
+					...mockGameState,
+					currentCardIndex: 2,
+					cardAmount: 3,
+					players: [
+						{
+							id: 1,
+							name: 'Player 1',
+							event: {
+								title: 'Event 1',
+								person: 'Player 1',
+								startingIndex: 0,
+								ended: false,
+							},
 						},
-					},
-					{
-						id: 2,
-						name: 'Player 2',
-						event: {
-							title: 'Event 2',
-							person: 'Player 2',
-							startingIndex: 1,
-							ended: false,
+						{
+							id: 2,
+							name: 'Player 2',
+							event: {
+								title: 'Event 2',
+								person: 'Player 2',
+								startingIndex: 1,
+								ended: false,
+							},
 						},
-					},
-				],
-			}));
+					],
+				}),
+			);
 
 			const result = showNextCard(stateWithEvents);
 
@@ -255,37 +261,39 @@ describe('Game Manager Functions', () => {
 		});
 
 		it('should handle event updates for timed events', () => {
-			const stateWithTimedEventCard: GameState = JSON.parse(JSON.stringify({
-				...mockGameState,
-				currentCardIndex: 0,
-				currentPlayerIndex: 0,
-				cards: [
-					{
-						id: 1,
-						title: 'Card 1',
-						description: 'Desc 1',
-						timedEvent: true,
-						targetPlayer: false,
-						tags: [],
-					},
-					{
-						id: 2,
-						title: 'Card 2',
-						description: 'Desc 2',
-						timedEvent: true,
-						targetPlayer: false,
-						tags: [],
-					},
-					{
-						id: 3,
-						title: 'Card 3',
-						description: 'Desc 3',
-						timedEvent: false,
-						targetPlayer: false,
-						tags: [],
-					},
-				],
-			}));
+			const stateWithTimedEventCard: GameState = JSON.parse(
+				JSON.stringify({
+					...mockGameState,
+					currentCardIndex: 0,
+					currentPlayerIndex: 0,
+					cards: [
+						{
+							id: 1,
+							title: 'Card 1',
+							description: 'Desc 1',
+							timedEvent: true,
+							targetPlayer: false,
+							tags: [],
+						},
+						{
+							id: 2,
+							title: 'Card 2',
+							description: 'Desc 2',
+							timedEvent: true,
+							targetPlayer: false,
+							tags: [],
+						},
+						{
+							id: 3,
+							title: 'Card 3',
+							description: 'Desc 3',
+							timedEvent: false,
+							targetPlayer: false,
+							tags: [],
+						},
+					],
+				}),
+			);
 
 			const result = showNextCard(stateWithTimedEventCard);
 
@@ -330,21 +338,25 @@ describe('Game Manager Functions', () => {
 
 	describe('getTarget', () => {
 		it('should return empty string when card has no targetPlayer', () => {
-			const state = JSON.parse(JSON.stringify({
-				...mockGameState,
-				currentCardIndex: 0, // card 0 has targetPlayer: false
-				currentPlayerIndex: 0,
-			}));
+			const state = JSON.parse(
+				JSON.stringify({
+					...mockGameState,
+					currentCardIndex: 0, // card 0 has targetPlayer: false
+					currentPlayerIndex: 0,
+				}),
+			);
 
 			expect(getTarget(state)).toBe('');
 		});
 
 		it('should return a player name that is not the current player', () => {
-			const state = JSON.parse(JSON.stringify({
-				...mockGameState,
-				currentCardIndex: 2, // card 2 has targetPlayer: true
-				currentPlayerIndex: 0, // current player is Player 1
-			}));
+			const state = JSON.parse(
+				JSON.stringify({
+					...mockGameState,
+					currentCardIndex: 2, // card 2 has targetPlayer: true
+					currentPlayerIndex: 0, // current player is Player 1
+				}),
+			);
 
 			// Math.floor(0.6 * 3) = 1 → Player 2 (not current player at index 0)
 			const mockRandom = vi.spyOn(Math, 'random').mockReturnValue(0.6);
@@ -356,21 +368,21 @@ describe('Game Manager Functions', () => {
 		});
 
 		it('should re-roll when random picks the current player', () => {
-			const state = JSON.parse(JSON.stringify({
-				...mockGameState,
-				currentCardIndex: 1, // card 1 has targetPlayer: true
-				currentPlayerIndex: 1, // current player is Player 2 (index 1)
-				players: [
-					{ id: 1, name: 'Player 1', event: null },
-					{ id: 2, name: 'Player 2', event: null },
-				],
-			}));
+			const state = JSON.parse(
+				JSON.stringify({
+					...mockGameState,
+					currentCardIndex: 1, // card 1 has targetPlayer: true
+					currentPlayerIndex: 1, // current player is Player 2 (index 1)
+					players: [
+						{ id: 1, name: 'Player 1', event: null },
+						{ id: 2, name: 'Player 2', event: null },
+					],
+				}),
+			);
 
 			// First call: Math.floor(0.6 * 2) = 1 → same as currentPlayerIndex, retry
 			// Second call: Math.floor(0.1 * 2) = 0 → Player 1
-			vi.spyOn(Math, 'random')
-				.mockReturnValueOnce(0.6)
-				.mockReturnValueOnce(0.1);
+			vi.spyOn(Math, 'random').mockReturnValueOnce(0.6).mockReturnValueOnce(0.1);
 
 			const result = getTarget(state);
 
@@ -379,11 +391,13 @@ describe('Game Manager Functions', () => {
 		});
 
 		it('should always pick from the players array', () => {
-			const state = JSON.parse(JSON.stringify({
-				...mockGameState,
-				currentCardIndex: 2, // card 2 has targetPlayer: true
-				currentPlayerIndex: 0,
-			}));
+			const state = JSON.parse(
+				JSON.stringify({
+					...mockGameState,
+					currentCardIndex: 2, // card 2 has targetPlayer: true
+					currentPlayerIndex: 0,
+				}),
+			);
 
 			// Run several times to ensure result is always one of the non-current players
 			for (let i = 0; i < 10; i++) {

@@ -1,3 +1,7 @@
+<script lang="ts">
+import { resolve } from '$app/paths';
+</script>
+
 <main>
 	<div class="error-content">
 		<hgroup>
@@ -5,7 +9,7 @@
 			<h2>Page not found</h2>
 		</hgroup>
 		<p>The page you're looking for doesn't exist.</p>
-		<a href="/" class="button button--gold">Return Home</a>
+		<a href={resolve('/')} class="button button--gold">Return Home</a>
 	</div>
 </main>
 
@@ -15,8 +19,8 @@ main {
 	display: grid;
 	place-items: center;
 	padding: 2rem 1rem;
-	background: radial-gradient(120% 60% at 50% 0%, var(--dusk-glow) 0%, transparent 70%),
-		var(--dusk);
+	background:
+		radial-gradient(120% 60% at 50% 0%, var(--dusk-glow) 0%, transparent 70%), var(--dusk);
 	color: var(--foam);
 }
 

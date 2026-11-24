@@ -99,7 +99,7 @@ $: sliderFill = (() => {
 		<div class="tag-selection-container">
 			<span class="settings-label">{$t('select-tags')}</span>
 			<div class="tag-selection">
-				{#each Object.values(Tag) as tag}
+				{#each Object.values(Tag) as tag (tag)}
 					<div class="tag-toggle" class:excluded={gameState.excludedTags.includes(tag)}>
 						<span class="tag-name" title={$t(`tags.${tag}.tooltip`)}>
 							{$t(`tags.${tag}.name`)}

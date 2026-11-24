@@ -60,12 +60,7 @@ function between(rand: () => number, min: number, max: number) {
 }
 
 /** A periodic wave over `width`, so tiles repeat without seams. */
-function wave(
-	rand: () => number,
-	width: number,
-	amplitude: number,
-	frequencies = [1, 2, 3, 5],
-) {
+function wave(rand: () => number, width: number, amplitude: number, frequencies = [1, 2, 3, 5]) {
 	const parts = frequencies.map((frequency) => ({
 		frequency,
 		phase: rand() * Math.PI * 2,
@@ -91,13 +86,11 @@ function wrapped(x: number, r: number, width: number, draw: (x: number) => strin
 
 /** Inlines an SVG as a CSS url(), escaping only what a data URI needs. */
 const svg = (body: string, width: number, height: number) =>
-	`url("data:image/svg+xml,${
-		`<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 ${width} ${height}'>${body}</svg>`
-			.replace(/%/g, '%25')
-			.replace(/#/g, '%23')
-			.replace(/</g, '%3C')
-			.replace(/>/g, '%3E')
-	}")`;
+	`url("data:image/svg+xml,${`<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 ${width} ${height}'>${body}</svg>`
+		.replace(/%/g, '%25')
+		.replace(/#/g, '%23')
+		.replace(/</g, '%3C')
+		.replace(/>/g, '%3E')}")`;
 
 const circle = (x: number, y: number, r: number) =>
 	`<circle cx='${Math.round(x)}' cy='${Math.round(y)}' r='${r.toFixed(1)}'/>`;
@@ -155,9 +148,9 @@ function foamTile() {
 			`</defs>` +
 			`<path d='${edge}Z' fill='url(#f)'/>` +
 			`<g fill='#fff' fill-opacity='.55' stroke='#b98b3c' stroke-width='.7'>` +
-			bubbles.map((group, i) => `<g stroke-opacity='${0.22 + i * 0.08}'>${group}</g>`).join(
-				'',
-			) +
+			bubbles
+				.map((group, i) => `<g stroke-opacity='${0.22 + i * 0.08}'>${group}</g>`)
+				.join('') +
 			`</g>` +
 			`<path d='${edge}Z' fill='url(#s)'/>` +
 			`<g fill='#fff8e6'>` +
@@ -218,9 +211,9 @@ function laceTile(seed: number) {
 			r,
 			LACE_WIDTH,
 			(cx) =>
-				`<circle cx="${cx.toFixed(1)}" cy="${y.toFixed(1)}" r="${
-					r.toFixed(1)
-				}" stroke-width="${width}"/>`,
+				`<circle cx="${cx.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(
+					1,
+				)}" stroke-width="${width}"/>`,
 		);
 	}
 
@@ -236,9 +229,10 @@ function laceTile(seed: number) {
 			2,
 			LACE_WIDTH,
 			(cx) =>
-				`<path d="M${(cx - 1).toFixed(1)} ${top.toFixed(1)}Q${cx.toFixed(1)} ${
-					(top + length * 1.2).toFixed(1)
-				} ${(cx + 1).toFixed(1)} ${top.toFixed(1)}Z"/>` +
+				`<path d="M${(cx - 1).toFixed(1)} ${top.toFixed(1)}Q${cx.toFixed(1)} ${(
+					top +
+					length * 1.2
+				).toFixed(1)} ${(cx + 1).toFixed(1)} ${top.toFixed(1)}Z"/>` +
 				`<circle cx="${cx.toFixed(1)}" cy="${(top + length * 0.6).toFixed(1)}" r="1.25"/>`,
 		);
 	}
@@ -285,21 +279,28 @@ const bubbles = Array.from({ length: 14 }, () => ({
 	{#if rings.length > 0}
 		<svg class="lacing" xmlns="http://www.w3.org/2000/svg">
 			<defs>
-				{#each lacePatterns as { line, net }, i}
+				{#each lacePatterns as { line, net }, i (i)}
 					<pattern
 						id="lace-{i}"
 						width={LACE_WIDTH}
 						height={LACE_HEIGHT}
 						patternUnits="userSpaceOnUse"
 					>
+						<!-- SVG markup is generated in this component, never from user input. -->
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						<g fill="#fff9ee">{@html line}</g>
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						<g fill="none" stroke="#fff9ee">{@html net}</g>
 					</pattern>
 				{/each}
 			</defs>
 			{#each rings as ring (ring.index)}
 				<svg y="{ring.top}%" overflow="visible">
-					<g class="ring" style:opacity={ring.opacity} transform="translate({-ring.offset} {-LACE_LINE})">
+					<g
+						class="ring"
+						style:opacity={ring.opacity}
+						transform="translate({-ring.offset} {-LACE_LINE})"
+					>
 						<rect width="6000" height={LACE_HEIGHT} fill="url(#lace-{ring.pattern})" />
 					</g>
 				</svg>
@@ -312,7 +313,7 @@ const bubbles = Array.from({ length: 14 }, () => ({
 		<div class="liquid">
 			<div class="depth"></div>
 			<div class="streams">
-				{#each streams as stream}
+				{#each streams as stream, i (i)}
 					<div
 						class="stream"
 						style:left="{stream.left}%"
@@ -322,11 +323,10 @@ const bubbles = Array.from({ length: 14 }, () => ({
 						style:--size="{stream.size}px"
 						style:opacity={stream.opacity}
 						style:animation-duration="{stream.duration}s"
-					>
-					</div>
+					></div>
 				{/each}
 			</div>
-			{#each bubbles as { left, size, duration, delay, sway }}
+			{#each bubbles as { left, size, duration, delay, sway }, i (i)}
 				<div
 					class="bubble"
 					style:left="{left}%"
@@ -357,8 +357,7 @@ const bubbles = Array.from({ length: 14 }, () => ({
 	z-index: -1;
 	overflow: hidden;
 	background:
-		radial-gradient(120% 60% at 50% 0%, var(--dusk-glow) 0%, transparent 70%),
-		var(--dusk);
+		radial-gradient(120% 60% at 50% 0%, var(--dusk-glow) 0%, transparent 70%), var(--dusk);
 }
 
 /* Lacing sits behind the beer, so the liquid covers it until it drains past. */
@@ -412,20 +411,20 @@ const bubbles = Array.from({ length: 14 }, () => ({
 	height: 100lvh;
 	background:
 		linear-gradient(
-		90deg,
-		rgba(110, 48, 0, 0.38) 0%,
-		rgba(110, 48, 0, 0) 22%,
-		rgba(255, 214, 120, 0.12) 50%,
-		rgba(110, 48, 0, 0) 78%,
-		rgba(110, 48, 0, 0.38) 100%
-	),
+			90deg,
+			rgba(110, 48, 0, 0.38) 0%,
+			rgba(110, 48, 0, 0) 22%,
+			rgba(255, 214, 120, 0.12) 50%,
+			rgba(110, 48, 0, 0) 78%,
+			rgba(110, 48, 0, 0.38) 100%
+		),
 		linear-gradient(
-		to bottom,
-		var(--beer-high) 0%,
-		var(--beer) 32%,
-		var(--beer-mid) 68%,
-		var(--beer-deep) 100%
-	);
+			to bottom,
+			var(--beer-high) 0%,
+			var(--beer) 32%,
+			var(--beer-mid) 68%,
+			var(--beer-deep) 100%
+		);
 }
 
 /* Light falling through the head brightens the beer just under it. */
@@ -542,26 +541,21 @@ const bubbles = Array.from({ length: 14 }, () => ({
 	pointer-events: none;
 	background:
 		linear-gradient(
-		90deg,
-		transparent 7%,
-		rgba(255, 255, 255, 0.1) 9%,
-		rgba(255, 255, 255, 0.22) 10.5%,
-		rgba(255, 255, 255, 0.06) 12%,
-		transparent 15%
-	),
+			90deg,
+			transparent 7%,
+			rgba(255, 255, 255, 0.1) 9%,
+			rgba(255, 255, 255, 0.22) 10.5%,
+			rgba(255, 255, 255, 0.06) 12%,
+			transparent 15%
+		),
+		linear-gradient(90deg, transparent 88%, rgba(255, 255, 255, 0.14) 89.5%, transparent 90.5%),
 		linear-gradient(
-		90deg,
-		transparent 88%,
-		rgba(255, 255, 255, 0.14) 89.5%,
-		transparent 90.5%
-	),
-		linear-gradient(
-		90deg,
-		rgba(0, 0, 0, 0.18),
-		transparent 6%,
-		transparent 94%,
-		rgba(0, 0, 0, 0.18)
-	);
+			90deg,
+			rgba(0, 0, 0, 0.18),
+			transparent 6%,
+			transparent 94%,
+			rgba(0, 0, 0, 0.18)
+		);
 }
 
 @media (prefers-reduced-motion: reduce) {
