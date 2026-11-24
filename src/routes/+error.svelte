@@ -8,6 +8,10 @@ import { getStoredLanguage, setLanguage } from '$lib/i18n/localeStorage';
 onMount(() => setLanguage(getStoredLanguage()));
 </script>
 
+<svelte:head>
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <main>
 	<div class="error-content">
 		<hgroup>

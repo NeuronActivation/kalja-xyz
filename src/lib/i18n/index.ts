@@ -1,5 +1,6 @@
 import { base } from '$app/paths';
 import { getLocaleFromNavigator, init, register } from 'svelte-i18n';
+import { isBrowser } from '$lib/constants/isBrowser';
 
 /**
  * The part of the fetch API that the locale loaders actually rely on.
@@ -17,8 +18,9 @@ export function registerLocales(fetchFn: LocaleFetch) {
 	register('en', () => fetchFn(`${base}/locales/english.json`).then((res) => res.json()));
 }
 
-// Initialize Svelte i18n with fallback locale
+// The prerendered page has no navigator, so it is rendered in Finnish to match the page's
+// Finnish metadata. In the browser the visitor's own language is used.
 init({
 	fallbackLocale: 'en',
-	initialLocale: getLocaleFromNavigator()?.split('-')[0],
+	initialLocale: isBrowser ? getLocaleFromNavigator()?.split('-')[0] : 'fi',
 });
