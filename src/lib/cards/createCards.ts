@@ -3,10 +3,10 @@ import { Language } from '$lib/constants/language';
 import { Tag } from '$lib/constants/tag';
 import { type LanguageData } from '$lib/interfaces/languageData';
 import { type Card } from '$lib/interfaces/card';
-import { shuffle } from '$lib/utils/shuffle';
+import { createSeed, seededShuffle } from '$lib/utils/seed';
 
 /**
- * Creates the card data for each language, shuffled randomly.
+ * Creates the card data for each language, shuffling them with a seeded random generator.
  * @param cardAmount The number of cards to retrieve for each language.
  * @param includedTags - Tags that the card must have at least one of to be included.
  * @param excludedTags - Tags that the card must not have any of to be included.
@@ -18,7 +18,8 @@ export async function createCards(
 	excludedTags: Tag[],
 ): Promise<Record<Language, LanguageData> | null> {
 	try {
-		const shuffledCards = await fetchAndFilterCards(includedTags, excludedTags);
+		const seed = createSeed();
+		const shuffledCards = await fetchAndFilterCards(includedTags, excludedTags, seed);
 
 		// Initialize an empty record to store cards per language.
 		const languageCards: Record<Language, LanguageData> = {} as Record<Language, LanguageData>;
@@ -48,11 +49,13 @@ export async function createCards(
  * Fetches, filters and shuffles cards.
  * @param includedTags - Tags that the card must have at least one of to be included.
  * @param excludedTags - Tags that the card must not have any of to be included.
+ * @param seed The seed for shuffling.
  * @returns Shuffled and filtered cards.
  */
 export async function fetchAndFilterCards(
 	includedTags: Tag[],
 	excludedTags: Tag[],
+	seed: number,
 ): Promise<Card[]> {
 	try {
 		const response = await fetch(`${base}/cards/cards.json`);
@@ -74,7 +77,7 @@ export async function fetchAndFilterCards(
 				!(excludedTags.includes(Tag.UNTAGGED) && card.tags.length === 0),
 		);
 
-		return shuffle(filteredCards);
+		return seededShuffle(filteredCards, seed);
 	} catch (error) {
 		console.error(`Failed to fetch cards:`, error);
 		return [];

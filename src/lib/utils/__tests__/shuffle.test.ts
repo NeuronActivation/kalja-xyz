@@ -27,7 +27,6 @@ describe('shuffle', () => {
 	});
 
 	it('can move any item to any position', () => {
-		// Regression: the old seeded shuffle always put the first item last.
 		const seenInLastSlot = new Set<number>();
 		for (let i = 0; i < 500; i++) {
 			seenInLastSlot.add(shuffle(range(5)).at(-1)!);

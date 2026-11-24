@@ -2,12 +2,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createCards, fetchAndFilterCards } from '$lib/cards/createCards';
 import { Language } from '$lib/constants/language';
 import { Tag } from '$lib/constants/tag';
-import { shuffle } from '$lib/utils/shuffle';
+import { createSeed, seededShuffle } from '$lib/utils/seed';
 import type { Card } from '$lib/interfaces/card';
 
 // Mock the dependencies
-vi.mock('$lib/utils/shuffle', () => ({
-	shuffle: vi.fn((cards) => cards), // Default to no shuffling
+vi.mock('$lib/utils/seed', () => ({
+	createSeed: vi.fn(() => 42),
+	seededShuffle: vi.fn((cards) => cards), // Default to no shuffling
 }));
 
 // Mock fetch
@@ -43,7 +44,7 @@ const mockCards: Card[] = [
 describe('createCards', () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
-		vi.mocked(shuffle).mockImplementation((cards) => cards);
+		vi.mocked(seededShuffle).mockImplementation((cards) => cards);
 	});
 
 	it('should create cards for all languages with correct structure', async () => {
@@ -69,6 +70,17 @@ describe('createCards', () => {
 			targetPlayer: true,
 			tags: [Tag.EVENT, Tag.RANDOM_TARGET],
 		});
+	});
+
+	it('should shuffle with a seed from createSeed', async () => {
+		vi.mocked(fetch).mockResolvedValueOnce({
+			json: () => Promise.resolve({ cards: mockCards }),
+		} as Response);
+
+		await createCards(2, [Tag.EVENT], []);
+
+		expect(createSeed).toHaveBeenCalledOnce();
+		expect(seededShuffle).toHaveBeenCalledWith(expect.any(Array), 42);
 	});
 
 	it('should return empty when fetching fails', async () => {
@@ -112,7 +124,7 @@ describe('fetchAndFilterCards', () => {
 			json: () => Promise.resolve({ cards: mockCards }),
 		} as Response);
 
-		const result = await fetchAndFilterCards([Tag.EVENT], []);
+		const result = await fetchAndFilterCards([Tag.EVENT], [], 42);
 
 		expect(result).toHaveLength(2);
 		expect(result[0].id).toBe(1);
@@ -123,7 +135,7 @@ describe('fetchAndFilterCards', () => {
 			json: () => Promise.resolve({ cards: mockCards }),
 		} as Response);
 
-		const result = await fetchAndFilterCards([Tag.UNTAGGED], []);
+		const result = await fetchAndFilterCards([Tag.UNTAGGED], [], 42);
 
 		expect(result).toHaveLength(1);
 		expect(result[0].id).toBe(3);
@@ -134,7 +146,7 @@ describe('fetchAndFilterCards', () => {
 			json: () => Promise.resolve({ cards: mockCards }),
 		} as Response);
 
-		const result = await fetchAndFilterCards([Tag.EVENT], [Tag.RANDOM_TARGET]);
+		const result = await fetchAndFilterCards([Tag.EVENT], [Tag.RANDOM_TARGET], 42);
 
 		expect(result).toHaveLength(1);
 		expect(result[0].id).toBe(2);
@@ -145,7 +157,7 @@ describe('fetchAndFilterCards', () => {
 			json: () => Promise.resolve({ cards: mockCards }),
 		} as Response);
 
-		const result = await fetchAndFilterCards([Tag.EVENT], [Tag.UNTAGGED]);
+		const result = await fetchAndFilterCards([Tag.EVENT], [Tag.UNTAGGED], 42);
 
 		expect(result).toHaveLength(2);
 		expect(result.map((card) => card.id)).toEqual([1, 2]);
@@ -155,25 +167,25 @@ describe('fetchAndFilterCards', () => {
 		const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 		vi.mocked(fetch).mockRejectedValueOnce(new Error('Failed to fetch'));
 
-		const result = await fetchAndFilterCards([Tag.EVENT], []);
+		const result = await fetchAndFilterCards([Tag.EVENT], [], 42);
 
 		expect(result).toEqual([]);
 		expect(consoleSpy).toHaveBeenCalledWith('Failed to fetch cards:', expect.any(Error));
 		consoleSpy.mockRestore();
 	});
 
-	it('should shuffle the filtered cards', async () => {
+	it('should shuffle cards with seed', async () => {
 		vi.mocked(fetch).mockResolvedValueOnce({
 			json: () => Promise.resolve({ cards: mockCards }),
 		} as Response);
 
 		const shuffledCards: Card[] = [mockCards[0], mockCards[1]];
 
-		vi.mocked(shuffle).mockReturnValueOnce(shuffledCards);
+		vi.mocked(seededShuffle).mockReturnValueOnce(shuffledCards);
 
-		const result = await fetchAndFilterCards([Tag.EVENT], []);
+		const result = await fetchAndFilterCards([Tag.EVENT], [], 42);
 
-		expect(shuffle).toHaveBeenCalledWith(expect.any(Array));
+		expect(seededShuffle).toHaveBeenCalledWith(expect.any(Array), 42);
 		expect(result).toBe(shuffledCards);
 	});
 });
