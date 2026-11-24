@@ -1,0 +1,45 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    versioning-strategy: increase
+    # Fresh releases often have regressions or lag behind their ecosystem's peer ranges.
+    # Security updates are not affected by cooldown.
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+    groups:
+      # These packages declare tight peer ranges on each other, so they must move together.
+      svelte:
+        patterns:
+          - svelte
+          - svelte-*
+          - '@sveltejs/*'
+          - vite
+          - vitest
+          - '@vitest/*'
+          - '@testing-library/svelte'
+          - eslint-plugin-svelte
+          - prettier-plugin-svelte
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # SvelteKit, svelte-check and typescript-eslint only support TypeScript 6. Remove this once
+      # they support TypeScript 7.
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      github-actions:
+        patterns:
+          - '*'
