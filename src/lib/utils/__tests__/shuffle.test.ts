@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { shuffle } from '$lib/utils/shuffle';
+import { shuffle } from '#lib/utils/shuffle.ts';
 
 const range = (length: number) => Array.from({ length }, (_, i) => i);
 

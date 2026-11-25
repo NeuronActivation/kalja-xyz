@@ -1,9 +1,9 @@
 <script lang="ts">
 import { locale, t } from 'svelte-i18n';
-import { Language } from '$lib/constants/language';
-import { gameStore } from '$lib/stores/gameStore';
-import { languageStore } from '$lib/stores/languageStore';
-import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
+import { Language } from '#lib/constants/language.ts';
+import { gameStore } from '#lib/stores/gameStore.ts';
+import { languageStore } from '#lib/stores/languageStore.ts';
+import ReloadIcon from '#lib/components/icons/ReloadIcon.svelte';
 
 /**
  * Handles language selection change.

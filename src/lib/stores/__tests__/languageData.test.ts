@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { get } from 'svelte/store';
-import { Language } from '$lib/constants/language';
-import type { LanguageData } from '$lib/interfaces/languageData';
+import { Language } from '#lib/constants/language.ts';
+import type { LanguageData } from '#lib/interfaces/languageData.ts';
 
 // Mock dependencies
-vi.mock('$lib/constants/isBrowser', () => ({
+vi.mock('#lib/constants/isBrowser.ts', () => ({
 	isBrowser: true,
 }));
 
@@ -59,7 +59,7 @@ describe('languageData', () => {
 			value: mockLocalStorage,
 			writable: true,
 		});
-		vi.doMock('$lib/constants/isBrowser', () => ({
+		vi.doMock('#lib/constants/isBrowser.ts', () => ({
 			isBrowser: true,
 		}));
 		vi.clearAllMocks();
@@ -74,7 +74,7 @@ describe('languageData', () => {
 
 	describe('initialization', () => {
 		it('should initialize with data from localStorage when browser', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			const storeValue = get(languageData);
 			expect(storeValue).toEqual(mockLanguageDataRecord);
 			expect(mockLocalStorage.getItem).toHaveBeenCalledWith('languageData');
@@ -84,7 +84,7 @@ describe('languageData', () => {
 			mockLocalStorage.getItem.mockReturnValue(null);
 
 			vi.resetModules();
-			const { languageData: freshLanguageData } = await import('$lib/stores/languageData');
+			const { languageData: freshLanguageData } = await import('#lib/stores/languageData.ts');
 			const storeValue = get(freshLanguageData);
 			expect(storeValue).toEqual({});
 		});
@@ -95,7 +95,7 @@ describe('languageData', () => {
 			const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
 			vi.resetModules();
-			const { languageData: freshLanguageData } = await import('$lib/stores/languageData');
+			const { languageData: freshLanguageData } = await import('#lib/stores/languageData.ts');
 			const storeValue = get(freshLanguageData);
 			expect(storeValue).toEqual({});
 			expect(consoleErrorSpy).toHaveBeenCalledWith(
@@ -108,17 +108,17 @@ describe('languageData', () => {
 
 		it('should initialize with empty object when not in browser', async () => {
 			// Mock isBrowser to false
-			vi.doMock('$lib/constants/isBrowser', () => ({
+			vi.doMock('#lib/constants/isBrowser.ts', () => ({
 				isBrowser: false,
 			}));
 
 			vi.resetModules();
-			const { languageData: freshLanguageData } = await import('$lib/stores/languageData');
+			const { languageData: freshLanguageData } = await import('#lib/stores/languageData.ts');
 			const storeValue = get(freshLanguageData);
 			expect(storeValue).toEqual({});
 
 			// Restore mock
-			vi.doMock('$lib/constants/isBrowser', () => ({
+			vi.doMock('#lib/constants/isBrowser.ts', () => ({
 				isBrowser: true,
 			}));
 		});
@@ -126,7 +126,7 @@ describe('languageData', () => {
 
 	describe('subscription', () => {
 		it('should allow subscribing to store updates', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			const unsubscribe = languageData.subscribe(() => {});
 			expect(typeof unsubscribe).toBe('function');
 
@@ -135,7 +135,7 @@ describe('languageData', () => {
 		});
 
 		it('should notify subscribers when data changes', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			return new Promise<void>((resolve) => {
 				let callCount = 0;
 
@@ -160,7 +160,7 @@ describe('languageData', () => {
 
 	describe('localStorage persistence', () => {
 		it('should persist data to localStorage when store updates', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			const newData = mockLanguageDataRecord;
 			languageData.set(newData);
 
@@ -171,7 +171,7 @@ describe('languageData', () => {
 		});
 
 		it('should handle localStorage setItem errors gracefully', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 			mockLocalStorage.setItem.mockImplementation(() => {
 				throw new Error('LocalStorage quota exceeded');
@@ -190,7 +190,7 @@ describe('languageData', () => {
 
 	describe('store operations', () => {
 		it('should update store with set method', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			const newData = {
 				[Language.FI]: mockLanguageDataFi,
 				[Language.EN]: {
@@ -215,7 +215,7 @@ describe('languageData', () => {
 		});
 
 		it('should update store with update method', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			languageData.set(mockLanguageDataRecord);
 
 			const newEnglishData = {
@@ -245,7 +245,7 @@ describe('languageData', () => {
 		});
 
 		it('should handle complex data structures', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			const complexData = {
 				[Language.FI]: {
 					cards: [
@@ -288,7 +288,7 @@ describe('languageData', () => {
 
 	describe('edge cases', () => {
 		it('should handle empty object updates', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			languageData.set({} as Record<Language, LanguageData>);
 
 			const storeValue = get(languageData);
@@ -297,7 +297,7 @@ describe('languageData', () => {
 		});
 
 		it('should handle null values gracefully', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			// @ts-expect-error - testing edge case
 			languageData.set(null);
 
@@ -307,7 +307,7 @@ describe('languageData', () => {
 		});
 
 		it('should handle undefined values gracefully', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			// @ts-expect-error - testing edge case
 			languageData.set(undefined);
 
@@ -319,7 +319,7 @@ describe('languageData', () => {
 
 	describe('multiple subscribers', () => {
 		it('should handle multiple subscribers correctly', async () => {
-			const { languageData } = await import('$lib/stores/languageData');
+			const { languageData } = await import('#lib/stores/languageData.ts');
 			return new Promise<void>((resolve) => {
 				let subscriber1Calls = 0;
 				let subscriber2Calls = 0;

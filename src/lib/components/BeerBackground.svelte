@@ -1,6 +1,6 @@
 <script lang="ts">
-import { gameStore } from '$lib/stores/gameStore';
-import { ApplicationState } from '$lib/constants/applicationState';
+import { gameStore } from '#lib/stores/gameStore.ts';
+import { ApplicationState } from '#lib/constants/applicationState.ts';
 
 $: ({ state, currentCardIndex, cardAmount } = $gameStore);
 

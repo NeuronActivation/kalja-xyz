@@ -1,4 +1,4 @@
-import { shuffle } from '$lib/utils/shuffle';
+import { shuffle } from '#lib/utils/shuffle.ts';
 
 const MODULUS = 2147483647;
 

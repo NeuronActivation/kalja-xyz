@@ -1,11 +1,11 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-import type { GameState } from '$lib/interfaces/gameState';
-import { gameStore } from '$lib/stores/gameStore';
-import ReloadIcon from '$lib/components/icons/ReloadIcon.svelte';
+import type { GameState } from '#lib/interfaces/gameState.ts';
+import { gameStore } from '#lib/stores/gameStore.ts';
+import ReloadIcon from '#lib/components/icons/ReloadIcon.svelte';
 import { onMount, tick } from 'svelte';
-import { getTarget } from '$lib/managers/game';
-import { getPersistentTarget, setPersistentTarget } from '$lib/utils/targetStorage';
+import { getTarget } from '#lib/managers/game.ts';
+import { getPersistentTarget, setPersistentTarget } from '#lib/utils/targetStorage.ts';
 
 let gameState: GameState;
 gameStore.subscribe((value) => (gameState = value));

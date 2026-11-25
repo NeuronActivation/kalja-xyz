@@ -1,9 +1,9 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
-import { gameStore } from '$lib/stores/gameStore';
-import type { GameState } from '$lib/interfaces/gameState';
-import { Tag } from '$lib/constants/tag';
+import { gameStore } from '#lib/stores/gameStore.ts';
+import type { GameState } from '#lib/interfaces/gameState.ts';
+import { Tag } from '#lib/constants/tag.ts';
 
 let playerName: string;
 let gameState: GameState;

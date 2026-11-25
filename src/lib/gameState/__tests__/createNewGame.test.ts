@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { createNewGame } from '$lib/gameState/createNewGame';
-import { ApplicationState } from '$lib/constants/applicationState';
-import { Tag } from '$lib/constants/tag';
+import { createNewGame } from '#lib/gameState/createNewGame.ts';
+import { ApplicationState } from '#lib/constants/applicationState.ts';
+import { Tag } from '#lib/constants/tag.ts';
 
 describe('createNewGame', () => {
 	it('should return a new game state with default values', () => {

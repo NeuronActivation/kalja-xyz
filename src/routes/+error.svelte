@@ -2,7 +2,7 @@
 import { onMount } from 'svelte';
 import { t } from 'svelte-i18n';
 import { resolve } from '$app/paths';
-import { getStoredLanguage, setLanguage } from '$lib/i18n/localeStorage';
+import { getStoredLanguage, setLanguage } from '#lib/i18n/localeStorage.ts';
 
 // The error page skips the game's language store, so apply the visitor's chosen language here.
 onMount(() => setLanguage(getStoredLanguage()));

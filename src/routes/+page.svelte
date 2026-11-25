@@ -1,17 +1,17 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 
-import { ApplicationState } from '$lib/constants/applicationState';
-import type { GameState } from '$lib/interfaces/gameState';
-import { gameStore } from '$lib/stores/gameStore';
+import { ApplicationState } from '#lib/constants/applicationState.ts';
+import type { GameState } from '#lib/interfaces/gameState.ts';
+import { gameStore } from '#lib/stores/gameStore.ts';
 
-import BeerBackground from '$lib/components/BeerBackground.svelte';
-import Header from '$lib/components/Header.svelte';
-import Start from '$lib/components/Start.svelte';
-import Lobby from '$lib/components/Lobby.svelte';
-import Game from '$lib/components/Game.svelte';
-import End from '$lib/components/End.svelte';
-import Footer from '$lib/components/Footer.svelte';
+import BeerBackground from '#lib/components/BeerBackground.svelte';
+import Header from '#lib/components/Header.svelte';
+import Start from '#lib/components/Start.svelte';
+import Lobby from '#lib/components/Lobby.svelte';
+import Game from '#lib/components/Game.svelte';
+import End from '#lib/components/End.svelte';
+import Footer from '#lib/components/Footer.svelte';
 
 // State of the application.
 let gameState: GameState;

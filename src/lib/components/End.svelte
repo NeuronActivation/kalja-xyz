@@ -1,6 +1,6 @@
 <script lang="ts">
 import { t } from 'svelte-i18n';
-import { gameStore } from '$lib/stores/gameStore';
+import { gameStore } from '#lib/stores/gameStore.ts';
 </script>
 
 <h1>{$t('game-over')}</h1>

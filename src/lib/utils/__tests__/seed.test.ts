@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { createSeed, seededRandom, seededShuffle } from '$lib/utils/seed';
+import { createSeed, seededRandom, seededShuffle } from '#lib/utils/seed.ts';
 
 const range = (length: number) => Array.from({ length }, (_, i) => i);
 

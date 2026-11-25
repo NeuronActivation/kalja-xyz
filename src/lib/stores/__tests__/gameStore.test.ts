@@ -1,26 +1,26 @@
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 import { get } from 'svelte/store';
-import { ApplicationState } from '$lib/constants/applicationState';
-import { DEFAULT_CARD_AMOUNT } from '$lib/constants/cardAmount';
-import { Tag } from '$lib/constants/tag';
-import { gameStore } from '$lib/stores/gameStore';
-import * as gameStateStorage from '$lib/gameState/gameStateStorage';
-import * as cardStorage from '$lib/cards/cardStorage';
-import * as gameManagers from '$lib/managers/game';
-import * as createNewGameModule from '$lib/gameState/createNewGame';
-import { languageStore } from '$lib/stores/languageStore';
+import { ApplicationState } from '#lib/constants/applicationState.ts';
+import { DEFAULT_CARD_AMOUNT } from '#lib/constants/cardAmount.ts';
+import { Tag } from '#lib/constants/tag.ts';
+import { gameStore } from '#lib/stores/gameStore.ts';
+import * as gameStateStorage from '#lib/gameState/gameStateStorage.ts';
+import * as cardStorage from '#lib/cards/cardStorage.ts';
+import * as gameManagers from '#lib/managers/game.ts';
+import * as createNewGameModule from '#lib/gameState/createNewGame.ts';
+import { languageStore } from '#lib/stores/languageStore.ts';
 
-vi.mock('$lib/gameState/gameStateStorage', () => ({
+vi.mock('#lib/gameState/gameStateStorage.ts', () => ({
 	loadGameState: vi.fn(),
 	saveGameState: vi.fn(),
 }));
 
-vi.mock('$lib/cards/cardStorage', () => ({
+vi.mock('#lib/cards/cardStorage.ts', () => ({
 	loadCards: vi.fn(),
 	loadSingleCard: vi.fn(),
 }));
 
-vi.mock('$lib/managers/game', () => ({
+vi.mock('#lib/managers/game.ts', () => ({
 	addPlayer: vi.fn(),
 	removePlayer: vi.fn(),
 	changeGameState: vi.fn(),
@@ -28,11 +28,11 @@ vi.mock('$lib/managers/game', () => ({
 	showNextCard: vi.fn(),
 }));
 
-vi.mock('$lib/gameState/createNewGame', () => ({
+vi.mock('#lib/gameState/createNewGame.ts', () => ({
 	createNewGame: vi.fn(),
 }));
 
-vi.mock('$lib/stores/languageStore', () => ({
+vi.mock('#lib/stores/languageStore.ts', () => ({
 	languageStore: {
 		subscribe: vi.fn(),
 		getCards: vi.fn(),

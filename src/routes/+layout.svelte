@@ -1,7 +1,7 @@
 <script lang="ts">
 import { locale } from 'svelte-i18n';
-import { isBrowser } from '$lib/constants/isBrowser';
-import type { Metadata } from '$lib/interfaces/metadata';
+import { isBrowser } from '#lib/constants/isBrowser.ts';
+import type { Metadata } from '#lib/interfaces/metadata.ts';
 
 import '@fontsource/shrikhand/latin.css';
 import '@fontsource/shrikhand/latin-ext.css';

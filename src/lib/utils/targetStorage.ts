@@ -1,4 +1,4 @@
-import { isBrowser } from '$lib/constants/isBrowser';
+import { isBrowser } from '#lib/constants/isBrowser.ts';
 
 const KEY_PREFIX = 'targetPlayer-';
 
